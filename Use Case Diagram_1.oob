@@ -2016,7 +2016,7 @@ Shadow=0</a:DisplayPreferences>
 </o:UseCaseAssociationSymbol>
 <o:DependencySymbol Id="o54">
 <a:ModificationDate>1647776872</a:ModificationDate>
-<a:Rect>((-16038,16699), (-331,18126))</a:Rect>
+<a:Rect>((-16038,16522), (-331,18099))</a:Rect>
 <a:ListOfPoints>((-731,17399),(-15638,17399))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>8</a:ArrowStyle>
@@ -2605,12 +2605,13 @@ LABL 0 Arial,8,N</a:FontList>
 <a:Code>Emergency_case</a:Code>
 <a:CreationDate>1647711338</a:CreationDate>
 <a:Creator>Todor</a:Creator>
-<a:ModificationDate>1647712239</a:ModificationDate>
+<a:ModificationDate>1647779984</a:ModificationDate>
 <a:Modifier>Todor</a:Modifier>
 <a:Step>{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Times New Roman;}}
 {\*\generator Riched20 10.0.19041}\viewkind4\uc1 
 \pard\f0\fs20 1. Doktor bira najhitniji slucaj\par
 2. Za izabrani slucaj doktor rezervise prvu slobodnu salu sa potrebnim materijalom\par
+3. Ukoliko nema slobodne sale, pacijent se prebacuje u salu koja je rezervisana al nije zauzeta trenutno\par
 }
 </a:Step>
 <a:UseCase.Extension>{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Times New Roman;}}
@@ -2618,6 +2619,11 @@ LABL 0 Arial,8,N</a:FontList>
 \pard\f0\fs20 2a. Ukoliko u prvoj slobodnoj sali nema potrebnog materijala obavestava se sekretar koji treba da prenese materijal iz magacina u salu\par
 }
 </a:UseCase.Extension>
+<a:Throws>{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Times New Roman;}}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\f0\fs20 1. Sve sale su zauzete\par
+}
+</a:Throws>
 <a:PreCondition>{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Times New Roman;}}
 {\*\generator Riched20 10.0.19041}\viewkind4\uc1 
 \pard\f0\fs20 1. Postoji barem jedan hitan slucaj\par
@@ -2627,6 +2633,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:PostCondition>{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Times New Roman;}}
 {\*\generator Riched20 10.0.19041}\viewkind4\uc1 
 \pard\f0\fs20 1. Sala za hitan slucaj je rezervisana\par
+2. Ukoliko je sala vec bila rezervisana, salje se obavestenje doktoru ciji je termin pomeren\par
 }
 </a:PostCondition>
 </o:UseCase>
@@ -5453,7 +5460,7 @@ DISPNAME 0 Arial,8,N</a:FontList>
 <a:Code>Use_Case_Diagram_1</a:Code>
 <a:CreationDate>1647709901</a:CreationDate>
 <a:Creator>Todor</a:Creator>
-<a:ModificationDate>1647709918</a:ModificationDate>
+<a:ModificationDate>1647777246</a:ModificationDate>
 <a:Modifier>Todor</a:Modifier>
 <a:TargetModelURL>file:///.</a:TargetModelURL>
 <a:TargetModelID>15A56C3A-21F1-42A4-86B1-D5E56C76A8CD</a:TargetModelID>
