@@ -4864,7 +4864,7 @@ Shadow=0</a:DisplayPreferences>
 </o:UseCaseAssociationSymbol>
 <o:DependencySymbol Id="o151">
 <a:ModificationDate>1647947369</a:ModificationDate>
-<a:Rect>((-17412,19817), (18688,24340))</a:Rect>
+<a:Rect>((-17412,19750), (18688,24340))</a:Rect>
 <a:ListOfPoints>((-17012,21299),(16108,21299),(16108,23940))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>8</a:ArrowStyle>
@@ -4902,8 +4902,8 @@ Shadow=0</a:DisplayPreferences>
 </o:UseCaseAssociationSymbol>
 <o:UseCaseAssociationSymbol Id="o157">
 <a:ModificationDate>1647947423</a:ModificationDate>
-<a:Rect>((-33100,9679), (413,12970))</a:Rect>
-<a:ListOfPoints>((-32700,12570),(-32700,10079),(13,10079))</a:ListOfPoints>
+<a:Rect>((-33100,9679), (570,12970))</a:Rect>
+<a:ListOfPoints>((-32700,12570),(-32700,10079),(170,10079))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>0</a:ArrowStyle>
 <a:LineColor>16744448</a:LineColor>
@@ -4940,7 +4940,7 @@ Shadow=0</a:DisplayPreferences>
 </o:UseCaseAssociationSymbol>
 <o:DependencySymbol Id="o163">
 <a:ModificationDate>1647787420</a:ModificationDate>
-<a:Rect>((-4392,2179), (9618,3579))</a:Rect>
+<a:Rect>((-4392,2137), (9618,3579))</a:Rect>
 <a:ListOfPoints>((9218,2879),(-3992,2879))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>8</a:ArrowStyle>
@@ -5238,7 +5238,7 @@ LABL 0 Arial,8,N</a:FontList>
 </o:UseCaseSymbol>
 <o:UseCaseSymbol Id="o158">
 <a:ModificationDate>1647947423</a:ModificationDate>
-<a:Rect>((13,7380), (10483,12779))</a:Rect>
+<a:Rect>((170,7380), (10326,12779))</a:Rect>
 <a:LineColor>16744448</a:LineColor>
 <a:LineWidth>1</a:LineWidth>
 <a:FillColor>16777152</a:FillColor>
@@ -5647,11 +5647,11 @@ LABL 0 Arial,8,N</a:FontList>
 </o:UseCase>
 <o:UseCase Id="o198">
 <a:ObjectID>C8A36C68-75F2-4DC7-9BA4-0E4FC23367EA</a:ObjectID>
-<a:Name>Manipulacija  opreme</a:Name>
-<a:Code>Manipulacija__opreme</a:Code>
+<a:Name>Manipulacija opreme</a:Name>
+<a:Code>Manipulacija_opreme</a:Code>
 <a:CreationDate>1647528433</a:CreationDate>
 <a:Creator>Ivana</a:Creator>
-<a:ModificationDate>1647947141</a:ModificationDate>
+<a:ModificationDate>1647948833</a:ModificationDate>
 <a:Modifier>Ivana</a:Modifier>
 <a:Comment>Upravnik mora imati uvid u trenutno stanje opreme na klinici. Vodi se racuna o kolicini i tipu opreme, kao i o opremljenosti prostorijama i magacina. Opremu mozemo dodavati, menjati, brisati.</a:Comment>
 <a:Stereotype>CRUD</a:Stereotype>
