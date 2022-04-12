@@ -5,7 +5,7 @@
 <Workspace>
 	<Local Expanded="Yes">
 		<Model ID="{15A56C3A-21F1-42A4-86B1-D5E56C76A8CD}" Loaded="No" Name="Use Case Diagram_1" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="Use Case Diagram_1.oom"/>
-		<Model Expanded="Yes" ID="{15A56C3A-21F1-42A4-86B1-D5E56C76A8CD}" Name="Use Case Diagram_1" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="Use Case Diagram_1.oom"/>
+		<Model Expanded="Yes" ID="{08E2B876-A6CD-4077-8CAE-2F9BC66DB40A}" Name="ClassDiagram" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="ClassDiagram.oom"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
 </Workspace>
