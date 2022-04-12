@@ -115,7 +115,8 @@ namespace Model
         /// Property for RoomType
         /// </summary>
         /// <pdGenerated>Default opposite class property</pdGenerated>
-      
-   
-   }
+
+
+
+    }
 }

@@ -38,9 +38,11 @@ namespace SIMS
         {
             Appointment app = new Appointment();
             app.Doctor = GetSelectedDoctor();
+            app.doctorID = GetSelectedDoctor().id;
             app.startTime = DateTime.Parse(DatePicker.Text + " " + TextBox.Text);
-            app.Room = rc.findFreeRoom();
-            app.id = "wdqd";
+            app.Room = rc.findFreeRoom(app.startTime);
+            app.roomID = app.Room.id;
+            app.id = DateTime.Now.ToString("yyMMddHHmmssff");
             ac.SaveAppointment(app);
             PatientWindow pw = PatientWindow.Instance;
             pw.refresh();

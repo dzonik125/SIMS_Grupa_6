@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="DeletePatientAppointment.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="DoctorView\AddAppointment.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -14,6 +17,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="DoctorView\EditAppointment.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditPatientAppointment.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="EditRoom.xaml.cs">
@@ -33,6 +39,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="DeletePatientAppointment.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="DoctorView\AddAppointment.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -40,6 +49,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="DoctorView\EditAppointment.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditPatientAppointment.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="EditRoom.xaml">
