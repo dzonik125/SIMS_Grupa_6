@@ -1,0 +1,40 @@
+﻿<Window x:Class="SIMS.DoctorView.Appointments"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIMS.DoctorView"
+        mc:Ignorable="d"
+        Title="Appointments" Height="431" Width="800">
+    <Grid>
+        <DataGrid x:Name="dataGridAppointments" ItemsSource="{Binding Path = Apps}" 
+                    Grid.Row="0" Margin="86,23,94,122" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False">
+            <DataGrid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.353"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DataGrid.RenderTransform>
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Termin" Width="*" Binding="{Binding AppointmentTypeString}" DataGridColumn.CanUserResize="False"/>
+                <DataGridTextColumn Header="Pacijent" Width="*" Binding="{Binding patient.FullName}" DataGridColumn.CanUserResize="False"/>
+                <DataGridTextColumn Header="Datum" Width="*"  Binding="{Binding AppointmentDate}" DataGridColumn.CanUserResize="False"/>
+                <DataGridTextColumn Header="Početak" Width="*" Binding="{Binding AppointmentTime}"  DataGridColumn.CanUserResize="False"/>
+                <DataGridTextColumn Header="Trajanje" Width="*" Binding="{Binding duration}"  DataGridColumn.CanUserResize="False"/>
+                <DataGridTextColumn Header="Prostorija" Width="*" Binding="{Binding Room.roomNum}" DataGridColumn.CanUserResize="False"/>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <Button Content="Zakazi pregled" HorizontalAlignment="Left" Margin="86,342,0,0" VerticalAlignment="Top" Width="100" Height="38" Click="Dodaj_Click"/>
+        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="321,342,0,0" VerticalAlignment="Top" Width="100" Height="38" Click="Izmeni_Click"/>
+        <Button Content="Izbrisi" HorizontalAlignment="Left" Margin="601,342,0,0" VerticalAlignment="Top" Width="100" Height="38" Click="Izbrisi_Click"/>
+        <Button Content="Zakazi operaciju" HorizontalAlignment="Left" Margin="203,342,0,0" VerticalAlignment="Top" Height="38" Width="100" Click="Button_Click"/>
+
+
+    </Grid>
+</Window>

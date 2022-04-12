@@ -1,0 +1,2 @@
+22041100293555|1|1|True|Operaciona sala
+22041206175976|4|4|True|cekaonica
