@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="DeletePatientAppointment.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DoctorView\AddAppointment.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DoctorView\DoctorUI.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DoctorView\EditAppointment.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditPatientAppointment.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditRoom.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MakeAppointmentPatient.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ManagerUI.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NewRoom.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="PatientWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="DeletePatientAppointment.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="DoctorView\AddAppointment.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="DoctorView\DoctorUI.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="DoctorView\EditAppointment.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditPatientAppointment.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditRoom.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MakeAppointmentPatient.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ManagerUI.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="NewRoom.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="PatientWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

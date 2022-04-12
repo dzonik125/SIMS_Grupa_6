@@ -1,0 +1,23 @@
+﻿<Window x:Class="SIMS.DoctorView.EditAppointment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIMS.DoctorView"
+        mc:Ignorable="d"
+        Title="EditAppointment" Height="600" Width="600">
+    <Grid>
+        <Label Content="Pacijent" HorizontalAlignment="Left" Margin="127,109,0,0" VerticalAlignment="Top" Width="111" FontSize="16"/>
+        <Label Content="Sala" HorizontalAlignment="Left" Margin="147,175,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="Datum" HorizontalAlignment="Left" Margin="131,242,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="Vreme:" HorizontalAlignment="Left" Margin="131,310,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="Trajanje" HorizontalAlignment="Left" Margin="124,377,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <DatePicker HorizontalAlignment="Left" Name="DatePicker" Margin="276,242,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Name="Time" Margin="271,316,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Name="Duration" Margin="271,385,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Zakazi" HorizontalAlignment="Left" Margin="81,498,0,0" VerticalAlignment="Top" Height="47" Width="99" RenderTransformOrigin="0.5,0.5" Click="Button_Click" FontSize="16"/>
+        <Button Content="Zatvori" HorizontalAlignment="Left" Margin="373,498,0,0" VerticalAlignment="Top" Height="44" Width="111" FontSize="16" Click="Button_Click_1"/>
+        <ComboBox HorizontalAlignment="Left" Name="RoomBox" Margin="273,180,0,0" DisplayMemberPath="roomNum" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" DisplayMemberPath="FullName" Name="PatientBox" Margin="273,109,0,0" VerticalAlignment="Top" Width="120"/>
+    </Grid>
+</Window>

@@ -1,0 +1,67 @@
+// File:    RoomController.cs
+// Author:  dZoNi
+// Created: Thursday, April 7, 2022 18:38:45
+// Purpose: Definition of Class RoomController
+using System;
+using System.Collections.Generic;
+using Model;
+using Service;
+
+namespace Controller
+{
+   public class RoomController
+   {
+
+      public RoomService rs = new RoomService();
+      public Room FindRoomById(string id)
+      {
+         return rs.FindRoomById(id);
+      }
+      
+      public bool UpdateRoom(Room r)
+      {
+            rs.UpdateRoom(r);
+            return true;
+      }
+      
+      public bool DeleteRoomById(string id)
+      {
+            rs.DeleteRoomById(id);
+            return true;
+      }
+      
+      public bool DeleteAllRooms()
+      {
+         throw new NotImplementedException();
+      }
+      
+      public bool AddRoom(Room room)
+      {
+            roomService.AddRoom(room);
+            return true;
+      }
+      
+      public List<Room> FindAll()
+      {
+            return rs.FindAll();
+      }
+      
+      public List<Room> GetAvailableRooms(DateTime startTime, DateTime endTime)
+      {
+         throw new NotImplementedException();
+      }
+
+        public List<Room> getRoomsByType(RoomType type)
+        {
+            return roomService.getRoomsByType(type);
+        }
+
+        public Room findFreeRoom(DateTime dt)
+        {
+            return roomService.findFreeRoom(dt);
+        }
+
+        public Service.RoomService roomService = new Service.RoomService();
+   
+   }
+}
