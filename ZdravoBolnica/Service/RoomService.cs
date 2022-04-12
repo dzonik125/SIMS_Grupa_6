@@ -15,7 +15,7 @@ namespace Service
 
         public RoomsCRUD roomsCrud = new RoomsCRUD();
 
-      public Room FindRoomById(int id)
+      public Room FindRoomById(string id)
       {
          throw new NotImplementedException();
       }

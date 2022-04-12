@@ -57,7 +57,7 @@ namespace SIMS
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void EditRoom_Click(object sender, RoutedEventArgs e)
         {
 
             selectedRoom.roomNum = Int32.Parse(RoomNum.Text);
@@ -67,6 +67,11 @@ namespace SIMS
             rc.UpdateRoom(selectedRoom);
             ManagerUI mui = ManagerUI.Instance;
             mui.refresh();
+            this.Close();
+        }
+
+        private void EditRoomClose_Click(object sender, RoutedEventArgs e)
+        {
             this.Close();
         }
     }

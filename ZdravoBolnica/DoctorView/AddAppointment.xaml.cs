@@ -25,7 +25,7 @@ namespace SIMS.DoctorView
 
         public List<Patient> patients;
         public List<Room> rooms;
-        public AccountController pc = new AccountController();
+        public PatientController pc = new PatientController();
         public RoomController rc = new RoomController();
         public AppointmentController ac = new AppointmentController();
         public AppointmentType appointmentType;
@@ -34,7 +34,7 @@ namespace SIMS.DoctorView
             appointmentType = type;
             RoomType roomType = type == AppointmentType.examination? RoomType.examination: RoomType.surgery;
             InitializeComponent();
-            patients = pc.FindAllAccounts();
+            patients = pc.FindAllPatients();
             rooms = rc.getRoomsByType(roomType);
             PatientBox.ItemsSource = patients;
             RoomBox.ItemsSource = rooms;
@@ -76,6 +76,11 @@ namespace SIMS.DoctorView
         {
             Room r = rooms[RoomBox.SelectedIndex];
             return r;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

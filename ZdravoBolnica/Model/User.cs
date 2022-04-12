@@ -9,17 +9,19 @@ namespace Model
 {
    public class User
    {
-      public string name;
-      public string surname;
-      public string jmbg;
-      public string id;
-      public string phone;
-      public string email;
-      
-      public Address address;
+      public string name { get; set; }
+        public string surname { get; set; }
+        public string jmbg { get; set; }
+        public string id { get; set; }
+        public string phone { get; set; }
+        public string email { get; set; }
+        public string birthdate { get; set; }
+        public string adressID { get; set; }
+
+        public Adress address { get; set; }
 
 
-      public String FullName { get => (name + " " + surname); }
+        public String FullName { get => (name + " " + surname); }
 
     }
 }

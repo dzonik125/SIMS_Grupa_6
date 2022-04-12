@@ -9,11 +9,11 @@ using System.Collections.Generic;
 
 namespace Repository
 {
-   public class RoomsCRUD : Repository<Room, string>
-   {
+    public class RoomsCRUD : Repository<Room, string>
+    {
 
         private String filename = @".\..\..\..\Data\rooms.txt";
-        private Serializer<Room> roomSerializer = new Serializer<Room>(); 
+        private Serializer<Room> roomSerializer = new Serializer<Room>();
         public void Create(Room entity)
         {
             List<Room> rooms = new List<Room>();
@@ -31,14 +31,14 @@ namespace Repository
         public void DeleteById(string id)
         {
             List<Room> rooms = FindAll();
-            foreach(Room r in rooms)
+            foreach (Room r in rooms)
             {
                 if (r.id.Equals(id))
                 {
                     rooms.Remove(r);
                     break;
                 }
-                    
+
             }
             roomSerializer.toCSV(filename, rooms);
 
@@ -51,14 +51,14 @@ namespace Repository
         }
 
         public Room FindByAppointment(Appointment a)
-      {
-         throw new NotImplementedException();
-      }
-      
-      public List<Room> FindByEquipment(Equipment e)
-      {
-         throw new NotImplementedException();
-      }
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Room> FindByEquipment(Equipment e)
+        {
+            throw new NotImplementedException();
+        }
 
         public Room FindById(string key)
         {
@@ -68,8 +68,10 @@ namespace Repository
         public void Update(Room r)
         {
             List<Room> rooms = FindAll();
-            foreach (Room rm in rooms) {
-                if (rm.id.Equals(r.id)) {
+            foreach (Room rm in rooms)
+            {
+                if (rm.id.Equals(r.id))
+                {
                     rm.floor = r.floor;
                     rm.roomNum = r.roomNum;
                     rm.roomType = r.roomType;
@@ -82,9 +84,9 @@ namespace Repository
         {
             List<Room> rooms = FindAll();
             List<Room> roomsByType = new();
-            foreach(Room r in rooms)
+            foreach (Room r in rooms)
             {
-                if(r.roomType == type)
+                if (r.roomType == type)
                 {
                     roomsByType.Add(r);
                 }

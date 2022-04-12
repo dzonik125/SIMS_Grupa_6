@@ -19,34 +19,25 @@ namespace Model
 
       public System.Collections.Generic.List<Appointment> appointment;
 
-        /// <summary>
-        /// Property for collection of Appointment
-        /// </summary>
-        /// <pdGenerated>Default opposite class collection property</pdGenerated>
-        //public System.Collections.Generic.List<Appointment> Appointment;
-      /*{
-         get
-         {
-            if (appointment == null)
-               appointment = new System.Collections.Generic.List<Appointment>();
-            return appointment;
-         }
-         set
-         {
-            RemoveAllAppointment();
-            if (value != null)
-            {
-               foreach (Appointment oAppointment in value)
-                  AddAppointment(oAppointment);
-            }
-         }
-      }*/
       
-      /// <summary>
-      /// Add a new Appointment in the collection
-      /// </summary>
-      /// <pdGenerated>Default Add</pdGenerated>
-      public void AddAppointment(Appointment newAppointment)
+        public String RoomTypeString
+        {
+            get
+            {
+                if (roomType == RoomType.examination)
+                    return "Sala za preglede";
+                else if (roomType == RoomType.surgery)
+                    return "Operaciona sala";
+                else if (roomType == RoomType.ward)
+                    return "Bolnicka soba";
+                else if (roomType == RoomType.waitingRoom)
+                    return "Cekaonica";
+                else 
+                    return "Laboratorija";
+            }
+        }
+
+        public void AddAppointment(Appointment newAppointment)
       {
          if (newAppointment == null)
             return;

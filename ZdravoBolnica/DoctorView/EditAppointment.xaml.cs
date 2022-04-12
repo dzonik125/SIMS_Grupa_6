@@ -91,17 +91,11 @@ namespace SIMS.DoctorView
             appointment.duration = int.Parse(Duration.Text);
             Appointments appointments = Appointments.Instance;
             appointment.doctorID = appointments.doctorUser.id;
-            if (appointmentController.IntersectionWithAppointments(appointment.patientID, appointment.doctorID, appointment.roomID, appointment.startTime, appointment.duration))
-            {
-                MessageBox.Show("ne.");
-                return;
-            }
-            else
-            {
-                appointmentController.UpdateAppointment(appointment);
-                this.Close();
-                appointments.Refresh();
-            }
+            
+            appointmentController.UpdateAppointment(appointment);
+            this.Close();
+            appointments.Refresh();
+            
         }
 
 
@@ -117,6 +111,10 @@ namespace SIMS.DoctorView
             return r;
         }
 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 
         

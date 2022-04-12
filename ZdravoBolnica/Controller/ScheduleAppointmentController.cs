@@ -4,7 +4,6 @@
 // Purpose: Definition of Class ScheduleAppointmentController
 
 using System;
-using System;
 using System.Collections.Generic;
 using Model;
 
@@ -35,9 +34,9 @@ namespace Controller
       public bool ScheduleAppointment()
       {
          throw new NotImplementedException();
+         
       }
       
-      public Service.ScheduleAppointmentService scheduleAppointmentService;
    
    }
 }

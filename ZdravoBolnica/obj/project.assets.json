@@ -8,19 +8,24 @@
     "net5.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Todor\\.nuget\\packages\\": {}
+    "C:\\Users\\Ivana\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Todor\\source\\repos\\SIMS\\SIMS.csproj",
+      "projectUniqueName": "C:\\Users\\Ivana\\pythonProject\\OneDrive\\Desktop\\projekti\\SIMS_Grupa_6\\ZdravoBolnica\\SIMS.csproj",
       "projectName": "SIMS",
-      "projectPath": "C:\\Users\\Todor\\source\\repos\\SIMS\\SIMS.csproj",
-      "packagesPath": "C:\\Users\\Todor\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Todor\\source\\repos\\SIMS\\obj\\",
+      "projectPath": "C:\\Users\\Ivana\\pythonProject\\OneDrive\\Desktop\\projekti\\SIMS_Grupa_6\\ZdravoBolnica\\SIMS.csproj",
+      "packagesPath": "C:\\Users\\Ivana\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Ivana\\pythonProject\\OneDrive\\Desktop\\projekti\\SIMS_Grupa_6\\ZdravoBolnica\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Todor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Ivana\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

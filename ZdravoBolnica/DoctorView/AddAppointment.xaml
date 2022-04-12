@@ -13,10 +13,10 @@
         <Label Content="Vreme:" HorizontalAlignment="Left" Margin="109,310,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="Trajanje" HorizontalAlignment="Left" Margin="102,377,0,0" VerticalAlignment="Top" FontSize="16"/>
         <DatePicker HorizontalAlignment="Left" Name="DatePicker" Margin="243,242,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Name="Time" Margin="238,316,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Name="Duration" Margin="238,385,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Name="Time" Margin="238,316,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Name="Duration" Margin="238,385,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button Content="Zakazi" HorizontalAlignment="Left" Margin="81,498,0,0" VerticalAlignment="Top" Height="47" Width="99" RenderTransformOrigin="0.5,0.5" Click="Button_Click" FontSize="16"/>
-        <Button Content="Zatvori" HorizontalAlignment="Left" Margin="373,498,0,0" VerticalAlignment="Top" Height="44" Width="111" FontSize="16"/>
+        <Button Content="Zatvori" HorizontalAlignment="Left" Margin="373,498,0,0" VerticalAlignment="Top" Height="44" Width="111" FontSize="16" Click="Button_Click_1"/>
         <ComboBox HorizontalAlignment="Center" Name="RoomBox" Margin="0,180,0,0" DisplayMemberPath="roomNum" VerticalAlignment="Top" Width="120"/>
         <ComboBox HorizontalAlignment="Left" DisplayMemberPath="FullName" Name="PatientBox" Margin="238,109,0,0" VerticalAlignment="Top" Width="120"/>
 

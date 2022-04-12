@@ -35,7 +35,7 @@ namespace SIMS
             TypeCombo.ItemsSource = Conversion.GetRoomTypes();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void NewRoom_Click(object sender, RoutedEventArgs e)
         {
             room.roomNum = Int32.Parse(RoomNum.Text);
             string v = DateTime.Now.ToString("yyMMddHHmmssff");
@@ -48,6 +48,11 @@ namespace SIMS
             mui.refresh();
             this.Close();
            
+        }
+
+        private void NewRoomClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

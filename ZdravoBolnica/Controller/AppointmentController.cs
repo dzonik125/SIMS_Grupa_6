@@ -14,6 +14,7 @@ namespace Controller
    {
       public List<Appointment> GetAllApointments()
       {
+
             return appointmentService.GetAllApointments();
       }
       

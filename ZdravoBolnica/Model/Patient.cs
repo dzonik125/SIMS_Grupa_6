@@ -9,15 +9,12 @@ namespace Model
 {
    public class Patient : Account, Serializable
    {
-      public String lbo;
+      public string lbo { get; set; }
+      public string adressID { get; set; }
       
       public MedicalRecord medicalRecord;
       public System.Collections.Generic.List<Appointment> appointment;
       
-      /// <summary>
-      /// Property for collection of Appointment
-      /// </summary>
-      /// <pdGenerated>Default opposite class collection property</pdGenerated>
       public System.Collections.Generic.List<Appointment> Appointment
       {
          get
@@ -37,10 +34,7 @@ namespace Model
          }
       }
       
-      /// <summary>
-      /// Add a new Appointment in the collection
-      /// </summary>
-      /// <pdGenerated>Default Add</pdGenerated>
+    
       public void AddAppointment(Appointment newAppointment)
       {
          if (newAppointment == null)
@@ -54,10 +48,7 @@ namespace Model
          }
       }
       
-      /// <summary>
-      /// Remove an existing Appointment from the collection
-      /// </summary>
-      /// <pdGenerated>Default Remove</pdGenerated>
+      
       public void RemoveAppointment(Appointment oldAppointment)
       {
          if (oldAppointment == null)
@@ -70,10 +61,7 @@ namespace Model
             }
       }
       
-      /// <summary>
-      /// Remove all instances of Appointment from the collection
-      /// </summary>
-      /// <pdGenerated>Default removeAll</pdGenerated>
+  
       public void RemoveAllAppointment()
       {
          if (appointment != null)
@@ -91,11 +79,19 @@ namespace Model
         public string[] ToCSV()
         {
             string[] csvValues =
-            {
-                id,
-                lbo,
-                name,
-                surname,
+           {
+                id.ToString(),
+                name.ToString(),
+                surname.ToString(),
+                email.ToString(),
+                password.ToString(),
+                username.ToString(),
+                adressID.ToString(),
+                phone.ToString(),
+                lbo.ToString(),
+                jmbg,
+                birthdate.ToString(),
+
             };
             return csvValues;
         }
@@ -103,9 +99,16 @@ namespace Model
         public void FromCSV(string[] values)
         {
             id = values[0];
-            lbo = values[1];
-            name = values[2];
-            surname = values[3];
+            name = values[1];
+            surname = values[2];
+            email = values[3];
+            password = values[4];
+            username = values[5];
+            adressID = values[6];
+            phone = values[7];
+            lbo = values[8];
+            jmbg = values[9];
+            birthdate = values[10];
         }
     }
 }

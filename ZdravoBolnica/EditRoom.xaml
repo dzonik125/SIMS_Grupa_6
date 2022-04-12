@@ -9,12 +9,12 @@
     <Grid Margin="10,0,0,0">
        
         <Label Content="Broj sobe"  HorizontalAlignment="Left" Margin="110,131,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox HorizontalAlignment="Left" Name ="RoomNum" Margin="207,139,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
+        <TextBox HorizontalAlignment="Left" Name ="RoomNum" Margin="207,139,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
         <Label Content="Namena"  HorizontalAlignment="Left" Margin="108,198,0,0" VerticalAlignment="Top" FontSize="15"/>
         <ComboBox HorizontalAlignment="Left"  Name="TypeCombo" Margin="207,0,0,0" VerticalAlignment="Center" Width="120"/>
         <Label Content="Sprat"  HorizontalAlignment="Left" Margin="126,272,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox HorizontalAlignment="Left" Name="Floor" Margin="207,277,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
-        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="78,367,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.171,0.842" FontSize="15" Height="29" Width="68" Click="Button_Click"/>
-        <Button Content="Izadji" HorizontalAlignment="Left" Margin="318,367,0,0" VerticalAlignment="Top" FontSize="15" Height="29" Width="72"/>
+        <TextBox HorizontalAlignment="Left" Name="Floor" Margin="207,277,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
+        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="78,367,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.171,0.842" FontSize="15" Height="29" Width="68" Click="EditRoom_Click"/>
+        <Button Content="Izadji" HorizontalAlignment="Left" Margin="318,367,0,0" VerticalAlignment="Top" FontSize="15" Height="29" Width="72" Click="EditRoomClose_Click"/>
     </Grid>
 </Window>

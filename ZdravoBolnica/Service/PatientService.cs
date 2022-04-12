@@ -6,38 +6,42 @@
 using System;
 using System.Collections.Generic;
 using Model;
+using Repository;
 
 namespace Service
 {
    public class PatientService
    {
-      public Patient FindPatientById(int id)
+        private PatientRepository pr = new PatientRepository();
+      public Patient FindPatientById(string id)
       {
-         throw new NotImplementedException();
+            throw new NotImplementedException();             
       }
       
       public List<Patient> FindAllPatients()
       {
-            return patientRepository.FindAll();
+            return pr.FindAll();
       }
       
-      public bool DeletePatientById(int id)
+      public bool DeletePatientById(string id)
       {
-         throw new NotImplementedException();
+            pr.DeleteById(id);
+            return true;
       }
       
       public bool AddPatient(Patient p)
       {
-            patientRepository.Create(p);
+            pr.Create(p);
             return true;
       }
       
-      public bool UpdatePatienttById(int id)
+      public bool UpdatePatient(Patient p)
       {
-         throw new NotImplementedException();
+            pr.Update(p);
+            return true;
       }
       
-      public Repository.PatientRepository patientRepository = new Repository.PatientRepository();
+      public Repository.PatientRepository patientRepository;
    
    }
 }

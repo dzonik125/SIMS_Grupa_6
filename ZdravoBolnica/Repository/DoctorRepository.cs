@@ -41,14 +41,14 @@ namespace Repository
             return doctorSerializer.fromCSV(filename);
         }
 
-      
+
 
         public Doctor FindById(string key)
         {
             List<Doctor> doctors = FindAll();
-            foreach(Doctor d in doctors)
+            foreach (Doctor d in doctors)
             {
-                if(d.id.Equals(key))
+                if (d.id.Equals(key))
                 {
                     return d;
                     break;

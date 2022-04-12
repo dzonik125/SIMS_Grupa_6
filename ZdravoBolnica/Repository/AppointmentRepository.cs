@@ -10,31 +10,31 @@ using Model;
 namespace Repository
 {
     public class AppointmentRepository : Repository<Appointment, string>
-   {
+    {
         private String filename = @".\..\..\..\Data\appointments.txt";
         private Serializer<Appointment> appointmentSerializer = new Serializer<Appointment>();
         public Appointment FindAppointmentById(string id)
-      {
-         throw new NotImplementedException();
-      }
-      
-      public List<Appointment> FindByPatientId(string pid)
-      {
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Appointment> FindByPatientId(string pid)
+        {
             List<Appointment> appointments = new();
             List<Appointment> patientAppointments = new();
             appointments = FindAll();
-            foreach(Appointment a in appointments)
+            foreach (Appointment a in appointments)
             {
-                if(a.patientID.Equals(pid))
+                if (a.patientID.Equals(pid))
                 {
                     patientAppointments.Add(a);
                 }
             }
             return patientAppointments;
-      }
-      
-      public List<Appointment> FindByRoomId(string rid)
-      {
+        }
+
+        public List<Appointment> FindByRoomId(string rid)
+        {
             List<Appointment> appointments = new();
             List<Appointment> roomAppointments = new();
             appointments = FindAll();
@@ -47,9 +47,9 @@ namespace Repository
             }
             return roomAppointments;
         }
-      
-      public List<Appointment> FindByDoctorId(string did)
-      {
+
+        public List<Appointment> FindByDoctorId(string did)
+        {
             List<Appointment> appointments = new();
             List<Appointment> doctorAppointments = new();
             appointments = FindAll();
@@ -81,9 +81,9 @@ namespace Repository
         public void DeleteById(string id)
         {
             List<Appointment> appointments = FindAll();
-            foreach(Appointment a in appointments)
+            foreach (Appointment a in appointments)
             {
-                if(a.id.Equals(id))
+                if (a.id.Equals(id))
                 {
                     appointments.Remove(a);
                     break;

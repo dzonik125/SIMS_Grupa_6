@@ -119,21 +119,21 @@ namespace Service
             
             foreach(Appointment a in doctorAppointments)
             {
-                if(!((a.startTime.AddMinutes(a.duration) <= date && a.startTime <= date || (date.AddMinutes(duration) <= a.startTime && date <= a.startTime))))
+                if(!((a.startTime.AddMinutes(a.duration) < date && a.startTime < date || (date.AddMinutes(duration) < a.startTime && date < a.startTime))))
                 {
                     return true;
                 }
             }
             foreach (Appointment a in roomAppointments)
             {
-                if (!((a.startTime.AddMinutes(a.duration) <= date && a.startTime <= date || (date.AddMinutes(duration) <= a.startTime && date <= a.startTime))))
+                if (!((a.startTime.AddMinutes(a.duration) < date && a.startTime < date || (date.AddMinutes(duration) < a.startTime && date < a.startTime))))
                 {
                     return true;
                 }
             }
             foreach (Appointment a in patientAppointments)
             {
-                if (!((a.startTime.AddMinutes(a.duration) <= date && a.startTime <= date || (date.AddMinutes(duration) <= a.startTime && date <= a.startTime))))
+                if (!((a.startTime.AddMinutes(a.duration) < date && a.startTime < date || (date.AddMinutes(duration) < a.startTime && date < a.startTime))))
                 {
                     return true;
                 }
@@ -145,7 +145,7 @@ namespace Service
         
 
 
-        public Appointment GetAppointmentByID(int id)
+        public Appointment GetAppointmentByID(string id)
         {
             throw new NotImplementedException();
         }
