@@ -7,6 +7,7 @@ using Model;
 using Repository;
 using System;
 using System.Collections.Generic;
+using SIMS;
 
 namespace Service
 {
@@ -95,6 +96,31 @@ namespace Service
             return futureAppointments;
         }
 
+        public List<Appointment> getFutureAppointmentsForPatient(string id)
+        {
+            List<Appointment> potentialAppointments = GetAllApointments();
+            List<Appointment> futureAppointments = new List<Appointment>();
+            foreach (Appointment a in potentialAppointments)
+            {
+                if (a.patientID.Equals(id))
+                {
+                    if (a.startTime >= DateTime.Now)
+                    {
+
+                        futureAppointments.Add(a);
+
+                    }
+
+                }
+
+                
+
+            }
+
+            return futureAppointments;
+
+        }
+
         public List<Appointment> getAppointmentsByDoctorId(string doctorID)
         {
             return appointmentRepository.FindByDoctorId(doctorID);
@@ -152,6 +178,6 @@ namespace Service
 
         public RoomsCRUD roomsCRUD = new();
         public AppointmentRepository appointmentRepository = new AppointmentRepository();
-   
+        
    }
 }

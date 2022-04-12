@@ -62,7 +62,16 @@ namespace Repository
 
         public Room FindById(string key)
         {
-            throw new NotImplementedException();
+            List<Room> rooms = FindAll();
+            foreach (Room r in rooms)
+            {
+                if (key.Equals(r.id))
+                {
+                    return r;
+                }
+            }
+
+            return null;
         }
 
         public void Update(Room r)

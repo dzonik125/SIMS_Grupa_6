@@ -12,12 +12,14 @@ namespace Service
 {
    public class RoomService
    {
+        
 
         public RoomsCRUD roomsCrud = new RoomsCRUD();
+        public AppointmentService appointmentService = new AppointmentService();
 
       public Room FindRoomById(string id)
       {
-         throw new NotImplementedException();
+          return roomsCRUD.FindById(id);
       }
       
       public bool UpdateRoom(Room r)
@@ -53,16 +55,31 @@ namespace Service
             return roomsCRUD.getRoomsByType(type);
         }
 
-        public Room findFreeRoom()
+        public Room findFreeRoom(DateTime dt)
         {
+            bool roomIsFree = false;
             List<Room> rooms = roomsCRUD.FindAll();
+
             foreach (Room r in rooms)
             {
-                if (r.appointment == null)
+                r.appointment = appointmentService.GetAllApointments();
+                foreach (Appointment app in r.appointment)
+                {
+                    System.Diagnostics.Trace.WriteLine("Gas");
+                    if (app.startTime.AddMinutes(app.duration) != dt.AddMinutes(30))
+                    {
+                        roomIsFree = true;
+                    }
+                    else
+                    {
+                        roomIsFree = false;
+                    }
+                }
+
+                if (roomIsFree)
                 {
                     return r;
                 }
-
 
             }
             return null;
@@ -74,6 +91,7 @@ namespace Service
       }
       
       public Repository.RoomsCRUD roomsCRUD = new Repository.RoomsCRUD();
-   
+      
+
    }
 }

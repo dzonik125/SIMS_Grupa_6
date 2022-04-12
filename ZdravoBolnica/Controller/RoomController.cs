@@ -13,9 +13,9 @@ namespace Controller
    {
 
       public RoomService rs = new RoomService();
-      public Room FindRoomById(int id)
+      public Room FindRoomById(string id)
       {
-         throw new NotImplementedException();
+         return rs.FindRoomById(id);
       }
       
       public bool UpdateRoom(Room r)
@@ -56,9 +56,9 @@ namespace Controller
             return roomService.getRoomsByType(type);
         }
 
-        public Room findFreeRoom()
+        public Room findFreeRoom(DateTime dt)
         {
-            return roomService.findFreeRoom();
+            return roomService.findFreeRoom(dt);
         }
 
         public Service.RoomService roomService = new Service.RoomService();

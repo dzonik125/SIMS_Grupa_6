@@ -24,7 +24,7 @@ namespace SIMS
     {
 
         public ManagerUI mui;
-public SecretaryUI sui;
+        public SecretaryUI sui;
         public MainWindow()
         {
             InitializeComponent();
@@ -32,7 +32,7 @@ public SecretaryUI sui;
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            PatientWindow pWin = new PatientWindow();
+            PatientWindow pWin = PatientWindow.Instance;
             this.Close();
             pWin.Show();
 

@@ -1,0 +1,27 @@
+﻿<Window x:Class="SIMS.EditPatientAppointment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIMS"
+        mc:Ignorable="d"
+        Title="EditPatientAppointment" Height="450" Width="800">
+	<Grid>
+		<Label Content="Izmeni zakazan termin" FontSize="22" Margin="288,0,283,395"/>
+		<DatePicker Name="DatePicker"  Margin="345,51,187,310"/>
+		<Label Content="Datum" Margin="174,65,460,296" FontSize="18"/>
+		<Label Content="Vreme" Margin="174,153,460,181" FontSize="18"/>
+		<TextBox Text="TextBox" Name="Tb" TextWrapping="Wrap" Margin="345,144,187,181"/>
+		<Button Content="Potvrdi" Margin="322,278,317,68" RenderTransformOrigin="0.5,0.5" Click="Button_Click">
+			<Button.RenderTransform>
+				<TransformGroup>
+					<ScaleTransform ScaleY="1"/>
+					<SkewTransform/>
+					<RotateTransform/>
+					<TranslateTransform/>
+				</TransformGroup>
+			</Button.RenderTransform>
+		</Button>
+
+	</Grid>
+</Window>

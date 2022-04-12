@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Ivana\pythonProject\OneDrive\Desktop\projekti\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\
+C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\
 SIMS
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
-C:\Users\Ivana\pythonProject\OneDrive\Desktop\projekti\SIMS_Grupa_6\ZdravoBolnica\App.xaml
-12837310210
+C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\App.xaml
+14-1580879073
 
-55782732214
+57-904107529
 193-1891726104
-DoctorView\AddAppointment.xaml;DoctorView\DoctorUI.xaml;DoctorView\EditAppointment.xaml;EditPatient.xaml;EditRoom.xaml;MainWindow.xaml;MakeAppointmentPatient.xaml;ManagerUI.xaml;NewPatient.xaml;NewRoom.xaml;PatientWindow.xaml;SecretaryUI.xaml;
+DeletePatientAppointment.xaml;DoctorView\AddAppointment.xaml;DoctorView\DoctorUI.xaml;DoctorView\EditAppointment.xaml;EditPatient.xaml;EditPatientAppointment.xaml;EditRoom.xaml;MainWindow.xaml;MakeAppointmentPatient.xaml;ManagerUI.xaml;NewPatient.xaml;NewRoom.xaml;PatientWindow.xaml;SecretaryUI.xaml;
 
-False
+True
 

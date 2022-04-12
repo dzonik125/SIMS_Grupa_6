@@ -6,6 +6,7 @@
 using Model;
 using System;
 using System.Collections.Generic;
+using SIMS;
 
 
 namespace Controller
@@ -32,6 +33,11 @@ namespace Controller
         {
             return appointmentService.getFutureAppointmentsForDoctor(id);
         }
+
+      public List<Appointment> getFutureAppointmentsForPatient(string id)
+      {
+          return appointmentService.getFutureAppointmentsForPatient(id);
+      }
 
       public void SaveAppointment(Appointment a)
       {
@@ -64,7 +70,7 @@ namespace Controller
         }
 
 
-        public Service.RoomService roomService = new();
+        
         public Service.AppointmentService appointmentService = new Service.AppointmentService();
         
    }

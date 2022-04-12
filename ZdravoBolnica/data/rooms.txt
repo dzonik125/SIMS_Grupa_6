@@ -1,2 +1,1 @@
-22041219302701|2|2|True|laboratorija
-22041221234643|1|1|True|Prostorija za preglede
+22041222413758|12|3|True|Prostorija za preglede
