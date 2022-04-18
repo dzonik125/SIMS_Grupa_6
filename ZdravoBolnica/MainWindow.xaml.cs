@@ -33,16 +33,15 @@ namespace SIMS
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             PatientWindow pWin = PatientWindow.Instance;
-            this.Close();
             pWin.Show();
+            this.Hide();
 
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Appointments appointments = Appointments.Instance;
-            appointments.Show();
-            this.Close();
+            appointments.ShowDialog();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

@@ -30,6 +30,7 @@
 		</DataGrid>
 		<Button Content="Izmeni" HorizontalAlignment="Left" Margin="352,318,0,0" VerticalAlignment="Top" Height="66" Width="132" Click="Button_Click2"/>
 		<Button Content="Obrisi" HorizontalAlignment="Left" Margin="622,318,0,0" VerticalAlignment="Top" Height="66" Width="132" Click="Button_Click_3" />
+		<Button Content="VRATI" HorizontalAlignment="Left" Margin="714,39,0,0" VerticalAlignment="Top" Height="32" Width="64" Click="Button_Click_1"/>
 	</Grid>
 
 

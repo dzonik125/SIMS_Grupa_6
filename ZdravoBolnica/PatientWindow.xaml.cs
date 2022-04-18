@@ -72,6 +72,12 @@ namespace SIMS
 
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            this.Visibility = Visibility.Hidden;
+        }
+
         private void Button_Click2(object sender, RoutedEventArgs e)
         {
             Appointment selectedAppointment = patientMadeAppointmentsTable.SelectedItem as Appointment;
@@ -121,6 +127,13 @@ namespace SIMS
             DeletePatientAppointment dpa = new DeletePatientAppointment(selectedAppointment);
             dpa.ShowDialog();
 
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            MainWindow mw = new MainWindow();
+            mw.Show();
         }
     }
 }

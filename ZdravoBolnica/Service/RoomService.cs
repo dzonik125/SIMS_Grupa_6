@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 using Model;
 using Repository;
 
@@ -57,22 +58,37 @@ namespace Service
 
         public Room findFreeRoom(DateTime dt)
         {
+
             bool roomIsFree = false;
+            
             List<Room> rooms = roomsCRUD.FindAll();
 
             foreach (Room r in rooms)
             {
-                r.appointment = appointmentService.GetAllApointments();
-                foreach (Appointment app in r.appointment)
+                Room temp = new();
+                temp = r;
+                temp.appointment = new AppointmentRepository().FindByRoomId(r.id);
+                if (temp.appointment.Count == 0)
                 {
-                    System.Diagnostics.Trace.WriteLine("Gas");
-                    if (app.startTime.AddMinutes(app.duration) != dt.AddMinutes(30))
+                    roomIsFree = true;
+                }
+
+                if (temp.roomType != RoomType.examination)
+                {
+                    continue;
+                }
+
+                foreach (Appointment app in temp.appointment)
+                {
+                    
+
+                    if (!(app.startTime.AddMinutes(app.duration) < dt && app.startTime < dt || (dt.AddMinutes(30) < app.startTime && dt < app.startTime)))
                     {
-                        roomIsFree = true;
+                        roomIsFree = false;
                     }
                     else
                     {
-                        roomIsFree = false;
+                        roomIsFree = true;
                     }
                 }
 
@@ -80,7 +96,6 @@ namespace Service
                 {
                     return r;
                 }
-
             }
             return null;
         }
@@ -93,6 +108,7 @@ namespace Service
             }
             return false;
         }
+
 
         public List<Room> GetAvailableRooms(DateTime startTime, DateTime endTime)
       {
