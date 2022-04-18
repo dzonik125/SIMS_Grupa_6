@@ -45,3 +45,4 @@ C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\SIMS.dll
 C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\ref\SIMS.dll
 C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\SIMS.pdb
 C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\SIMS.genruntimeconfig.cache
+C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\SIMS.csproj.AssemblyReference.cache

@@ -38,6 +38,13 @@ namespace SIMS
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Appointment app = new Appointment();
+            app.startTime = DateTime.Parse(DatePicker.Text + " " + TextBox.Text);
+            if (rc.findFreeRoom(app.startTime) == null)
+            {
+                MessageBox.Show("Za izabrani datum, nema slobodnih termina." +
+                                "Molimo Vas odaberite drugi!");
+                return;
+            }
             app.Doctor = new Doctor();
             app.Doctor.id = GetSelectedDoctor().id;
             app.startTime = DateTime.Parse(DatePicker.Text + " " + TextBox.Text);
