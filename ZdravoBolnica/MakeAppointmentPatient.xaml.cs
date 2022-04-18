@@ -32,7 +32,20 @@ namespace SIMS
             InitializeComponent();
             doctors = dc.GetAllDoctors();
             initComboBox();
+            zakazi.IsEnabled = false;
+            TextBox.TextChanged += Program_MyEvent;
+            DatePicker.SelectedDateChanged += Program_MyEvent;
+            ComboBox.SelectionChanged += Program_MyEvent;
 
+
+        }
+
+        void Program_MyEvent(object sender, EventArgs e)
+        {
+            if (!(TextBox.Text == "" || ComboBox.SelectedItem == null || DatePicker.SelectedDate == null))
+            {
+                zakazi.IsEnabled = true;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -59,8 +72,6 @@ namespace SIMS
             PatientWindow pw = PatientWindow.Instance;
             pw.refresh();
             this.Close();
-
-
         }
 
         public void initComboBox()
