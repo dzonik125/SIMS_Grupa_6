@@ -63,6 +63,11 @@ namespace SIMS
             selectedRoom.roomNum = Int32.Parse(RoomNum.Text);
             selectedRoom.roomType = Conversion.StringToRoomType(TypeCombo.Text);
             selectedRoom.floor = Int32.Parse(Floor.Text);
+            if (rc.FindRoomByFloor(selectedRoom.roomNum, selectedRoom.floor))
+            {
+                MessageBox.Show("Na ovom spratu vec postoji soba sa tim brojem.");
+                return;
+            }
 
             rc.UpdateRoom(selectedRoom);
             ManagerUI mui = ManagerUI.Instance;

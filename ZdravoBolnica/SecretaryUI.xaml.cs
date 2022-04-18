@@ -1,19 +1,7 @@
-﻿using Controller;
-using Model;
-using System;
+﻿using Model;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SIMS
 {
@@ -100,6 +88,19 @@ namespace SIMS
             }
         }
 
+        private void NewGuestPatient_Click(object sender, RoutedEventArgs e)
+        {
+            NewGuestPatient ngp = new NewGuestPatient();
+            ngp.ShowDialog();
+        }
 
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            SecretaryUI sui = SecretaryUI.Instance;
+            MainWindow mw = new MainWindow();
+            sui.Hide();
+            mw.Show();
+
+        }
     }
 }
