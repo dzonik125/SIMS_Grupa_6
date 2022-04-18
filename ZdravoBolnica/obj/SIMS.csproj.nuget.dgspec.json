@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\SIMS_PROJEKAT\\SIMS_Grupa_6\\ZdravoBolnica\\SIMS.csproj": {}
+    "C:\\Users\\Ivana\\pythonProject\\OneDrive\\Desktop\\projekti\\SIMS_Grupa_6\\ZdravoBolnica\\SIMS.csproj": {}
   },
   "projects": {
-    "C:\\SIMS_PROJEKAT\\SIMS_Grupa_6\\ZdravoBolnica\\SIMS.csproj": {
+    "C:\\Users\\Ivana\\pythonProject\\OneDrive\\Desktop\\projekti\\SIMS_Grupa_6\\ZdravoBolnica\\SIMS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\SIMS_PROJEKAT\\SIMS_Grupa_6\\ZdravoBolnica\\SIMS.csproj",
+        "projectUniqueName": "C:\\Users\\Ivana\\pythonProject\\OneDrive\\Desktop\\projekti\\SIMS_Grupa_6\\ZdravoBolnica\\SIMS.csproj",
         "projectName": "SIMS",
-        "projectPath": "C:\\SIMS_PROJEKAT\\SIMS_Grupa_6\\ZdravoBolnica\\SIMS.csproj",
-        "packagesPath": "C:\\Users\\dZoNi\\.nuget\\packages\\",
-        "outputPath": "C:\\SIMS_PROJEKAT\\SIMS_Grupa_6\\ZdravoBolnica\\obj\\",
+        "projectPath": "C:\\Users\\Ivana\\pythonProject\\OneDrive\\Desktop\\projekti\\SIMS_Grupa_6\\ZdravoBolnica\\SIMS.csproj",
+        "packagesPath": "C:\\Users\\Ivana\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Ivana\\pythonProject\\OneDrive\\Desktop\\projekti\\SIMS_Grupa_6\\ZdravoBolnica\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\dZoNi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Ivana\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

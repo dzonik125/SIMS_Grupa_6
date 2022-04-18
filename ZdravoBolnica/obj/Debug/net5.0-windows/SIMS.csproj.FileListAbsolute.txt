@@ -131,3 +131,7 @@ C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\SecretaryUI
 C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\EditPatient.baml
 C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\NewPatient.baml
 C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\SecretaryUI.baml
+C:\Users\Ivana\pythonProject\OneDrive\Desktop\projekti\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\DeletePatientAppointment.g.cs
+C:\Users\Ivana\pythonProject\OneDrive\Desktop\projekti\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\EditPatientAppointment.g.cs
+C:\Users\Ivana\pythonProject\OneDrive\Desktop\projekti\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\DeletePatientAppointment.baml
+C:\Users\Ivana\pythonProject\OneDrive\Desktop\projekti\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\EditPatientAppointment.baml

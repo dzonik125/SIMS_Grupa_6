@@ -60,6 +60,14 @@ namespace Controller
         {
             return roomService.findFreeRoom(dt);
         }
+        public bool FindRoomByFloor(int roomNum, int floor)
+        {
+            if (rs.FindRoomByFloor(roomNum, floor))
+            {
+                return true;
+            }
+            return false;
+        }
 
         public Service.RoomService roomService = new Service.RoomService();
    
