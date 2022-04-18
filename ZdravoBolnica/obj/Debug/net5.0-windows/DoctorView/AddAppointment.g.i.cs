@@ -93,7 +93,7 @@ namespace SIMS.DoctorView {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/SIMS;component/doctorview/addappointment.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/SIMS;V1.0.0.0;component/doctorview/addappointment.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\DoctorView\AddAppointment.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

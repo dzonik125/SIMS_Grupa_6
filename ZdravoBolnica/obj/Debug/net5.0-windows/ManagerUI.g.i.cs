@@ -61,7 +61,7 @@ namespace SIMS {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/SIMS;component/managerui.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/SIMS;V1.0.0.0;component/managerui.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\ManagerUI.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -2,13 +2,10 @@
 using Service;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SIMS
 {
- public  class PatientController
+    public class PatientController
     {
         private PatientService ps = new PatientService();
         public Patient FindPatientById(string id)
@@ -32,10 +29,15 @@ namespace SIMS
             ps.AddPatient(p);
             return true;
         }
+        public bool AddGuestPatient(Patient p)
+        {
+            ps.AddGuestPatient(p);
+            return true;
+        }
 
         public bool UpdatePatient(Patient p)
         {
-            
+
             ps.UpdatePatient(p);
             return true;
         }
