@@ -102,7 +102,7 @@ namespace Service
             List<Appointment> futureAppointments = new List<Appointment>();
             foreach (Appointment a in potentialAppointments)
             {
-                if (a.patientID.Equals(id))
+                if (a.patient.id.Equals(id))
                 {
                     if (a.startTime >= DateTime.Now)
                     {

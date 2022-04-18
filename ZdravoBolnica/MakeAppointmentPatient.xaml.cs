@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using SIMS.Model;
 
 namespace SIMS
 {
@@ -37,12 +38,16 @@ namespace SIMS
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Appointment app = new Appointment();
-            app.Doctor = GetSelectedDoctor();
-            app.doctorID = GetSelectedDoctor().id;
+            app.Doctor = new Doctor();
+            app.Doctor.id = GetSelectedDoctor().id;
             app.startTime = DateTime.Parse(DatePicker.Text + " " + TextBox.Text);
-            app.Room = rc.findFreeRoom(app.startTime);
-            app.roomID = app.Room.id;
+            app.Room = new Room();
+            app.Room.id = rc.findFreeRoom(app.startTime).id;
             app.id = DateTime.Now.ToString("yyMMddHHmmssff");
+            app.duration = 30;
+            app.Type = AppointmentType.examination;
+            app.patient = new Patient();
+            app.patient = new PatientController().FindAllPatients()[0];
             ac.SaveAppointment(app);
             PatientWindow pw = PatientWindow.Instance;
             pw.refresh();
