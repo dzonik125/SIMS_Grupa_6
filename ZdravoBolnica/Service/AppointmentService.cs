@@ -39,7 +39,7 @@ namespace Service
             {
                 foreach (Appointment a in appointments)
                 {
-                    if (a.roomID == r.id)
+                    if (a.Room.id == r.id)
                     {
                         a.Room = r;
                     }
@@ -54,7 +54,7 @@ namespace Service
             {
                 foreach (Appointment a in appointments)
                 {
-                    if (a.doctorID == d.id)
+                    if (a.Doctor.id == d.id)
                     {
                         a.Doctor = d;
                     }
@@ -68,7 +68,7 @@ namespace Service
             {
                 foreach (Appointment a in appointments)
                 {
-                    if (a.patientID == p.id)
+                    if (a.patient.id == p.id)
                     {
                         a.patient = p;
                     }
@@ -83,7 +83,7 @@ namespace Service
             List<Appointment> futureAppointments = new List<Appointment>();
             foreach (Appointment a in potentialAppointments)
             {
-                if (a.doctorID.Equals(id))
+                if (a.Doctor.id.Equals(id))
                 {
                     if (a.startTime >= DateTime.Now)
                     {

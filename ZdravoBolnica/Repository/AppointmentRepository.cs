@@ -25,7 +25,7 @@ namespace Repository
             appointments = FindAll();
             foreach (Appointment a in appointments)
             {
-                if (a.patientID.Equals(pid))
+                if (a.patient.id.Equals(pid))
                 {
                     patientAppointments.Add(a);
                 }
@@ -40,7 +40,7 @@ namespace Repository
             appointments = FindAll();
             foreach (Appointment a in appointments)
             {
-                if (a.roomID.Equals(rid))
+                if (a.Room.id.Equals(rid))
                 {
                     roomAppointments.Add(a);
                 }
@@ -55,7 +55,7 @@ namespace Repository
             appointments = FindAll();
             foreach (Appointment a in appointments)
             {
-                if (a.doctorID.Equals(did))
+                if (a.Doctor.id.Equals(did))
                 {
                     doctorAppointments.Add(a);
                 }

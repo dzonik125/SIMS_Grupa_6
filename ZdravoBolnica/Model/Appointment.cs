@@ -79,12 +79,13 @@ namespace Model
             string[] csvValues =
             {
                 id,
-                patientID,
-                doctorID,
-                roomID,
+                patient.id,
+                Doctor.id,
+                Room.id,
                 startTime.ToString(),
                 duration.ToString(),
                 Conversion.AppointmentTypeToString(Type),
+                
 
             };
             return csvValues;
@@ -93,9 +94,12 @@ namespace Model
         public void FromCSV(string[] values)
         {
             id = values[0];
-            patientID = values[1];
-            doctorID = values[2];
-            roomID = values[3];
+            patient = new Patient();
+            patient.id = values[1];
+            Doctor = new Doctor();
+            Doctor.id = values[2];
+            Room = new Room();
+            Room.id = values[3];
             startTime = DateTime.Parse(values[4]);
             duration = int.Parse(values[5]);
             Type = Conversion.StringToAppointmentType(values[6]);
