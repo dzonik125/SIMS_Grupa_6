@@ -102,5 +102,29 @@ namespace Repository
             }
             return roomsByType;
         }
+
+        public bool FindRoomByFloor(int roomNum, int floor)
+        {
+
+            List<Room> rooms = FindAll();
+            List<Room> roomsByFloor = new();
+            foreach (Room r in rooms)
+            {
+                if (r.floor == floor)
+                {
+                    roomsByFloor.Add(r);
+                }
+
+            }
+
+            foreach (Room r in roomsByFloor)
+            {
+                if (r.roomNum == roomNum)
+                { 
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

@@ -46,6 +46,7 @@ C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\SIMS.dll
 C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\ref\SIMS.dll
 C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\SIMS.pdb
 C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\SIMS.genruntimeconfig.cache
+<<<<<<< HEAD
 =======
 C:\Users\Ivana\pythonProject\OneDrive\Desktop\projekti\SIMS_Grupa_6\ZdravoBolnica\bin\Debug\net5.0-windows\SIMS.exe
 C:\Users\Ivana\pythonProject\OneDrive\Desktop\projekti\SIMS_Grupa_6\ZdravoBolnica\bin\Debug\net5.0-windows\SIMS.deps.json
@@ -98,3 +99,18 @@ C:\Users\Ivana\pythonProject\OneDrive\Desktop\projekti\SIMS_Grupa_6\ZdravoBolnic
 C:\Users\Ivana\pythonProject\OneDrive\Desktop\projekti\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\SIMS.genruntimeconfig.cache
 >>>>>>> sekretarimpl
 C:\Users\Ivana\pythonProject\OneDrive\Desktop\projekti\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\SIMS.csproj.AssemblyReference.cache
+=======
+C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\DeletePatientAppointment.g.cs
+C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\DeletePatientAppointment.baml
+>>>>>>> Stashed changes
+C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\EditPatient.g.cs
+C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\NewPatient.g.cs
+C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\SecretaryUI.g.cs
+C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\EditPatient.baml
+C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\NewPatient.baml
+C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\SecretaryUI.baml
+C:\Users\Ivana\pythonProject\OneDrive\Desktop\projekti\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\DeletePatientAppointment.g.cs
+C:\Users\Ivana\pythonProject\OneDrive\Desktop\projekti\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\EditPatientAppointment.g.cs
+C:\Users\Ivana\pythonProject\OneDrive\Desktop\projekti\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\DeletePatientAppointment.baml
+C:\Users\Ivana\pythonProject\OneDrive\Desktop\projekti\SIMS_Grupa_6\ZdravoBolnica\obj\Debug\net5.0-windows\EditPatientAppointment.baml
+>>>>>>> upravnikPopravka

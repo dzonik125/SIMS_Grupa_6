@@ -17,10 +17,7 @@ using System.Windows.Shapes;
 
 namespace SIMS
 {
-    /// <summary>
-    /// Interaction logic for NewRoom.xaml
-    /// </summary>
-    /// 
+    
     
     public partial class NewRoom : Window
     {
@@ -43,6 +40,11 @@ namespace SIMS
             room.floor = Int32.Parse(Floor.Text);
             room.empty = true;
             room.roomType = Conversion.StringToRoomType(TypeCombo.Text);
+            if (rc.FindRoomByFloor(room.roomNum, room.floor))
+            {
+                MessageBox.Show("Na ovom spratu vec postoji taj broj prostorije");
+                return;
+            }
             rc.AddRoom(room);
             ManagerUI mui = ManagerUI.Instance;
             mui.refresh();
