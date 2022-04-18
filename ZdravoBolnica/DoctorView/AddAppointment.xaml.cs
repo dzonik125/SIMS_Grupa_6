@@ -44,8 +44,10 @@ namespace SIMS.DoctorView
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Appointment a = new Appointment();
-            a.patientID = getSelectedPatient().id;
-            a.roomID = getSelectedRoom().id;
+            a.patient = new Patient();
+            a.patient.id = getSelectedPatient().id;
+            a.Room = new Room();
+            a.Room.id = getSelectedRoom().id;
             a.Type = appointmentType;
             a.id = DateTime.Now.ToString("yyMMddHHmmssff");
             String dateAndTime = DatePicker.Text + " " + Time.Text;
@@ -53,7 +55,8 @@ namespace SIMS.DoctorView
             a.startTime = timeStamp;
             a.duration = int.Parse(Duration.Text);
             Appointments appointments = Appointments.Instance;
-            a.doctorID = appointments.doctorUser.id;
+            a.Doctor = new Doctor();
+            a.Doctor.id = appointments.doctorUser.id;
             if (ac.IntersectionWithAppointments(a.patientID, a.doctorID, a.roomID, a.startTime, a.duration)) {
                 MessageBox.Show("ne.");
                 return;

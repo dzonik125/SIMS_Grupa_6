@@ -16,5 +16,5 @@ C:\SIMS_PROJEKAT\SIMS_Grupa_6\ZdravoBolnica\App.xaml
 193-1891726104
 DeletePatientAppointment.xaml;DoctorView\AddAppointment.xaml;DoctorView\DoctorUI.xaml;DoctorView\EditAppointment.xaml;EditPatient.xaml;EditPatientAppointment.xaml;EditRoom.xaml;MainWindow.xaml;MakeAppointmentPatient.xaml;ManagerUI.xaml;NewPatient.xaml;NewRoom.xaml;PatientWindow.xaml;SecretaryUI.xaml;
 
-True
+False
 
