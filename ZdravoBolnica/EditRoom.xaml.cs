@@ -65,7 +65,7 @@ namespace SIMS
             selectedRoom.floor = Int32.Parse(Floor.Text);
             if (rc.FindRoomByFloor(selectedRoom.roomNum, selectedRoom.floor))
             {
-                MessageBox.Show("Na ovom spratu vec postoji taj broj prostorije");
+                MessageBox.Show("Na ovom spratu vec postoji soba sa tim brojem.");
                 return;
             }
 

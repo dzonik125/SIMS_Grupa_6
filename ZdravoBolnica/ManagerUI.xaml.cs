@@ -125,5 +125,14 @@ namespace SIMS
 
 
         }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            ManagerUI mui = ManagerUI.Instance;
+            MainWindow mw = new MainWindow();
+            mw.Show();
+            mui.Hide();
+
+        }
     }
 }

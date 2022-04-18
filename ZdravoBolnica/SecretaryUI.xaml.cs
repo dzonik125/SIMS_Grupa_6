@@ -93,5 +93,14 @@ namespace SIMS
             NewGuestPatient ngp = new NewGuestPatient();
             ngp.ShowDialog();
         }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            SecretaryUI sui = SecretaryUI.Instance;
+            MainWindow mw = new MainWindow();
+            sui.Hide();
+            mw.Show();
+
+        }
     }
 }
