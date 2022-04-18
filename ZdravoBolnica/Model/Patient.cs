@@ -8,7 +8,7 @@ namespace Model
     public class Patient : Account, Serializable
     {
         public string lbo { get; set; }
-        public string adressID { get; set; }
+        public Adress address { get; set; }
 
         public bool guest { get; set; }
 
@@ -86,7 +86,7 @@ namespace Model
                 email.ToString(),
                 password.ToString(),
                 username.ToString(),
-                adressID.ToString(),
+                address.id.ToString(),
                 phone.ToString(),
                 lbo.ToString(),
                 jmbg,
@@ -105,7 +105,8 @@ namespace Model
             email = values[3];
             password = values[4];
             username = values[5];
-            adressID = values[6];
+            address = new Adress();
+            address.id = values[6];
             phone = values[7];
             lbo = values[8];
             jmbg = values[9];
