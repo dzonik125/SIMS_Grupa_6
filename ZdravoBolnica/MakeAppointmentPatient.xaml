@@ -11,7 +11,7 @@
         <DatePicker HorizontalAlignment="Left" Name="DatePicker" Margin="341,93,0,0" VerticalAlignment="Top" Height="35" Width="149"/>
         <TextBox HorizontalAlignment="Left" Name="TextBox" Margin="344,146,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Height="25"/>
         <Label Content="Vreme" HorizontalAlignment="Left" Margin="244,134,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Button Content="ZAKAZI" HorizontalAlignment="Center" Margin="0,236,0,0" VerticalAlignment="Top" Height="87" Width="180" Click="Button_Click"/>
+        <Button Name="zakazi" Content="ZAKAZI" HorizontalAlignment="Center" Margin="0,236,0,0" VerticalAlignment="Top" Height="87" Width="180" Click="Button_Click"/>
         <Label Content="Doktor" HorizontalAlignment="Left" Margin="244,47,0,0" VerticalAlignment="Top" Width="71" FontSize="20"/>
         <ComboBox HorizontalAlignment="Left" Name="ComboBox" DisplayMemberPath="FullName" SelectedValuePath="FullName"  Margin="344,62,0,0" VerticalAlignment="Top" Width="120"/>
 

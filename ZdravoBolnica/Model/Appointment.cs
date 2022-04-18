@@ -30,14 +30,6 @@ namespace Model
 
         public String AppointmentTime { get { return startTime.ToString("HH:mm"); } }
 
-        public string patientID { get; set; }
-        public string doctorID
-        {
-            get; set;
-        }
-        public string roomID { get; set; }
-        
-
 
         public AppointmentType Type { get; set; }
 
