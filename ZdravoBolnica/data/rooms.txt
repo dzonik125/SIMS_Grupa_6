@@ -1,4 +1,0 @@
-22041222413758|12|3|True|Prostorija za preglede
-22041308225102|9|2|True|Operaciona sala
-22041308232352|4|1|True|Prostorija za preglede
-22041308233373|5|3|True|laboratorija

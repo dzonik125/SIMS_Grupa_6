@@ -48,14 +48,14 @@ namespace SIMS
         {
             ManagerUI mui = ManagerUI.Instance;
             mui.Show();
-            this.Close();
+            this.Hide();
         }
         private void Secretary_Click(object sender, RoutedEventArgs e)
             {
             SecretaryUI sui = SecretaryUI.Instance;
             
             sui.Show();
-            this.Close();
+            this.Hide();
 
         }
     }

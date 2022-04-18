@@ -1,0 +1,22 @@
+﻿<Window x:Class="SIMS.NewGuestPatient"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIMS"
+        mc:Ignorable="d"
+        Title="NewGuestPatient" Height="600" Width="500">
+    <Grid>
+        <Label Content="Ime:" HorizontalAlignment="Left" Margin="90,108,0,0" VerticalAlignment="Top" Width="55" FontSize="15"/>
+        <TextBox HorizontalAlignment="Left" Name="Name" Margin="202,115,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="23" FontSize="15"/>
+        
+        <Label Content="Prezime:" HorizontalAlignment="Left" Margin="90,173,0,0" VerticalAlignment="Top" Width="67" FontSize="15"/>
+        <TextBox HorizontalAlignment="Left" Name="Surname" Margin="202,180,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="23" FontSize="15"/>
+        
+        <Label Content="JMBG:" HorizontalAlignment="Left" Margin="90,249,0,0" VerticalAlignment="Top" Width="55" FontSize="15"/>      
+        <TextBox HorizontalAlignment="Left" Name="Jmbg" Margin="202,256,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="23" FontSize="15"/>
+        
+        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="170,362,0,0" VerticalAlignment="Top" Width="80" Height="30" Click="AddGuestPatient_Click"/>
+
+    </Grid>
+</Window>

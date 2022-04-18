@@ -100,6 +100,15 @@ namespace Service
             return null;
         }
 
+        public bool FindRoomByFloor(int roomNum, int floor)
+        {
+            if (roomsCRUD.FindRoomByFloor(roomNum, floor))
+            {
+                return true;
+            }
+            return false;
+        }
+
 
         public List<Room> GetAvailableRooms(DateTime startTime, DateTime endTime)
       {
