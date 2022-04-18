@@ -3,78 +3,78 @@
 // Created: Thursday, April 7, 2022 10:12:49
 // Purpose: Definition of Class Patient
 
-using System;
-
 namespace Model
 {
-   public class Patient : Account, Serializable
-   {
-      public string lbo { get; set; }
-      public string adressID { get; set; }
-      
-      public MedicalRecord medicalRecord;
-      public System.Collections.Generic.List<Appointment> appointment;
-      
-      public System.Collections.Generic.List<Appointment> Appointment
-      {
-         get
-         {
-            if (appointment == null)
-               appointment = new System.Collections.Generic.List<Appointment>();
-            return appointment;
-         }
-         set
-         {
-            RemoveAllAppointment();
-            if (value != null)
+    public class Patient : Account, Serializable
+    {
+        public string lbo { get; set; }
+        public string adressID { get; set; }
+
+        public bool guest { get; set; }
+
+        public MedicalRecord medicalRecord;
+        public System.Collections.Generic.List<Appointment> appointment;
+
+        public System.Collections.Generic.List<Appointment> Appointment
+        {
+            get
             {
-               foreach (Appointment oAppointment in value)
-                  AddAppointment(oAppointment);
+                if (appointment == null)
+                    appointment = new System.Collections.Generic.List<Appointment>();
+                return appointment;
             }
-         }
-      }
-      
-    
-      public void AddAppointment(Appointment newAppointment)
-      {
-         if (newAppointment == null)
-            return;
-         if (this.appointment == null)
-            this.appointment = new System.Collections.Generic.List<Appointment>();
-         if (!this.appointment.Contains(newAppointment))
-         {
-            this.appointment.Add(newAppointment);
-            newAppointment.patient = this;
-         }
-      }
-      
-      
-      public void RemoveAppointment(Appointment oldAppointment)
-      {
-         if (oldAppointment == null)
-            return;
-         if (this.appointment != null)
-            if (this.appointment.Contains(oldAppointment))
+            set
             {
-               this.appointment.Remove(oldAppointment);
-               oldAppointment.patient = null;
+                RemoveAllAppointment();
+                if (value != null)
+                {
+                    foreach (Appointment oAppointment in value)
+                        AddAppointment(oAppointment);
+                }
             }
-      }
-      
-  
-      public void RemoveAllAppointment()
-      {
-         if (appointment != null)
-         {
-            System.Collections.ArrayList tmpAppointment = new System.Collections.ArrayList();
-            foreach (Appointment oldAppointment in appointment)
-               tmpAppointment.Add(oldAppointment);
-            appointment.Clear();
-            foreach (Appointment oldAppointment in tmpAppointment)
-               oldAppointment.patient = null;
-            tmpAppointment.Clear();
-         }
-      }
+        }
+
+
+        public void AddAppointment(Appointment newAppointment)
+        {
+            if (newAppointment == null)
+                return;
+            if (this.appointment == null)
+                this.appointment = new System.Collections.Generic.List<Appointment>();
+            if (!this.appointment.Contains(newAppointment))
+            {
+                this.appointment.Add(newAppointment);
+                newAppointment.patient = this;
+            }
+        }
+
+
+        public void RemoveAppointment(Appointment oldAppointment)
+        {
+            if (oldAppointment == null)
+                return;
+            if (this.appointment != null)
+                if (this.appointment.Contains(oldAppointment))
+                {
+                    this.appointment.Remove(oldAppointment);
+                    oldAppointment.patient = null;
+                }
+        }
+
+
+        public void RemoveAllAppointment()
+        {
+            if (appointment != null)
+            {
+                System.Collections.ArrayList tmpAppointment = new System.Collections.ArrayList();
+                foreach (Appointment oldAppointment in appointment)
+                    tmpAppointment.Add(oldAppointment);
+                appointment.Clear();
+                foreach (Appointment oldAppointment in tmpAppointment)
+                    oldAppointment.patient = null;
+                tmpAppointment.Clear();
+            }
+        }
 
         public string[] ToCSV()
         {
@@ -91,6 +91,7 @@ namespace Model
                 lbo.ToString(),
                 jmbg,
                 birthdate.ToString(),
+                guest.ToString(),
 
             };
             return csvValues;
@@ -109,6 +110,7 @@ namespace Model
             lbo = values[8];
             jmbg = values[9];
             birthdate = values[10];
+            guest = bool.Parse(values[11]);
         }
     }
 }

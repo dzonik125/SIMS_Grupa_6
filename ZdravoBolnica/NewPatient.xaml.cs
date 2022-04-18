@@ -1,18 +1,7 @@
 ﻿using Controller;
 using Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SIMS
 {
@@ -28,7 +17,7 @@ namespace SIMS
         public NewPatient()
         {
             InitializeComponent();
-            
+
         }
 
         private void AddPatient_Click(object sender, RoutedEventArgs e)
@@ -47,6 +36,7 @@ namespace SIMS
             patient.adressID = a;
             string v = DateTime.Now.ToString("yyMMddHHmmssff");
             patient.id = v;
+            patient.guest = false;
 
             adress.id = a;
             adress.number = StreetNum.Text;

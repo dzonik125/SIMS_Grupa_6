@@ -8,19 +8,19 @@
     "net5.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\dZoNi\\.nuget\\packages\\": {}
+    "C:\\Users\\win\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\SIMS_PROJEKAT\\SIMS_Grupa_6\\ZdravoBolnica\\SIMS.csproj",
+      "projectUniqueName": "D:\\David\\SIMS\\SIMS_Grupa_6\\ZdravoBolnica\\SIMS.csproj",
       "projectName": "SIMS",
-      "projectPath": "C:\\SIMS_PROJEKAT\\SIMS_Grupa_6\\ZdravoBolnica\\SIMS.csproj",
-      "packagesPath": "C:\\Users\\dZoNi\\.nuget\\packages\\",
-      "outputPath": "C:\\SIMS_PROJEKAT\\SIMS_Grupa_6\\ZdravoBolnica\\obj\\",
+      "projectPath": "D:\\David\\SIMS\\SIMS_Grupa_6\\ZdravoBolnica\\SIMS.csproj",
+      "packagesPath": "C:\\Users\\win\\.nuget\\packages\\",
+      "outputPath": "D:\\David\\SIMS\\SIMS_Grupa_6\\ZdravoBolnica\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\dZoNi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\win\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -63,16 +63,8 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\SIMS_PROJEKAT\\SIMS_Grupa_6\\ZdravoBolnica\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }
