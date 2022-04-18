@@ -62,5 +62,10 @@ namespace SIMS
         {
             this.Close();
         }
+
+        private void BirthDate_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
+        }
     }
 }
