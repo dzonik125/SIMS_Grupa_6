@@ -22,6 +22,8 @@ namespace SIMS
         private void AddGuestPatient_Click(object sender, RoutedEventArgs e)
         {
             adress = new Adress();
+
+
             patient.name = Name.Text;
             patient.surname = Surname.Text;
             patient.lbo = "";
@@ -32,16 +34,20 @@ namespace SIMS
             patient.phone = "";
             patient.jmbg = Jmbg.Text;
             String a = DateTime.Now.ToString("yyMMddHHmmssff");
-            patient.adressID = a;
-            string v = DateTime.Now.ToString("yyMMddHHmmssff");
-            patient.id = v;
-            patient.guest = true;
-
-            adress.id = a;
             adress.number = "";
             adress.street = "";
             adress.city = "";
             adress.country = "";
+            patient.address = adress;
+            patient.address.id = a;
+            //  patient.adressID = a;
+            string v = DateTime.Now.ToString("yyMMddHHmmssff");
+            patient.id = v;
+            patient.guest = true;
+
+            // adress.id = a;
+
+            
 
             pc.AddPatient(patient);
             ac.AddAdress(adress);

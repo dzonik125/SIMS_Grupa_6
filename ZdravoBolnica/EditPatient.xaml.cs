@@ -34,7 +34,7 @@ namespace SIMS
             PhoneNum.Text = p.phone;
             Email.Text = p.email;
             Username.Text = p.username;
-            Adress a = ac.FindAdressById(p.adressID);
+            Adress a = ac.FindAdressById(p.address.id);
             Country.Text = a.country;
             City.Text = a.city;
             StreetNum.Text = a.number;
@@ -48,7 +48,7 @@ namespace SIMS
 
         private void EditPatient_Click(object sender, RoutedEventArgs e)
         {
-            Adress a = ac.FindAdressById(selectedPatient.adressID);
+            Adress a = ac.FindAdressById(selectedPatient.address.id);
             a.country = Country.Text;
             a.city = City.Text;
             a.number = StreetNum.Text;
@@ -65,7 +65,7 @@ namespace SIMS
             selectedPatient.jmbg = Jmbg.Text;
             ac.UpdateAdress(a);
 
-            selectedPatient.address = ac.FindAdressById(selectedPatient.adressID);
+            selectedPatient.address = ac.FindAdressById(selectedPatient.address.id);
 
            
 

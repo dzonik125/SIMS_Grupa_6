@@ -99,13 +99,13 @@ namespace Model
 
         public void FromCSV(string[] values)
         {
+            address = new Adress();
             id = values[0];
             name = values[1];
             surname = values[2];
             email = values[3];
             password = values[4];
             username = values[5];
-            address = new Adress();
             address.id = values[6];
             phone = values[7];
             lbo = values[8];
