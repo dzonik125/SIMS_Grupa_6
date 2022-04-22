@@ -134,5 +134,10 @@ namespace SIMS
             mui.Hide();
 
         }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
