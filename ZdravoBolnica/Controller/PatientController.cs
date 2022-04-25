@@ -42,7 +42,7 @@ namespace SIMS
             return true;
         }
 
-        public Service.PatientService patientService;
+      //  public Service.PatientService patientService;
 
     }
 
