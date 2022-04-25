@@ -41,8 +41,6 @@ namespace SIMS
             patient.address = adress;
             patient.address.id = a;
             //  patient.adressID = a;
-            string v = DateTime.Now.ToString("yyMMddHHmmssff");
-            patient.id = v;
             patient.guest = true;
 
             // adress.id = a;

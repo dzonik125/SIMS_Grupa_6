@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Repository
 {
-    public class PatientRepository : Repository<Patient, string>
+    public class PatientRepository : Repository<Patient, int>
     {
         private String filename = @".\..\..\..\Data\patients.txt";
         private Serializer<Patient> patientSerializer = new Serializer<Patient>();
@@ -17,6 +17,16 @@ namespace Repository
         {
             List<Patient> patients = new List<Patient>();
             patients = patientSerializer.fromCSV(filename);
+            int num = patients.Count;
+            if (num > 0)
+            {
+                entity.id = patients[num - 1].id;
+                entity.id++;
+            }
+            else
+            {
+                entity.id = 1;
+            }
             patients.Add(entity);
             patientSerializer.toCSV(filename, patients);
 
@@ -27,12 +37,12 @@ namespace Repository
             throw new NotImplementedException();
         }
 
-        public void DeleteById(string id)
+        public void DeleteById(int id)
         {
             List<Patient> patients = FindAll();
             foreach(Patient p in patients)
             {
-                if (id.Equals(p.id))
+                if (id == p.id)
                 {
                     patients.Remove(p);
                     break;
@@ -48,7 +58,7 @@ namespace Repository
             System.Diagnostics.Trace.WriteLine("ovde");
         }
 
-        public Patient FindById(string key)
+        public Patient FindById(int key)
         {
             throw new NotImplementedException();
         }

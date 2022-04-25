@@ -77,13 +77,13 @@ namespace Service
             }
         }
 
-        public List<Appointment> getFutureAppointmentsForDoctor(string id)
+        public List<Appointment> getFutureAppointmentsForDoctor(int id)
         {
             List<Appointment> potentialAppointments = GetAllApointments();
             List<Appointment> futureAppointments = new List<Appointment>();
             foreach (Appointment a in potentialAppointments)
             {
-                if (a.Doctor.id.Equals(id))
+                if (a.Doctor.id == id)
                 {
                     if (a.startTime >= DateTime.Now)
                     {
@@ -121,12 +121,12 @@ namespace Service
 
         }
 
-        public List<Appointment> getAppointmentsByDoctorId(string doctorID)
+        public List<Appointment> getAppointmentsByDoctorId(int doctorID)
         {
             return appointmentRepository.FindByDoctorId(doctorID);
         }
 
-        public List<Appointment> getAppointmentsByPatientId(string patientID)
+        public List<Appointment> getAppointmentsByPatientId(int patientID)
         {
             return appointmentRepository.FindByPatientId(patientID);
         }
@@ -137,7 +137,7 @@ namespace Service
         }
 
 
-        public bool IntersectionWithAppointments(string patientID, string doctorID, string roomID, DateTime date, int duration)
+        public bool IntersectionWithAppointments(int patientID, int doctorID, string roomID, DateTime date, int duration)
         {
             List<Appointment> doctorAppointments = getAppointmentsByDoctorId(doctorID);
             List<Appointment> roomAppointments = getAppointmentsByRoomId(roomID);

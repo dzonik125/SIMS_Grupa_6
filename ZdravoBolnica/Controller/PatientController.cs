@@ -18,7 +18,7 @@ namespace SIMS
             return ps.FindAllPatients();
         }
 
-        public bool DeletePatientById(string id)
+        public bool DeletePatientById(int id)
         {
             ps.DeletePatientById(id);
             return true;

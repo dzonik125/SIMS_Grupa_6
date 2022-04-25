@@ -35,7 +35,7 @@ namespace Model
 
         public void FromCSV(string[] values)
         {
-            id = values[0];
+            id = int.Parse(values[0]);
             name = values[1];
             surname = values[2];
             specialization = Conversion.StringToSpecialization(values[3]);
