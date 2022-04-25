@@ -1,5 +1,6 @@
 ﻿using Controller;
 using Model;
+using SIMS.Controller;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,14 +18,12 @@ using System.Windows.Shapes;
 
 namespace SIMS
 {
-    /// <summary>
-    /// Interaction logic for ManagerUI.xaml
-    /// </summary>
-    public partial class ManagerUI : Window
+       public partial class ManagerUI : Window
     {
 
         private static ManagerUI instance = new ManagerUI();
         private RoomController rc = new RoomController();
+        private EquipmentController ec = new EquipmentController();
 
         private ManagerUI() {
             InitializeComponent();
@@ -37,6 +36,17 @@ namespace SIMS
             {
                 list.Add(r);
             }
+
+            this.DataContext = this;
+            equipList = new ObservableCollection<Equipment>();
+            List<Equipment> inventory = new List<Equipment>();
+            inventory = ec.FindAll();
+
+            foreach (Equipment e in inventory)
+            {
+                equipList.Add(e);
+            }
+           // equipList.Add(new Equipment(1, "sto", 20, Model.EquipmentType.potrosna));
 
         }
         public static ManagerUI Instance
@@ -55,21 +65,13 @@ namespace SIMS
             get;
             set;
         }
-
-       /* public ManagerUI()
+        public static ObservableCollection<Equipment> equipList
         {
+            get;
+            set;
+        }
 
-            InitializeComponent();
-            
-            this.DataContext = this;
-            list = new ObservableCollection<Room>();
-            List<Room> rooms = new List<Room>();
-            rooms = rc.FindAll();
-            foreach (Room r in rooms)
-            {
-                list.Add(r);
-            }
-        }*/
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -81,7 +83,7 @@ namespace SIMS
 
         {
             this.DataContext = this;
-            System.Diagnostics.Trace.WriteLine("jea");
+           
            
         }
 
@@ -96,9 +98,20 @@ namespace SIMS
             }
         }
 
+        public void refreshEquipmentTable()
+        {
+            equipList.Clear();
+            List<Equipment> inventory = new List<Equipment>();
+            inventory = ec.FindAll();
+            foreach (Equipment e in inventory)
+            {
+                equipList.Add(e);
+            }
+        }
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Room selectedRoom = appointmentsTable.SelectedItem as Room;
+            Room selectedRoom = roomsTable.SelectedItem as Room;
             if (selectedRoom == null)
             {
                 MessageBox.Show("Izabrati prostoriju.");
@@ -112,7 +125,7 @@ namespace SIMS
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Room selectedRoom = appointmentsTable.SelectedItem as Room;
+            Room selectedRoom = roomsTable.SelectedItem as Room;
             if (selectedRoom == null)
             {
                 MessageBox.Show("Izabrati prostoriju.");
@@ -132,6 +145,49 @@ namespace SIMS
             MainWindow mw = new MainWindow();
             mw.Show();
             mui.Hide();
+
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void DataGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void AddEquipment_Click(object sender, RoutedEventArgs e)
+        {
+            AddEquipment addEquipment = new AddEquipment();
+            addEquipment.ShowDialog();
+        }
+
+        private void EditEquipment_Click(object sender, RoutedEventArgs e)
+        {
+            Equipment selectedEquipment = equipmenttTable.SelectedItem as Equipment;
+            if (selectedEquipment == null)
+            {
+                MessageBox.Show("Izaberite opremu");
+                return;
+            }
+            EditEquipment editEquipment = new EditEquipment(selectedEquipment);
+            editEquipment.ShowDialog();
+        }
+
+        private void DeleteEquipment_Click(object sender, RoutedEventArgs e)
+        {
+            Equipment selectedEquipment = equipmenttTable.SelectedItem as Equipment;
+            if (selectedEquipment == null)
+            {
+                MessageBox.Show("Izaberite opremu");
+                return;
+            }
+            ec.DeleteEquipmentById(selectedEquipment.id);
+            refreshEquipmentTable();
+            return;
+
 
         }
     }

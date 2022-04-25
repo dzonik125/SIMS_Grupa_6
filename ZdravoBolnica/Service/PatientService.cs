@@ -23,7 +23,7 @@ namespace Service
             return pr.FindAll();
         }
 
-        public bool DeletePatientById(string id)
+        public bool DeletePatientById(int id)
         {
             pr.DeleteById(id);
             return true;

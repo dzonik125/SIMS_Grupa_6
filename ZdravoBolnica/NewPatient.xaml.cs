@@ -34,16 +34,12 @@ namespace SIMS
             patient.username = Username.Text;
             patient.phone = PhoneNum.Text;
             patient.jmbg = Jmbg.Text;
-            String a = DateTime.Now.ToString("yyMMddHHmmssff");
             adress.number = StreetNum.Text;
             adress.street = Street.Text;
             adress.city = City.Text;
             adress.country = Country.Text;
             patient.address = adress;
-            patient.address.id = a;
-            //  patient.adressID = a;
-            string v = DateTime.Now.ToString("yyMMddHHmmssff");
-            patient.id = v;
+            patient.address.id = "jiuj";
             patient.guest = false;
 
            // adress.id = a;

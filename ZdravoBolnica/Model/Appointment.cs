@@ -71,8 +71,8 @@ namespace Model
             string[] csvValues =
             {
                 id,
-                patient.id,
-                Doctor.id,
+                patient.id.ToString(),
+                Doctor.id.ToString(),
                 Room.id,
                 startTime.ToString(),
                 duration.ToString(),
@@ -87,9 +87,9 @@ namespace Model
         {
             id = values[0];
             patient = new Patient();
-            patient.id = values[1];
+            patient.id = int.Parse(values[1]);
             Doctor = new Doctor();
-            Doctor.id = values[2];
+            Doctor.id = int.Parse(values[2]);
             Room = new Room();
             Room.id = values[3];
             startTime = DateTime.Parse(values[4]);

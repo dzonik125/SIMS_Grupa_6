@@ -99,5 +99,25 @@ namespace SIMS.Model
             };
         }
 
+        public static String EquipmentTypeToString(EquipmentType type)
+        {
+            return type switch
+            {
+                EquipmentType.potrosna => "potrosna",
+                EquipmentType.nepotrosna => "nepotrosna",
+                _ => "nepotrosna",
+            };
+        }
+
+        public static EquipmentType StringToEquipmentType(string type)
+        {
+            return type switch
+            {
+                "potrosna" => EquipmentType.potrosna,
+                "nepotrosna" => EquipmentType.nepotrosna,
+                _ => EquipmentType.nepotrosna,
+            };
+        }
+
     }
 }
