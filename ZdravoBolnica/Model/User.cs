@@ -12,7 +12,7 @@ namespace Model
       public string name { get; set; }
         public string surname { get; set; }
         public string jmbg { get; set; }
-        public string id { get; set; }
+        public int id { get; set; }
         public string phone { get; set; }
         public string email { get; set; }
         public string birthdate { get; set; }

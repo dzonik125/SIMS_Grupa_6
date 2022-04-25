@@ -100,7 +100,7 @@ namespace Model
         public void FromCSV(string[] values)
         {
             address = new Adress();
-            id = values[0];
+            id = int.Parse(values[0]);
             name = values[1];
             surname = values[2];
             email = values[3];

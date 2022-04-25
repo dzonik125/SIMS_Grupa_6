@@ -18,14 +18,14 @@ namespace Repository
             throw new NotImplementedException();
         }
 
-        public List<Appointment> FindByPatientId(string pid)
+        public List<Appointment> FindByPatientId(int pid)
         {
             List<Appointment> appointments = new();
             List<Appointment> patientAppointments = new();
             appointments = FindAll();
             foreach (Appointment a in appointments)
             {
-                if (a.patient.id.Equals(pid))
+                if (a.patient.id == pid)
                 {
                     patientAppointments.Add(a);
                 }
@@ -48,14 +48,14 @@ namespace Repository
             return roomAppointments;
         }
 
-        public List<Appointment> FindByDoctorId(string did)
+        public List<Appointment> FindByDoctorId(int did)
         {
             List<Appointment> appointments = new();
             List<Appointment> doctorAppointments = new();
             appointments = FindAll();
             foreach (Appointment a in appointments)
             {
-                if (a.Doctor.id.Equals(did))
+                if (a.Doctor.id==did)
                 {
                     doctorAppointments.Add(a);
                 }

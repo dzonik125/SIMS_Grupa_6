@@ -37,7 +37,9 @@
                             <Grid Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width = "100" />
-                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "24.124" />
+                                    <ColumnDefinition Width="62.543"/>
+                                    <ColumnDefinition Width="13.333"/>
                                     <ColumnDefinition Width = "100" />
                                     <ColumnDefinition Width = "100" />
                                     <ColumnDefinition Width = "100" />
@@ -51,8 +53,8 @@
                                     <RowDefinition Height="100"/>
                                 </Grid.RowDefinitions>
                                 <Label Grid.Row="0" Grid.Column="0" Margin="1,6,35,65">Sprat:</Label>
-                                <ComboBox Grid.Row="0" Margin="58,6,0,65" Grid.ColumnSpan="2" />
-                                <DataGrid x:Name="roomsTable" ItemsSource="{Binding Path = list}" Margin="-1,86,13,24" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False" Grid.ColumnSpan="3" Grid.RowSpan="4">
+                                <ComboBox Grid.Row="0" Margin="58,6,0,65" Grid.ColumnSpan="4" />
+                                <DataGrid x:Name="roomsTable" ItemsSource="{Binding Path = list}" Margin="-1,86,13,24" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False" Grid.ColumnSpan="5" Grid.RowSpan="4">
                                     <DataGrid.RenderTransform>
                                         <TransformGroup>
                                             <ScaleTransform/>
@@ -72,12 +74,12 @@
 
                                     </DataGrid.Columns>
                                 </DataGrid>
-                                <Rectangle    Stroke="Black" Grid.Column="3" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Margin="0,2,0,56" Grid.RowSpan="2"/>
-                                <Label Grid.Row="1" Grid.Column="3" Margin="0,88,0,78" Grid.RowSpan="2">Opremljenost:</Label>
-                                <Label Grid.Row="0" Grid.Column="3" Margin="10,15,10,50" Content="Soba:" RenderTransformOrigin="0.5,1.476"/>
-                                <Label Grid.Row="0" Grid.Column="3" Margin="10,59,10,1" Content="Namena:" RenderTransformOrigin="0.5,1.476"/>
-                                <Label Grid.Column="3" Margin="10,99,10,61" Content="Dostupnost:" RenderTransformOrigin="0.5,1.476" Grid.RowSpan="2"/>
-                                <TextBox Grid.Column="4" HorizontalAlignment="Left" Name="Floor" Margin="0,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" FontSize="15" Height="30" RenderTransformOrigin="0.5,0.5">
+                                <Rectangle    Stroke="Black" Grid.Column="5" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Margin="0,2,0,56" Grid.RowSpan="2"/>
+                                <Label Grid.Row="1" Grid.Column="5" Margin="0,88,0,78" Grid.RowSpan="2">Opremljenost:</Label>
+                                <Label Grid.Row="0" Grid.Column="5" Margin="10,15,10,50" Content="Soba:" RenderTransformOrigin="0.5,1.476"/>
+                                <Label Grid.Row="0" Grid.Column="5" Margin="10,59,10,1" Content="Namena:" RenderTransformOrigin="0.5,1.476"/>
+                                <Label Grid.Column="5" Margin="10,99,10,61" Content="Dostupnost:" RenderTransformOrigin="0.5,1.476" Grid.RowSpan="2"/>
+                                <TextBox Grid.Column="6" HorizontalAlignment="Left" Name="Floor" Margin="0,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" FontSize="15" Height="30" RenderTransformOrigin="0.5,0.5">
                                     <TextBox.RenderTransform>
                                         <TransformGroup>
                                             <ScaleTransform ScaleY="-1"/>
@@ -87,7 +89,7 @@
                                         </TransformGroup>
                                     </TextBox.RenderTransform>
                                 </TextBox>
-                                <TextBox Grid.Column="4" HorizontalAlignment="Left" x:Name="Floor_Copy" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" FontSize="15" Height="30" RenderTransformOrigin="0.5,0.5" Margin="0,58,0,0">
+                                <TextBox Grid.Column="6" HorizontalAlignment="Left" x:Name="Floor_Copy" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" FontSize="15" Height="30" RenderTransformOrigin="0.5,0.5" Margin="0,58,0,0">
                                     <TextBox.RenderTransform>
                                         <TransformGroup>
                                             <ScaleTransform ScaleY="-1"/>
@@ -97,7 +99,7 @@
                                         </TransformGroup>
                                     </TextBox.RenderTransform>
                                 </TextBox>
-                                <TextBox Grid.Column="4" HorizontalAlignment="Left" x:Name="Floor_Copy1" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" FontSize="15" Height="30" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+                                <TextBox Grid.Column="6" HorizontalAlignment="Left" x:Name="Floor_Copy1" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" FontSize="15" Height="30" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
                                     <TextBox.RenderTransform>
                                         <TransformGroup>
                                             <ScaleTransform ScaleY="-1"/>
@@ -107,7 +109,7 @@
                                         </TransformGroup>
                                     </TextBox.RenderTransform>
                                 </TextBox>
-                                <DataGrid  Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="3" Margin="0,10,4,37" Grid.Row="2" SelectionChanged="DataGrid_SelectionChanged">
+                                <DataGrid  Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="5" Margin="0,10,4,37" Grid.Row="2" SelectionChanged="DataGrid_SelectionChanged">
                                     <DataGrid.RenderTransform>
                                         <TransformGroup>
                                             <ScaleTransform/>
@@ -122,9 +124,9 @@
                                     </DataGrid.Columns>
 
                                 </DataGrid>
-                                <Button Content="Dodaj" Grid.Column="6" Height="40" Click="Button_Click"></Button>
-                                <Button Content="Izmeni" Grid.Column="6" Grid.Row="1" Height="40" Click="Button_Click_2"></Button>
-                                <Button Content="Izbrisi" Grid.Column="6" Grid.Row="2" Height="40" Click="Button_Click_1"></Button>
+                                <Button Content="Dodaj" Grid.Column="8" Height="40" Click="Button_Click" Margin="0,30,0,30"></Button>
+                                <Button Content="Izmeni" Grid.Column="8" Grid.Row="1" Height="40" Click="Button_Click_2" Margin="0,30,0,30"></Button>
+                                <Button Content="Izbrisi" Grid.Column="8" Grid.Row="2" Height="40" Click="Button_Click_1" Margin="0,30,0,30"></Button>
 
                             </Grid>
 
@@ -165,7 +167,7 @@
                                         <DataGridTextColumn  Header="Sifra" Binding="{Binding id}" Width="*"></DataGridTextColumn>
                                         <DataGridTextColumn  Header="Naziv" Binding="{Binding item}" Width="*"></DataGridTextColumn>
                                         <DataGridTextColumn Header="Tip" Binding="{Binding type}" Width="*"></DataGridTextColumn>
-                                       
+
 
                                     </DataGrid.Columns>
 

@@ -29,7 +29,7 @@ namespace Controller
             appointmentService.DeleteAppointmentById(id);
       }
       
-      public List<Appointment> getFutureAppointmentsForDoctor(string id)
+      public List<Appointment> getFutureAppointmentsForDoctor(int id)
         {
             return appointmentService.getFutureAppointmentsForDoctor(id);
         }
@@ -44,7 +44,7 @@ namespace Controller
             appointmentService.SaveAppointment(a);
       }
       
-      public bool IntersectionWithAppointments(string patientID, string doctorID, string roomID, DateTime date, int duration)
+      public bool IntersectionWithAppointments(int patientID, int doctorID, string roomID, DateTime date, int duration)
         {
             return appointmentService.IntersectionWithAppointments(patientID, doctorID, roomID, date, duration);
         }

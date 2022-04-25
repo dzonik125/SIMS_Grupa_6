@@ -36,7 +36,7 @@ namespace Service
             doctorRepository.Create(d);
         }
 
-        public Doctor GetDoctorByID(string id)
+        public Doctor GetDoctorByID(int id)
         {
             return doctorRepository.FindById(id);
         }
