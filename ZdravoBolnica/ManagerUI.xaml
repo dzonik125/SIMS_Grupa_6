@@ -52,7 +52,7 @@
                                 </Grid.RowDefinitions>
                                 <Label Grid.Row="0" Grid.Column="0" Margin="1,6,35,65">Sprat:</Label>
                                 <ComboBox Grid.Row="0" Margin="58,6,0,65" Grid.ColumnSpan="2" />
-                                <DataGrid x:Name="appointmentsTable" ItemsSource="{Binding Path = list}" Margin="-1,86,13,24" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False" Grid.ColumnSpan="3" Grid.RowSpan="4">
+                                <DataGrid x:Name="roomsTable" ItemsSource="{Binding Path = list}" Margin="-1,86,13,24" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False" Grid.ColumnSpan="3" Grid.RowSpan="4">
                                     <DataGrid.RenderTransform>
                                         <TransformGroup>
                                             <ScaleTransform/>
@@ -141,7 +141,45 @@
 
             </TabItem>
             <TabItem Header="Oprema">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <TabControl TabStripPlacement="Left">
+                        <TabItem Header="Inventar">
+                            <Grid Background="#FFE5E5E5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition Height="100"/>
+                                </Grid.RowDefinitions>
+                                <DataGrid x:Name="equipmenttTable" ItemsSource="{Binding Path = equipList}" Grid.Row="0"  Grid.RowSpan="4" Grid.ColumnSpan="5" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged_1" Margin="5,70,0,72" Grid.Column="1">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn  Header="Sifra" Binding="{Binding id}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn  Header="Naziv" Binding="{Binding item}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Tip" Binding="{Binding type}" Width="*"></DataGridTextColumn>
+                                       
+
+                                    </DataGrid.Columns>
+
+                                </DataGrid>
+                                <Label FontSize="20" FontWeight="Bold" FontStyle="Oblique"  Grid.Column="1" Grid.ColumnSpan="5" RenderTransformOrigin="0.578,0.489" Margin="50,0,26,30">Pregled celokupne opreme unutar bolnice</Label>
+                                <Button Name="AddEquipment" Content="Dodaj" Grid.Column="6" Grid.Row="1" Width="80" Margin="25,80,26,87" Grid.RowSpan="2" Click="AddEquipment_Click"/>
+                                <Button Name="EditEquipment" Content="Izmeni" Grid.Column="6" Grid.Row="2" Width="80" Margin="25,37,26,30" Click="EditEquipment_Click"/>
+                                <Button Name="DeleteEquipment" Content="Izbrisi" Grid.Column="6" Grid.Row="2" Width="80" Margin="25,92,26,75" Grid.RowSpan="2" Click="DeleteEquipment_Click"/>
+
+                            </Grid>
+
+                        </TabItem>
+                    </TabControl>
+                </Grid>
             </TabItem>
             <TabItem Header="Zaposleni">
                 <Grid Background="#FFE5E5E5"/>
