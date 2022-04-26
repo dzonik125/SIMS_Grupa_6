@@ -40,7 +40,7 @@ namespace Repository
             appointments = FindAll();
             foreach (Appointment a in appointments)
             {
-                if (a.Room.id.Equals(rid))
+                if (a.Room.id == rid)
                 {
                     roomAppointments.Add(a);
                 }

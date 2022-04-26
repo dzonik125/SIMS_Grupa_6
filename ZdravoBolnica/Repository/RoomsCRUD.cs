@@ -89,7 +89,7 @@ namespace Repository
             List<Room> rooms = FindAll();
             foreach (Room rm in rooms)
             {
-                if (rm.id.Equals(r.id))
+                if (rm.id == r.id)
                 {
                     rm.floor = r.floor;
                     rm.roomNum = r.roomNum;
