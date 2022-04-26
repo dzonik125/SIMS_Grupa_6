@@ -44,7 +44,7 @@ namespace Controller
             appointmentService.SaveAppointment(a);
       }
       
-      public bool IntersectionWithAppointments(int patientID, int doctorID, string roomID, DateTime date, int duration)
+      public bool IntersectionWithAppointments(int patientID, int doctorID, int roomID, DateTime date, int duration)
         {
             return appointmentService.IntersectionWithAppointments(patientID, doctorID, roomID, date, duration);
         }
