@@ -14,6 +14,39 @@ namespace SIMS.Repository
     {
         private String filename = @".\..\..\..\Data\room_equipment.txt";
         private Serializer<RoomEquipment> roomEquipmentSerializer = new Serializer<RoomEquipment>();
+
+        public void setRoomEquipment(int id, List<Equipment> equipmentlist)
+        {
+            List<RoomEquipment> roominventory = new List<RoomEquipment>();
+            foreach (Equipment e in equipmentlist)
+            {
+                RoomEquipment entity = new RoomEquipment();
+                entity.equipmentId = e.id;
+                entity.roomId = id;
+                entity.quantity = 1;
+                roominventory.Add(entity);
+           
+            }
+            roomEquipmentSerializer.toCSV(filename, roominventory);
+        }
+
+        public int GetQuantityByRoomId(int id, int roomId)
+        {
+            List<RoomEquipment> roomInventory = new List<RoomEquipment>();
+            roomInventory = FindAll();
+            foreach (RoomEquipment re in roomInventory)
+            {
+                if ((re.equipmentId == id) && (re.roomId == roomId))
+                {
+                    return re.quantity;
+                }
+            
+            }
+            return 0;
+
+
+        }
+
         public void Create(RoomEquipment entity)
         {
             throw new NotImplementedException();
@@ -31,7 +64,7 @@ namespace SIMS.Repository
 
         public List<RoomEquipment> FindAll()
         {
-            throw new NotImplementedException();
+            return roomEquipmentSerializer.fromCSV(filename);
         }
 
         public RoomEquipment FindById(int key)

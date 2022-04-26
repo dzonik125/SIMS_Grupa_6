@@ -28,7 +28,6 @@ namespace Repository
             {
                 entity.id = 1;
             }
-
             rooms.Add(entity);
             roomSerializer.toCSV(filename, rooms);
 
