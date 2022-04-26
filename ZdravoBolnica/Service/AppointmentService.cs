@@ -131,13 +131,13 @@ namespace Service
             return appointmentRepository.FindByPatientId(patientID);
         }
 
-        public List<Appointment> getAppointmentsByRoomId(string roomID)
+        public List<Appointment> getAppointmentsByRoomId(int roomID)
         {
             return appointmentRepository.FindByRoomId(roomID);
         }
 
 
-        public bool IntersectionWithAppointments(int patientID, int doctorID, string roomID, DateTime date, int duration)
+        public bool IntersectionWithAppointments(int patientID, int doctorID, int roomID, DateTime date, int duration)
         {
             List<Appointment> doctorAppointments = getAppointmentsByDoctorId(doctorID);
             List<Appointment> roomAppointments = getAppointmentsByRoomId(roomID);

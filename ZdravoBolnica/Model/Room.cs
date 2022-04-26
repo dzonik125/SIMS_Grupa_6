@@ -14,7 +14,7 @@ namespace Model
         public int roomNum { get; set; }
         public int floor { get; set; }
         public bool empty;
-        public string id { get; set; }
+        public int id { get; set; }
         public RoomType roomType { get; set; }
 
       public System.Collections.Generic.List<Appointment> appointment;
@@ -100,7 +100,7 @@ namespace Model
 
         public void FromCSV(string[] values)
         {
-            id = values[0];
+            id = int.Parse(values[0]);
             roomNum = int.Parse(values[1]);
             floor = int.Parse(values[2]);
             empty = bool.Parse(values[3]);

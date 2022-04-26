@@ -18,7 +18,7 @@ namespace Service
         public RoomsCRUD roomsCrud = new RoomsCRUD();
         public AppointmentService appointmentService = new AppointmentService();
 
-      public Room FindRoomById(string id)
+      public Room FindRoomById(int id)
       {
           return roomsCRUD.FindById(id);
       }
@@ -29,7 +29,7 @@ namespace Service
             return true;
       }
       
-      public bool DeleteRoomById(string id)
+      public bool DeleteRoomById(int id)
       {
             roomsCRUD.DeleteById(id);
             return true;

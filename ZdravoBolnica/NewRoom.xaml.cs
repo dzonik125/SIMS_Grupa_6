@@ -35,8 +35,6 @@ namespace SIMS
         private void NewRoom_Click(object sender, RoutedEventArgs e)
         {
             room.roomNum = Int32.Parse(RoomNum.Text);
-            string v = DateTime.Now.ToString("yyMMddHHmmssff");
-            room.id = v;
             room.floor = Int32.Parse(Floor.Text);
             room.empty = true;
             room.roomType = Conversion.StringToRoomType(TypeCombo.Text);
