@@ -13,7 +13,7 @@ namespace Controller
    {
 
       public RoomService rs = new RoomService();
-      public Room FindRoomById(string id)
+      public Room FindRoomById(int id)
       {
          return rs.FindRoomById(id);
       }
@@ -24,7 +24,7 @@ namespace Controller
             return true;
       }
       
-      public bool DeleteRoomById(string id)
+      public bool DeleteRoomById(int id)
       {
             rs.DeleteRoomById(id);
             return true;

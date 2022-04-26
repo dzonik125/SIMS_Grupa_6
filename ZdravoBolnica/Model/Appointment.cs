@@ -73,7 +73,7 @@ namespace Model
                 id,
                 patient.id.ToString(),
                 Doctor.id.ToString(),
-                Room.id,
+                Room.id.ToString(),
                 startTime.ToString(),
                 duration.ToString(),
                 Conversion.AppointmentTypeToString(Type),
@@ -91,7 +91,7 @@ namespace Model
             Doctor = new Doctor();
             Doctor.id = int.Parse(values[2]);
             Room = new Room();
-            Room.id = values[3];
+            Room.id = int.Parse(values[3]);
             startTime = DateTime.Parse(values[4]);
             duration = int.Parse(values[5]);
             Type = Conversion.StringToAppointmentType(values[6]);

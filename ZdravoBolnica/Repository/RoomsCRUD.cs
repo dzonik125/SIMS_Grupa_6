@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Repository
 {
-    public class RoomsCRUD : Repository<Room, string>
+    public class RoomsCRUD : Repository<Room, int>
     {
 
         private String filename = @".\..\..\..\Data\rooms.txt";
@@ -18,6 +18,17 @@ namespace Repository
         {
             List<Room> rooms = new List<Room>();
             rooms = roomSerializer.fromCSV(filename);
+            int num = rooms.Count;
+            if (num > 0)
+            {
+                entity.id = rooms[num - 1].id;
+                entity.id++;
+            }
+            else
+            {
+                entity.id = 1;
+            }
+
             rooms.Add(entity);
             roomSerializer.toCSV(filename, rooms);
 
@@ -28,12 +39,12 @@ namespace Repository
             throw new NotImplementedException();
         }
 
-        public void DeleteById(string id)
+        public void DeleteById(int id)
         {
             List<Room> rooms = FindAll();
             foreach (Room r in rooms)
             {
-                if (r.id.Equals(id))
+                if (r.id == id)
                 {
                     rooms.Remove(r);
                     break;
@@ -60,12 +71,12 @@ namespace Repository
             throw new NotImplementedException();
         }
 
-        public Room FindById(string key)
+        public Room FindById(int key)
         {
             List<Room> rooms = FindAll();
             foreach (Room r in rooms)
             {
-                if (key.Equals(r.id))
+                if (key == r.id)
                 {
                     return r;
                 }
@@ -79,7 +90,7 @@ namespace Repository
             List<Room> rooms = FindAll();
             foreach (Room rm in rooms)
             {
-                if (rm.id.Equals(r.id))
+                if (rm.id == r.id)
                 {
                     rm.floor = r.floor;
                     rm.roomNum = r.roomNum;
