@@ -33,14 +33,14 @@ namespace Repository
             return patientAppointments;
         }
 
-        public List<Appointment> FindByRoomId(string rid)
+        public List<Appointment> FindByRoomId(int rid)
         {
             List<Appointment> appointments = new();
             List<Appointment> roomAppointments = new();
             appointments = FindAll();
             foreach (Appointment a in appointments)
             {
-                if (a.Room.id.Equals(rid))
+                if (a.Room.id == rid)
                 {
                     roomAppointments.Add(a);
                 }
