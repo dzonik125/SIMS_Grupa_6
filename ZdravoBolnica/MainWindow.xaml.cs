@@ -1,28 +1,16 @@
 ﻿
 using SIMS.DoctorView;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SIMS
 {
-  
+
     public partial class MainWindow : Window
     {
 
         public ManagerUI mui;
         public SecretaryUI sui;
+        // public SecretaryView sv;
         public MainWindow()
         {
             InitializeComponent();
@@ -49,10 +37,9 @@ namespace SIMS
             this.Hide();
         }
         private void Secretary_Click(object sender, RoutedEventArgs e)
-            {
-            SecretaryUI sui = SecretaryUI.Instance;
-            
-            sui.Show();
+        {
+            SIMS.SecretaryView.SecretaryView sv = SIMS.SecretaryView.SecretaryView.Instance;
+            sv.Show();
             this.Hide();
 
         }
