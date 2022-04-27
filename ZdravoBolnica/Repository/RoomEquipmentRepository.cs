@@ -18,6 +18,7 @@ namespace SIMS.Repository
         public void setRoomEquipment(int id, List<Equipment> equipmentlist)
         {
             List<RoomEquipment> roominventory = new List<RoomEquipment>();
+            roominventory = FindAll();
             foreach (Equipment e in equipmentlist)
             {
                 RoomEquipment entity = new RoomEquipment();
@@ -49,7 +50,10 @@ namespace SIMS.Repository
 
         public void Create(RoomEquipment entity)
         {
-            throw new NotImplementedException();
+            List<RoomEquipment> roomInventory = new List<RoomEquipment>();
+            roomInventory = FindAll();
+            roomInventory.Add(entity);
+            roomEquipmentSerializer.toCSV(filename, roomInventory);
         }
 
         public void DeleteAll()
@@ -74,7 +78,49 @@ namespace SIMS.Repository
 
         public void Update(RoomEquipment entity)
         {
-            throw new NotImplementedException();
+            List<RoomEquipment> roomEquipment = new List<RoomEquipment>();
+            roomEquipment = FindAll();
+            foreach (RoomEquipment re in roomEquipment)
+            {
+                if (re.equipmentId == entity.equipmentId && re.roomId == entity.roomId)
+                {
+                    re.quantity = entity.quantity;
+                    break;
+                }
+
+            }
+            roomEquipmentSerializer.toCSV(filename, roomEquipment);
+        }
+
+        public bool Exists(RoomEquipment entity)
+        {
+            List<RoomEquipment> roomInventory = new List<RoomEquipment>();
+            roomInventory = FindAll();
+            foreach(RoomEquipment re in roomInventory)
+            {
+                if (re.equipmentId == entity.equipmentId && re.roomId == entity.roomId)
+                {
+                    return true;
+                }
+            
+            }
+            return false;
+        }
+
+        public void DeleteEntity(RoomEquipment entity)
+        {
+            List<RoomEquipment> roomEquipment = new List<RoomEquipment>();
+            roomEquipment = FindAll();
+            foreach (RoomEquipment re in roomEquipment)
+            {
+                if (re.equipmentId == entity.equipmentId && re.roomId == entity.roomId)
+                {
+                    roomEquipment.Remove(re);
+                    break;
+                }
+
+            }
+            roomEquipmentSerializer.toCSV(filename, roomEquipment);
         }
     }
 }

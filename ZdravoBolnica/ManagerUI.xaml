@@ -124,11 +124,12 @@
                                     </DataGrid.Columns>
 
                                 </DataGrid>
-                                <Button Content="Dodaj" Grid.Column="8" Height="40" Click="Button_Click" Margin="0,30,0,30"></Button>
-                                <Button Content="Izmeni" Grid.Column="8" Height="40" Click="Button_Click_2" Margin="0,92,0,68" Grid.RowSpan="2"/>
-                                <Button Content="Izbrisi" Grid.Column="8" Grid.Row="1" Height="40" Click="Button_Click_1" Margin="0,56,0,4"/>
-                                <Button Name="RoomInventory" Content="Dodaj opremu u prostoriju" Grid.Column="8" Grid.Row="2" Height="40" Click="RoomInventory_Click" Margin="0,28,0,32"/>
-                                <Button Name="ShowRoomInventory" Content="Prikazi opremu prostorije" Grid.Column="8" Grid.Row="3" Height="40" Click="ShowRoomInventory_Click" Margin="0,28,0,32"/>
+                                <Button Content="Dodaj" Grid.Column="7" Height="40" Click="Button_Click" Margin="91,8,9,52" Grid.ColumnSpan="2"></Button>
+                                <Button Content="Izmeni" Grid.Column="7" Height="40" Click="Button_Click_2" Margin="91,72,9,88" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+                                <Button Content="Izbrisi" Grid.Column="7" Grid.Row="1" Height="40" Click="Button_Click_1" Margin="91,35,9,25" Grid.ColumnSpan="2"/>
+                                <Button Name="RoomInventory" Content="Dodaj opremu u prostoriju" Grid.Column="7" Grid.Row="1" Height="40" Click="RoomInventory_Click" Margin="92,94,8,66" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                                <Button Name="ShowRoomInventory" Content="Prikazi opremu prostorije" Grid.Column="7" Grid.Row="2" Height="40" Click="ShowRoomInventory_Click" Margin="92,52,8,8" Grid.ColumnSpan="2"/>
+                                <Button Name="TransferEquipment" Content="Premesti opremu" Grid.Column="7" Grid.Row="3" Click="TransferEquipment_Click" Margin="92,14,8,47" Grid.ColumnSpan="2" RenderTransformOrigin="0.462,-0.538"/>
                             </Grid>
 
 

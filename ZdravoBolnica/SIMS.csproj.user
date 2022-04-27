@@ -46,6 +46,9 @@
     <Compile Update="PatientWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="TransferEquipment.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="AddEquipment.xaml">
@@ -88,6 +91,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="PatientWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TransferEquipment.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
