@@ -16,5 +16,5 @@ D:\David\SIMS\SIMS_Grupa_6\ZdravoBolnica\App.xaml
 193-1891726104
 AddEquipment.xaml;DeletePatientAppointment.xaml;DoctorView\AddAppointment.xaml;DoctorView\DoctorUI.xaml;DoctorView\EditAppointment.xaml;EditEquipment.xaml;EditPatientAppointment.xaml;EditRoom.xaml;MainWindow.xaml;MakeAppointmentPatient.xaml;ManagerUI.xaml;NewRoom.xaml;PatientWindow.xaml;SecretaryView\CreateAppointment.xaml;SecretaryView\EditPatient.xaml;SecretaryView\NewGuestPatient.xaml;SecretaryView\NewPatient.xaml;SecretaryView\SecretaryAddAppointment.xaml;SecretaryView\SecretaryUI.xaml;SecretaryView\SecretaryView.xaml;SecretaryView\SecreteryEditAppointment.xaml;
 
-True
+False
 

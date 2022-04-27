@@ -69,7 +69,7 @@ namespace SIMS.SecretaryView {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/SIMS;component/secretaryview/secretaryview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/SIMS;V1.0.0.0;component/secretaryview/secretaryview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\SecretaryView\SecretaryView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

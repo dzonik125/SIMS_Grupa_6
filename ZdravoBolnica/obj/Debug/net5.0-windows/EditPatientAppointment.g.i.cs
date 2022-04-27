@@ -69,7 +69,7 @@ namespace SIMS {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/SIMS;component/editpatientappointment.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/SIMS;V1.0.0.0;component/editpatientappointment.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\EditPatientAppointment.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

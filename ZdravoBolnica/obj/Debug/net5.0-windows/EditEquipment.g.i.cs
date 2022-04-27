@@ -93,7 +93,7 @@ namespace SIMS {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/SIMS;component/editequipment.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/SIMS;V1.0.0.0;component/editequipment.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\EditEquipment.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
