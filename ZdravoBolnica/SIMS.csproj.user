@@ -46,6 +46,18 @@
     <Compile Update="PatientWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="SecretaryView\CreateAppointment.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="SecretaryView\SecretaryAddAppointment.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="SecretaryView\SecretaryView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="SecretaryView\SecreteryEditAppointment.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="AddEquipment.xaml">
@@ -88,6 +100,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="PatientWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="SecretaryView\CreateAppointment.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="SecretaryView\SecretaryAddAppointment.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="SecretaryView\SecretaryView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="SecretaryView\SecreteryEditAppointment.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
