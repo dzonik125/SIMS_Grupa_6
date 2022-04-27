@@ -5,19 +5,20 @@
 
 using SIMS.Model;
 using System;
+using System.Collections.Generic;
 
 namespace Model
 {
-   public class Equipment : Serializable
-   {
-       
+    public class Equipment : Serializable
+    {
 
-      
+
+
         public int id { get; set; }
-      public string item { get; set; }
-      public int quantity { get; set; }
-      public EquipmentType type { get; set; }
-      public Room room { get; set; }
+        public string item { get; set; }
+        public int quantity { get; set; }
+        public EquipmentType type { get; set; }
+        public List<int> RoomNum { get; set; }
 
        /* public Equipment(int v1, string v2, int v3, EquipmentType potrosna)
         {

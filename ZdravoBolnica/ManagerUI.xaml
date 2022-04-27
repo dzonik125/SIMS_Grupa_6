@@ -109,7 +109,7 @@
                                         </TransformGroup>
                                     </TextBox.RenderTransform>
                                 </TextBox>
-                                <DataGrid  Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="5" Margin="0,10,4,37" Grid.Row="2" SelectionChanged="DataGrid_SelectionChanged">
+                                <DataGrid x:Name="roomsEquipmentTable" ItemsSource="{Binding Path = listRoomInventory}"  Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="5" Margin="0,10,4,37" Grid.Row="2" SelectionChanged="DataGrid_SelectionChanged" AutoGenerateColumns="False">
                                     <DataGrid.RenderTransform>
                                         <TransformGroup>
                                             <ScaleTransform/>
@@ -119,15 +119,16 @@
                                         </TransformGroup>
                                     </DataGrid.RenderTransform>
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Oprema"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Kolicina"></DataGridTextColumn>
+                                        <DataGridTextColumn Width="*" Header="Oprema" Binding="{Binding item}"></DataGridTextColumn>
+                                        <DataGridTextColumn Width="*" Header="Kolicina" Binding="{Binding quantity}"></DataGridTextColumn>
                                     </DataGrid.Columns>
 
                                 </DataGrid>
                                 <Button Content="Dodaj" Grid.Column="8" Height="40" Click="Button_Click" Margin="0,30,0,30"></Button>
-                                <Button Content="Izmeni" Grid.Column="8" Grid.Row="1" Height="40" Click="Button_Click_2" Margin="0,30,0,30"></Button>
-                                <Button Content="Izbrisi" Grid.Column="8" Grid.Row="2" Height="40" Click="Button_Click_1" Margin="0,30,0,30"></Button>
-
+                                <Button Content="Izmeni" Grid.Column="8" Height="40" Click="Button_Click_2" Margin="0,92,0,68" Grid.RowSpan="2"/>
+                                <Button Content="Izbrisi" Grid.Column="8" Grid.Row="1" Height="40" Click="Button_Click_1" Margin="0,56,0,4"/>
+                                <Button Name="RoomInventory" Content="Dodaj opremu u prostoriju" Grid.Column="8" Grid.Row="2" Height="40" Click="RoomInventory_Click" Margin="0,28,0,32"/>
+                                <Button Name="ShowRoomInventory" Content="Prikazi opremu prostorije" Grid.Column="8" Grid.Row="3" Height="40" Click="ShowRoomInventory_Click" Margin="0,28,0,32"/>
                             </Grid>
 
 
