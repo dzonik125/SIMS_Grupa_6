@@ -1,2 +1,5 @@
 2|oij|lkm||||jiuj|||||False
 3|mkmo|kjnk||||jiuj|||||False
+4|Pero|Mitic||||jiuj|||||False
+5|david|mij||||jiuj||123|||False
+6|peki|peki||||22042614190136|||123||True
