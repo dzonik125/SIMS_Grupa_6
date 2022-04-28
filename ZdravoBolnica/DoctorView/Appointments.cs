@@ -22,7 +22,7 @@ namespace SIMS.DoctorView
     /// <summary>
     /// Interaction logic for Appointments.xaml
     /// </summary>
-    public partial class Appointments : Window
+    public partial class Appointments : Page
     {
         public static Appointments instance = new Appointments();
         public  Doctor doctorUser { get; set; }

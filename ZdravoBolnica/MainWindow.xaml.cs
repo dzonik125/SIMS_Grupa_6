@@ -26,8 +26,8 @@ namespace SIMS
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Appointments appointments = Appointments.Instance;
-            appointments.ShowDialog();
+            DoctorWindow dw = new DoctorWindow();
+            dw.Show();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
