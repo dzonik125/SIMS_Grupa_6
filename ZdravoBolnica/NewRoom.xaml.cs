@@ -38,6 +38,11 @@ namespace SIMS
             room.floor = Int32.Parse(Floor.Text);
             room.empty = true;
             room.roomType = Conversion.StringToRoomType(TypeCombo.Text);
+            if (rc.StorageExist(room))
+            {
+                MessageBox.Show("Vec postoji magacin");
+                return;
+            }
             if (rc.FindRoomByFloor(room.roomNum, room.floor))
             {
                 MessageBox.Show("Na ovom spratu vec postoji taj broj prostorije");
@@ -53,6 +58,11 @@ namespace SIMS
         private void NewRoomClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void TypeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

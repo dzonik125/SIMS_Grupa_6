@@ -169,6 +169,7 @@
                                         <DataGridTextColumn  Header="Sifra" Binding="{Binding id}" Width="*"></DataGridTextColumn>
                                         <DataGridTextColumn  Header="Naziv" Binding="{Binding item}" Width="*"></DataGridTextColumn>
                                         <DataGridTextColumn Header="Tip" Binding="{Binding type}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Kolicina" Binding="{Binding quantity}" Width="*"></DataGridTextColumn>
 
 
                                     </DataGrid.Columns>

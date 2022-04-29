@@ -36,6 +36,7 @@ namespace Model
             item = values[1];
             quantity = int.Parse(values[2]);
             type = Conversion.StringToEquipmentType(values[3]);
+           
         }
 
         public string[] ToCSV()
@@ -46,7 +47,7 @@ namespace Model
                 item.ToString(),
                 quantity.ToString(),
                 Conversion.EquipmentTypeToString(type),
-
+             
                
             };
             return csvValues;

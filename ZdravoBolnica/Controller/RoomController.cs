@@ -51,6 +51,11 @@ namespace Controller
          throw new NotImplementedException();
       }
 
+        public bool StorageExist(Room room)
+        {
+           return rs.StorageExist(room);
+        }
+
         public List<Room> getRoomsByType(RoomType type)
         {
             return roomService.getRoomsByType(type);
@@ -71,6 +76,9 @@ namespace Controller
 
         public Service.RoomService roomService = new Service.RoomService();
 
-       
+        public int FindRoomId(int floor, int roomNum)
+        {
+            return rs.FindRoomId(floor, roomNum);
+        }
     }
 }

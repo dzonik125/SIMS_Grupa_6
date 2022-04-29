@@ -23,10 +23,10 @@
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="1" Grid.Column="1" Margin="10,0,10,62">ID</Label>
-        <TextBox Name="ID" Grid.Row="1" Grid.Column="2" Margin="0,0,0,62"></TextBox>
-        <Label Grid.Row="2" Grid.Column="1" Margin="10,0,10,62">Naziv</Label>
-        <TextBox Name="Name" Grid.Row="2" Grid.Column="2" Margin="0,0,0,62"></TextBox>
+        <Label Grid.Row="1" Grid.Column="1" Margin="10,0,10,62">Naziv</Label>
+        <TextBox Name="Name" Grid.Row="1" Grid.Column="2" Margin="0,0,0,62"></TextBox>
+        <Label Grid.Row="2" Grid.Column="1" Margin="10,0,10,62">Kolicina</Label>
+        <TextBox Name="Quantity" Grid.Row="2" Grid.Column="2" Margin="0,0,0,62"></TextBox>
         <Label  Grid.Row="3" Grid.Column="1" Margin="10,0,10,62">Tip</Label>
         <TextBox Name="Type" Grid.Row="3" Grid.Column="2" Margin="0,0,0,62"></TextBox>
         <Button  Name="AddEquip" Content="Dodaj" Grid.Column="3" Grid.Row="3" Margin="91,82,9,91" Grid.RowSpan="2" Grid.ColumnSpan="2" Click="AddEquip_Click"></Button>
