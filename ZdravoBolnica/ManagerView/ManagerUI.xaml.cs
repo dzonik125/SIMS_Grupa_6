@@ -26,6 +26,7 @@ namespace SIMS
         private RoomController rc = new RoomController();
         private EquipmentController ec = new EquipmentController();
         private RoomEquipmentController rec = new RoomEquipmentController();
+        private AppointmentController ac = new AppointmentController();
         private Room roomSource;
 
         private ManagerUI() {
@@ -51,7 +52,11 @@ namespace SIMS
             }
 
             listRoomInventory = new ObservableCollection<Equipment>();
-           
+            DateTime transferDate = new DateTime();
+           // Room r = roomsTable.SelectedItem as Room;
+          //  transferDate = ac.FindDate(r);
+
+
 
 
         }
@@ -135,11 +140,6 @@ namespace SIMS
             {
                 listRoomInventory.Add(e);
             }
-        
-            
-
-
-
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -150,6 +150,13 @@ namespace SIMS
                 MessageBox.Show("Izabrati prostoriju.");
                 return;
             }
+            if (Conversion.RoomTypeToString(selectedRoom.roomType).Equals("Magacin"))
+            {
+                MessageBox.Show("Magacin se ne moze izbrisati.");
+                return;
+
+            }
+
 
             rc.DeleteRoomById(selectedRoom.id);
             ManagerUI mui = ManagerUI.Instance;

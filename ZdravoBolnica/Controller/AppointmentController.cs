@@ -64,6 +64,11 @@ namespace Controller
             appointmentService.bindDoctorsWithAppointments(doctors, appointments);
         }
 
+        public bool isRoomOccupied(Room roomDestination, DateTime transferDate, int duration)
+        {
+            return appointmentService.isRoomOccupied(roomDestination, transferDate, duration);
+        }
+
         public void bindPatientsWithAppointments(List<Patient> patients, List<Appointment> appointments)
         {
             appointmentService.bindPatientsWithAppointments(patients, appointments);
