@@ -11,9 +11,24 @@ namespace Repository
 {
     public class MedicalRecordRepository : Repository<MedicalRecord, int>
     {
+        private Serializer<MedicalRecord> medicalRecordSerializer = new();
+        private String filename = @".\..\..\..\Data\medicalrecords.txt";
         public void Create(MedicalRecord entity)
         {
-            throw new NotImplementedException();
+            List<MedicalRecord> medicalRecords = new List<MedicalRecord>();
+            medicalRecords = medicalRecordSerializer.fromCSV(filename);
+            int num = medicalRecords.Count;
+            if (num > 0)
+            {
+                entity.id = medicalRecords[num - 1].id;
+                entity.id++;
+            }
+            else
+            {
+                entity.id = 1;
+            }
+            medicalRecords.Add(entity);
+            medicalRecordSerializer.toCSV(filename, medicalRecords);
         }
 
         public void DeleteAll()
