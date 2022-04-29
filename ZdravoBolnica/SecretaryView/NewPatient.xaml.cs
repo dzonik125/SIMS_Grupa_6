@@ -41,7 +41,7 @@ namespace SIMS
             adress.city = City.Text;
             adress.country = Country.Text;
             patient.address = adress;
-            patient.address.id = "jiuj";
+            // patient.address.id = "jiuj";
             patient.guest = false;
             mr = mrc.FindAll()[mrc.FindAll().Count - 1];
             patient.medicalRecord = mr;

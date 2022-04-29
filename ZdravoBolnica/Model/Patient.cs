@@ -108,7 +108,7 @@ namespace Model
             email = values[3];
             password = values[4];
             username = values[5];
-            address.id = values[6];
+            address.id = int.Parse(values[6]);
             phone = values[7];
             lbo = values[8];
             jmbg = values[9];

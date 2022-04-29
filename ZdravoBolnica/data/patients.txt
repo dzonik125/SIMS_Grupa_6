@@ -1,2 +1,4 @@
-1|ooo|ooo||||jiuj|||||False|4
-2||||||jiuj|||||False|4
+1|Marko|Peric|marko@gm.com|carina123|marecar|1|064838273|12938122|1281231813781|12.12.2012.|False|6
+2||||||2|||||False|6
+3||||||3|||||False|6
+4||||||4|||||False|6

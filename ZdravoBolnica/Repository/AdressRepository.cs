@@ -1,22 +1,28 @@
-﻿using Repository;
+﻿using Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Model;
 namespace Repository
 {
-    public class AdressRepository : Repository<Adress, string>
+    public class AdressRepository : Repository<Adress, int>
     {
         private Serializer<Adress> adressSerializer = new();
         private String filename = @".\..\..\..\Data\adress.txt";
         public void Create(Adress entity)
         {
-            List<Adress> adress = new List<Adress>();
-            adress = adressSerializer.fromCSV(filename);
-            adress.Add(entity);
-            adressSerializer.toCSV(filename, adress);
+            List<Adress> adresses = new List<Adress>();
+            adresses = adressSerializer.fromCSV(filename);
+            int num = adresses.Count;
+            if (num > 0)
+            {
+                entity.id = adresses[num - 1].id;
+                entity.id++;
+            }
+            else
+            {
+                entity.id = 1;
+            }
+            adresses.Add(entity);
+            adressSerializer.toCSV(filename, adresses);
 
         }
 
@@ -25,9 +31,9 @@ namespace Repository
             throw new NotImplementedException();
         }
 
-        public void DeleteById(string id)
+        public void DeleteById(int id)
         {
-            
+
         }
 
 
@@ -36,13 +42,13 @@ namespace Repository
             return adressSerializer.fromCSV(filename);
         }
 
-       
-   
 
-        public Adress FindById(string key)
+
+
+        public Adress FindById(int key)
         {
             List<Adress> adresses = FindAll();
-            foreach(Adress a in adresses)
+            foreach (Adress a in adresses)
             {
                 if (a.id.Equals(key))
                 {
@@ -56,7 +62,7 @@ namespace Repository
         public void Update(Adress entity)
         {
             List<Adress> adresses = FindAll();
-            foreach(Adress a in adresses)
+            foreach (Adress a in adresses)
             {
                 if (a.id.Equals(entity.id))
                 {

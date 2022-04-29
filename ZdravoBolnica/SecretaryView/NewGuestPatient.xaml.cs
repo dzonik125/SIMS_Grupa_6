@@ -1,6 +1,5 @@
 ﻿using Controller;
 using Model;
-using System;
 using System.Windows;
 
 namespace SIMS
@@ -33,19 +32,19 @@ namespace SIMS
             patient.username = "";
             patient.phone = "";
             patient.jmbg = Jmbg.Text;
-            String a = DateTime.Now.ToString("yyMMddHHmmssff");
+            //String a = DateTime.Now.ToString("yyMMddHHmmssff");
             adress.number = "";
             adress.street = "";
             adress.city = "";
             adress.country = "";
             patient.address = adress;
-            patient.address.id = a;
+            // patient.address.id = a;
             //  patient.adressID = a;
             patient.guest = true;
 
             // adress.id = a;
 
-            
+
 
             pc.AddPatient(patient);
             ac.AddAdress(adress);
