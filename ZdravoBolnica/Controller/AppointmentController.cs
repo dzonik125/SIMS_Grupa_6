@@ -78,6 +78,5 @@ namespace Controller
 
         public Service.AppointmentService appointmentService = new Service.AppointmentService();
 
-
     }
 }
