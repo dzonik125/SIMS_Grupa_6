@@ -43,7 +43,7 @@ namespace Repository
 
         public List<MedicalRecord> FindAll()
         {
-            throw new NotImplementedException();
+            return medicalRecordSerializer.fromCSV(filename);
         }
 
         public MedicalRecord FindById(int key)

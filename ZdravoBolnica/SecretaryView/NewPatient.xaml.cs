@@ -11,7 +11,7 @@ namespace SIMS
     public partial class NewPatient : Window
     {
         public Patient patient = new Patient();
-        public MedicalRecord mr = new MedicalRecord();
+        public MedicalRecord mr;
         public Adress adress;
         private PatientController pc = new PatientController();
         private AdressController ac = new AdressController();
@@ -26,7 +26,7 @@ namespace SIMS
         {
             adress = new Adress();
 
-
+            mr = new MedicalRecord();
             patient.name = Name.Text;
             patient.surname = Surname.Text;
             patient.lbo = Lbo.Text;
@@ -43,10 +43,10 @@ namespace SIMS
             patient.address = adress;
             patient.address.id = "jiuj";
             patient.guest = false;
-
+            mr = mrc.FindAll()[mrc.FindAll().Count - 1];
             patient.medicalRecord = mr;
 
-            // adress.id = a;
+            //adress.id = a;
 
             ac.AddAdress(adress);
 

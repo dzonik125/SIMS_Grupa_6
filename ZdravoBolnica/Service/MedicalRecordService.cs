@@ -6,12 +6,13 @@
 using Model;
 using Repository;
 using System;
+using System.Collections.Generic;
 
 namespace Service
 {
     public class MedicalRecordService
     {
-        public Repository.MedicalRecordRepository medicalRecordRepository;
+        public Repository.MedicalRecordRepository medicalRecordRepository = new();
 
         internal MedicalRecord FindMedicalRecordById(int id)
         {
@@ -23,6 +24,11 @@ namespace Service
             MedicalRecordRepository mrr = new MedicalRecordRepository();
             mrr.Create(mr);
             return true;
+        }
+
+        public List<MedicalRecord> findAll()
+        {
+            return medicalRecordRepository.FindAll();
         }
     }
 }

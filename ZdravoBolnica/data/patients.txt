@@ -1,7 +1,2 @@
-1|Nikola|Matic|nikola@gm.com|sifra123|nikolajj|jiuj|06493129199|123456|1293412872789|12.12.2000.|False
-2|Pero|Peric||||22042710362262|||32163127812787||True
-3|aaqa|aaa||||jiuj|||||False
-4|beebbe|||||jiuj|||||False
-5|david|||||jiuj|||||False
-6|konjk|||||jiuj|||||False
-7||||||jiuj|||||False
+1|Petar|Petrovic||||jiuj||123|321||False|2
+2|Petar |Petrovic||||jiuj||1|2||False|3

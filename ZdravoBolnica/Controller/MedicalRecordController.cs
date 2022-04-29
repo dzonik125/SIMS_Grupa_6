@@ -44,10 +44,10 @@ namespace Controller
 
         public List<MedicalRecord> FindAll()
         {
-            throw new NotImplementedException();
+            return medicalRecordService.findAll();
         }
 
-        public Service.MedicalRecordService medicalRecordService;
+        public Service.MedicalRecordService medicalRecordService = new();
 
     }
 }

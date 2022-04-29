@@ -42,6 +42,7 @@ namespace SIMS.SecretaryView
 
             mrc.AddMedicalRecord(medicalRecord);
 
+
             System.Diagnostics.Trace.WriteLine(medicalRecord);
 
             this.Close();
