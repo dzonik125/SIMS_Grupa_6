@@ -26,6 +26,7 @@ namespace SIMS
         private RoomController rc = new RoomController();
         private EquipmentController ec = new EquipmentController();
         private RoomEquipmentController rec = new RoomEquipmentController();
+        private Room roomSource;
 
         private ManagerUI() {
             InitializeComponent();
@@ -252,6 +253,7 @@ namespace SIMS
         private void ShowRoomInventory_Click(object sender, RoutedEventArgs e)
         {
             Room selectedRoom = roomsTable.SelectedItem as Room;
+            roomSource = selectedRoom;
             if (selectedRoom == null)
             {
                 MessageBox.Show("Izaberite prostoriju");
@@ -259,6 +261,19 @@ namespace SIMS
             }
             refreshRoomInventoryTable(selectedRoom);
 
+        }
+
+        private void TransferEquipment_Click(object sender, RoutedEventArgs e)
+        {
+            Equipment selectedEquipment = roomsEquipmentTable.SelectedItem as Equipment;
+            if (selectedEquipment == null)
+            {
+                MessageBox.Show("Morate izbrati opremu");
+                return;
+
+            }
+            TransferEquipment transferEquipment = new TransferEquipment(roomSource,selectedEquipment);
+            transferEquipment.ShowDialog();
         }
     }
 }

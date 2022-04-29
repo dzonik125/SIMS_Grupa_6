@@ -1,3 +1,0 @@
-1|sto|0|nepotrosna
-2|lampa|0|nepotrosna
-3|skalpel|0|nepotrosna

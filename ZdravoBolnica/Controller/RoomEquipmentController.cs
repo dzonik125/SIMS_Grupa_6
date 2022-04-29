@@ -1,4 +1,5 @@
 ﻿using Model;
+using Repository;
 using SIMS.Model;
 using SIMS.Service;
 using System;
@@ -24,6 +25,11 @@ namespace SIMS.Controller
         public List<Equipment> GetRoomEquipment(List<Equipment> allInventory, List<RoomEquipment> roomEquipment, int roomId)
         {
             return res.GetRoomEquipment(allInventory, roomEquipment, roomId);
+        }
+
+        public void TransferEquipment(Room roomSource, Room roomDestination , Equipment selectedEquipment, int quantity)
+        {
+            res.TransferEquipment(roomSource,roomDestination, selectedEquipment, quantity);
         }
     }
 }
