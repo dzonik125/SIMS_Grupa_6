@@ -1,2 +1,2 @@
-2|oij|lkm||||jiuj|||||False
-3|mkmo|kjnk||||jiuj|||||False
+1|ime|prezime||||jiuj|||||False
+2|imenko|prz||||22042712135296|||||True
