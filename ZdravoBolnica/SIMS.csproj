@@ -10,4 +10,8 @@
     <Folder Include="data\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.3.0" />
+  </ItemGroup>
+
 </Project>

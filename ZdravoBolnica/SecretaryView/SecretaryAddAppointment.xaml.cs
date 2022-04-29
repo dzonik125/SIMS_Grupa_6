@@ -85,5 +85,6 @@ namespace SIMS.SecretaryView
         {
             this.Close();
         }
+
     }
 }
