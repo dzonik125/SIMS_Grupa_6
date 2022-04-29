@@ -33,7 +33,7 @@ namespace SIMS
         {
             InitializeComponent();
             selectedEquipment = e;
-            ID.Text = selectedEquipment.id.ToString();
+            Quantity.Text = selectedEquipment.quantity.ToString();
             Name.Text = selectedEquipment.item;
             Type.Text = Conversion.EquipmentTypeToString(selectedEquipment.type);
         }
@@ -46,7 +46,7 @@ namespace SIMS
 
         private void EditEquip_Click(object sender, RoutedEventArgs e)
         {
-            selectedEquipment.id = int.Parse(ID.Text);
+            selectedEquipment.quantity = int.Parse(Quantity.Text);
             selectedEquipment.item = Name.Text;
             selectedEquipment.type = Conversion.StringToEquipmentType(Type.Text);
             ec.UpdateEquipment(selectedEquipment);

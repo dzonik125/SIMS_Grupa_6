@@ -38,7 +38,7 @@ namespace SIMS
 
         private void AddEquip_Click(object sender, RoutedEventArgs e)
         {
-            equipment.id = Int32.Parse(ID.Text);
+            equipment.quantity = Int32.Parse(Quantity.Text);
             equipment.item = Name.Text;
             equipment.type = Conversion.StringToEquipmentType(Type.Text);
             ec.AddEquipment(equipment);

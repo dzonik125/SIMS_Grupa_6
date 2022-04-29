@@ -77,6 +77,19 @@ namespace Service
             }
         }
 
+        public bool isRoomOccupied(Room roomDestination, DateTime transferDate, int duration)
+        {
+            List<Appointment> roomAppointments = getAppointmentsByRoomId(roomDestination.id);
+            foreach (Appointment a in roomAppointments)
+            {
+                if (!((a.startTime.AddMinutes(a.duration) < transferDate && a.startTime < transferDate || (transferDate.AddMinutes(duration) < a.startTime && transferDate < a.startTime))))
+                {
+                    return true;
+                }
+            }
+                return false;
+        }
+
         public List<Appointment> getFutureAppointmentsForDoctor(int id)
         {
             List<Appointment> potentialAppointments = GetAllApointments();

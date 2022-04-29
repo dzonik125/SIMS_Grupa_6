@@ -14,6 +14,7 @@ namespace SIMS.Model
                 RoomType.surgery => "Operaciona sala",
                 RoomType.examination => "Prostorija za preglede",
                 RoomType.ward => "Bolesnička soba",
+                RoomType.storage => "Magacin",
                 RoomType.laboratory => "laboratorija",
                 RoomType.waitingRoom => "cekaonica",
 
@@ -38,9 +39,10 @@ namespace SIMS.Model
             {
                 "Prostorija za preglede" => RoomType.examination,
                 "Operaciona sala" => RoomType.surgery,
-                "cekaonica" => RoomType.waitingRoom,
-                "laboratorija" => RoomType.laboratory,
-                "bolnicka soba" => RoomType.ward,
+                "Cekaonica" => RoomType.waitingRoom,
+                "Laboratorija" => RoomType.laboratory,
+                "Magacin" => RoomType.storage,
+                "Bolnicka soba" => RoomType.ward,
                 _ => RoomType.ward,
 
             };

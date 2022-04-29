@@ -23,14 +23,16 @@
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.Column="1" Margin="0,48,0,15">Broj sobe u koju se premesta:</Label>
         <TextBox Name="RoomNum" Grid.Row="0" Grid.Column="3" Margin="0,48,0,15"></TextBox>
-        <Label Grid.Row="1" Grid.Column="1" Margin="0,31,10,32" Grid.ColumnSpan="2">Sprat sobe u koju se premesta:</Label>
-        <TextBox Name="Floor" Grid.Row="1" Grid.Column="3" Margin="0,25,0,38"></TextBox>
-        <Label Grid.Row="2" Grid.Column="1" Margin="0,2,84,61" Grid.ColumnSpan="2">Kolicina :</Label>
-        <TextBox Name="Quantity" Grid.Row="2" Grid.Column="3" Margin="0,1,0,62"></TextBox>
-        <Label Grid.Row="2" Grid.Column="1" Margin="0,78,0,85" Grid.RowSpan="2">Datum :</Label>
-        <DatePicker Grid.Row="2" Grid.Column="3" Margin="0,71,0,86" Grid.RowSpan="2"></DatePicker>
-        <Label Grid.Row="3" Grid.Column="1" Margin="0,42,0,21">Vreme :</Label>
-        <TextBox Grid.Row="3" Grid.Column="3" Margin="0,37,0,26"></TextBox>
+        <Label Grid.Row="1" Grid.Column="1" Margin="0,10,10,53" Grid.ColumnSpan="2">Sprat sobe u koju se premesta:</Label>
+        <TextBox Name="Floor" Grid.Row="1" Grid.Column="3" Margin="0,8,0,55"></TextBox>
+        <Label Grid.Row="1" Grid.Column="1" Margin="0,68,84,95" Grid.ColumnSpan="2" Grid.RowSpan="2">Kolicina :</Label>
+        <TextBox Name="Quantity" Grid.Row="1" Grid.Column="3" Margin="0,63,0,0"/>
+        <Label Grid.Row="2" Grid.Column="1" Margin="0,23,0,40">Datum :</Label>
+        <DatePicker Name="DatePicker" Grid.Row="2" Grid.Column="3" Margin="0,15,0,42"/>
+        <Label Grid.Row="2" Grid.Column="1" Margin="0,78,0,85" Grid.RowSpan="2">Vreme :</Label>
+        <TextBox Name="Time" Grid.Row="2" Grid.Column="3" Margin="0,79,0,84" Grid.RowSpan="2"></TextBox>
+        <Label Grid.Row="3" Grid.Column="1" Margin="0,39,0,24">Trajanje :</Label>
+        <TextBox Name="Duration" Grid.Row="3" Grid.Column="3" Margin="0,34,0,29"/>
         <Button Name="TransferEquipmentToAnotherRoom" Grid.Column="2" Grid.Row="4" Content="Potvrdi" Margin="46,0,54,75" Grid.ColumnSpan="2" Click="TransferEquipmentToAnotherRoom_Click"></Button>
         <Button Grid.Column="3" Grid.Row="4" Content="Odustani" Margin="84,0,16,75" Grid.ColumnSpan="2"></Button>
     </Grid>

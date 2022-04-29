@@ -12,6 +12,7 @@ namespace SIMS.Model
         public int equipmentId { get; set; }
         public int roomId { get; set; }
         public int quantity { get; set; }
+       
 
         public string[] ToCSV()
         {
