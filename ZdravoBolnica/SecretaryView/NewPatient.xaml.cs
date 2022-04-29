@@ -46,11 +46,10 @@ namespace SIMS
             mr = mrc.FindAll()[mrc.FindAll().Count - 1];
             patient.medicalRecord = mr;
 
-            //adress.id = a;
+
+
 
             ac.AddAdress(adress);
-
-            // mrc.AddMedicalRecord(mr);
 
             pc.AddPatient(patient);
 

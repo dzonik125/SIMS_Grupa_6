@@ -15,7 +15,7 @@ namespace Model
         public BloodType bloodType;
         public int id;
         public List<String> hronicalDeseasses;
-        public Allergies allergies;
+        public Allergies allergies = new Allergies();
 
 
 
@@ -37,7 +37,7 @@ namespace Model
             cardNum = Convert.ToInt32(values[0]);
             bloodType = Conversion.StringToBloodType(values[1]);
             id = Convert.ToInt32(values[2]);
-            //allergies = values[3];
+            allergies.id = Convert.ToInt32(values[3]);
             //hronicalDeseasses = values[3];
         }
 
@@ -47,6 +47,7 @@ namespace Model
             cardNum.ToString(),
             bloodType.ToString(),
             id.ToString(),
+            allergies.id.ToString(),
             //hronicalDeseasses.ToString()
         };
             return csvValues;

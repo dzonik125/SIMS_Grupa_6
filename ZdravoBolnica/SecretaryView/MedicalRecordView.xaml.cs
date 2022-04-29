@@ -1,5 +1,6 @@
 ﻿using Controller;
 using Model;
+using SIMS.Controller;
 using SIMS.Model;
 using System;
 using System.Collections.Generic;
@@ -16,36 +17,59 @@ namespace SIMS.SecretaryView
 
         public BloodType bloodT;
         public MedicalRecord medicalRecord = new MedicalRecord();
-        // public List<MedicalRecord> medrec;
-        public List<String> hron = new List<string>();
-        public Allergies allergies = new Allergies();
-        // public AllergiesController ac = new AllergiesController();
-        public List<Allergies> allist;
 
+        public List<String> hron = new List<string>();
+
+        public AllergiesController ac = new AllergiesController();
+
+        public List<string> allist = new List<string>();
+        public List<Allergies> allergs = new List<Allergies>();
+
+        public List<Allergies> alergije = new List<Allergies>();
+
+        public Allergies allergies = new Allergies();
 
         public MedicalRecordView()
         {
+            //  AllergiesController ac = new AllergiesController();
 
             InitializeComponent();
-            //allist = ac.FindAll();
+            allergs = ac.FindAll();
             bloodType.ItemsSource = Enum.GetValues(typeof(BloodType));
+            foreach (Allergies a in allergs)
+            {
+                allist.Add(a.name);
+            }
             allergens.ItemsSource = allist;
         }
 
         private void CreateMR_Click(object sender, RoutedEventArgs e)
         {
-            // hron.Add(hronb.Text);
             medicalRecord.cardNum = Int32.Parse(brojK.Text);
-            medicalRecord.bloodType = Conversion.StringToBloodType(bloodType.ToString());
+            medicalRecord.bloodType = (BloodType)bloodType.SelectedIndex;
 
-            //medicalRecord.hronicalDeseasses = hron;
+            foreach (Allergies a in allergs)
+            {
+                if (a.name.Equals(allergens.SelectedItem.ToString()))
+                {
+                    allergies = a;
+                    break;
+                }
+
+            }
+
+            medicalRecord.allergies = allergies;
+
+
 
             mrc.AddMedicalRecord(medicalRecord);
 
-
-            System.Diagnostics.Trace.WriteLine(medicalRecord);
-
             this.Close();
+        }
+
+        private void allergens_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            // allergens.SelectedIndex;
         }
     }
 }
