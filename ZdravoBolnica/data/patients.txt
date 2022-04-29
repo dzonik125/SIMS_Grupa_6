@@ -1,2 +1,0 @@
-1|ime|prezime||||jiuj|||||False
-2|imenko|prz||||22042712135296|||||True
