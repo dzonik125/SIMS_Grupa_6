@@ -1,2 +1,0 @@
-1|12|3|True|Prostorija za preglede
-2|4|1|True|Operaciona sala

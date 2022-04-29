@@ -1,2 +1,0 @@
-1|Petar|Petrovic||||jiuj||123|321||False|2
-2|Petar |Petrovic||||jiuj||1|2||False|3
