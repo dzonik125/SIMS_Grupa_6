@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SIMS.Controller;
+using SIMS.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +21,17 @@ namespace SIMS.DoctorView
     /// </summary>
     public partial class DoctorWindow : Window
     {
+
+        //MedicationController medicationController = new();
         public DoctorWindow()
         {
+
+           /* Medication med = new();
+            med.name = "Brufen";
+            Medication med1 = new();
+            med1.name = "Bromazepam";
+            medicationController.Create(med);
+            medicationController.Create(med1);*/
             InitializeComponent();
         }
 
