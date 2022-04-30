@@ -27,6 +27,7 @@ namespace SIMS
         public AddEquipment()
         {
             InitializeComponent();
+            TypeCombo.ItemsSource = Conversion.GetEquipmentTypes();
 
         }
 
@@ -40,7 +41,7 @@ namespace SIMS
         {
             equipment.quantity = Int32.Parse(Quantity.Text);
             equipment.item = Name.Text;
-            equipment.type = Conversion.StringToEquipmentType(Type.Text);
+            equipment.type = Conversion.StringToEquipmentType(TypeCombo.Text);
             ec.AddEquipment(equipment);
 
             ManagerUI mui = ManagerUI.Instance;

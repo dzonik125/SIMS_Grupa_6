@@ -28,7 +28,7 @@
         <Label Grid.Row="2" Grid.Column="1" Margin="10,0,10,62">Kolicina</Label>
         <TextBox Name="Quantity" Grid.Row="2" Grid.Column="2" Margin="0,0,0,62"></TextBox>
         <Label  Grid.Row="3" Grid.Column="1" Margin="10,0,10,62">Tip</Label>
-        <TextBox Name="Type" Grid.Row="3" Grid.Column="2" Margin="0,0,0,62"></TextBox>
+        <ComboBox Name="ComboType" Grid.Row="3" Grid.Column="2" Margin="0,0,0,62"></ComboBox>
         <Button  Name="EditEquip" Content="Izmeni" Grid.Column="2" Grid.Row="3" Margin="39,82,61,91" Grid.RowSpan="2" Grid.ColumnSpan="2" Click="EditEquip_Click"></Button>
         <Button x:Name="CloseEditEquipment" Content="Odustani" Grid.Column="3" Grid.Row="3" Margin="92,82,8,91" Grid.RowSpan="2" Click="CloseEditEquipment_Click" Grid.ColumnSpan="2"/>
 

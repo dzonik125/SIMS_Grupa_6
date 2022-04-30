@@ -1,5 +1,6 @@
 ﻿using Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace SIMS.Model
@@ -46,6 +47,17 @@ namespace SIMS.Model
                 _ => RoomType.ward,
 
             };
+        }
+
+        internal static List<String> GetEquipmentTypes()
+        {
+            List<string> tipovi = new List<string>();
+            foreach (EquipmentType tip in Enum.GetValues(typeof(EquipmentType)))
+            {
+                string s = EquipmentTypeToString(tip);
+                tipovi.Add(s);
+            }
+            return tipovi;
         }
 
         public static BloodType StringToBloodType(string str)

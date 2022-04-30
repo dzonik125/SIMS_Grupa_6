@@ -1,6 +1,7 @@
 ﻿using Controller;
 using Model;
 using SIMS.Controller;
+using SIMS.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,8 +92,11 @@ namespace SIMS
             appointemntRoomSource.patient = patient;
             appointmentRoomDestination.Doctor = doctor;
             appointmentRoomDestination.patient = patient;
-
-            ac.SaveAppointment(appointemntRoomSource);
+            if(!Conversion.RoomTypeToString(roomSource.roomType).Equals("Magacin"))
+            {
+                ac.SaveAppointment(appointemntRoomSource);
+            }
+            
             ac.SaveAppointment(appointmentRoomDestination);
             rec.TransferEquipment(roomSource,roomDestination, equipment,quantity);
             ManagerUI mui = ManagerUI.Instance;
