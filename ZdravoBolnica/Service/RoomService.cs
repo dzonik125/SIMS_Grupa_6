@@ -52,6 +52,8 @@ namespace Service
             return roomsCRUD.FindAll();
       }
 
+        
+
         public List<Room> getRoomsByType(RoomType type)
         {
             return roomsCRUD.getRoomsByType(type);
@@ -116,6 +118,20 @@ namespace Service
             return null;
         }
 
+        internal int GetRoomIdByStorage(RoomType storage)
+        {
+            List<Room> rooms = new List<Room>();
+            rooms = FindAll();
+            foreach (Room r in rooms)
+            {
+                if (Conversion.RoomTypeToString(r.roomType).Equals(Conversion.RoomTypeToString(storage)))
+                {
+                    return r.id;
+                }
+            }
+            return 0;
+        }
+
         public int FindRoomId(int floor, int roomNum)
         {
             List<Room> rooms = new List<Room>();
@@ -145,8 +161,22 @@ namespace Service
       {
          throw new NotImplementedException();
       }
-      
-      public Repository.RoomsCRUD roomsCRUD = new Repository.RoomsCRUD();
+
+        public String GetRoomTypeById(int id)
+        {
+            List<Room> rooms = new List<Room>();
+            rooms = FindAll();
+            foreach (Room r in rooms)
+            {
+                if (r.id == id)
+                {
+                    return Conversion.RoomTypeToString(r.roomType);
+                }
+            }
+            return "";
+        }
+
+        public Repository.RoomsCRUD roomsCRUD = new Repository.RoomsCRUD();
       
 
    }

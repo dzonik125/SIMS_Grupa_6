@@ -35,7 +35,15 @@ namespace SIMS
             selectedEquipment = e;
             Quantity.Text = selectedEquipment.quantity.ToString();
             Name.Text = selectedEquipment.item;
-            Type.Text = Conversion.EquipmentTypeToString(selectedEquipment.type);
+            ComboType.ItemsSource = Conversion.GetEquipmentTypes();
+            if (e.type.ToString().Equals("potrosna"))
+            {
+                ComboType.SelectedIndex = 0;
+            }
+            else if (e.type.ToString().Equals("nepotrosna"))
+            {
+                ComboType.SelectedIndex = 1;
+            }
         }
 
         private void CloseEditEquipment_Click(object sender, RoutedEventArgs e)
@@ -48,7 +56,7 @@ namespace SIMS
         {
             selectedEquipment.quantity = int.Parse(Quantity.Text);
             selectedEquipment.item = Name.Text;
-            selectedEquipment.type = Conversion.StringToEquipmentType(Type.Text);
+            selectedEquipment.type = Conversion.StringToEquipmentType(ComboType.Text);
             ec.UpdateEquipment(selectedEquipment);
             ManagerUI mui = ManagerUI.Instance;
             mui.refreshEquipmentTable();

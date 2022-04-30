@@ -5,19 +5,63 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIMS"
         mc:Ignorable="d"
-        Title="ManagerUI" Height="450" Width="800">
-    <Grid>
-        <TabControl   Height="400">
-            <TabItem Header="Pocetna stranica">
-                <Grid Background="#FFE5E5E5" Height="399">
+        Title="ManagerUI" Height="450" Background="#123" Width="800">
+    <Window.Resources>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Border>
+                            <Grid>
+                                <Grid>
+                                    <Border x:Name="border" 
+                                            CornerRadius="3,3,0,0"
+                                            Background="#191E29"/>
+                                </Grid>
+                                <ContentPresenter ContentSource="Header"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter TargetName="border"
+                                        Property="Background"
+                                        Value="#323D52" />
+                            </Trigger>
+                            <Trigger Property="IsSelected"
+                                     Value="True">
+                                <Setter TargetName="border"
+                                        Property="Background"
+                                        Value="#323D52" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Background="Gray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="57*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl Background="#191E29" BorderBrush="#123" Grid.ColumnSpan="2">
+            <TabItem  Background="#191E29" BorderThickness="105" Foreground="White" BorderBrush="#123" Header="Pocetna stranica" Margin="20,0,-20,0">
+                <TabItem.Resources>
+                    <SolidColorBrush x:Key="AccentColorBrush" Color="White"/>
+                    <SolidColorBrush x:Key="HighlightBrush" Color="SteelBlue"/>
+                </TabItem.Resources>
+                <Grid Background="DarkSlateGray" Height="359" Margin="-1,0,-2,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="16*"/>
                         <ColumnDefinition Width="35*"/>
                     </Grid.ColumnDefinitions>
-                    <Calendar Margin="236,18,-49,86" Grid.Column="1"/>
+                    <Calendar Margin="186,18,0,86" Grid.Column="1"/>
                     <GroupBox Header="Today's tasks" Margin="10,18,64,135"/>
-                    <GroupBox Header="New notifications" Margin="0,18,359,135" Grid.Column="1"/>
-                    <GroupBox Header="Latest reports" Margin="206,194,33,129" Grid.Column="1" RenderTransformOrigin="0.5,0.5">
+                    <GroupBox Header="New notifications" Margin="221,18,367,135" Grid.ColumnSpan="2"/>
+                    <GroupBox Header="Latest reports" Margin="189,194,33,14" Grid.Column="1" RenderTransformOrigin="0.5,0.5">
                         <GroupBox.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -30,11 +74,15 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Prostorije">
-                <Grid Background="#FFE5E5E5">
-                    <TabControl TabStripPlacement="Left">
-                        <TabItem Header="Prostorije">
-                            <Grid Background="#FFE5E5E5">
+            <TabItem Background="#191E29" Foreground="White" Header="Prostorije" Margin="41,0,-41,0">
+                <Grid Background="#191E29">
+                    <Grid.ColumnDefinitions>
+
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Fill="#001933" Margin="0,10,692,0"/>
+                    <TabControl   TabStripPlacement="Left" Margin="0,10,0,0"  >
+                        <TabItem  Background="DarkSlateGray" Foreground="White"  Header="Prostorije">
+                            <Grid Background="#323D52">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width = "100" />
                                     <ColumnDefinition Width = "24.124" />
@@ -52,8 +100,9 @@
                                     <RowDefinition Height="100"/>
                                     <RowDefinition Height="100"/>
                                 </Grid.RowDefinitions>
-                                <Label Grid.Row="0" Grid.Column="0" Margin="1,6,35,65">Sprat:</Label>
+                                <Label Grid.Row="0"  Grid.Column="0" Margin="1,6,35,65">Sprat:</Label>
                                 <ComboBox Grid.Row="0" Margin="58,6,0,65" Grid.ColumnSpan="4" />
+
                                 <DataGrid x:Name="roomsTable" ItemsSource="{Binding Path = list}" Margin="-1,86,13,24" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False" Grid.ColumnSpan="5" Grid.RowSpan="4">
                                     <DataGrid.RenderTransform>
                                         <TransformGroup>
@@ -136,15 +185,21 @@
 
 
                         </TabItem>
-                        <TabItem Header="Dostupnost">
-                            <Grid Background="#FFE5E5E5"/>
+                        <TabItem Background="#123" FontSize="15" Foreground="White" Header="Dostupnost" Margin="-1,26,5,-29">
+                            <Grid Background="#FFE5E5E5" Margin="10,0,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="43*"/>
+                                    <RowDefinition Height="119*"/>
+                                    <RowDefinition Height="232*"/>
+                                </Grid.RowDefinitions>
+                            </Grid>
                         </TabItem>
                     </TabControl>
                 </Grid>
 
 
-            </TabItem>
-            <TabItem Header="Oprema">
+            </TabItem >
+            <TabItem Background="#191E29" Foreground="White" Header="Oprema" Margin="59,0,-59,0">
                 <Grid Background="#FFE5E5E5">
                     <TabControl TabStripPlacement="Left">
                         <TabItem Header="Inventar">
@@ -186,14 +241,14 @@
                     </TabControl>
                 </Grid>
             </TabItem>
-            <TabItem Header="Zaposleni">
+            <TabItem Background="#191E29" Foreground="White" Header="Zaposleni" Margin="71,0,-71,0">
                 <Grid Background="#FFE5E5E5"/>
 
             </TabItem>
-            <TabItem Header="Grafikoni">
+            <TabItem Background="#191E29" Foreground="White" Header="Grafikoni" Margin="92,0,-92,0">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
-            <TabItem Header="Pomoc">
+            <TabItem Background="#191E29" Foreground="White" Header="Pomoc" Margin="108,0,-108,0">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
