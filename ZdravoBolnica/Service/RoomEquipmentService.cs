@@ -29,6 +29,21 @@ namespace SIMS.Service
             return rer.GetQuantityByRoomId(id, roomId);
         }
 
+        public void UpdateRoomEquipment(RoomEquipment roomEquipment)
+        {
+            List<RoomEquipment> roomInventory = new List<RoomEquipment>();
+            roomInventory = FindAll();
+            foreach (RoomEquipment re in roomInventory)
+            {
+                if (re.equipmentId == roomEquipment.equipmentId && re.roomId == roomEquipment.roomId)
+                {
+                    re.quantity += roomEquipment.quantity;
+                    rer.Update(re);
+                }
+            }
+
+        }
+
         public List<Equipment> GetRoomEquipment(List<Equipment> allInventory, List<RoomEquipment> roomEquipment, int roomId)
         {
             List<Equipment> roomInventory = new List<Equipment>();
@@ -64,6 +79,11 @@ namespace SIMS.Service
 
             return roomInventory;
 
+        }
+
+        public void CreateRoomEquipment(RoomEquipment roomEquipment)
+        {
+            rer.Create(roomEquipment);
         }
 
         public void TransferEquipment(Room roomSource,Room roomDestination, Equipment selectedEquipment, int quantity)
@@ -125,6 +145,20 @@ namespace SIMS.Service
                 }
             }
             
+        }
+
+        public void DeleteEquipmentFromRoomByEquipmentId(int id)
+        {
+            List<RoomEquipment> roomInventory = new List<RoomEquipment>();
+            roomInventory = FindAll();
+            foreach (RoomEquipment re in roomInventory)
+            {
+                if (re.equipmentId == id)
+                {
+                    rer.DeleteEntity(re);
+                }
+            }
+
         }
     }
 }

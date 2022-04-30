@@ -111,6 +111,7 @@ namespace Repository
                     if (index != -1)
                     {
                         appointments[index] = entity;
+                        appointments[index].TimesEdited++;
                         break;
                     }
                 }

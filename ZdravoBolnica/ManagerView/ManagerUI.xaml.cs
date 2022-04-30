@@ -1,6 +1,7 @@
 ﻿using Controller;
 using Model;
 using SIMS.Controller;
+using SIMS.ManagerView;
 using SIMS.Model;
 using System;
 using System.Collections.Generic;
@@ -225,7 +226,15 @@ namespace SIMS
                 return;
             }
             ec.DeleteEquipmentById(selectedEquipment.id);
-            refreshEquipmentTable();
+            ManagerUI mui = ManagerUI.Instance;
+            mui.refreshEquipmentTable();
+            List<Room> rooms = new List<Room>();
+            rooms = rc.FindAll();
+            foreach (Room rm in rooms)
+            { 
+                mui.refreshRoomInventoryTable(rm);
+            }
+           
             return;
 
 
@@ -281,6 +290,18 @@ namespace SIMS
             }
             TransferEquipment transferEquipment = new TransferEquipment(roomSource,selectedEquipment);
             transferEquipment.ShowDialog();
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Renovation_Click(object sender, RoutedEventArgs e)
+        {
+            Renovation renovation = new Renovation();
+            renovation.ShowDialog();
+
         }
     }
 }
