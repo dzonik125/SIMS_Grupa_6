@@ -16,8 +16,9 @@ namespace Model
         public int id;
         public List<String> hronicalDeseasses;
         public Allergies allergies;
+        public List<Prescription> prescriptions;
 
-
+     
 
         public MedicalRecord(int cardNum, BloodType bt)
         {

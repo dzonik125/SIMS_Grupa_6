@@ -1,0 +1,50 @@
+﻿<Window x:Class="SIMS.DoctorView.PrescriptionView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIMS.DoctorView"
+        mc:Ignorable="d"
+        Title="PrescriptionView" Height="430" Width="330">
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="Naziv Leka:" Margin="35,10,25,10" />
+                <Label Grid.Row="1" Content="Pocetni Datum:" Margin="35,10,10,10"/>
+                <Label Grid.Row="2" Content="Krajnji Datum:"  Margin="35,10,10,10"/>
+                <Label Grid.Row="3" Content="Ucestalost:"  Margin="35,10,10,10"/>
+                <Label Grid.Row="4" Content="Komentar:"  Margin="35,10,10,10"/>
+                <Button Grid.Row="5" Content="Potvrdi" Margin="40,36,0,38" Click="Potvrdi_Click"/>
+
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <ComboBox Name="DrugComboBox" DisplayMemberPath="name" Grid.Row="0" Margin="0,17,40,12"/>
+                <DatePicker Name="StartTime" Grid.Row="1" Margin="0,17,40,12"/>
+                <DatePicker Name="EndTime" Grid.Row="2" Margin="0,17,40,12"/>
+                <TextBox Name="Frequency" Grid.Row="3" Margin="0,17,40,12"/>
+                <TextBox Name="Comment" Grid.Row="4" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="0,17,40,0"/>
+                <Button Grid.Row="5" Margin="50,36,40,38" Content="Izadji"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

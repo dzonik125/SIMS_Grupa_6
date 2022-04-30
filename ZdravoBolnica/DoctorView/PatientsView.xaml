@@ -25,7 +25,7 @@
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
 
-            <DataGrid AutoGenerateColumns="False" SelectionMode="Single" Margin="47,0,0,0" Grid.Column="0" ItemsSource="{Binding Path=patients}">
+            <DataGrid Name="PatientsDataGrid" AutoGenerateColumns="False" SelectionMode="Single" Margin="47,0,0,0" Grid.Column="0" ItemsSource="{Binding Path=patients}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Ime" Binding="{Binding name}" Width="*"  DataGridColumn.CanUserResize="False"/>
                     <DataGridTextColumn Header="Prezime" Binding="{Binding surname}" Width="*"  DataGridColumn.CanUserResize="False"/>
