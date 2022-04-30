@@ -17,40 +17,20 @@ namespace SIMS.Repository
             List<Equipment> inventory = new List<Equipment>();
             inventory = equipmentSerializer.fromCSV(filename);
             int num = inventory.Count;
-            bool exist = false;
-            
-           
             if (num > 0)
             {
-                foreach (Equipment e in inventory)
-                {
-                    if (e.item.Equals(entity.item))
-                    {
-                        e.quantity += entity.quantity;
-                        equipmentSerializer.toCSV(filename, inventory);
-                        exist = true;
-                        break;
-                    }
-                    
-                }
-
-                if (!exist)
-                {
-                    entity.id = inventory[num - 1].id;
-                    entity.id++;
-                }
+                
+                entity.id = inventory[num - 1].id;
+                entity.id++;
                
             }
             else
             {
                 entity.id = 1;
             }
-            if(!exist)
-            {
-                inventory.Add(entity);
-            }
-            
-            equipmentSerializer.toCSV(filename, inventory);
+           
+             inventory.Add(entity);
+             equipmentSerializer.toCSV(filename, inventory);
 
         }
 
