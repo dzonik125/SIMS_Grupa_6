@@ -81,6 +81,7 @@ namespace SIMS.Model
             {
                 AppointmentType.examination => "pregled",
                 AppointmentType.surgery => "operacija",
+                AppointmentType.renovation => "renoviranje",
                 _ => "",
             };
         }

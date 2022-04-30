@@ -92,6 +92,10 @@ namespace SIMS
             appointemntRoomSource.patient = patient;
             appointmentRoomDestination.Doctor = doctor;
             appointmentRoomDestination.patient = patient;
+            appointemntRoomSource.Type = AppointmentType.transfer;
+            appointmentRoomDestination.Type = AppointmentType.transfer;
+            appointmentRoomDestination.timesEdited = 0;
+            appointemntRoomSource.timesEdited = 0;
             if(!Conversion.RoomTypeToString(roomSource.roomType).Equals("Magacin"))
             {
                 ac.SaveAppointment(appointemntRoomSource);
