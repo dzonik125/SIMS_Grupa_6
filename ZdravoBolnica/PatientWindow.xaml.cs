@@ -62,7 +62,39 @@ namespace SIMS
             }
             refresh();
             //appointments.Add(new Model.Appointment { duration = "30" , new Model.Doctor{ name = "dadwa" } });
+            patientMadeAppointmentsTable.SelectedCellsChanged += Program_MyEvent;
 
+        }
+
+        private void Program_MyEvent(object sender, EventArgs e)
+        {
+            Appointment selectedAppointment = patientMadeAppointmentsTable.SelectedItem as Appointment;
+            if (selectedAppointment == null)
+            {
+                return;
+            }
+
+            if ((selectedAppointment.startTime - DateTime.Now) <= TimeSpan.FromHours(24))
+            {
+                edit.IsEnabled = false;
+                delete.IsEnabled = false;
+            }
+            else
+            {
+                edit.IsEnabled = true;
+                delete.IsEnabled = true;
+            }
+
+            if (selectedAppointment.TimesEdited == 2)
+            {
+                edit.IsEnabled = false;
+                delete.IsEnabled = false;
+            }
+            else
+            {
+                edit.IsEnabled = true;
+                delete.IsEnabled = true;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -83,7 +115,7 @@ namespace SIMS
             Appointment selectedAppointment = patientMadeAppointmentsTable.SelectedItem as Appointment;
             if (selectedAppointment== null)
             {
-                MessageBox.Show("Izabrati termin:");
+                MessageBox.Show("Izabrati termin");
                 return;
             }
 
