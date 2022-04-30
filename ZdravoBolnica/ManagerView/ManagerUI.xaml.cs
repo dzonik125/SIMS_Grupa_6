@@ -1,6 +1,7 @@
 ﻿using Controller;
 using Model;
 using SIMS.Controller;
+using SIMS.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,6 +25,9 @@ namespace SIMS
         private static ManagerUI instance = new ManagerUI();
         private RoomController rc = new RoomController();
         private EquipmentController ec = new EquipmentController();
+        private RoomEquipmentController rec = new RoomEquipmentController();
+        private AppointmentController ac = new AppointmentController();
+        private Room roomSource;
 
         private ManagerUI() {
             InitializeComponent();
@@ -46,7 +50,14 @@ namespace SIMS
             {
                 equipList.Add(e);
             }
-           // equipList.Add(new Equipment(1, "sto", 20, Model.EquipmentType.potrosna));
+
+            listRoomInventory = new ObservableCollection<Equipment>();
+            DateTime transferDate = new DateTime();
+           // Room r = roomsTable.SelectedItem as Room;
+          //  transferDate = ac.FindDate(r);
+
+
+
 
         }
         public static ManagerUI Instance
@@ -66,6 +77,12 @@ namespace SIMS
             set;
         }
         public static ObservableCollection<Equipment> equipList
+        {
+            get;
+            set;
+        }
+
+        public ObservableCollection<Equipment> listRoomInventory
         {
             get;
             set;
@@ -109,6 +126,22 @@ namespace SIMS
             }
         }
 
+        public void refreshRoomInventoryTable(Room r)
+        {
+            listRoomInventory.Clear();
+           
+            List<Equipment> allInventory = new List<Equipment>();
+            allInventory = ec.FindAll();
+            List<RoomEquipment> roomEquipment = new List<RoomEquipment>();
+            roomEquipment = rec.FindAll();
+            List<Equipment> roomInventory = new List<Equipment>();
+            roomInventory = rec.GetRoomEquipment(allInventory, roomEquipment,r.id);
+            foreach (Equipment e in roomInventory)
+            {
+                listRoomInventory.Add(e);
+            }
+        }
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Room selectedRoom = roomsTable.SelectedItem as Room;
@@ -117,6 +150,13 @@ namespace SIMS
                 MessageBox.Show("Izabrati prostoriju.");
                 return;
             }
+            if (Conversion.RoomTypeToString(selectedRoom.roomType).Equals("Magacin"))
+            {
+                MessageBox.Show("Magacin se ne moze izbrisati.");
+                return;
+
+            }
+
 
             rc.DeleteRoomById(selectedRoom.id);
             ManagerUI mui = ManagerUI.Instance;
@@ -189,6 +229,58 @@ namespace SIMS
             return;
 
 
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RoomInventory_Click(object sender, RoutedEventArgs e)
+        {
+            Room selectedRoom = roomsTable.SelectedItem as Room;
+            if (selectedRoom == null)
+            {
+                MessageBox.Show("Izaberite opremu");
+                return;
+            }
+
+            List<Equipment> equipmentlist = new List<Equipment>();
+            equipmentlist = ec.FindAll();
+            rec.setRoomEquipment(selectedRoom.id, equipmentlist);
+
+
+        }
+
+        private void ShowRoomInventory_Click(object sender, RoutedEventArgs e)
+        {
+            Room selectedRoom = roomsTable.SelectedItem as Room;
+            roomSource = selectedRoom;
+            if (selectedRoom == null)
+            {
+                MessageBox.Show("Izaberite prostoriju");
+                return;
+            }
+            refreshRoomInventoryTable(selectedRoom);
+
+        }
+
+        private void TransferEquipment_Click(object sender, RoutedEventArgs e)
+        {
+            Equipment selectedEquipment = roomsEquipmentTable.SelectedItem as Equipment;
+            if (selectedEquipment == null)
+            {
+                MessageBox.Show("Morate izbrati opremu");
+                return;
+
+            }
+            TransferEquipment transferEquipment = new TransferEquipment(roomSource,selectedEquipment);
+            transferEquipment.ShowDialog();
         }
     }
 }

@@ -5,19 +5,20 @@
 
 using SIMS.Model;
 using System;
+using System.Collections.Generic;
 
 namespace Model
 {
-   public class Equipment : Serializable
-   {
-       
+    public class Equipment : Serializable
+    {
 
-      
+
+
         public int id { get; set; }
-      public string item { get; set; }
-      public int quantity { get; set; }
-      public EquipmentType type { get; set; }
-      public Room room { get; set; }
+        public string item { get; set; }
+        public int quantity { get; set; }
+        public EquipmentType type { get; set; }
+        public List<int> RoomNum { get; set; }
 
        /* public Equipment(int v1, string v2, int v3, EquipmentType potrosna)
         {
@@ -35,6 +36,7 @@ namespace Model
             item = values[1];
             quantity = int.Parse(values[2]);
             type = Conversion.StringToEquipmentType(values[3]);
+           
         }
 
         public string[] ToCSV()
@@ -45,7 +47,7 @@ namespace Model
                 item.ToString(),
                 quantity.ToString(),
                 Conversion.EquipmentTypeToString(type),
-
+             
                
             };
             return csvValues;

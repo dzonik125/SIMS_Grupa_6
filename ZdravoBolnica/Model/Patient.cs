@@ -92,6 +92,7 @@ namespace Model
                 jmbg,
                 birthdate.ToString(),
                 guest.ToString(),
+                medicalRecord.id.ToString(),
 
             };
             return csvValues;
@@ -99,6 +100,7 @@ namespace Model
 
         public void FromCSV(string[] values)
         {
+            medicalRecord = new MedicalRecord();
             address = new Adress();
             id = int.Parse(values[0]);
             name = values[1];
@@ -112,6 +114,7 @@ namespace Model
             jmbg = values[9];
             birthdate = values[10];
             guest = bool.Parse(values[11]);
+            medicalRecord.id = int.Parse(values[12]);
         }
     }
 }

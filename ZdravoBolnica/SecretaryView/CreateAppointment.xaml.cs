@@ -1,31 +1,19 @@
 ﻿using Controller;
 using Model;
-
 using SIMS.Model;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
-namespace SIMS.DoctorView
+namespace SIMS.SecretaryView
 {
     /// <summary>
-    /// Interaction logic for Appointments.xaml
+    /// Interaction logic for CreateAppointment.xaml
     /// </summary>
-    public partial class Appointments : Window
+    public partial class CreateAppointment : Window
     {
-        public static Appointments instance = new Appointments();
-        public  Doctor doctorUser { get; set; }
+        public static CreateAppointment instance = new CreateAppointment();
+        public Doctor doctorUser { get; set; }
 
         private AppointmentController appController = new AppointmentController();
         private AccountController patientController = new AccountController();
@@ -35,22 +23,20 @@ namespace SIMS.DoctorView
 
         public ObservableCollection<Appointment> Apps { get; set; }
 
-        public static Appointments Instance
+        public static CreateAppointment Instance
         {
             get
             {
                 return instance;
             }
         }
-
-
-        private Appointments()
+        public CreateAppointment()
         {
             InitializeComponent();
             this.DataContext = this;
             Apps = new ObservableCollection<Appointment>();
             doctorUser = doctorController.GetAllDoctors()[0];
-            
+
             Refresh();
         }
 
@@ -58,29 +44,39 @@ namespace SIMS.DoctorView
         public void Refresh()
         {
             Apps.Clear();
+
             List<Appointment> appointments = new();
             appointments = appController.getFutureAppointmentsForDoctor(doctorUser.id);
             List<Patient> patients = patientController.FindAllAccounts();
             List<Room> rooms = roomController.FindAll();
+            List<Doctor> doctors = doctorController.GetAllDoctors();
             appController.bindPatientsWithAppointments(patients, appointments);
             appController.bindRoomsWithAppointments(rooms, appointments);
+            appController.bindDoctorsWithAppointments(doctors, appointments);
 
             foreach (Appointment a in appointments)
             {
-                if (a.Room == null || a.patient==null)
+                if (a.Room == null || a.patient == null || a.Doctor == null)
                     continue;
                 Apps.Add(a);
             }
         }
 
-        private void Dodaj_Click(object sender, RoutedEventArgs e)
+        private void Scehdule_Click(object sender, RoutedEventArgs e)
         {
             AppointmentType type = AppointmentType.examination;
-            AddAppointment ap = new AddAppointment(type);
+            SecretaryAddAppointment ap = new SecretaryAddAppointment(type);
             ap.ShowDialog();
         }
 
-        private void Izmeni_Click(object sender, RoutedEventArgs e)
+        private void ScheduleSurgery_Click(object sender, RoutedEventArgs e)
+        {
+            AppointmentType type = AppointmentType.surgery;
+            SecretaryAddAppointment ap = new SecretaryAddAppointment(type);
+            ap.ShowDialog();
+        }
+
+        private void EditApp_Click(object sender, RoutedEventArgs e)
         {
             Appointment selectedAppointment = dataGridAppointments.SelectedItem as Appointment;
             if (selectedAppointment == null)
@@ -89,11 +85,12 @@ namespace SIMS.DoctorView
                 return;
             }
 
-            EditAppointment ep = new EditAppointment(selectedAppointment);
-            ep.ShowDialog();
+
+            SecreteryEditAppointment sep = new SecreteryEditAppointment(selectedAppointment);
+            sep.ShowDialog();
         }
 
-        private void Izbrisi_Click(object sender, RoutedEventArgs e)
+        private void DeleteApp_Click(object sender, RoutedEventArgs e)
         {
             Appointment selectedAppointment = dataGridAppointments.SelectedItem as Appointment;
             if (selectedAppointment == null)
@@ -103,14 +100,6 @@ namespace SIMS.DoctorView
             }
             appController.DeleteAppointmentById(selectedAppointment.id);
             Refresh();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            AppointmentType type = AppointmentType.surgery;
-            AddAppointment ap = new AddAppointment(type);
-            ap.ShowDialog();
-
         }
     }
 }

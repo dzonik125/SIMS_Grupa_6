@@ -1,9 +1,6 @@
 ﻿using Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SIMS.Model
 {
@@ -17,6 +14,7 @@ namespace SIMS.Model
                 RoomType.surgery => "Operaciona sala",
                 RoomType.examination => "Prostorija za preglede",
                 RoomType.ward => "Bolesnička soba",
+                RoomType.storage => "Magacin",
                 RoomType.laboratory => "laboratorija",
                 RoomType.waitingRoom => "cekaonica",
 
@@ -41,13 +39,30 @@ namespace SIMS.Model
             {
                 "Prostorija za preglede" => RoomType.examination,
                 "Operaciona sala" => RoomType.surgery,
-                "cekaonica" => RoomType.waitingRoom,
-                "laboratorija" => RoomType.laboratory,
-                "bolnicka soba" => RoomType.ward,
+                "Cekaonica" => RoomType.waitingRoom,
+                "Laboratorija" => RoomType.laboratory,
+                "Magacin" => RoomType.storage,
+                "Bolnicka soba" => RoomType.ward,
                 _ => RoomType.ward,
-        
+
             };
         }
+
+        public static BloodType StringToBloodType(string str)
+        {
+            return str switch
+            {
+                "O-" => BloodType.ONegative,
+                "A+" => BloodType.APositive,
+                "A-" => BloodType.ANegative,
+                "B+" => BloodType.BPositive,
+                "B-" => BloodType.BNegative,
+                "AB+" => BloodType.ABPositive,
+                "AB-" => BloodType.ABNegative,
+                _ => BloodType.OPositive,
+            };
+        }
+
         public static string AppointmentTypeToString(AppointmentType tip)
         {
             return tip switch

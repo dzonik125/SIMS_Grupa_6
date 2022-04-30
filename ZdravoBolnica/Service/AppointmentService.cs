@@ -77,6 +77,19 @@ namespace Service
             }
         }
 
+        public bool isRoomOccupied(Room roomDestination, DateTime transferDate, int duration)
+        {
+            List<Appointment> roomAppointments = getAppointmentsByRoomId(roomDestination.id);
+            foreach (Appointment a in roomAppointments)
+            {
+                if (!((a.startTime.AddMinutes(a.duration) < transferDate && a.startTime < transferDate || (transferDate.AddMinutes(duration) < a.startTime && transferDate < a.startTime))))
+                {
+                    return true;
+                }
+            }
+                return false;
+        }
+
         public List<Appointment> getFutureAppointmentsForDoctor(int id)
         {
             List<Appointment> potentialAppointments = GetAllApointments();
@@ -131,13 +144,13 @@ namespace Service
             return appointmentRepository.FindByPatientId(patientID);
         }
 
-        public List<Appointment> getAppointmentsByRoomId(string roomID)
+        public List<Appointment> getAppointmentsByRoomId(int roomID)
         {
             return appointmentRepository.FindByRoomId(roomID);
         }
 
 
-        public bool IntersectionWithAppointments(int patientID, int doctorID, string roomID, DateTime date, int duration)
+        public bool IntersectionWithAppointments(int patientID, int doctorID, int roomID, DateTime date, int duration)
         {
             List<Appointment> doctorAppointments = getAppointmentsByDoctorId(doctorID);
             List<Appointment> roomAppointments = getAppointmentsByRoomId(roomID);

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
 using Model;
 using Repository;
+using SIMS.Model;
 
 namespace Service
 {
@@ -18,7 +19,7 @@ namespace Service
         public RoomsCRUD roomsCrud = new RoomsCRUD();
         public AppointmentService appointmentService = new AppointmentService();
 
-      public Room FindRoomById(string id)
+      public Room FindRoomById(int id)
       {
           return roomsCRUD.FindById(id);
       }
@@ -29,7 +30,7 @@ namespace Service
             return true;
       }
       
-      public bool DeleteRoomById(string id)
+      public bool DeleteRoomById(int id)
       {
             roomsCRUD.DeleteById(id);
             return true;
@@ -54,6 +55,21 @@ namespace Service
         public List<Room> getRoomsByType(RoomType type)
         {
             return roomsCRUD.getRoomsByType(type);
+        }
+
+        public bool StorageExist(Room room)
+        {
+            List<Room> rooms = new List<Room>();
+            rooms = roomsCRUD.FindAll();
+            foreach (Room r in rooms)
+            {
+                
+                if (Conversion.RoomTypeToString(r.roomType).Equals(Conversion.RoomTypeToString(room.roomType)))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public Room findFreeRoom(DateTime dt)
@@ -98,6 +114,21 @@ namespace Service
                 }
             }
             return null;
+        }
+
+        public int FindRoomId(int floor, int roomNum)
+        {
+            List<Room> rooms = new List<Room>();
+            rooms = roomsCRUD.FindAll();
+            foreach (Room r in rooms)
+            { 
+                if (r.floor == floor && r.roomNum == roomNum)
+                {
+                    return r.id;
+                }
+            }
+            return 0;
+
         }
 
         public bool FindRoomByFloor(int roomNum, int floor)

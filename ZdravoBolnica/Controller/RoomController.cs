@@ -13,7 +13,7 @@ namespace Controller
    {
 
       public RoomService rs = new RoomService();
-      public Room FindRoomById(string id)
+      public Room FindRoomById(int id)
       {
          return rs.FindRoomById(id);
       }
@@ -24,7 +24,7 @@ namespace Controller
             return true;
       }
       
-      public bool DeleteRoomById(string id)
+      public bool DeleteRoomById(int id)
       {
             rs.DeleteRoomById(id);
             return true;
@@ -51,6 +51,11 @@ namespace Controller
          throw new NotImplementedException();
       }
 
+        public bool StorageExist(Room room)
+        {
+           return rs.StorageExist(room);
+        }
+
         public List<Room> getRoomsByType(RoomType type)
         {
             return roomService.getRoomsByType(type);
@@ -70,6 +75,10 @@ namespace Controller
         }
 
         public Service.RoomService roomService = new Service.RoomService();
-   
-   }
+
+        public int FindRoomId(int floor, int roomNum)
+        {
+            return rs.FindRoomId(floor, roomNum);
+        }
+    }
 }
