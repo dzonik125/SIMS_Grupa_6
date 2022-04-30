@@ -24,6 +24,7 @@ namespace SIMS.DoctorView
     {
 
         public static PatientsView instance = new PatientsView();
+        public Patient selectedPatient = new Patient();
         public ObservableCollection<Patient> patients { get; set; }
         public PatientController pc = new PatientController();
 
@@ -55,6 +56,13 @@ namespace SIMS.DoctorView
 
         private void Record_Click(object sender, RoutedEventArgs e)
         {
+
+            selectedPatient = PatientsDataGrid.SelectedItem as Patient;
+            if (selectedPatient == null)
+            {
+                MessageBox.Show("Izabrati pacijenta.");
+                return;
+            }
             PatientMedicalRecord pmr = PatientMedicalRecord.Instance;
             pmr.Show();
         }

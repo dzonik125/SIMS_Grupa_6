@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SIMS.Model
 {
-    class Medication : Serializable
+    public class Medication : Serializable
     {
         public int id { get; set; }
         public String name { get; set; }

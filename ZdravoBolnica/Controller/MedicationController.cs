@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SIMS.Controller
 {
-    class MedicationController
+    public class MedicationController
     {
         MedicationService medicationService = new();
 

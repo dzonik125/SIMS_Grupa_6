@@ -49,7 +49,9 @@ namespace SIMS.DoctorView
             InitializeComponent();
             this.DataContext = this;
             Apps = new ObservableCollection<Appointment>();
-            doctorUser = doctorController.GetAllDoctors()[0];
+            DoctorWindow dw = DoctorWindow.instance;
+            doctorUser = new Doctor();
+            doctorUser = dw.doctorUser;
             
             Refresh();
         }
