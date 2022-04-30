@@ -63,12 +63,15 @@ namespace Service
         {
             List<Room> rooms = new List<Room>();
             rooms = roomsCRUD.FindAll();
-            foreach (Room r in rooms)
+            if (Conversion.RoomTypeToString(room.roomType).Equals("Magacin"))
             {
-                
-                if (Conversion.RoomTypeToString(r.roomType).Equals(Conversion.RoomTypeToString(room.roomType)))
+                foreach (Room r in rooms)
                 {
-                    return true;
+
+                    if (Conversion.RoomTypeToString(r.roomType).Equals("Magacin"))
+                    {
+                        return true;
+                    }
                 }
             }
             return false;

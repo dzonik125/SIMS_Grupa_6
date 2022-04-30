@@ -1,6 +1,7 @@
 ﻿using Controller;
 using Model;
 using SIMS.Controller;
+using SIMS.ManagerView;
 using SIMS.Model;
 using System;
 using System.Collections.Generic;
@@ -296,6 +297,11 @@ namespace SIMS
 
         }
 
-        
+        private void Renovation_Click(object sender, RoutedEventArgs e)
+        {
+            Renovation renovation = new Renovation();
+            renovation.ShowDialog();
+
+        }
     }
 }
