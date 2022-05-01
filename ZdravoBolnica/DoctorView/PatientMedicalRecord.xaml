@@ -82,11 +82,11 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="75"/>
                     </Grid.RowDefinitions>
-                    <DataGrid Grid.Row="1" Margin="45,0,45,0">
+                    <DataGrid Grid.Row="1" Margin="45,0,45,0" AutoGenerateColumns="False" SelectionMode="Single" ItemsSource="{Binding Path=examinationReports}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Lekar" Width="*"/>
+                            <DataGridTextColumn Header="Lekar" Width="*" Binding="{Binding doctor.FullName}"/>
                             <DataGridTextColumn Header="Sala" Width="*"/>
-                            <DataGridTextColumn Header="Datum" Width="*"/>
+                            <DataGridTextColumn Header="Datum" Width="*" Binding="{Binding reportDate}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Grid Grid.Row="2" Margin="45,0,0,0">

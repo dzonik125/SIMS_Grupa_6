@@ -28,7 +28,9 @@ namespace SIMS.DoctorView
 
         public static PatientMedicalRecord instance = new PatientMedicalRecord();
         public ObservableCollection<Prescription> prescriptions { get; set; }
+        public ObservableCollection<ExaminationReport> examinationReports { get; set; }
         public PrescriptionController prc = new PrescriptionController();
+        public ExaminationReportController erc = new ExaminationReportController();
         public DoctorController doctorController = new DoctorController();
         public MedicationController medicationController = new MedicationController();
         public Patient patient { get; set; }
@@ -39,8 +41,10 @@ namespace SIMS.DoctorView
             InitializeComponent();
             this.DataContext = this;
             prescriptions = new ObservableCollection<Prescription>();
+            examinationReports = new ObservableCollection<ExaminationReport>();
             setSelectedPatient();
             refreshPrescriptions();
+            refreshExaminationReports();
         }
 
         public static PatientMedicalRecord Instance
@@ -85,6 +89,20 @@ namespace SIMS.DoctorView
             {
                 prescriptions.Add(a);
             }
+        }
+
+        public void refreshExaminationReports()
+        {
+            examinationReports.Clear();
+            List<ExaminationReport> exReports = new();
+            exReports = erc.findReportsByMRecordId(patient.medicalRecord.id);
+            List <Doctor> doctors = doctorController.GetAllDoctors();
+            erc.bindReporswithDoctors(exReports, doctors);
+            foreach(ExaminationReport e in exReports)
+            {
+                examinationReports.Add(e);
+            }
+
         }
     }
 }

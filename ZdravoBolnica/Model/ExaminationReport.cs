@@ -7,19 +7,44 @@ using System.Threading.Tasks;
 
 namespace SIMS.Model
 {
-    class ExaminationReport : Serializable
+    public class ExaminationReport : Serializable
     {
-        public int id;
-        public String afdw;
+        public int id { get; set; }
+        public Doctor doctor { get; set; }
+        public String mainProblems { get; set; }
+        public String diagnosis { get; set; }
+        public String anamnesis { get; set; }
+
+        public MedicalRecord medicalRecord { get; set; }
+        public DateTime reportDate { get; set; }
+
 
         public void FromCSV(string[] values)
         {
-            throw new NotImplementedException();
+            id = int.Parse(values[0]);
+            doctor = new Doctor();
+            doctor.id = int.Parse(values[1]);
+            medicalRecord = new MedicalRecord();
+            medicalRecord.id = int.Parse(values[2]);
+            mainProblems = values[3];
+            diagnosis = values[4];
+            anamnesis = values[5];
+            reportDate = DateTime.Parse(values[6]);
         }
 
         public string[] ToCSV()
         {
-            throw new NotImplementedException();
+            String[] csvValues =
+            {
+                id.ToString(),
+                doctor.id.ToString(),
+                medicalRecord.id.ToString(),
+                mainProblems,
+                diagnosis,
+                anamnesis,
+                reportDate.ToString(),
+            };
+            return csvValues;
         }
     }
 }

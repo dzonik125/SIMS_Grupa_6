@@ -67,8 +67,14 @@ namespace SIMS.DoctorView
             pmr.Show();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Examination_Click(object sender, RoutedEventArgs e)
         {
+            selectedPatient = PatientsDataGrid.SelectedItem as Patient;
+            if (selectedPatient == null)
+            {
+                MessageBox.Show("Izabrati pacijenta.");
+                return;
+            }
             RecordExamination re = new RecordExamination();
             re.ShowDialog();
         }
