@@ -16,8 +16,21 @@ namespace SIMS.Repository
         {
             List<Equipment> inventory = new List<Equipment>();
             inventory = equipmentSerializer.fromCSV(filename);
-            inventory.Add(entity);
-            equipmentSerializer.toCSV(filename, inventory);
+            int num = inventory.Count;
+            if (num > 0)
+            {
+                
+                entity.id = inventory[num - 1].id;
+                entity.id++;
+               
+            }
+            else
+            {
+                entity.id = 1;
+            }
+           
+             inventory.Add(entity);
+             equipmentSerializer.toCSV(filename, inventory);
 
         }
 
@@ -61,6 +74,7 @@ namespace SIMS.Repository
                 if (e.id.Equals(entity.id))
                 {
                     e.item = entity.item;
+                    e.quantity = entity.quantity;
                     e.type = entity.type;
                 }
             }

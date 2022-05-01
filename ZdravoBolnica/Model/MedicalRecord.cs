@@ -23,6 +23,10 @@ namespace Model
 
         public AllergiesRepository ar = new AllergiesRepository();
 
+        public Allergies allergies;
+        public List<Prescription> prescriptions;
+
+
 
         public MedicalRecord(int cardNum, BloodType bt)
         {

@@ -5,35 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIMS.DoctorView"
         mc:Ignorable="d"
-        Title="Record Examination" Height="500" Width="400">
+        Title="Record Examination" Height="530" Width="400">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="55"/>
-                <RowDefinition Height="150"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="150"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="145"/>
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Content="Pacijent:" Margin="72,10,11,13" FontSize="15"/>
-            <Label Grid.Row="1" Content="Dijagnoza:" Margin="56,0,7,23" FontSize="15"/>
-            <Label Grid.Row="2" Content="Anamneza:" Margin="56,0,7,23" FontSize="15"/>
-            <Button Grid.Row="3" Content="Evidentiraj" Margin="10,85,0,30"/>
+            <Label Grid.Row="0" Content="Pacijent:" Margin="21,12,11,11" FontSize="15"/>
+            <Label Content="Glavne Tegobe:" Margin="21,0,7,70" FontSize="15" Grid.Row="1"/>
+            <Label Grid.Row="2" Content="Dijagnoza:" Margin="21,3,7,65" FontSize="15"/>
+            <Label Grid.Row="3" Content="Anamneza:" Margin="21,3,7,65" FontSize="15"/>
+            <Button Grid.Row="4" Content="Evidentiraj" Margin="26,65,0,40" Click="Report_Click"/>
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="55"/>
-                <RowDefinition Height="150"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="150"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="145"/>
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Content="Petar Petrovic" FontSize="15" Margin="11,10,72,13"/>
-            <TextBox Grid.Row="1" Margin="11,0,26,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
-            <TextBox Grid.Row="2" Margin="11,10,26,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
-            <Button Grid.Row="3" Content="Izadji" Margin="96,85,14,30"/>
+            <Label Grid.Row="0" Content="Petar Petrovic" FontSize="15" Margin="5,12,78,12"/>
+            <TextBox Grid.Row="1" Margin="11,10,26,0" Name ="MainProblems" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
+            <TextBox Grid.Row="2" Margin="11,10,26,0" Name="Diagnosis" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
+            <TextBox Grid.Row="3" Margin="11,10,26,0" Name="Anamnesis" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
+            <Button Grid.Row="4" Content="Izadji" Margin="120,65,26,40"/>
         </Grid>
     </Grid>
 </Window>

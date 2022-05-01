@@ -13,6 +13,7 @@ namespace Model
       examination,
       waitingRoom,
       laboratory,
+      storage,
       ward
    }
 }

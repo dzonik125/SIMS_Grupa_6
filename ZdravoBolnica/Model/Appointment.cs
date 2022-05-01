@@ -25,6 +25,13 @@ namespace Model
         public int duration { get; set; }
         public string id { get; set; }
 
+        public int timesEdited = 0;
+
+        public int TimesEdited
+        {
+            get => timesEdited;
+            set => timesEdited = value;
+        }
 
         public String AppointmentDate { get { return startTime.ToString("dd.MM.yyyy."); } }
 
@@ -78,6 +85,7 @@ namespace Model
                 duration.ToString(),
                 Conversion.AppointmentTypeToString(Type),
 
+                timesEdited.ToString(),
 
             };
             return csvValues;
@@ -95,6 +103,7 @@ namespace Model
             startTime = DateTime.Parse(values[4]);
             duration = int.Parse(values[5]);
             Type = Conversion.StringToAppointmentType(values[6]);
+            timesEdited = int.Parse(values[7]);
         }
 
 

@@ -13,6 +13,7 @@ namespace Model
     {
         public int roomNum { get; set; }
         public int floor { get; set; }
+
         public bool empty;
         public int id { get; set; }
         public RoomType roomType { get; set; }
@@ -32,6 +33,8 @@ namespace Model
                     return "Bolnicka soba";
                 else if (roomType == RoomType.waitingRoom)
                     return "Cekaonica";
+                else if (roomType == RoomType.storage)
+                    return "Magacin";
                 else 
                     return "Laboratorija";
             }

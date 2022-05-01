@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Controller;
+using Model;
+using SIMS.Controller;
+using SIMS.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +23,32 @@ namespace SIMS.DoctorView
     /// </summary>
     public partial class DoctorWindow : Window
     {
-        public DoctorWindow()
+
+        //MedicationController medicationController = new();
+        public static DoctorWindow instance = new DoctorWindow();
+        private DoctorController doctorController = new DoctorController();
+        public Doctor doctorUser = new Doctor();
+
+        public static DoctorWindow Instance
         {
+            get
+            {
+               return instance;
+            }
+        }
+      
+            
+
+        private DoctorWindow()
+        {
+
+            /* Medication med = new();
+             med.name = "Brufen";
+             Medication med1 = new();
+             med1.name = "Bromazepam";
+             medicationController.Create(med);
+             medicationController.Create(med1);*/
+            doctorUser = doctorController.GetAllDoctors()[0];
             InitializeComponent();
         }
 

@@ -36,6 +36,7 @@
                                 <RowDefinition Height="30"/>
                                 <RowDefinition Height="30"/>
                                 <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Content="Pol:" FontSize="15"/>
                             <Label Grid.Row="0" Content="M" FontSize="15" Margin="30,0,250,0"/>
@@ -51,22 +52,24 @@
                             <Label Grid.Row="5" Content="13124325" FontSize="15" Margin="45,0,0,0"/>
                             <Label Grid.Row="6" Content="Hospitalizacija:" FontSize="15"/>
                             <Label Grid.Row="6" Content="4" FontSize="15" Margin="105,0,0,0"/>
+                            <Label Grid.Row="7" Content="Krvna Grupa:" FontSize="15"/>
+                            <Label Grid.Row="7" Content="A+" FontSize="15" Margin="95,0,0,0"/>
                         </Grid>
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30"/>
-                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="100"/>
+                                <RowDefinition Height="50"/>
                                 <RowDefinition Height="*"/>
-
                             </Grid.RowDefinitions>
-                            <Label Grid.Row="0" Content="Krvna Grupa:" FontSize="15"/>
-                            <Label Grid.Row="0" Content="A+" FontSize="15" Margin="95,0,0,0"/>
-                            <Label Grid.Row="1" Content="Alergije:" FontSize="15"/>
-                            <DataGrid Grid.Row="2" Margin="0,0,50,109" Grid.RowSpan="2">
+                        
+                            <Label Grid.Row="0" Content="Alergije:" FontSize="15"/>
+                            <DataGrid Grid.Row="1" Margin="0,0,86,0">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Naziv"></DataGridTextColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
+                            <Button Grid.Row="2" Content="Napisi recept" Margin="0,10,244,10" Click="Button_Click"/>
                         </Grid>
 
                     </Grid>
@@ -79,11 +82,11 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="75"/>
                     </Grid.RowDefinitions>
-                    <DataGrid Grid.Row="1" Margin="45,0,45,0">
+                    <DataGrid Grid.Row="1" Margin="45,0,45,0" AutoGenerateColumns="False" SelectionMode="Single" ItemsSource="{Binding Path=examinationReports}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Lekar" Width="*"/>
+                            <DataGridTextColumn Header="Lekar" Width="*" Binding="{Binding doctor.FullName}"/>
                             <DataGridTextColumn Header="Sala" Width="*"/>
-                            <DataGridTextColumn Header="Datum" Width="*"/>
+                            <DataGridTextColumn Header="Datum" Width="*" Binding="{Binding reportDate}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Grid Grid.Row="2" Margin="45,0,0,0">
@@ -133,11 +136,11 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="75"/>
                     </Grid.RowDefinitions>
-                    <DataGrid Grid.Row="1" Margin="45,0,45,0">
+                    <DataGrid Grid.Row="1" Margin="45,0,45,0" AutoGenerateColumns="False" SelectionMode="Single" ItemsSource="{Binding Path=prescriptions}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Lekar" Width="*"/>
-                            <DataGridTextColumn Header="Naziv Terapije" Width="*"/>
-                            <DataGridTextColumn Header="Datum" Width="*"/>
+                            <DataGridTextColumn Header="Lekar" Width="*" Binding="{Binding doctor.FullName}"/>
+                            <DataGridTextColumn Header="Naziv Terapije" Binding="{Binding medication.name}" Width="*"/>
+                            <DataGridTextColumn Header="Datum" Width="*" Binding="{Binding prescriptionDate}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Grid Grid.Row="2" Margin="45,0,0,0">

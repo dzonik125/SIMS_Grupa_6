@@ -1,5 +1,6 @@
 ﻿using Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace SIMS.Model
@@ -14,6 +15,7 @@ namespace SIMS.Model
                 RoomType.surgery => "Operaciona sala",
                 RoomType.examination => "Prostorija za preglede",
                 RoomType.ward => "Bolesnička soba",
+                RoomType.storage => "Magacin",
                 RoomType.laboratory => "laboratorija",
                 RoomType.waitingRoom => "cekaonica",
 
@@ -66,12 +68,24 @@ namespace SIMS.Model
             {
                 "Prostorija za preglede" => RoomType.examination,
                 "Operaciona sala" => RoomType.surgery,
-                "cekaonica" => RoomType.waitingRoom,
-                "laboratorija" => RoomType.laboratory,
-                "bolnicka soba" => RoomType.ward,
+                "Cekaonica" => RoomType.waitingRoom,
+                "Laboratorija" => RoomType.laboratory,
+                "Magacin" => RoomType.storage,
+                "Bolnicka soba" => RoomType.ward,
                 _ => RoomType.ward,
 
             };
+        }
+
+        internal static List<String> GetEquipmentTypes()
+        {
+            List<string> tipovi = new List<string>();
+            foreach (EquipmentType tip in Enum.GetValues(typeof(EquipmentType)))
+            {
+                string s = EquipmentTypeToString(tip);
+                tipovi.Add(s);
+            }
+            return tipovi;
         }
 
         public static BloodType StringToBloodType(string str)
@@ -96,6 +110,7 @@ namespace SIMS.Model
             {
                 AppointmentType.examination => "pregled",
                 AppointmentType.surgery => "operacija",
+                AppointmentType.renovation => "renoviranje",
                 _ => "",
             };
         }

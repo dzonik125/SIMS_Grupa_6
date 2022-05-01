@@ -25,7 +25,7 @@
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
 
-            <DataGrid AutoGenerateColumns="False" SelectionMode="Single" Margin="47,0,0,0" Grid.Column="0" ItemsSource="{Binding Path=patients}">
+            <DataGrid Name="PatientsDataGrid" AutoGenerateColumns="False" SelectionMode="Single" Margin="47,0,0,0" Grid.Column="0" ItemsSource="{Binding Path=patients}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Ime" Binding="{Binding name}" Width="*"  DataGridColumn.CanUserResize="False"/>
                     <DataGridTextColumn Header="Prezime" Binding="{Binding surname}" Width="*"  DataGridColumn.CanUserResize="False"/>
@@ -44,7 +44,7 @@
                 </Grid.RowDefinitions>
 
                 <Button Grid.Row="0" Content="Prikazi karton" Margin="30,10,30,10" Click="Record_Click"/>
-                <Button Grid.Row="1" Content="Evidentiraj pregled" Margin="30,10,30,10"/>
+                <Button Grid.Row="1" Content="Evidentiraj pregled" Margin="30,10,30,10" Click="Examination_Click"/>
                 <Button Grid.Row="2" Content="Napisi uput" Margin="30,10,30,10"/>
                 <Button Grid.Row="3" Content="Napisi opravdanje" Margin="30,10,30,10"/>
                 <Button Grid.Row="4" Content="Banuj pacijenta" Margin="30,10,30,10"/>
