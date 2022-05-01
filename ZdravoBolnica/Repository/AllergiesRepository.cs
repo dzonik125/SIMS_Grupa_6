@@ -27,11 +27,28 @@ namespace SIMS.Repository
 
         public void DeleteById(int id)
         {
-            throw new NotImplementedException();
+            List<Allergies> allergies = FindAll();
+            foreach (Allergies a in allergies)
+            {
+                if (a.id.Equals(id))
+                {
+                    allergies.Remove(a);
+                    break;
+                }
+            }
+            allergiesSerializer.toCSV(filename, allergies);
         }
-        public RoomEquipment FindById(int key)
+        public Allergies FindById(int key)
         {
-            throw new NotImplementedException();
+            List<Allergies> allergies = FindAll();
+            foreach (Allergies a in allergies)
+            {
+                if (a.id.Equals(key))
+                {
+                    return a;
+                }
+            }
+            return null;
         }
 
         public void Update(RoomEquipment entity)

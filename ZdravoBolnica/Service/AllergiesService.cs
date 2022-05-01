@@ -12,5 +12,11 @@ namespace SIMS.Service
             AllergiesRepository ar = new AllergiesRepository();
             return ar.FindAll();
         }
+
+        public void DeleteById(int id)
+        {
+            AllergiesRepository ar = new AllergiesRepository();
+            ar.DeleteById(id);
+        }
     }
 }

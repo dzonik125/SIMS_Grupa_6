@@ -1,4 +1,8 @@
-1|Marko|Peric|marko@gm.com|carina123|marecar|1|064838273|12938122|1281231813781|12.12.2012.|False|6
-2||||||2|||||False|6
-3||||||3|||||False|6
-4||||||4|||||False|6
+1|stefan|||||1|||||False|0|1
+2|imeee|przzz||||2|||12301921289||True|0|0
+3|Luka|Jovic|luka@gm.com|sifra123|lukaaa|3|0649493988|9999999|1234658738787|12.12.2000.|False|0|2
+4|Gost|Gostttttt||||4|||123456||True|0|0
+5|kkikil|||||5|||||False|1|3
+6|test|||||6|||||False|0|4
+7|laalalal|||||7|||||False|1|5
+8|fsdfassfa|||||8|||||False|0|1

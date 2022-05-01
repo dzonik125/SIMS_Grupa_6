@@ -19,9 +19,9 @@ namespace Controller
 
         public bool UpdateMedicalRecord(MedicalRecord mr)
         {
-            //medicalRecordService.UpdateAdress(mr);
-            //return true;
-            throw new NotImplementedException();
+            medicalRecordService.UpdateMedicalRecord(mr);
+            return true;
+            //throw new NotImplementedException();
         }
 
         public bool DeleteMedicalRecordById(int id)

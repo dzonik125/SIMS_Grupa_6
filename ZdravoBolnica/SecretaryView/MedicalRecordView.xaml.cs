@@ -4,6 +4,7 @@ using SIMS.Controller;
 using SIMS.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace SIMS.SecretaryView
@@ -29,8 +30,19 @@ namespace SIMS.SecretaryView
 
         public Allergies allergies = new Allergies();
 
+        public List<Allergies> al = new List<Allergies>();
+
+
+        public ObservableCollection<Allergies> Alergeni
+        {
+            get;
+            set;
+        }
+
+
         public MedicalRecordView()
         {
+            //Alergeni = new ObservableCollection<Allergies>();
             //  AllergiesController ac = new AllergiesController();
 
             InitializeComponent();
@@ -40,36 +52,63 @@ namespace SIMS.SecretaryView
             {
                 allist.Add(a.name);
             }
-            allergens.ItemsSource = allist;
+            AllergsBox.ItemsSource = allist;
         }
 
-        private void CreateMR_Click(object sender, RoutedEventArgs e)
-        {
-            medicalRecord.cardNum = Int32.Parse(brojK.Text);
-            medicalRecord.bloodType = (BloodType)bloodType.SelectedIndex;
-
-            foreach (Allergies a in allergs)
+        /*    private void CreateMR_Click(object sender, RoutedEventArgs e)
             {
-                if (a.name.Equals(allergens.SelectedItem.ToString()))
+                medicalRecord.cardNum = Int32.Parse(brojK.Text);
+                medicalRecord.bloodType = (BloodType)bloodType.SelectedIndex;
+
+                foreach (Allergies a in allergs)
                 {
-                    allergies = a;
-                    break;
+                    if (a.name.Equals(AllergsBox.SelectedItem.ToString()))
+                    {
+                        allergies = a;
+                        break;
+                    }
+
                 }
 
-            }
-
-            medicalRecord.allergies = allergies;
+                medicalRecord.allergies = allergies;
 
 
 
-            mrc.AddMedicalRecord(medicalRecord);
+                mrc.AddMedicalRecord(medicalRecord);
 
-            this.Close();
-        }
+                this.Close();
+            }*/
 
-        private void allergens_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        // private void allergens_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        //  {
+        // allergens.SelectedIndex;
+        // }
+
+        private void refresh(Patient patient)
         {
-            // allergens.SelectedIndex;
+            Alergeni.Clear();
+
+            //  List<Allergies> allergies = new List<Allergies>();
+            //  allergies = ac.FindAll();
+            //  foreach (Allergies a in allergies)
+            // {
+            //     if(patient.id == a.
+            //   }
+
+
         }
+
+        private void add_Click(object sender, RoutedEventArgs e)
+        {
+            //   refresh();
+
+        }
+
+        public Allergies getSelectedAllergen()
+        {
+            Allergies a = allergs[AllergsBox.SelectedIndex];
+            return a;
+        }
+
     }
 }

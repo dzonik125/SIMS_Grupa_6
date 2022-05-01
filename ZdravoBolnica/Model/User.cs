@@ -3,13 +3,14 @@
 // Created: Thursday, April 7, 2022 10:12:42
 // Purpose: Definition of Class User
 
+using SIMS.Model;
 using System;
 
 namespace Model
 {
-   public class User
-   {
-      public string name { get; set; }
+    public class User
+    {
+        public string name { get; set; }
         public string surname { get; set; }
         public string jmbg { get; set; }
         public int id { get; set; }
@@ -17,6 +18,8 @@ namespace Model
         public string email { get; set; }
         public string birthdate { get; set; }
         public string adressID { get; set; }
+
+        public Gender gender { get; set; }
 
         public Adress address { get; set; }
 

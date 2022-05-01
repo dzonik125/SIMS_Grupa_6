@@ -21,12 +21,40 @@ namespace SIMS.Model
             };
         }
 
+        public static string BloodTypeToString(BloodType tip)
+        {
+            return tip switch
+            {
+                BloodType.ONegative => "O-",
+                BloodType.APositive => "A+",
+                BloodType.ANegative => "A-",
+                BloodType.BPositive => "B+",
+                BloodType.BNegative => "B-",
+                BloodType.ABPositive => "AB+",
+                BloodType.ABNegative => "AB-",
+                BloodType.OPositive => "O+",
+                _ => "",
+            };
+        }
+
+
         public static List<string> GetRoomTypes()
         {
             List<string> tipovi = new List<string>();
             foreach (RoomType tip in Enum.GetValues(typeof(RoomType)))
             {
                 string s = RoomTypeToString(tip);
+                tipovi.Add(s);
+            }
+            return tipovi;
+        }
+
+        public static List<string> GetBloodType()
+        {
+            List<string> tipovi = new List<string>();
+            foreach (BloodType tip in Enum.GetValues(typeof(BloodType)))
+            {
+                string s = BloodTypeToString(tip);
                 tipovi.Add(s);
             }
             return tipovi;
@@ -57,6 +85,7 @@ namespace SIMS.Model
                 "B-" => BloodType.BNegative,
                 "AB+" => BloodType.ABPositive,
                 "AB-" => BloodType.ABNegative,
+                "O+" => BloodType.OPositive,
                 _ => BloodType.OPositive,
             };
         }

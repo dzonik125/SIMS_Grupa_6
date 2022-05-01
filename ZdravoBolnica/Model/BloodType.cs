@@ -2,13 +2,14 @@
 {
     public enum BloodType
     {
-        OPositive,
+        ONegative,
         APositive,
+        ANegative,
         BPositive,
+        BNegative,
         ABPositive,
         ABNegative,
-        ANegative,
-        BNegative,
-        ONegative
+        OPositive
+
     }
 }
