@@ -3,19 +3,17 @@
 // Created: Saturday, April 9, 2022 18:23:18
 // Purpose: Definition of Class Address
 
-using System;
-
 namespace Model
 {
-   public class Adress : Serializable
-   {
+    public class Adress : Serializable
+    {
         public string street { get; set; }
         public string number { get; set; }
         public string city { get; set; }
         public string country { get; set; }
-        public string id { get; set; }
+        public int id { get; set; }
 
-        public Adress(string id)
+        public Adress(int id)
         {
             this.id = id;
         }
@@ -30,7 +28,7 @@ namespace Model
             number = values[1];
             city = values[2];
             country = values[3];
-            id = values[4];
+            id = int.Parse(values[4]);
         }
 
         public string[] ToCSV()

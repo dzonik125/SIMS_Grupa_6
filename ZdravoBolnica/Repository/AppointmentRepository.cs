@@ -3,9 +3,9 @@
 // Created: Thursday, April 7, 2022 10:47:04
 // Purpose: Definition of Class AppointmentRepository
 
+using Model;
 using System;
 using System.Collections.Generic;
-using Model;
 
 namespace Repository
 {
@@ -55,7 +55,7 @@ namespace Repository
             appointments = FindAll();
             foreach (Appointment a in appointments)
             {
-                if (a.Doctor.id==did)
+                if (a.Doctor.id == did)
                 {
                     doctorAppointments.Add(a);
                 }

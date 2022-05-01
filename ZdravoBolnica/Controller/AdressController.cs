@@ -2,15 +2,12 @@
 using Service;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Controller
 {
     public class AdressController
     {
-            public Adress FindAdressById(string id)
+        public Adress FindAdressById(int id)
         {
             return adressService.FindAdressById(id);
         }
@@ -21,7 +18,7 @@ namespace Controller
             return true;
         }
 
-        public bool DeleteAdressById(string id)
+        public bool DeleteAdressById(int id)
         {
 
             return true;
@@ -44,6 +41,6 @@ namespace Controller
         }
 
         public Service.AdressService adressService = new AdressService();
-        
+
     }
 }

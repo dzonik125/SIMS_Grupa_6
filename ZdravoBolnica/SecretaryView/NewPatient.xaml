@@ -5,50 +5,79 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIMS"
         mc:Ignorable="d"
-        Title="NewPatient" Height="600" Width="500">
-    <Grid>
-        <Label Content="Ime:" HorizontalAlignment="Left" Margin="99,10,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox HorizontalAlignment="Left" Name ="Name" Margin="207,18,0,0" Text=""  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
+        Title="NewPatient" Height="645" Width="625">
+    <Grid HorizontalAlignment="Left" Width="618" Margin="2,-15,0,4" RenderTransformOrigin="0.497,0.521">
+        <GroupBox Header="Osnovne informacije" Margin="10,18,430,21"/>
+        <GroupBox Header="Adresa" Margin="213,21,227,317"/>
+        <GroupBox Header="Zdravstveni karton" Margin="439,15,0,248" HorizontalAlignment="Left" Width="161"/>
+        <Label Content="Ime:" HorizontalAlignment="Left" Margin="89,43,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <TextBox HorizontalAlignment="Left" Name ="Name" Margin="43,73,0,0" Text=""  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
 
-        <Label Content="Prezime:"  HorizontalAlignment="Left" Margin="84,69,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox HorizontalAlignment="Left" Name ="Surname" Margin="207,73,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
+        <Label Content="Prezime:"  HorizontalAlignment="Left" Margin="73,95,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <TextBox HorizontalAlignment="Left" Name ="Surname" Margin="43,125,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
 
-        <Label Content="LBO:" HorizontalAlignment="Left" Margin="109,117,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox HorizontalAlignment="Left" Name="Lbo" Margin="207,121,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
+        <Label Content="LBO:" HorizontalAlignment="Left" Margin="87,147,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <TextBox HorizontalAlignment="Left" Name="Lbo" Margin="43,177,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
 
-        <Label Content="JMBG"  HorizontalAlignment="Left" Margin="103,165,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Jmbg" Margin="207,170,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
+        <Label Content="JMBG:"  HorizontalAlignment="Left" Margin="82,199,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Jmbg" Margin="43,228,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
 
-        <Label Content="Datum rodjenja:"  HorizontalAlignment="Left" Margin="69,217,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox HorizontalAlignment="Left" x:Name="BirthDate" Margin="207,217,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
+        <Label Content="Datum rodjenja:"  HorizontalAlignment="Left" Margin="44,252,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <TextBox HorizontalAlignment="Left" x:Name="BirthDate" Margin="41,280,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
 
-        <Label Content="Email:"  HorizontalAlignment="Left" Margin="94,258,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Email" Margin="207,262,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
+        <Label Content="Email:"  HorizontalAlignment="Left" Margin="74,303,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Email" Margin="40,333,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
 
-        <Label Content="Broj telefona:"  HorizontalAlignment="Left" Margin="74,298,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox HorizontalAlignment="Left" x:Name="PhoneNum" Margin="207,302,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
+        <Label Content="Broj telefona:"  HorizontalAlignment="Left" Margin="54,476,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <TextBox HorizontalAlignment="Left" x:Name="PhoneNum" Margin="38,511,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
 
-        <Label Content="Username:"  HorizontalAlignment="Left" Margin="74,340,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Username" Margin="207,342,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
+        <Label Content="Username:"  HorizontalAlignment="Left" Margin="58,362,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Username" Margin="38,392,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
 
-        <Label Content="Password:"  HorizontalAlignment="Left" Margin="74,378,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Password" Margin="207,381,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
+        <Label Content="Password:"  HorizontalAlignment="Left" Margin="60,422,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Password" Margin="38,449,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
 
-        <Label Content="Drzava:"  HorizontalAlignment="Left" Margin="74,420,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Country" Margin="207,421,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
+        <Label Content="Drzava:"  HorizontalAlignment="Left" Margin="274,43,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Country" Margin="243,67,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
 
-        <Label Content="Grad:"  HorizontalAlignment="Left" Margin="74,457,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox HorizontalAlignment="Left" x:Name="City" Margin="207,459,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
+        <Label Content="Grad:"  HorizontalAlignment="Left" Margin="280,95,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <TextBox HorizontalAlignment="Left" x:Name="City" Margin="243,125,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
 
-        <Label Content="Ulica:"  HorizontalAlignment="Left" Margin="74,495,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Street" Margin="207,496,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
+        <Label Content="Ulica:"  HorizontalAlignment="Left" Margin="280,147,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Street" Margin="243,177,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
 
-        <Label Content="Broj:"  HorizontalAlignment="Left" Margin="74,529,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox HorizontalAlignment="Left" x:Name="StreetNum" Margin="207,532,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
+        <Label Content="Broj:"  HorizontalAlignment="Left" Margin="283,199,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <TextBox HorizontalAlignment="Left" x:Name="StreetNum" Margin="243,228,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
 
-        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="405,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.171,0.842" FontSize="15" Height="29" Width="68" Click="AddPatient_Click"/>
-        <Button Content="Izadji" HorizontalAlignment="Left" Margin="405,74,0,0" VerticalAlignment="Top" FontSize="15" Height="29" Width="72" Click="CloseNew_Click"/>
-        <Button x:Name="medicalRecord" Content="Zdravstveni Karton" HorizontalAlignment="Left" Margin="378,165,0,0" VerticalAlignment="Top" Click="medicalRecord_Click"/>
+        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="305,578,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.171,0.842" FontSize="15" Height="29" Width="68" Click="AddPatient_Click"/>
+        <Button Content="Izadji" HorizontalAlignment="Left" Margin="464,578,0,0" VerticalAlignment="Top" FontSize="15" Height="29" Width="72" Click="CloseNew_Click"/>
+
+        <ComboBox x:Name="bloodType" IsReadOnly="True" HorizontalAlignment="Left" Margin="448,122,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Broj kartona:" HorizontalAlignment="Left" Margin="472,40,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.591,-4.698"/>
+        <Label Content="Krvna grupa:" HorizontalAlignment="Left" Margin="472,91,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Name="brojK" Margin="448,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Alergeni:" HorizontalAlignment="Left" Margin="479,149,0,0" VerticalAlignment="Top"/>
+        <ComboBox DisplayMemberPath="name" HorizontalAlignment="Left" IsReadOnly="True" ItemsSource="{Binding altable}"  Name="AllergsBox"  Margin="445,179,0,0" VerticalAlignment="Top" Width="120"/>
+
+        <DataGrid x:Name="allergenTable" HorizontalAlignment="Left" Height="126" Margin="454,232,0,0" VerticalAlignment="Top" Width="122" ItemsSource="{Binding Path=al}" CanUserAddRows="False" AutoGenerateColumns="False">
+            <DataGrid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.353"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DataGrid.RenderTransform>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Alergen" Width="*" Binding="{Binding name}"  DataGridColumn.CanUserResize="False"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="+" Name="add" HorizontalAlignment="Left" Margin="577,179,0,0" VerticalAlignment="Top" Width="15" Height="22" Click="addAllergen_Click"/>
+        <Button Content="-" Name="remove" HorizontalAlignment="Left" Margin="577,207,0,0" VerticalAlignment="Top" Width="15" Height="22" Click="removeAllergen_Click"/>
+        <Label Content="Pol:" HorizontalAlignment="Left" Margin="79,533,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <RadioButton Content="Muško" Height="16" Margin="38,563,0,0" Name="MaleRadioButton" VerticalAlignment="Top" HorizontalAlignment="Left" Width="57"/>
+        <RadioButton Content="Žensko" Height="16" HorizontalAlignment="Left" Margin="100,563,0,0" Name="FemaleRadioButton" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
