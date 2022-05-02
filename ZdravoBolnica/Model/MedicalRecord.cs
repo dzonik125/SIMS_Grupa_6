@@ -23,7 +23,7 @@ namespace Model
 
         public AllergiesRepository ar = new AllergiesRepository();
 
-        public Allergies allergies;
+        // public Allergies allergiess;
         public List<Prescription> prescriptions;
 
 

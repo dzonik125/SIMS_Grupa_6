@@ -4,6 +4,7 @@ using SIMS.Controller;
 using SIMS.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 
 namespace SIMS
@@ -45,7 +46,7 @@ namespace SIMS
             Jmbg.Text = p.jmbg;
             BirthDate.Text = p.birthdate;
 
-
+            bloodType.ItemsSource = Conversion.GetBloodType();
 
             if (p.gender.Equals(Gender.male))
             {
@@ -96,12 +97,13 @@ namespace SIMS
                     bloodType.SelectedIndex = 7;
                 }
 
-                // mr.allergies.Add(al);
 
             }
             else
             {
                 brojK.Text = 0.ToString();
+                MaleRadioButton.IsChecked = false;
+                FemaleRadioButton.IsChecked = false;
 
             }
 
@@ -142,6 +144,21 @@ namespace SIMS
             a.number = StreetNum.Text;
             a.street = Street.Text;
 
+            if (selectedPatient.medicalRecord.id.Equals(0))
+            {
+
+                MedicalRecord mrr = new MedicalRecord();
+                mrr.cardNum = Int32.Parse(brojK.Text);
+                mrr.bloodType = Conversion.StringToBloodType(bloodType.Text);
+
+                // mr.prescriptions = al.ToList<Allergies>();
+                mrr.allergies = al.ToList<Allergies>();
+                mrc.AddMedicalRecord(mrr);
+
+                selectedPatient.guest = false;
+
+            }
+
             MedicalRecord mr = mrc.FindMedicalRecordById(selectedPatient.medicalRecord.id);
             mr.cardNum = Int32.Parse(brojK.Text);
 
@@ -166,16 +183,12 @@ namespace SIMS
             else selectedPatient.gender = Gender.female;
 
 
-
-
-
-
             ac.UpdateAdress(a);
             mrc.UpdateMedicalRecord(mr);
 
 
             selectedPatient.address = ac.FindAdressById(selectedPatient.address.id);
-
+            selectedPatient.medicalRecord = mrc.FindMedicalRecordById(selectedPatient.medicalRecord.id);
 
 
             pc.UpdatePatient(selectedPatient);
