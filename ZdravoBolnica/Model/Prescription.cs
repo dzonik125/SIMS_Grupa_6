@@ -1,9 +1,5 @@
 ﻿using Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SIMS.Model
 {
@@ -11,6 +7,9 @@ namespace SIMS.Model
     {
         public int id;
         public Medication medication { get; set; }
+
+        // public List<Medication> meds = new List<Medication>();
+
         public Doctor doctor { get; set; }
         public MedicalRecord medicalRecord;
         public DateTime startTime;

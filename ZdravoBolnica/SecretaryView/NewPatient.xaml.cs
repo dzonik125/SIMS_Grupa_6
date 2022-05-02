@@ -21,6 +21,7 @@ namespace SIMS
         public BloodType bloodT;
         public MedicalRecord medicalRecord = new MedicalRecord();
         public Gender gender;
+        public Prescription pr;
 
         private PatientController pc = new PatientController();
         private AdressController ac = new AdressController();
@@ -29,30 +30,30 @@ namespace SIMS
         public PrescriptionController prc = new PrescriptionController();
         public MedicationController mc = new MedicationController();
 
-
-        public List<Allergies> allergs = new List<Allergies>();
-        public BindingList<Allergies> al = new BindingList<Allergies>();
-
         public List<Prescription> prescriptions = new List<Prescription>();
 
-        public List<Medication> medications = new List<Medication>();
 
-        public List<Allergies> allallergs = new List<Allergies>();
+        public BindingList<Allergies> al = new BindingList<Allergies>();
+        public List<Allergies> allergs = new List<Allergies>();
+
+        public BindingList<Medication> medications = new BindingList<Medication>();
+        public List<Medication> meds = new List<Medication>();
 
         public NewPatient()
         {
             InitializeComponent();
 
             allergenTable.ItemsSource = al;
+            medAllergs_table.ItemsSource = medications;
+
 
             bloodType.ItemsSource = Conversion.GetBloodType();
 
             allergs = alc.FindAll();
-            medications = mc.FindAll();
+            meds = mc.FindAll();
 
-            // allallergs = medications.ForEach(item => allergs.Add(item));
             AllergsBox.ItemsSource = allergs;
-            // AllergsBox.ItemsSource = medications;
+            MedAllergsBox.ItemsSource = meds;
 
 
         }
@@ -61,6 +62,7 @@ namespace SIMS
         {
             adress = new Adress();
             mr = new MedicalRecord();
+            pr = new Prescription();
 
             patient.name = Name.Text;
             patient.surname = Surname.Text;
@@ -87,7 +89,12 @@ namespace SIMS
             mr.cardNum = Int32.Parse(brojK.Text);
             mr.bloodType = Conversion.StringToBloodType(bloodType.Text);
 
-            // mr.prescriptions = al.ToList<Allergies>();
+            mr.medications = medications.ToList<Medication>();
+
+            //pr.meds = medications.ToList<Medication>();
+
+            // mr.prescriptions.Add(pr);
+
             mr.allergies = al.ToList<Allergies>();
             mrc.AddMedicalRecord(mr);
 
@@ -124,5 +131,14 @@ namespace SIMS
 
         }
 
+        private void addMedicine_Click(object sender, RoutedEventArgs e)
+        {
+            medications.Add((Medication)MedAllergsBox.SelectedItem);
+        }
+
+        private void removeMedicine_Click(object sender, RoutedEventArgs e)
+        {
+            medications.Remove((Medication)medAllergs_table.SelectedItem);
+        }
     }
 }
