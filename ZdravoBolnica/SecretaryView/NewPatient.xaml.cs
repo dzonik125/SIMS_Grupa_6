@@ -26,11 +26,18 @@ namespace SIMS
         private AdressController ac = new AdressController();
         private MedicalRecordController mrc = new MedicalRecordController();
         public AllergiesController alc = new AllergiesController();
+        public PrescriptionController prc = new PrescriptionController();
+        public MedicationController mc = new MedicationController();
+
 
         public List<Allergies> allergs = new List<Allergies>();
         public BindingList<Allergies> al = new BindingList<Allergies>();
 
+        public List<Prescription> prescriptions = new List<Prescription>();
 
+        public List<Medication> medications = new List<Medication>();
+
+        public List<Allergies> allallergs = new List<Allergies>();
 
         public NewPatient()
         {
@@ -41,7 +48,12 @@ namespace SIMS
             bloodType.ItemsSource = Conversion.GetBloodType();
 
             allergs = alc.FindAll();
+            medications = mc.FindAll();
+
+            // allallergs = medications.ForEach(item => allergs.Add(item));
             AllergsBox.ItemsSource = allergs;
+            // AllergsBox.ItemsSource = medications;
+
 
         }
 
@@ -75,6 +87,7 @@ namespace SIMS
             mr.cardNum = Int32.Parse(brojK.Text);
             mr.bloodType = Conversion.StringToBloodType(bloodType.Text);
 
+            // mr.prescriptions = al.ToList<Allergies>();
             mr.allergies = al.ToList<Allergies>();
             mrc.AddMedicalRecord(mr);
 

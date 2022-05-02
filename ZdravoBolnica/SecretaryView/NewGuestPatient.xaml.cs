@@ -44,9 +44,9 @@ namespace SIMS
             patient.address = adress;
             patient.guest = true;
 
-            mr.id = 0;
-            patient.medicalRecord = mr;
-            //  mrc.AddMedicalRecord(mr);
+
+            //      mr.id = 0;
+            //          patient.medicalRecord = mr;
 
             ac.AddAdress(adress);
             pc.AddPatient(patient);

@@ -57,11 +57,11 @@
         <Label Content="Krvna grupa:" HorizontalAlignment="Left" Margin="472,91,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Name="brojK" Margin="452,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label Content="Alergeni:" HorizontalAlignment="Left" Margin="479,149,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" IsReadOnly="True" ItemsSource="{Binding altable}" DisplayMemberPath="FullName"  Name="AllergsBox"  Margin="450,179,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" IsReadOnly="True" ItemsSource="{Binding allergss}" DisplayMemberPath="name"  Name="AllergsBox"  Margin="450,179,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="Pol:" HorizontalAlignment="Left" Margin="79,533,0,0" VerticalAlignment="Top" FontSize="15"/>
         <RadioButton Content="Muško" Height="16" Margin="38,563,0,0" Name="MaleRadioButton" VerticalAlignment="Top" HorizontalAlignment="Left" Width="57"/>
         <RadioButton Content="Žensko" Height="16" HorizontalAlignment="Left" Margin="100,563,0,0" Name="FemaleRadioButton" VerticalAlignment="Top"/>
-        <DataGrid x:Name="allergenTable" HorizontalAlignment="Left" Height="126" Margin="462,0,0,0" VerticalAlignment="Center" Width="122" ItemsSource="{Binding Path=al}">
+        <DataGrid x:Name="allergenTable" HorizontalAlignment="Left" Height="126" Margin="462,0,0,0" VerticalAlignment="Center" Width="122" ItemsSource="{Binding Path=al}" CanUserAddRows="False" AutoGenerateColumns="False">
             <DataGrid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -75,7 +75,7 @@
                 <DataGridTextColumn Header="Alergen" Width="*" Binding="{Binding name}"  DataGridColumn.CanUserResize="False"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="+" Name="add" HorizontalAlignment="Left" Margin="577,179,0,0" VerticalAlignment="Top" Width="15" Height="22"/>
-
+        <Button Content="+" Name="add" HorizontalAlignment="Left" Margin="577,179,0,0" VerticalAlignment="Top" Width="15" Height="22" Click="addAllergen_Click"/>
+        <Button Content="-" Name="remove" HorizontalAlignment="Left" Margin="577,207,0,0" VerticalAlignment="Top" Width="15" Height="22" Click="removeAllergen_Click"/>
     </Grid>
 </Window>

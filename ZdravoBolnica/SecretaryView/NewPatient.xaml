@@ -57,7 +57,7 @@
         <Label Content="Krvna grupa:" HorizontalAlignment="Left" Margin="472,91,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Name="brojK" Margin="448,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label Content="Alergeni:" HorizontalAlignment="Left" Margin="479,149,0,0" VerticalAlignment="Top"/>
-        <ComboBox DisplayMemberPath="name" HorizontalAlignment="Left" IsReadOnly="True" ItemsSource="{Binding altable}"  Name="AllergsBox"  Margin="445,179,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox DisplayMemberPath="name" HorizontalAlignment="Left" IsReadOnly="True" ItemsSource="{Binding allergss}"  Name="AllergsBox"  Margin="445,179,0,0" VerticalAlignment="Top" Width="120"/>
 
         <DataGrid x:Name="allergenTable" HorizontalAlignment="Left" Height="126" Margin="454,232,0,0" VerticalAlignment="Top" Width="122" ItemsSource="{Binding Path=al}" CanUserAddRows="False" AutoGenerateColumns="False">
             <DataGrid.RenderTransform>

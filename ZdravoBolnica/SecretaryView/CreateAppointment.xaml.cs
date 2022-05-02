@@ -19,7 +19,6 @@ namespace SIMS.SecretaryView
         private AccountController patientController = new AccountController();
         private DoctorController doctorController = new DoctorController();
         private RoomController roomController = new RoomController();
-        private ObservableCollection<Appointment> apps;
 
         public ObservableCollection<Appointment> Apps { get; set; }
 
@@ -35,7 +34,6 @@ namespace SIMS.SecretaryView
             InitializeComponent();
             this.DataContext = this;
             Apps = new ObservableCollection<Appointment>();
-            doctorUser = doctorController.GetAllDoctors()[0];
 
             Refresh();
         }
@@ -46,7 +44,7 @@ namespace SIMS.SecretaryView
             Apps.Clear();
 
             List<Appointment> appointments = new();
-            appointments = appController.getFutureAppointmentsForDoctor(doctorUser.id);
+            appointments = appController.GetAllApointments();
             List<Patient> patients = patientController.FindAllAccounts();
             List<Room> rooms = roomController.FindAll();
             List<Doctor> doctors = doctorController.GetAllDoctors();
