@@ -39,6 +39,7 @@ namespace SIMS.DoctorView
             examinationReport.doctor.id = DoctorWindow.Instance.doctorUser.id;
             examinationReport.medicalRecord = new MedicalRecord();
             examinationReport.medicalRecord.id = PatientsView.Instance.selectedPatient.medicalRecord.id;
+            examinationReport.treatmentPlan = Therapy.Text;
             examinationReportController.Create(examinationReport);
             PatientMedicalRecord.Instance.refreshExaminationReports();
             this.Close();
