@@ -17,7 +17,7 @@ namespace Model
         public List<String> hronicalDeseasses;
         public Allergies allergies;
         public List<Prescription> prescriptions;
-
+        public List<ExaminationReport> reports;
      
 
         public MedicalRecord(int cardNum, BloodType bt)

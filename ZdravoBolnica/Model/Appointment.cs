@@ -46,8 +46,12 @@ namespace Model
             {
                 if (Type == AppointmentType.examination)
                     return "Pregled";
-                else
+                else if (Type == AppointmentType.surgery)
+                {
                     return "Operacija";
+                }
+                else
+                    return "";
             }
         }
         

@@ -14,10 +14,11 @@ namespace SIMS.Model
         public String mainProblems { get; set; }
         public String diagnosis { get; set; }
         public String anamnesis { get; set; }
-
+        public Appointment appointment { get; set; }
         public MedicalRecord medicalRecord { get; set; }
         public DateTime reportDate { get; set; }
 
+        public string treatmentPlan { get; set; }
 
         public void FromCSV(string[] values)
         {
@@ -30,6 +31,7 @@ namespace SIMS.Model
             diagnosis = values[4];
             anamnesis = values[5];
             reportDate = DateTime.Parse(values[6]);
+            treatmentPlan = values[7];
         }
 
         public string[] ToCSV()
@@ -43,6 +45,7 @@ namespace SIMS.Model
                 diagnosis,
                 anamnesis,
                 reportDate.ToString(),
+                treatmentPlan,
             };
             return csvValues;
         }

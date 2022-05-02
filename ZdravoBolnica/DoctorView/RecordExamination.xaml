@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIMS.DoctorView"
         mc:Ignorable="d"
-        Title="Record Examination" Height="530" Width="400">
+        Title="Record Examination" Height="550" Width="400">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="140"/>
@@ -17,13 +17,15 @@
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="100"/>
-                <RowDefinition Height="145"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Content="Pacijent:" Margin="21,12,11,11" FontSize="15"/>
             <Label Content="Glavne Tegobe:" Margin="21,0,7,70" FontSize="15" Grid.Row="1"/>
             <Label Grid.Row="2" Content="Dijagnoza:" Margin="21,3,7,65" FontSize="15"/>
             <Label Grid.Row="3" Content="Anamneza:" Margin="21,3,7,65" FontSize="15"/>
-            <Button Grid.Row="4" Content="Evidentiraj" Margin="26,65,0,40" Click="Report_Click"/>
+            <Label Grid.Row="4" Content="Plan lecenja:" Margin="21,3,7,35" FontSize="15"/>
+            <Button Grid.Row="5" Content="Evidentiraj" Margin="19,33,0,24" Click="Report_Click"/>
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
@@ -31,13 +33,15 @@
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="100"/>
-                <RowDefinition Height="145"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Content="Petar Petrovic" FontSize="15" Margin="5,12,78,12"/>
             <TextBox Grid.Row="1" Margin="11,10,26,0" Name ="MainProblems" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
             <TextBox Grid.Row="2" Margin="11,10,26,0" Name="Diagnosis" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
             <TextBox Grid.Row="3" Margin="11,10,26,0" Name="Anamnesis" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
-            <Button Grid.Row="4" Content="Izadji" Margin="120,65,26,40"/>
+            <TextBox Grid.Row="4" Margin="11,10,26,0" Name="Therapy" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
+            <Button Grid.Row="5" Content="Izadji" Margin="120,33,19,24"/>
         </Grid>
     </Grid>
 </Window>
