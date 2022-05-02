@@ -21,7 +21,6 @@ namespace Controller
         {
             medicalRecordService.UpdateMedicalRecord(mr);
             return true;
-            //throw new NotImplementedException();
         }
 
         public bool DeleteMedicalRecordById(int id)

@@ -91,15 +91,12 @@ namespace SIMS
 
             mr.medications = medications.ToList<Medication>();
 
-            //pr.meds = medications.ToList<Medication>();
-
-            // mr.prescriptions.Add(pr);
 
             mr.allergies = al.ToList<Allergies>();
+
             mrc.AddMedicalRecord(mr);
 
             patient.address = adress;
-
             patient.guest = false;
 
 
