@@ -1,4 +1,2 @@
-1|Marko|Peric||||1|||||False|0|1
-2|jujhu|||||2|||||False|1|2
-3|Guest|Guest||||3|||4329432482||True|0|0
-4|dadd|dada||||4|||435624||True|0|0
+1|ime|||||1|||||False|0|1
+2|janko|guest|email|passs|userna|2|06488|1234|123456789|12.3.1200.|False|1|15

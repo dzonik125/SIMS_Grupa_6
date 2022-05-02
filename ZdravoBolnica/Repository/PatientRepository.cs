@@ -81,6 +81,8 @@ namespace Repository
                     p.username = entity.username;
                     p.password = entity.password;
                     p.gender = entity.gender;
+                    p.medicalRecord = entity.medicalRecord;
+                    p.guest = entity.guest;
                     break;
                 }
             }
