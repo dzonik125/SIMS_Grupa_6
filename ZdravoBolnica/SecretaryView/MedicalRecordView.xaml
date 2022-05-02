@@ -8,17 +8,30 @@
         mc:Ignorable="d"
         Title="MedicalRecordView" Height="450" Width="340">
     <Grid>
-        <ComboBox x:Name="bloodType" DisplayMemberPath="bloodT" HorizontalAlignment="Left" Margin="190,124,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="bloodType" IsReadOnly="True" HorizontalAlignment="Left" Margin="190,124,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="Broj kartona:" HorizontalAlignment="Left" Margin="46,68,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.591,-4.698"/>
         <Label Content="Krvna grupa:" HorizontalAlignment="Left" Margin="46,122,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Name="brojK" Margin="190,72,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label Content="Alergeni:" HorizontalAlignment="Left" Margin="46,174,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Name="allergens"  Margin="190,176,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Kreiraj" HorizontalAlignment="Left" Margin="145,374,0,0" VerticalAlignment="Top" Click="CreateMR_Click"/>
-        <Label Content="Opis hronicnih bolesti pacijenta:" HorizontalAlignment="Left" Margin="25,229,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="hronb" HorizontalAlignment="Left" Margin="46,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="224" Height="60"/>
+        <ComboBox HorizontalAlignment="Left" IsReadOnly="True" Name="AllergsBox"  Margin="151,178,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Kreiraj" HorizontalAlignment="Center" Margin="0,389,0,0" VerticalAlignment="Top" />
 
+        <DataGrid x:Name="allergenTable" HorizontalAlignment="Center" Height="126" Margin="0,217,0,0" VerticalAlignment="Top" Width="296" ItemsSource="{Binding Path=Alergeni}">
+            <DataGrid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.353"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DataGrid.RenderTransform>
 
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Width="*" Binding="{Binding id}" DataGridColumn.CanUserResize="False"/>
+                <DataGridTextColumn Header="Alergen" Width="*" Binding="{Binding name}"  DataGridColumn.CanUserResize="False"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="+" Name="add" HorizontalAlignment="Left" Margin="289,180,0,0" VerticalAlignment="Top" Width="15" Click="add_Click"/>
 
     </Grid>
 </Window>
