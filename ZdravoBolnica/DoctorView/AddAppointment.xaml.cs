@@ -54,7 +54,7 @@ namespace SIMS.DoctorView
                 return;
             }
             else
-            {
+            {   
                 ac.SaveAppointment(a);
                 this.Close();
                 appointments.Refresh();
