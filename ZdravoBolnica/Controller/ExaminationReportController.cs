@@ -51,5 +51,9 @@ namespace SIMS.Controller
         {
             examinationReportService.bindReporswithDoctors(reports, doctors);
         }
+        public void bindReportswithAppointments(List<ExaminationReport> reports, List<Appointment> appointments)
+        {
+            examinationReportService.bindReportswithAppointments(reports, appointments);
+        }
     }
 }

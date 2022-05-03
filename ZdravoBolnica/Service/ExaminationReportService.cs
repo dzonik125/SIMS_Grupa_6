@@ -60,5 +60,20 @@ namespace SIMS.Service
                 }
             }
         }
+
+        public void bindReportswithAppointments(List<ExaminationReport> reports, List<Appointment> appointments)
+        {
+            foreach (Appointment a in appointments)
+            {
+                foreach (ExaminationReport e in reports)
+                {
+                    if (e.appointment.id == a.id)
+                    {
+                        e.appointment = a;
+                    }
+                }
+            }
+
+        }
     }
 }
