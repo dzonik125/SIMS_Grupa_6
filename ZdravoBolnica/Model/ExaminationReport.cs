@@ -33,7 +33,7 @@ namespace SIMS.Model
             reportDate = DateTime.Parse(values[6]);
             treatmentPlan = values[7];
             appointment = new Appointment();
-            appointment.id = values[8];
+            appointment.id = int.Parse(values[8]);
         }
 
         public string[] ToCSV()
@@ -48,7 +48,7 @@ namespace SIMS.Model
                 anamnesis,
                 reportDate.ToString(),
                 treatmentPlan,
-                appointment.id
+                appointment.id.ToString(),
             };
             return csvValues;
         }

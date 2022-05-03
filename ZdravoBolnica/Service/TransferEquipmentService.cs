@@ -22,7 +22,7 @@ namespace SIMS.Service
             moveEquipment = etr.FindAll();
             foreach (EquipmentTransfer et in moveEquipment)
             {
-                if (DateTime.Compare(DateTime.Now, et.transferDate) == 0 || DateTime.Compare(DateTime.Now, et.transferDate) < 0)
+                if (DateTime.Compare(DateTime.Now, et.transferDate) == 0 || DateTime.Compare(et.transferDate, DateTime.Now) < 0)
                 {
                    
                     App.Current.Dispatcher.Invoke((Action)delegate
