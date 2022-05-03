@@ -1,2 +1,0 @@
-1|Pacijent|||||1|||||False|0|1
-2|Guestt|Guestt||||2|||67886368||False|1|2
