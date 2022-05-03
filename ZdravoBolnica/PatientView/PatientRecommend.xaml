@@ -25,7 +25,7 @@
 		<TextBox IsReadOnly="True" Name="tb1" HorizontalAlignment="Left" Margin="309,256,0,0" VerticalAlignment="Top" Width="120"/>
 		<Label Name="l5" Content="Termini:" HorizontalAlignment="Left" Margin="344,223,0,0" VerticalAlignment="Top"/>
 		<ComboBox Name="cb3" HorizontalAlignment="Left" Margin="309,252,0,0" VerticalAlignment="Top" Width="120"/>
-		<ComboBox Name="cb4" HorizontalAlignment="Left" Margin="313,110,0,0" VerticalAlignment="Top" Width="120"/>
+		<ComboBox DropDownClosed="Cb4_OnSelectionChanged" Name="cb4" HorizontalAlignment="Left" Margin="313,110,0,0" VerticalAlignment="Top" Width="120"/>
 		<Label Name="l6" Content="Odaberite lekara:" HorizontalAlignment="Left" Margin="323,87,0,0" VerticalAlignment="Top"/>
 		<Label Name="l8" Content="Odaberite pocetni datum" HorizontalAlignment="Left" Margin="298,154,0,0" VerticalAlignment="Top"/>
 		<DatePicker SelectedDateChanged="Dp4_OnSelectedDateChanged" Name="dp4" HorizontalAlignment="Left" Margin="324,185,0,0" VerticalAlignment="Top"/>

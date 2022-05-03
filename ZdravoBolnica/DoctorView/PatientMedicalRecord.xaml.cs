@@ -83,6 +83,9 @@ namespace SIMS.DoctorView
         {
             this.Visibility = Visibility.Hidden;
             e.Cancel = true;
+            patient = null;
+            PatientsView pw = PatientsView.Instance;
+            pw.selectedPatient = null;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

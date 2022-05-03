@@ -483,5 +483,27 @@ namespace SIMS.PatientView
             }
         }
 
+        private void Cb4_OnSelectionChanged(object? sender, EventArgs eventArgs)
+        {
+            cb5.Items.Clear();
+            if (dp5.SelectedDate != null)
+            {
+                List<Doctor> docs = dc.GetAllDoctors();
+                int id = -1;
+                foreach (Doctor d in docs)
+                {
+                    if (d.FullName.Equals(cb4.Text))
+                    {
+                        id = d.id;
+                    }
+                }
+
+                ac.getTenNextAppointmentsForDoctorForDate(start, finish, id);
+                for (int i = 0; i < ac.getTenNextAppointmentsForDoctorForDate(start, finish, id).Count; i++)
+                {
+                    cb5.Items.Add(ac.getTenNextAppointmentsForDoctorForDate(start, finish, id).ElementAt(i));
+                }
+            }
+        }
     }
 }
