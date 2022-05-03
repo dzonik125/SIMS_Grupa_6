@@ -139,5 +139,39 @@ namespace SIMS.DoctorView
             PrescriptionView prescription = new PrescriptionView();
             prescription.Show();
         }
+
+
+        private void ExaminationDetails(object sender, RoutedEventArgs e)
+        {
+            ExaminationReport examinationReport = ExaminationsTable.SelectedItem as ExaminationReport;
+            ExaminationDetails details = new ExaminationDetails(examinationReport);
+            details.Show();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ExaminationReport examinationReport = ExaminationsTable.SelectedItem as ExaminationReport;
+            EditExaminationReport editExaminationReport = new EditExaminationReport(examinationReport);
+            editExaminationReport.Show();
+
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+           
+            
+            Appointment a = appointmentController.findPatientAppointment(patient);
+            if (a == null)
+            {
+                MessageBox.Show("Izabrani pacijent nema ni jedan zakazan termin u ovom periodu!");
+            }
+            else
+            {
+                RecordExamination re = new RecordExamination(a);
+                re.ShowDialog();
+            }
+            
+        }
     }
+
 }

@@ -39,7 +39,7 @@ namespace SIMS.Service
 
         public void Update(ExaminationReport entity)
         {
-            throw new NotImplementedException();
+            examinationReportRepository.Update(entity);
         }
 
         public List<ExaminationReport> findReportsByMRecordId(int id)
