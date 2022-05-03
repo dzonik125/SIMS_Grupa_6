@@ -30,6 +30,7 @@ namespace SIMS
         private AppointmentController ac = new AppointmentController();
         private RoomController rc = new RoomController();
         private Equipment equipment = new Equipment();
+        private TransferEquipmentController tec = new TransferEquipmentController();
         private int quantity;
         public TransferEquipment(Room roomS, Equipment selectedEquipment)
         {
@@ -96,13 +97,35 @@ namespace SIMS
             appointmentRoomDestination.Type = AppointmentType.transfer;
             appointmentRoomDestination.timesEdited = 0;
             appointemntRoomSource.timesEdited = 0;
-            if(!Conversion.RoomTypeToString(roomSource.roomType).Equals("Magacin"))
+            if (!Conversion.EquipmentTypeToString(equipment.type).Equals("potrosna"))
             {
-                ac.SaveAppointment(appointemntRoomSource);
+                if (!Conversion.RoomTypeToString(roomSource.roomType).Equals("Magacin"))
+                {
+                    ac.SaveAppointment(appointemntRoomSource);
+                }
+
+                ac.SaveAppointment(appointmentRoomDestination);
+
+
+                if (DateTime.Compare(DateTime.Now, transferDate) == 0)
+                {
+
+                    rec.TransferEquipment(roomSource, roomDestination, equipment, quantity);
+                }
+                else
+                {
+                    tec.SaveTransfer(roomSource, roomDestination, transferDate, quantity, equipment);
+
+                }
             }
-            
-            ac.SaveAppointment(appointmentRoomDestination);
-            rec.TransferEquipment(roomSource,roomDestination, equipment,quantity);
+            else
+            {
+                rec.TransferEquipment(roomSource, roomDestination, equipment, quantity);
+            }
+
+
+
+
             ManagerUI mui = ManagerUI.Instance;
             
             mui.refreshRoomInventoryTable(roomDestination);

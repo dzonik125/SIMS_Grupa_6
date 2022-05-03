@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.3.0" />
+    <PackageReference Include="System.Threading.Timer" Version="4.3.0" />
   </ItemGroup>
 
 </Project>
