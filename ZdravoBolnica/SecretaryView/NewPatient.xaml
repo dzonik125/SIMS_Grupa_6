@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:SIMS"
         mc:Ignorable="d"
         Title="NewPatient" Height="645" Width="625">
-    <Grid HorizontalAlignment="Left" Width="618" Margin="2,-15,0,4" RenderTransformOrigin="0.497,0.521">
+    <Grid HorizontalAlignment="Left" Width="618" Margin="2,-13,0,2" RenderTransformOrigin="0.497,0.521">
         <GroupBox Header="Osnovne informacije" Margin="10,18,430,21"/>
         <GroupBox Header="Adresa" Margin="213,21,227,317"/>
-        <GroupBox Header="Zdravstveni karton" Margin="439,15,0,248" HorizontalAlignment="Left" Width="161"/>
+        <GroupBox Header="Zdravstveni karton" Margin="439,15,0,77" HorizontalAlignment="Left" Width="161"/>
         <Label Content="Ime:" HorizontalAlignment="Left" Margin="89,43,0,0" VerticalAlignment="Top" FontSize="15"/>
         <TextBox HorizontalAlignment="Left" Name ="Name" Margin="43,73,0,0" Text=""  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="15"/>
 
@@ -78,6 +78,25 @@
         <Label Content="Pol:" HorizontalAlignment="Left" Margin="79,533,0,0" VerticalAlignment="Top" FontSize="15"/>
         <RadioButton Content="Muško" Height="16" Margin="38,563,0,0" Name="MaleRadioButton" VerticalAlignment="Top" HorizontalAlignment="Left" Width="57"/>
         <RadioButton Content="Žensko" Height="16" HorizontalAlignment="Left" Margin="100,563,0,0" Name="FemaleRadioButton" VerticalAlignment="Top"/>
+        
+        <ComboBox DisplayMemberPath="name" HorizontalAlignment="Left" IsReadOnly="True" ItemsSource="{Binding medallergs}"  x:Name="MedAllergsBox"  Margin="451,395,0,0" VerticalAlignment="Top" Width="120" />
+        <Button Content="-" x:Name="removeMedicine" HorizontalAlignment="Left" Margin="577,425,0,0" VerticalAlignment="Top" Width="15" Height="22" Click="removeMedicine_Click"/>
+        <Button Content="+" x:Name="addMedicine" HorizontalAlignment="Left" Margin="577,395,0,0" VerticalAlignment="Top" Width="15" Height="22" Click="addMedicine_Click"/>
+        <Label Content="Alergeni lekovi:" HorizontalAlignment="Left" Margin="473,365,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="medAllergs_table" HorizontalAlignment="Left" Height="126" Margin="452,427,0,0" VerticalAlignment="Top" Width="122" ItemsSource="{Binding al}" CanUserAddRows="False" AutoGenerateColumns="False">
+            <DataGrid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.353"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DataGrid.RenderTransform>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Allerg" Width="*" Binding="{Binding name}"  CanUserResize="False"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Window>

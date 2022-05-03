@@ -27,6 +27,9 @@ namespace SIMS
 
         public BindingList<Allergies> al = new BindingList<Allergies>();
         public AllergiesController alc = new AllergiesController();
+
+        public BindingList<Medication> medications = new BindingList<Medication>();
+        public MedicationController medsc = new MedicationController();
         public EditPatient(Patient p)
         {
             selectedPatient = p;
@@ -46,7 +49,7 @@ namespace SIMS
             Lbo.Text = p.lbo;
             Jmbg.Text = p.jmbg;
             BirthDate.Text = p.birthdate;
-            
+
             bloodType.ItemsSource = Conversion.GetBloodType();
 
             if (p.gender.Equals(Gender.male))
@@ -56,10 +59,11 @@ namespace SIMS
             else FemaleRadioButton.IsChecked = true;
 
             List<Allergies> allergs = alc.FindAll();
+            List<Medication> meds = medsc.FindAll();
 
             if (!p.guest)
             {
-                
+
                 MedicalRecord mr = mrc.FindMedicalRecordById(p.medicalRecord.id);
                 brojK.Text = mr.cardNum.ToString();
 
@@ -98,9 +102,14 @@ namespace SIMS
                     bloodType.SelectedIndex = 7;
                 }
 
-                foreach(Allergies all in mr.allergies)
+                foreach (Allergies all in mr.allergies)
                 {
                     al.Add(all);
+                }
+
+                foreach (Medication med in mr.medications)
+                {
+                    medications.Add(med);
                 }
 
             }
@@ -110,11 +119,15 @@ namespace SIMS
                 MaleRadioButton.IsChecked = false;
                 FemaleRadioButton.IsChecked = false;
 
-                
+
 
             }
             AllergsBox.ItemsSource = allergs;
             allergenTable.ItemsSource = al;
+
+            MedAllergsBox.ItemsSource = meds;
+            medAllergs_table.ItemsSource = medications;
+
         }
 
 
@@ -131,13 +144,13 @@ namespace SIMS
             MedicalRecord mrr = new MedicalRecord();
             if (selectedPatient.guest)
             {
-                
+
                 mrr.cardNum = Int32.Parse(brojK.Text);
                 mrr.bloodType = Conversion.StringToBloodType(bloodType.Text);
 
-                // mr.prescriptions = al.ToList<Allergies>();
+                mrr.medications = medications.ToList<Medication>();
                 mrr.allergies = al.ToList<Allergies>();
-                
+
                 mrc.AddMedicalRecord(mrr);
 
                 selectedPatient.guest = false;
@@ -146,15 +159,16 @@ namespace SIMS
             }
             else
             {
-                
+
                 mr.cardNum = Int32.Parse(brojK.Text);
 
                 mr.bloodType = Conversion.StringToBloodType(bloodType.Text);
                 mr.allergies = al.ToList<Allergies>();
+                mr.medications = medications.ToList<Medication>();
             }
 
-            
-            
+
+
 
 
             selectedPatient.name = Name.Text;
@@ -179,7 +193,8 @@ namespace SIMS
             if (mr == null)
             {
                 mrc.UpdateMedicalRecord(mrr);
-            } else mrc.UpdateMedicalRecord(mr);
+            }
+            else mrc.UpdateMedicalRecord(mr);
 
             selectedPatient.address = ac.FindAdressById(selectedPatient.address.id);
             selectedPatient.medicalRecord = mrc.FindMedicalRecordById(selectedPatient.medicalRecord.id);
@@ -207,6 +222,16 @@ namespace SIMS
         {
             al.Remove((Allergies)allergenTable.SelectedItem);
 
+        }
+
+        private void addMedicine_Click(object sender, RoutedEventArgs e)
+        {
+            medications.Add((Medication)MedAllergsBox.SelectedItem);
+        }
+
+        private void removeMedicine_Click(object sender, RoutedEventArgs e)
+        {
+            medications.Remove((Medication)medAllergs_table.SelectedItem);
         }
     }
 }

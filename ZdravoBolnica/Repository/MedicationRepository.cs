@@ -3,9 +3,6 @@ using Repository;
 using SIMS.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SIMS.Repository
 {
@@ -32,7 +29,7 @@ namespace SIMS.Repository
             medicationSerializer.toCSV(filename, medications);
 
         }
-    
+
 
         public void DeleteAll()
         {
@@ -46,7 +43,16 @@ namespace SIMS.Repository
 
         public void DeleteById(int id)
         {
-            throw new NotImplementedException();
+            List<Medication> medications = FindAll();
+            foreach (Medication m in medications)
+            {
+                if (m.id.Equals(id))
+                {
+                    medications.Remove(m);
+                    break;
+                }
+            }
+            medicationSerializer.toCSV(filename, medications);
         }
 
         public List<Medication> FindAll()
@@ -54,14 +60,22 @@ namespace SIMS.Repository
             return medicationSerializer.fromCSV(filename);
         }
 
-      
+
 
         public Medication FindById(int key)
         {
-            throw new NotImplementedException();
+            List<Medication> medications = FindAll();
+            foreach (Medication m in medications)
+            {
+                if (m.id.Equals(key))
+                {
+                    return m;
+                }
+            }
+            return null;
         }
 
-        
+
 
         public void Update(Medication entity)
         {

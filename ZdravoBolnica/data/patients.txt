@@ -1,2 +1,2 @@
-1|ime|||||1|||||False|0|1
-2|janko|guest|email|passs|userna|2|06488|1234|123456789|12.3.1200.|False|1|15
+1|Pacijent|||||1|||||False|0|1
+2|Guestt|Guestt||||2|||67886368||False|1|2
