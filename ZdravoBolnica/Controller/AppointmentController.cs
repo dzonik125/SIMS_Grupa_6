@@ -47,7 +47,7 @@ namespace Controller
         {
             appointmentService.SaveAppointment(a);
         }
-      
+        
       public bool IntersectionWithAppointments(int patientID, int doctorID, int roomID, DateTime date, int duration)
 
         {
@@ -84,11 +84,21 @@ namespace Controller
            return appointmentService.getFirstFreeAppointment(start, finish);
         }
 
+        public List<String> getFirstFiveFreeApointmentsForDate(DateTime? start, DateTime? end)
+        {
+            return appointmentService.getFirstFiveFreeApointmentsForDate(start, end);
+        }
+
 
         public Appointment findPatientAppointment(Patient p)
         {
             return appointmentService.findPatientAppointment(p);
-        } 
+        }
+
+        public List<DateTime> getTenNextAppointmentsForDoctorForDate(DateTime? start, DateTime? end, int id)
+        {
+            return appointmentService.getTenNextAppointmentsForDoctorForDate(start, end, id);
+        }
 
 
 

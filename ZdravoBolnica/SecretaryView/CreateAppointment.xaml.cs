@@ -43,8 +43,7 @@ namespace SIMS.SecretaryView
         {
             Apps.Clear();
 
-            List<Appointment> appointments = new();
-            appointments = appController.GetAllApointments();
+            List<Appointment> appointments = appController.GetAllApointments();
             List<Patient> patients = patientController.FindAllAccounts();
             List<Room> rooms = roomController.FindAll();
             List<Doctor> doctors = doctorController.GetAllDoctors();
@@ -97,6 +96,11 @@ namespace SIMS.SecretaryView
                 return;
             }
             appController.DeleteAppointmentById(selectedAppointment.id);
+            Refresh();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
             Refresh();
         }
     }
