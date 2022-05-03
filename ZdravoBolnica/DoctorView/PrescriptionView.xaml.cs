@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Controller;
+using Model;
 using SIMS.Controller;
 using SIMS.Model;
 using System;
@@ -25,6 +26,7 @@ namespace SIMS.DoctorView
         public MedicationController medicationController = new MedicationController();
         public List<Medication> medications = new List<Medication>();
         public PrescriptionController prc = new PrescriptionController();
+        public MedicalRecordController medicalRecordController = new MedicalRecordController();
         public PrescriptionView()
         {
             InitializeComponent();
@@ -53,9 +55,25 @@ namespace SIMS.DoctorView
             prescription.startTime = DateTime.Parse(StartTime.Text);
             prescription.timesPerDay = int.Parse(Frequency.Text);
             prescription.prescriptionDate = DateTime.Now;
-            prc.Create(prescription);
-            PatientMedicalRecord.Instance.refreshPrescriptions();
-            this.Close();
+            MedicalRecord mr = medicalRecordController.FindMedicalRecordById(prescription.medicalRecord.id);
+            bool allergic = medicalRecordController.checkIfPatientisAllergic(getSelectedMedication(), mr);
+            if(allergic)
+            {
+                MessageBox.Show("Pacijent je alergican na " + getSelectedMedication().name + "!");
+                return;
+            }
+            else
+            {
+                prc.Create(prescription);
+                PatientMedicalRecord.Instance.refreshPrescriptions();
+                this.Close();
+                MessageBox.Show("Recept je uspesno kreiran");
+                
+            }
+
+
+
+            
 
         }
 

@@ -64,9 +64,9 @@
                             </Grid.RowDefinitions>
                         
                             <Label Grid.Row="0" Content="Alergije:" FontSize="15"/>
-                            <DataGrid Grid.Row="1" Margin="0,0,86,0">
+                            <DataGrid Grid.Row="1" Margin="0,0,86,0" ItemsSource="{Binding Path = allergies}" AutoGenerateColumns="False">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Naziv"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Naziv" Binding="{Binding}" Width="*"></DataGridTextColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                             <Button Grid.Row="2" Content="Napisi recept" Margin="0,10,244,10" Click="Button_Click"/>
