@@ -3,17 +3,8 @@ using Model;
 using SIMS.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SIMS.DoctorView
 {
@@ -32,7 +23,7 @@ namespace SIMS.DoctorView
         public AddAppointment(AppointmentType type)
         {
             appointmentType = type;
-            RoomType roomType = type == AppointmentType.examination? RoomType.examination: RoomType.surgery;
+            RoomType roomType = type == AppointmentType.examination ? RoomType.examination : RoomType.surgery;
             InitializeComponent();
             patients = pc.FindAllPatients();
             rooms = rc.getRoomsByType(roomType);
@@ -56,11 +47,13 @@ namespace SIMS.DoctorView
             Appointments appointments = Appointments.Instance;
             a.Doctor = new Doctor();
             a.Doctor.id = appointments.doctorUser.id;
-            if (ac.IntersectionWithAppointments(a.patient.id, a.Doctor.id, a.Room.id, a.startTime, a.duration)) {
+            if (ac.IntersectionWithAppointments(a.patient.id, a.Doctor.id, a.Room.id, a.startTime, a.duration))
+            {
                 MessageBox.Show("ne.");
                 return;
             }
-            else {
+            else
+            {
                 ac.SaveAppointment(a);
                 this.Close();
                 appointments.Refresh();

@@ -9,7 +9,9 @@ namespace SIMS.Model
     public enum AppointmentType
     {
         examination,
-        surgery
+        surgery,
+        renovation,
+        transfer
     }
 
 

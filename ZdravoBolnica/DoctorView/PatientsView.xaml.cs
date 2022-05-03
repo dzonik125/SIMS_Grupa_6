@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Controller;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,8 +25,11 @@ namespace SIMS.DoctorView
     {
 
         public static PatientsView instance = new PatientsView();
+        public Patient selectedPatient = new Patient();
+
         public ObservableCollection<Patient> patients { get; set; }
         public PatientController pc = new PatientController();
+        public AppointmentController appointmentController = new AppointmentController();
 
         private PatientsView()
         {
@@ -55,14 +59,38 @@ namespace SIMS.DoctorView
 
         private void Record_Click(object sender, RoutedEventArgs e)
         {
+
+            selectedPatient = PatientsDataGrid.SelectedItem as Patient;
+            if (selectedPatient == null)
+            {
+                MessageBox.Show("Izabrati pacijenta.");
+                return;
+            }
             PatientMedicalRecord pmr = PatientMedicalRecord.Instance;
             pmr.Show();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Examination_Click(object sender, RoutedEventArgs e)
         {
-            RecordExamination re = new RecordExamination();
-            re.ShowDialog();
+            selectedPatient = PatientsDataGrid.SelectedItem as Patient;
+            if (selectedPatient == null)
+            {
+                MessageBox.Show("Izabrati pacijenta.");
+                return;
+            }else
+            {
+                Appointment a = appointmentController.findPatientAppointment(selectedPatient);
+                if(a == null)
+                {
+                    MessageBox.Show("Izabrani pacijent nema ni jedan zakazan termin u ovom periodu!");
+                }
+                else
+                {
+                    RecordExamination re = new RecordExamination(a);
+                    re.ShowDialog();
+                }
+            }
+            
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

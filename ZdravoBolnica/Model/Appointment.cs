@@ -3,11 +3,9 @@
 // Created: Thursday, April 7, 2022 10:12:45
 // Purpose: Definition of Class Appointment
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-
 using SIMS.Model;
+using System;
+using System.ComponentModel;
 
 namespace Model
 {
@@ -15,9 +13,11 @@ namespace Model
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged(string s) {
+        protected virtual void OnPropertyChanged(string s)
+        {
 
-            if (PropertyChanged != null) {
+            if (PropertyChanged != null)
+            {
                 PropertyChanged(this, new PropertyChangedEventArgs(s));
             }
         }
@@ -46,11 +46,15 @@ namespace Model
             {
                 if (Type == AppointmentType.examination)
                     return "Pregled";
-                else
+                else if (Type == AppointmentType.surgery)
+                {
                     return "Operacija";
+                }
+                else
+                    return "";
             }
         }
-        
+
 
         public String GetDoctorName()
         {
@@ -58,20 +62,20 @@ namespace Model
         }
 
         public string Duration { get; set; }
-             
-      
-      public Doctor Doctor
-      {
+
+
+        public Doctor Doctor
+        {
             get;
             set;
-      }
-     
-      
-   
-      public Room Room { get; set; }
-      
-      public Patient patient { get; set;}
-    
+        }
+
+
+
+        public Room Room { get; set; }
+
+        public Patient patient { get; set; }
+
 
         public string[] ToCSV()
         {
@@ -84,6 +88,7 @@ namespace Model
                 startTime.ToString(),
                 duration.ToString(),
                 Conversion.AppointmentTypeToString(Type),
+
                 timesEdited.ToString(),
 
             };
@@ -105,7 +110,7 @@ namespace Model
             timesEdited = int.Parse(values[7]);
         }
 
-        
+
 
     }
 }

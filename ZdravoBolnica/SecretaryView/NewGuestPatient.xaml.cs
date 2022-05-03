@@ -1,6 +1,5 @@
 ﻿using Controller;
 using Model;
-using System;
 using System.Windows;
 
 namespace SIMS
@@ -14,6 +13,8 @@ namespace SIMS
         public Patient patient = new Patient();
         public AdressController ac = new AdressController();
         public Adress adress;
+        public MedicalRecordController mrc = new MedicalRecordController();
+        public MedicalRecord mr;
         public NewGuestPatient()
         {
             InitializeComponent();
@@ -22,6 +23,7 @@ namespace SIMS
         private void AddGuestPatient_Click(object sender, RoutedEventArgs e)
         {
             adress = new Adress();
+            mr = new MedicalRecord();
 
 
             patient.name = Name.Text;
@@ -33,22 +35,22 @@ namespace SIMS
             patient.username = "";
             patient.phone = "";
             patient.jmbg = Jmbg.Text;
-            String a = DateTime.Now.ToString("yyMMddHHmmssff");
+
+
             adress.number = "";
             adress.street = "";
             adress.city = "";
             adress.country = "";
             patient.address = adress;
-            patient.address.id = a;
-            //  patient.adressID = a;
             patient.guest = true;
 
-            // adress.id = a;
 
-            
+            //      mr.id = 0;
+            //          patient.medicalRecord = mr;
 
-            pc.AddPatient(patient);
             ac.AddAdress(adress);
+            pc.AddPatient(patient);
+
 
             SecretaryUI sui = SecretaryUI.Instance;
             sui.refresh();

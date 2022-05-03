@@ -26,7 +26,7 @@ namespace SIMS
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            DoctorWindow dw = new DoctorWindow();
+            DoctorWindow dw = DoctorWindow.Instance;
             dw.Show();
         }
 

@@ -49,7 +49,7 @@ namespace SIMS.SecretaryView
             a.startTime = timeStamp;
             a.duration = int.Parse(Duration.Text);
             CreateAppointment appointments = CreateAppointment.Instance;
-            a.Doctor.id = appointments.doctorUser.id;
+
             if (ac.IntersectionWithAppointments(a.patient.id, a.Doctor.id, a.Room.id, a.startTime, a.duration))
             {
                 MessageBox.Show("ne.");
@@ -58,8 +58,9 @@ namespace SIMS.SecretaryView
             else
             {
                 ac.SaveAppointment(a);
-                appointments.Refresh();
                 this.Close();
+                appointments.Refresh();
+
             }
         }
 

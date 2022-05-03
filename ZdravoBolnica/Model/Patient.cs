@@ -3,6 +3,9 @@
 // Created: Thursday, April 7, 2022 10:12:49
 // Purpose: Definition of Class Patient
 
+using SIMS.Model;
+using System;
+
 namespace Model
 {
     public class Patient : Account, Serializable
@@ -12,8 +15,9 @@ namespace Model
 
         public bool guest { get; set; }
 
-        public MedicalRecord medicalRecord;
+        public MedicalRecord medicalRecord = new MedicalRecord();
         public System.Collections.Generic.List<Appointment> appointment;
+
 
         public System.Collections.Generic.List<Appointment> Appointment
         {
@@ -76,6 +80,7 @@ namespace Model
             }
         }
 
+
         public string[] ToCSV()
         {
             string[] csvValues =
@@ -92,15 +97,14 @@ namespace Model
                 jmbg,
                 birthdate.ToString(),
                 guest.ToString(),
+                ((int) gender).ToString(),
                 medicalRecord.id.ToString(),
-
             };
             return csvValues;
         }
 
         public void FromCSV(string[] values)
         {
-            medicalRecord = new MedicalRecord();
             address = new Adress();
             id = int.Parse(values[0]);
             name = values[1];
@@ -108,13 +112,14 @@ namespace Model
             email = values[3];
             password = values[4];
             username = values[5];
-            address.id = values[6];
+            address.id = int.Parse(values[6]);
             phone = values[7];
             lbo = values[8];
             jmbg = values[9];
             birthdate = values[10];
             guest = bool.Parse(values[11]);
-            medicalRecord.id = int.Parse(values[12]);
+            gender = (Gender)Int32.Parse(values[12]);
+            medicalRecord.id = int.Parse(values[13]);
         }
     }
 }

@@ -298,6 +298,19 @@ namespace Service
         }
 
 
+        public Appointment findPatientAppointment(Patient p)
+        {
+            List <Appointment> appointments= getAppointmentsByPatientId(p.id);
+            foreach(Appointment a in appointments)
+            {
+                if(a.startTime <= DateTime.Now && a.startTime.AddMinutes(a.duration) >= DateTime.Now)
+                {
+                    return a;
+                }
+            }
+            return null;
+        }
+
         public bool IntersectionWithAppointments(int patientID, int doctorID, int roomID, DateTime date, int duration)
         {
             List<Appointment> doctorAppointments = getAppointmentsByDoctorId(doctorID);

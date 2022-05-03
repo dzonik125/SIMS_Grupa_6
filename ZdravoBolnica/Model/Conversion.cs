@@ -1,5 +1,6 @@
 ﻿using Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace SIMS.Model
@@ -22,12 +23,40 @@ namespace SIMS.Model
             };
         }
 
+        public static string BloodTypeToString(BloodType tip)
+        {
+            return tip switch
+            {
+                BloodType.ONegative => "O-",
+                BloodType.APositive => "A+",
+                BloodType.ANegative => "A-",
+                BloodType.BPositive => "B+",
+                BloodType.BNegative => "B-",
+                BloodType.ABPositive => "AB+",
+                BloodType.ABNegative => "AB-",
+                BloodType.OPositive => "O+",
+                _ => "",
+            };
+        }
+
+
         public static List<string> GetRoomTypes()
         {
             List<string> tipovi = new List<string>();
             foreach (RoomType tip in Enum.GetValues(typeof(RoomType)))
             {
                 string s = RoomTypeToString(tip);
+                tipovi.Add(s);
+            }
+            return tipovi;
+        }
+
+        public static List<string> GetBloodType()
+        {
+            List<string> tipovi = new List<string>();
+            foreach (BloodType tip in Enum.GetValues(typeof(BloodType)))
+            {
+                string s = BloodTypeToString(tip);
                 tipovi.Add(s);
             }
             return tipovi;
@@ -48,6 +77,17 @@ namespace SIMS.Model
             };
         }
 
+        internal static List<String> GetEquipmentTypes()
+        {
+            List<string> tipovi = new List<string>();
+            foreach (EquipmentType tip in Enum.GetValues(typeof(EquipmentType)))
+            {
+                string s = EquipmentTypeToString(tip);
+                tipovi.Add(s);
+            }
+            return tipovi;
+        }
+
         public static BloodType StringToBloodType(string str)
         {
             return str switch
@@ -59,6 +99,7 @@ namespace SIMS.Model
                 "B-" => BloodType.BNegative,
                 "AB+" => BloodType.ABPositive,
                 "AB-" => BloodType.ABNegative,
+                "O+" => BloodType.OPositive,
                 _ => BloodType.OPositive,
             };
         }
@@ -69,6 +110,7 @@ namespace SIMS.Model
             {
                 AppointmentType.examination => "pregled",
                 AppointmentType.surgery => "operacija",
+                AppointmentType.renovation => "renoviranje",
                 _ => "",
             };
         }

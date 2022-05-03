@@ -13,11 +13,14 @@ namespace Repository
     {
         private Serializer<MedicalRecord> medicalRecordSerializer = new();
         private String filename = @".\..\..\..\Data\medicalrecords.txt";
+        public PatientRepository pr = new PatientRepository();
         public void Create(MedicalRecord entity)
         {
             List<MedicalRecord> medicalRecords = new List<MedicalRecord>();
+
             medicalRecords = medicalRecordSerializer.fromCSV(filename);
             int num = medicalRecords.Count;
+
             if (num > 0)
             {
                 entity.id = medicalRecords[num - 1].id;
@@ -48,12 +51,32 @@ namespace Repository
 
         public MedicalRecord FindById(int key)
         {
-            throw new NotImplementedException();
+            List<MedicalRecord> medicalRecords = FindAll();
+            foreach (MedicalRecord mr in medicalRecords)
+            {
+                if (key == mr.id)
+                {
+                    return mr;
+                }
+            }
+
+            return null;
         }
 
         public void Update(MedicalRecord entity)
         {
-            throw new NotImplementedException();
+            List<MedicalRecord> medicalRecords = FindAll();
+            foreach (MedicalRecord mr in medicalRecords)
+            {
+                if (mr.id == entity.id)
+                {
+                    mr.cardNum = entity.cardNum;
+                    mr.bloodType = entity.bloodType;
+                    mr.allergies = entity.allergies;
+                    mr.medications = entity.medications;
+                }
+            }
+            medicalRecordSerializer.toCSV(filename, medicalRecords);
         }
     }
 }

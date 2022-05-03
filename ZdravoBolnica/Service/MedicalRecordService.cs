@@ -5,7 +5,7 @@
 
 using Model;
 using Repository;
-using System;
+using SIMS.Model;
 using System.Collections.Generic;
 
 namespace Service
@@ -16,7 +16,7 @@ namespace Service
 
         internal MedicalRecord FindMedicalRecordById(int id)
         {
-            throw new NotImplementedException();
+            return medicalRecordRepository.FindById(id);
         }
 
         public bool AddMedicalRecord(MedicalRecord mr)
@@ -29,6 +29,25 @@ namespace Service
         public List<MedicalRecord> findAll()
         {
             return medicalRecordRepository.FindAll();
+        }
+
+        public bool UpdateMedicalRecord(MedicalRecord mr)
+        {
+            medicalRecordRepository.Update(mr);
+            return true;
+        }
+
+        public bool checkIfPatientisAllergic(Medication medication, MedicalRecord medicalRecord)
+        {
+            foreach (Medication med in medicalRecord.medications)
+            {
+                if (med.name.Equals(medication.name))
+                {
+                    return true;
+                    break;
+                }
+            }
+            return false;
         }
     }
 }

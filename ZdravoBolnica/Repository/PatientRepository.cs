@@ -40,7 +40,7 @@ namespace Repository
         public void DeleteById(int id)
         {
             List<Patient> patients = FindAll();
-            foreach(Patient p in patients)
+            foreach (Patient p in patients)
             {
                 if (id == p.id)
                 {
@@ -53,7 +53,7 @@ namespace Repository
 
         public List<Patient> FindAll()
         {
-            
+
             return patientSerializer.fromCSV(filename);
             System.Diagnostics.Trace.WriteLine("ovde");
         }
@@ -63,15 +63,15 @@ namespace Repository
             throw new NotImplementedException();
         }
 
+
         public void Update(Patient entity)
         {
             List<Patient> patients = FindAll();
-            foreach(Patient p in patients)
+            foreach (Patient p in patients)
             {
                 if (p.id.Equals(entity.id))
                 {
                     p.name = entity.name;
-                    System.Diagnostics.Trace.WriteLine(p.name);
                     p.surname = entity.surname;
                     p.email = entity.email;
                     p.phone = entity.phone;
@@ -80,6 +80,9 @@ namespace Repository
                     p.lbo = entity.lbo;
                     p.username = entity.username;
                     p.password = entity.password;
+                    p.gender = entity.gender;
+                    p.medicalRecord = entity.medicalRecord;
+                    p.guest = entity.guest;
                     break;
                 }
             }
