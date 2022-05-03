@@ -29,10 +29,13 @@ namespace SIMS.DoctorView
         public static PatientMedicalRecord instance = new PatientMedicalRecord();
         public ObservableCollection<Prescription> prescriptions { get; set; }
         public ObservableCollection<ExaminationReport> examinationReports { get; set; }
+        public ObservableCollection<String> allergies { get; set; }
         public PrescriptionController prc = new PrescriptionController();
         public ExaminationReportController erc = new ExaminationReportController();
         public DoctorController doctorController = new DoctorController();
         public MedicationController medicationController = new MedicationController();
+        public MedicalRecordController medicalRecordController = new MedicalRecordController();
+
         public Patient patient { get; set; }
         private PatientMedicalRecord()
         {
@@ -42,9 +45,21 @@ namespace SIMS.DoctorView
             this.DataContext = this;
             prescriptions = new ObservableCollection<Prescription>();
             examinationReports = new ObservableCollection<ExaminationReport>();
+            allergies = new ObservableCollection<String>();
             setSelectedPatient();
             refreshPrescriptions();
             refreshExaminationReports();
+            MedicalRecord medicalRecord = medicalRecordController.FindMedicalRecordById(PatientsView.Instance.selectedPatient.medicalRecord.id);
+            List<Allergies> allergiesList = medicalRecord.allergies;
+            foreach(Allergies a in allergiesList)
+            {
+                allergies.Add(a.name);
+            }
+            List<Medication> medications = medicalRecord.medications;
+            foreach(Medication m  in medications)
+            {
+                allergies.Add(m.name);
+            }
         }
 
         public static PatientMedicalRecord Instance

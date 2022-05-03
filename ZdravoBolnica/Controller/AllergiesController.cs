@@ -22,7 +22,6 @@ namespace SIMS.Controller
 
 
 
-
         //public Service.AllergiesService allergiesService;
     }
 }
