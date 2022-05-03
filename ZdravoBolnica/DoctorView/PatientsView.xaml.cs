@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Controller;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -25,8 +26,10 @@ namespace SIMS.DoctorView
 
         public static PatientsView instance = new PatientsView();
         public Patient selectedPatient = new Patient();
+
         public ObservableCollection<Patient> patients { get; set; }
         public PatientController pc = new PatientController();
+        public AppointmentController appointmentController = new AppointmentController();
 
         private PatientsView()
         {
@@ -74,9 +77,20 @@ namespace SIMS.DoctorView
             {
                 MessageBox.Show("Izabrati pacijenta.");
                 return;
+            }else
+            {
+                Appointment a = appointmentController.findPatientAppointment(selectedPatient);
+                if(a == null)
+                {
+                    MessageBox.Show("Izabrani pacijent nema ni jedan zakazan termin u ovom periodu!");
+                }
+                else
+                {
+                    RecordExamination re = new RecordExamination(a);
+                    re.ShowDialog();
+                }
             }
-            RecordExamination re = new RecordExamination();
-            re.ShowDialog();
+            
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

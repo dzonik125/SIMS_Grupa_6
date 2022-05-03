@@ -73,7 +73,7 @@ namespace Repository
                     mr.cardNum = entity.cardNum;
                     mr.bloodType = entity.bloodType;
                     mr.allergies = entity.allergies;
-
+                    mr.medications = entity.medications;
                 }
             }
             medicalRecordSerializer.toCSV(filename, medicalRecords);

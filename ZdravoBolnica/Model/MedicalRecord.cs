@@ -16,17 +16,19 @@ namespace Model
         public BloodType bloodType;
         public int id;
         public List<Allergies> allergies = new List<Allergies>();
-
+        public List<Prescription> prescriptions = new List<Prescription>();
+        public List<Medication> medications = new List<Medication>();
         public List<String> hronicalDeseasses;
 
-        public string ids;
+        public string ids = "";
+        public string medids = "";
+
 
         public AllergiesRepository ar = new AllergiesRepository();
+        private MedicationRepository mr = new MedicationRepository();
 
-
-        public List<Prescription> prescriptions;
         public List<ExaminationReport> reports;
-     
+
 
 
         public MedicalRecord(int cardNum, BloodType bt)
@@ -49,33 +51,68 @@ namespace Model
             id = Convert.ToInt32(values[2]);
 
             List<int> ids = new List<int>();
-            string[] parts = values[3].Split(',');
-            foreach (string s in parts)
+            if (values[3] != "")
             {
-                ids.Add(Convert.ToInt32(s));
+                string[] parts = values[3].Split(',');
+
+                foreach (string s in parts)
+                {
+                    ids.Add(Convert.ToInt32(s));
+                }
+                foreach (int i in ids)
+                {
+                    allergies.Add(ar.FindById(i));
+                }
             }
-            foreach (int i in ids)
+
+
+            List<int> medids = new List<int>();
+            if (values[4] != "")
             {
-                allergies.Add(ar.FindById(i));
+                string[] medparts = values[4].Split(',');
+                foreach (string s in medparts)
+                {
+                    medids.Add(Convert.ToInt32(s));
+                }
+
+                foreach (int i in medids)
+                {
+                    medications.Add(mr.FindById(i));
+                }
             }
+
+
 
             //hronicalDeseasses = values[3];
         }
 
         public string[] ToCSV()
         {
+
             foreach (Allergies a in allergies)
             {
                 ids = ids + a.id + ",";
             }
-            ids = ids.Remove(ids.Length - 1, 1);
+            if (ids != "")
+            {
+                ids = ids.Remove(ids.Length - 1, 1);
+            }
 
+            foreach (Medication m in medications)
+            {
+                medids = medids + m.id + ",";
+            }
+            if (medids != "")
+            {
+                medids = medids.Remove(medids.Length - 1, 1);
+            }
 
             string[] csvValues = {
             cardNum.ToString(),
             Conversion.BloodTypeToString(bloodType),
             id.ToString(),
             ids.ToString(),
+            medids.ToString(),
             //hronicalDeseasses.ToString()
         };
 
