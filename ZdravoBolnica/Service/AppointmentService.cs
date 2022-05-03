@@ -7,6 +7,8 @@ using Model;
 using Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Controller;
 using SIMS;
 
 namespace Service
@@ -23,7 +25,7 @@ namespace Service
             appointmentRepository.Update(a);
       }
       
-      public void DeleteAppointmentById(string id)
+      public void DeleteAppointmentById(int id)
       {
             appointmentRepository.DeleteById(id);
         }
@@ -87,7 +89,7 @@ namespace Service
                     return true;
                 }
             }
-                return false;
+            return false;
         }
 
         public List<Appointment> getFutureAppointmentsForDoctor(int id)
@@ -107,6 +109,152 @@ namespace Service
                 }
             }
             return futureAppointments;
+        }
+
+        public List<DateTime> getTenNextFreeAppointmentsForDoctor(int id)
+        {
+            DateTime toCheck = DateTime.Today.AddHours(32);
+            DateTime finish = DateTime.Today.AddHours(32).AddMinutes(30);
+            List<Appointment> apps = getAppointmentsByDoctorId(id);
+            List<DateTime> toReturn = new List<DateTime>();
+            int counter = 0;
+            bool dontAdd = false;
+
+            do
+            {
+
+                dontAdd = false;
+
+                if (finish.Hour == 20 && finish.Minute == 30)
+                {
+                    toCheck = toCheck.AddHours(12);
+                    finish = finish.AddHours(12);
+                    continue;
+                }
+
+                //if (rs.findFreeRoom(toCheck) == null)
+                //{
+                //    toCheck = toCheck.AddMinutes(30);
+                //    finish = finish.AddMinutes(30);
+                //    continue;
+                //}
+
+                foreach (Appointment a in apps)
+                {
+                    if ((a.startTime > toCheck) && (a.startTime < finish))
+                    {
+                        dontAdd = true;
+                        break;
+                    }
+
+                    if (a.startTime == toCheck)
+                    {
+                        dontAdd = true;
+                        break;
+                    }
+                }
+
+                if (dontAdd)
+                {
+
+                    toCheck = toCheck.AddMinutes(30);
+                    finish = finish.AddMinutes(30);
+                    continue;
+
+                }
+
+                toReturn.Add(toCheck);
+                counter++;
+                toCheck = toCheck.AddMinutes(30);
+                finish = finish.AddMinutes(30);
+
+            } while (counter != 10);
+
+            return toReturn;
+        }
+
+        public string getFirstFreeAppointment(DateTime? start, DateTime? end)
+        {
+            List<Appointment> apps = GetAllApointments();
+            List<Doctor> docs = ds.GetAllDoctors();
+            bool cont = true;
+            DateTime startToUse = (DateTime) start;
+            DateTime min = startToUse.AddHours(21);
+            DateTime finish = startToUse.AddMinutes(30);
+            bool dontAdd = false;
+            int id = 0;
+            foreach (Doctor d in docs)
+            {
+                startToUse = (DateTime) start;
+                startToUse = startToUse.AddHours(8);
+                finish = startToUse.AddMinutes(30);
+
+                List<Appointment> dapps = getAppointmentsByDoctorId(d.id);
+                do
+                {
+                    dontAdd = false;
+                    if (finish.Hour == 20 && finish.Minute == 30)
+                    {
+
+                        if (start == end)
+                        {
+                            break;
+                        }
+
+                        if (finish.Date == end.Value.Date)
+                        {
+                            break;
+                        }
+
+                        startToUse = startToUse.AddHours(12);
+                        finish = finish.AddHours(12);
+                        continue;
+                    }
+
+                    foreach (Appointment a in dapps)
+                    {
+                        //if ((a.startTime > startToUse) && (a.startTime < finish))
+                        //{
+                        //    dontAdd = true;
+                        //    break;
+                        //}
+
+                        if (a.startTime == startToUse)
+                        {
+                            dontAdd = true;
+                            break;
+                        }
+                    }
+
+
+                    if (dontAdd)
+                    {
+
+                        startToUse = startToUse.AddMinutes(30);
+                        finish = finish.AddMinutes(30);
+                        continue;
+
+                    }
+
+                    if (min >= startToUse)
+                    {
+                        min = startToUse;
+                        id = d.id;
+                        startToUse = startToUse.AddMinutes(30);
+                        finish = finish.AddMinutes(30);
+                    }
+
+                    startToUse = startToUse.AddMinutes(30);
+                    finish = finish.AddMinutes(30);
+
+                } while (cont);
+            }
+            
+            String convMin = min.ToString();
+            String convID = id.ToString();
+            String toReturn = convMin + "=" + convID;
+            return toReturn;
+
         }
 
         public List<Appointment> getFutureAppointmentsForPatient(string id)
@@ -189,8 +337,9 @@ namespace Service
             throw new NotImplementedException();
         }
 
-        public RoomsCRUD roomsCRUD = new();
-        public AppointmentRepository appointmentRepository = new AppointmentRepository();
         
+        public AppointmentRepository appointmentRepository = new AppointmentRepository();
+        //public RoomService rs = new RoomService();
+        public DoctorService ds = new DoctorService();
    }
 }

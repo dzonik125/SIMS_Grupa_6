@@ -6,16 +6,26 @@
 using System;
 using System.Collections.Generic;
 using Model;
+using SIMS;
 
 namespace Repository
 {
-    public class AppointmentRepository : Repository<Appointment, string>
+    public class AppointmentRepository : Repository<Appointment, int>
     {
         private String filename = @".\..\..\..\Data\appointments.txt";
         private Serializer<Appointment> appointmentSerializer = new Serializer<Appointment>();
-        public Appointment FindAppointmentById(string id)
+        public Appointment FindById(int id)
         {
-            throw new NotImplementedException();
+            List<Appointment> appointments = FindAll();
+            foreach (Appointment a in appointments)
+            {
+                if (a.id == id)
+                {
+                    return a;
+                }
+            }
+
+            return null;
         }
 
         public List<Appointment> FindByPatientId(int pid)
@@ -78,12 +88,12 @@ namespace Repository
             throw new NotImplementedException();
         }
 
-        public void DeleteById(string id)
+        public void DeleteById(int id)
         {
             List<Appointment> appointments = FindAll();
             foreach (Appointment a in appointments)
             {
-                if (a.id.Equals(id))
+                if (a.id == id)
                 {
                     appointments.Remove(a);
                     break;
@@ -96,6 +106,17 @@ namespace Repository
         {
             _ = new List<Appointment>();
             List<Appointment> appointments = appointmentSerializer.fromCSV(filename);
+            int num = appointments.Count;
+            if (num > 0)
+            {
+                entity.id = appointments[num - 1].id;
+                entity.id++;
+            }
+            else
+            {
+                entity.id = 1;
+            }
+
             appointments.Add(entity);
             appointmentSerializer.toCSV(filename, appointments);
         }

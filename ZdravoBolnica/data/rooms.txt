@@ -1,2 +1,2 @@
-22042600020117|1|2|True|Prostorija za preglede
-22042600020738|3|4|True|Prostorija za preglede
+1|12|3|True|Prostorija za preglede
+2|13|3|True|Prostorija za preglede

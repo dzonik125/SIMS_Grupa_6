@@ -44,7 +44,6 @@ namespace SIMS.SecretaryView
             a.Room = new Room();
             a.Room.id = getSelectedRoom().id;
             a.Type = appointmentType;
-            a.id = DateTime.Now.ToString("yyMMddHHmmssff");
             String dateAndTime = DatePicker.Text + " " + Time.Text;
             DateTime timeStamp = DateTime.Parse(dateAndTime);
             a.startTime = timeStamp;

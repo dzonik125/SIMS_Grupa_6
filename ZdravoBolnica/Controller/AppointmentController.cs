@@ -23,9 +23,14 @@ namespace Controller
             appointmentService.UpdateAppointment(a);
         }
 
-        public void DeleteAppointmentById(string id)
+        public void DeleteAppointmentById(int id)
         {
             appointmentService.DeleteAppointmentById(id);
+        }
+
+        public List<DateTime> getTenNextFreeAppointmentsForDoctor(int id)
+        {
+            return appointmentService.getTenNextFreeAppointmentsForDoctor(id);
         }
 
         public List<Appointment> getFutureAppointmentsForDoctor(int id)
@@ -74,7 +79,10 @@ namespace Controller
             appointmentService.bindPatientsWithAppointments(patients, appointments);
         }
 
-
+        public String getFirstFreeAppointment(DateTime? start, DateTime? finish)
+        {
+           return appointmentService.getFirstFreeAppointment(start, finish);
+        }
 
         public Service.AppointmentService appointmentService = new Service.AppointmentService();
 

@@ -98,7 +98,7 @@ namespace Service
                 {
                     
 
-                    if (!(app.startTime.AddMinutes(app.duration) < dt && app.startTime < dt || (dt.AddMinutes(30) < app.startTime && dt < app.startTime)))
+                    if (!(app.startTime.AddMinutes(app.duration) <= dt && app.startTime <= dt || (dt.AddMinutes(30) <= app.startTime && dt <= app.startTime)))
                     {
                         roomIsFree = false;
                     }
