@@ -30,10 +30,10 @@ namespace SIMS.DoctorView
         public PrescriptionView()
         {
             InitializeComponent();
-            initComboBox();
+            initMedications();
         }
 
-        public void initComboBox()
+        public void initMedications()
         {
             medications = medicationController.FindAll();
             DrugComboBox.ItemsSource = medications;
@@ -56,6 +56,7 @@ namespace SIMS.DoctorView
             prescription.timesPerDay = int.Parse(Frequency.Text);
             prescription.prescriptionDate = DateTime.Now;
             MedicalRecord mr = medicalRecordController.FindMedicalRecordById(prescription.medicalRecord.id);
+            
             bool allergic = medicalRecordController.checkIfPatientisAllergic(getSelectedMedication(), mr);
             if(allergic)
             {
