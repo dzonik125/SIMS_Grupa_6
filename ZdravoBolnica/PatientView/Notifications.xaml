@@ -1,0 +1,19 @@
+﻿<Window x:Class="SIMS.PatientView.Notifications"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIMS.PatientView" xmlns:model="clr-namespace:Model" d:DataContext="{d:DesignInstance Type=model:Appointment}"
+		mc:Ignorable="d"
+        Title="Notifications" Height="450" Width="800">
+    <Grid>
+		<DataGrid Grid.Row="1" Margin="45,0,45,0" Name="PrescriptionsTable" AutoGenerateColumns="False" SelectionMode="Single" ItemsSource="{Binding Path=prescriptions}">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Lek" Width="*" Binding="{Binding medication.name}"/>
+				<DataGridTextColumn Header="Pocetni datum" Binding="{Binding startTime}" Width="*"/>
+				<DataGridTextColumn Header="Krajnji Datum" Width="*" Binding="{Binding endTime}"/>
+				<DataGridTextColumn Header="Puta dnevno datum" Binding="{Binding timesPerDay}" Width="*"/>
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</Window>
