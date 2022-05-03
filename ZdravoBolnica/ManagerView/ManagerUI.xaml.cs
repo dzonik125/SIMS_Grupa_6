@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,6 +29,8 @@ namespace SIMS
         private EquipmentController ec = new EquipmentController();
         private RoomEquipmentController rec = new RoomEquipmentController();
         private AppointmentController ac = new AppointmentController();
+        private TransferEquipmentController transferEquipmentController = new TransferEquipmentController();
+        private static Timer timer;
         private Room roomSource;
 
         private ManagerUI() {
@@ -53,7 +56,12 @@ namespace SIMS
             }
 
             listRoomInventory = new ObservableCollection<Equipment>();
-            DateTime transferDate = new DateTime();
+            timer = new Timer(new TimerCallback(transferEquipmentController.MoveInventory),null,1000,60000);
+            foreach (Room ro in rooms)
+            {
+                refreshRoomInventoryTable(ro);
+            }
+           // DateTime transferDate = new DateTime();
            // Room r = roomsTable.SelectedItem as Room;
           //  transferDate = ac.FindDate(r);
 
