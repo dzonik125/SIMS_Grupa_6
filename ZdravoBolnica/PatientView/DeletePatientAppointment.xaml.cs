@@ -22,7 +22,7 @@ namespace SIMS
     public partial class DeletePatientAppointment : Window
     {
         private AppointmentController ac = new AppointmentController();
-        private string id;
+        private int id;
 
         public DeletePatientAppointment(Appointment a)
         {

@@ -23,7 +23,7 @@ namespace Model
         }
         public DateTime startTime { get; set; }
         public int duration { get; set; }
-        public string id { get; set; }
+        public int id { get; set; }
 
         public int timesEdited = 0;
 
@@ -81,7 +81,7 @@ namespace Model
         {
             string[] csvValues =
             {
-                id,
+                id.ToString(),
                 patient.id.ToString(),
                 Doctor.id.ToString(),
                 Room.id.ToString(),
@@ -97,7 +97,7 @@ namespace Model
 
         public void FromCSV(string[] values)
         {
-            id = values[0];
+            id = int.Parse(values[0]);
             patient = new Patient();
             patient.id = int.Parse(values[1]);
             Doctor = new Doctor();
