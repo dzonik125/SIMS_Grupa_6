@@ -75,6 +75,11 @@ namespace Controller
         }
 
 
+        public Appointment findPatientAppointment(Patient p)
+        {
+            return appointmentService.findPatientAppointment(p);
+        } 
+
 
         public Service.AppointmentService appointmentService = new Service.AppointmentService();
 

@@ -5,6 +5,7 @@
 
 using Model;
 using Service;
+using SIMS.Model;
 using System;
 using System.Collections.Generic;
 
@@ -41,9 +42,17 @@ namespace Controller
             return true;
         }
 
+
+
         public List<MedicalRecord> FindAll()
         {
             return medicalRecordService.findAll();
+        }
+
+
+        public bool checkIfPatientisAllergic(Medication medication, MedicalRecord medicalRecord)
+        {
+            return medicalRecordService.checkIfPatientisAllergic(medication, medicalRecord);
         }
 
         public Service.MedicalRecordService medicalRecordService = new();

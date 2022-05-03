@@ -1,2 +1,3 @@
 1|9|3|True|Prostorija za preglede
 2|2|2|True|Bolesnička soba
+3|8|1|True|Prostorija za preglede

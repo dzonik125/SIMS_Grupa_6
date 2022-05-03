@@ -5,6 +5,7 @@
 
 using Model;
 using Repository;
+using SIMS.Model;
 using System.Collections.Generic;
 
 namespace Service
@@ -34,6 +35,19 @@ namespace Service
         {
             medicalRecordRepository.Update(mr);
             return true;
+        }
+
+        public bool checkIfPatientisAllergic(Medication medication, MedicalRecord medicalRecord)
+        {
+            foreach (Medication med in medicalRecord.medications)
+            {
+                if (med.name.Equals(medication.name))
+                {
+                    return true;
+                    break;
+                }
+            }
+            return false;
         }
     }
 }
