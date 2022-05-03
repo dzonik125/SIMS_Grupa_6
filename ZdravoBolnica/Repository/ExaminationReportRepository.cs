@@ -53,7 +53,20 @@ namespace SIMS.Repository
 
         public void Update(ExaminationReport entity)
         {
-            throw new NotImplementedException();
+            List<ExaminationReport> examinationReports = FindAll();
+            foreach (ExaminationReport e in examinationReports)
+            {
+                if (e.id == entity.id)
+                {
+                    int index = examinationReports.IndexOf(e);
+                    if (index != -1)
+                    {
+                        examinationReports[index] = entity;
+                        break;
+                    }
+                }
+            }
+            reportSerializer.toCSV(filename, examinationReports);
         }
 
         public List<ExaminationReport> findReportsByMRecordId(int id)
