@@ -12,10 +12,10 @@ namespace SIMS.Model
 
         public Doctor doctor { get; set; }
         public MedicalRecord medicalRecord;
-        public DateTime startTime;
-        public DateTime endTime;
+        public DateTime startTime { get; set; }
+        public DateTime endTime { get; set; }
         public String comment;
-        public int timesPerDay;
+        public int timesPerDay { get; set; }
         public DateTime prescriptionDate { get; set; }
 
         public void FromCSV(string[] values)

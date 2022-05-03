@@ -257,6 +257,175 @@ namespace Service
 
         }
 
+        public List<DateTime> getTenNextAppointmentsForDoctorForDate(DateTime? start, DateTime? end, int id)
+        {
+            DateTime toCheck = start.Value.AddHours(8);
+            DateTime finish = toCheck.AddMinutes(30);
+            List<Appointment> apps = getAppointmentsByDoctorId(id);
+            List<DateTime> toReturn = new List<DateTime>();
+            int counter = 0;
+            bool dontAdd = false;
+
+            do
+            {
+
+                dontAdd = false;
+
+                if (finish.Hour == 20 && finish.Minute == 30)
+                {
+
+                    if (start == end)
+                    {
+                        break;
+                    }
+
+                    if (finish.Date == end.Value.Date)
+                    {
+                        break;
+                    }
+
+                    toCheck = toCheck.AddHours(12);
+                    finish = finish.AddHours(12);
+                    continue;
+                }
+
+                //if (rs.findFreeRoom(toCheck) == null)
+                //{
+                //    toCheck = toCheck.AddMinutes(30);
+                //    finish = finish.AddMinutes(30);
+                //    continue;
+                //}
+
+                foreach (Appointment a in apps)
+                {
+                    if ((a.startTime > toCheck) && (a.startTime < finish))
+                    {
+                        dontAdd = true;
+                        break;
+                    }
+
+                    if (a.startTime == toCheck)
+                    {
+                        dontAdd = true;
+                        break;
+                    }
+                }
+
+                if (dontAdd)
+                {
+
+                    toCheck = toCheck.AddMinutes(30);
+                    finish = finish.AddMinutes(30);
+                    continue;
+
+                }
+
+                toReturn.Add(toCheck);
+                counter++;
+                toCheck = toCheck.AddMinutes(30);
+                finish = finish.AddMinutes(30);
+
+            } while (counter != 10);
+
+            return toReturn;
+        }
+
+        public List<String> getFirstFiveFreeApointmentsForDate(DateTime? start, DateTime? end)
+        {
+            List<Appointment> apps = GetAllApointments();
+            List<Doctor> docs = ds.GetAllDoctors();
+            bool cont = true;
+            DateTime startToUse = (DateTime) start;
+            startToUse = startToUse.AddHours(8);
+            DateTime finish = startToUse.AddMinutes(30);
+            bool dontAdd = false;
+            List<String> potentialTimes = new List<String>();
+            int id = 0;
+            foreach (Doctor d in docs)
+            {
+                startToUse = (DateTime)start;
+                startToUse = startToUse.AddHours(8);
+                finish = startToUse.AddMinutes(30);
+                List<Appointment> dapps = getAppointmentsByDoctorId(d.id);
+                do
+                {
+                    dontAdd = false;
+                    if (finish.Hour == 20 && finish.Minute == 30)
+                    {
+
+                        if (start == end)
+                        {
+                            break;
+                        }
+
+                        if (finish.Date == end.Value.Date)
+                        {
+                            break;
+                        }
+
+                        startToUse = startToUse.AddHours(12);
+                        finish = finish.AddHours(12);
+                        continue;
+                    }
+
+                    foreach (Appointment a in dapps)
+                    {
+                        if ((a.startTime > startToUse) && (a.startTime < finish))
+                        {
+                            dontAdd = true;
+                            break;
+                        }
+
+                        if (a.startTime == startToUse)
+                        {
+                            dontAdd = true;
+                            break;
+                        }
+                    }
+
+                    if (dontAdd)
+                    {
+
+                        startToUse = startToUse.AddMinutes(30);
+                        finish = finish.AddMinutes(30);
+                        continue;
+
+                    }
+
+
+                    id = d.id;
+                    String toAdd = startToUse.ToString() + " " + id.ToString();
+                    potentialTimes.Add(toAdd);
+                    startToUse = startToUse.AddMinutes(30);
+                    finish = finish.AddMinutes(30);
+
+                } while (cont);
+
+            }
+
+            potentialTimes = potentialTimes.OrderBy(ele => DateTime.Parse(ele.Split(' ')[0] + " " + ele.Split(' ')[1] + " " + ele.Split(' ')[2])).ToList();
+            List<String> toRet = new List<string>();
+            if (potentialTimes.Count < 5)
+            {
+                for (int i = 0; i < potentialTimes.Count; i++)
+                {
+                    toRet.Add(potentialTimes.ElementAt(i));
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    toRet.Add(potentialTimes.ElementAt(i));
+                }
+
+            }
+
+
+
+            return toRet;
+        }
+
         public List<Appointment> getFutureAppointmentsForPatient(string id)
         {
             List<Appointment> potentialAppointments = GetAllApointments();

@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using SIMS.DoctorView;
+using SIMS.PatientView;
 
 namespace SIMS
 {
@@ -166,6 +167,12 @@ namespace SIMS
             this.Hide();
             MainWindow mw = new MainWindow();
             mw.Show();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Notifications notifications = new Notifications();
+            notifications.Show();
         }
     }
 }

@@ -26,7 +26,6 @@ namespace SIMS
         private Room roomDestination = new Room();
         private Room roomSource = new Room();
         private RoomEquipmentController rec = new RoomEquipmentController();
-        private OccupiedRoomsController orc = new OccupiedRoomsController();
         private AppointmentController ac = new AppointmentController();
         private RoomController rc = new RoomController();
         private Equipment equipment = new Equipment();
@@ -58,6 +57,7 @@ namespace SIMS
             roomDestination.floor = int.Parse(Floor.Text);
             roomDestination.roomNum = int.Parse(RoomNum.Text);
             roomDestination.id = rc.FindRoomId(int.Parse(Floor.Text), int.Parse(RoomNum.Text));
+            roomDestination = rc.FindRoomById(roomDestination.id);
 
             quantity = int.Parse(Quantity.Text);
             String dateAndTime = DatePicker.Text + " " + Time.Text;
