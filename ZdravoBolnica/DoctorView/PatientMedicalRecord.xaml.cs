@@ -32,9 +32,11 @@ namespace SIMS.DoctorView
         public ObservableCollection<String> allergies { get; set; }
         public PrescriptionController prc = new PrescriptionController();
         public ExaminationReportController erc = new ExaminationReportController();
+        public AppointmentController appointmentController = new AppointmentController();
         public DoctorController doctorController = new DoctorController();
         public MedicationController medicationController = new MedicationController();
         public MedicalRecordController medicalRecordController = new MedicalRecordController();
+        public RoomController roomController = new RoomController();
 
         public Patient patient { get; set; }
         private PatientMedicalRecord()
@@ -113,11 +115,63 @@ namespace SIMS.DoctorView
             exReports = erc.findReportsByMRecordId(patient.medicalRecord.id);
             List <Doctor> doctors = doctorController.GetAllDoctors();
             erc.bindReporswithDoctors(exReports, doctors);
-            foreach(ExaminationReport e in exReports)
+            List<Room> rooms = roomController.FindAll();
+            List<Appointment> appointments = appointmentController.GetAllApointments();
+            appointmentController.bindRoomsWithAppointments(rooms, appointments);
+            erc.bindReportswithAppointments(exReports, appointments);
+
+            foreach (ExaminationReport e in exReports)
             {
                 examinationReports.Add(e);
             }
 
         }
+
+        private void Detalji_Click(object sender, RoutedEventArgs e)
+        {
+            Prescription prescription = PrescriptionsTable.SelectedItem as Prescription;
+            PrescriptionDetails prescriptionDetails = new PrescriptionDetails(prescription);
+            prescriptionDetails.Show();
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            PrescriptionView prescription = new PrescriptionView();
+            prescription.Show();
+        }
+
+
+        private void ExaminationDetails(object sender, RoutedEventArgs e)
+        {
+            ExaminationReport examinationReport = ExaminationsTable.SelectedItem as ExaminationReport;
+            ExaminationDetails details = new ExaminationDetails(examinationReport);
+            details.Show();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ExaminationReport examinationReport = ExaminationsTable.SelectedItem as ExaminationReport;
+            EditExaminationReport editExaminationReport = new EditExaminationReport(examinationReport);
+            editExaminationReport.Show();
+
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+           
+            
+            Appointment a = appointmentController.findPatientAppointment(patient);
+            if (a == null)
+            {
+                MessageBox.Show("Izabrani pacijent nema ni jedan zakazan termin u ovom periodu!");
+            }
+            else
+            {
+                RecordExamination re = new RecordExamination(a);
+                re.ShowDialog();
+            }
+            
+        }
     }
+
 }

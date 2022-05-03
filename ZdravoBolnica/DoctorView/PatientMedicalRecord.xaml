@@ -82,10 +82,10 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="75"/>
                     </Grid.RowDefinitions>
-                    <DataGrid Grid.Row="1" Margin="45,0,45,0" AutoGenerateColumns="False" SelectionMode="Single" ItemsSource="{Binding Path=examinationReports}">
+                    <DataGrid Grid.Row="1" Margin="45,0,45,0" Name="ExaminationsTable" AutoGenerateColumns="False" SelectionMode="Single" ItemsSource="{Binding Path=examinationReports}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Lekar" Width="*" Binding="{Binding doctor.FullName}"/>
-                            <DataGridTextColumn Header="Sala" Width="*"/>
+                            <DataGridTextColumn Header="Sala" Width="*" Binding="{Binding appointment.Room.roomNum}"/>
                             <DataGridTextColumn Header="Datum" Width="*" Binding="{Binding reportDate}"/>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -96,9 +96,9 @@
                             <ColumnDefinition Width="160"/>
                             <ColumnDefinition Width="160"/>
                         </Grid.ColumnDefinitions>
-                        <Button Content="Detalji" Grid.Column="0" Margin="10,20,10,20" />
-                        <Button Content="Dodaj" Grid.Column="1" Margin="10,20,10,20" />
-                        <Button Content="Izmeni" Grid.Column="2" Margin="10,20,10,20"/>
+                        <Button Content="Detalji" Grid.Column="0" Margin="10,20,10,20" Click="ExaminationDetails" />
+                        <Button Content="Dodaj" Grid.Column="1" Margin="10,20,10,20" Click="Button_Click_2" />
+                        <Button Content="Izmeni" Grid.Column="2" Margin="10,20,10,20" Click="Button_Click_1"/>
                     </Grid>
                 </Grid>
             </TabItem>
@@ -136,7 +136,7 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="75"/>
                     </Grid.RowDefinitions>
-                    <DataGrid Grid.Row="1" Margin="45,0,45,0" AutoGenerateColumns="False" SelectionMode="Single" ItemsSource="{Binding Path=prescriptions}">
+                    <DataGrid Grid.Row="1" Margin="45,0,45,0" Name="PrescriptionsTable" AutoGenerateColumns="False" SelectionMode="Single" ItemsSource="{Binding Path=prescriptions}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Lekar" Width="*" Binding="{Binding doctor.FullName}"/>
                             <DataGridTextColumn Header="Naziv Terapije" Binding="{Binding medication.name}" Width="*"/>
@@ -150,9 +150,8 @@
                             <ColumnDefinition Width="160"/>
                             <ColumnDefinition Width="160"/>
                         </Grid.ColumnDefinitions>
-                        <Button Content="Detalji" Grid.Column="0" Margin="10,20,10,20" />
-                        <Button Content="Dodaj" Grid.Column="1" Margin="10,20,10,20" />
-                        <Button Content="Izmeni" Grid.Column="2" Margin="10,20,10,20"/>
+                        <Button Content="Detalji" Grid.Column="0" Margin="10,20,10,20" Click="Detalji_Click" />
+                        <Button Content="Dodaj" Grid.Column="1" Margin="10,20,10,20" Click="Add_Click" />
                     </Grid>
                 </Grid>
             </TabItem>

@@ -40,7 +40,7 @@ namespace SIMS.Controller
 
         public void Update(ExaminationReport entity)
         {
-            throw new NotImplementedException();
+            examinationReportService.Update(entity);
         }
         public List<ExaminationReport> findReportsByMRecordId(int id)
         {
@@ -50,6 +50,10 @@ namespace SIMS.Controller
         public void bindReporswithDoctors(List<ExaminationReport> reports, List<Doctor> doctors)
         {
             examinationReportService.bindReporswithDoctors(reports, doctors);
+        }
+        public void bindReportswithAppointments(List<ExaminationReport> reports, List<Appointment> appointments)
+        {
+            examinationReportService.bindReportswithAppointments(reports, appointments);
         }
     }
 }

@@ -39,7 +39,7 @@ namespace SIMS.Service
 
         public void Update(ExaminationReport entity)
         {
-            throw new NotImplementedException();
+            examinationReportRepository.Update(entity);
         }
 
         public List<ExaminationReport> findReportsByMRecordId(int id)
@@ -59,6 +59,21 @@ namespace SIMS.Service
                     }
                 }
             }
+        }
+
+        public void bindReportswithAppointments(List<ExaminationReport> reports, List<Appointment> appointments)
+        {
+            foreach (Appointment a in appointments)
+            {
+                foreach (ExaminationReport e in reports)
+                {
+                    if (e.appointment.id == a.id)
+                    {
+                        e.appointment = a;
+                    }
+                }
+            }
+
         }
     }
 }

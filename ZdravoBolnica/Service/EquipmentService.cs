@@ -106,5 +106,19 @@ namespace SIMS.Service
             }
             return "";
          }
+
+        public Equipment FindEquipmentById(int id)
+        {
+            List<Equipment> invetory = new List<Equipment>();
+            invetory = FindAll();
+            foreach (Equipment e in invetory)
+            {
+                if (e.id == id)
+                {
+                    return e;
+                }
+            }
+            return null;
+        }
     }
 }

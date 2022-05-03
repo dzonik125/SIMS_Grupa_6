@@ -1,2 +1,2 @@
-1|12|3|True|Prostorija za preglede
-2|13|3|True|Prostorija za preglede
+1|1|1|True|Magacin
+2|2|1|True|Prostorija za preglede
