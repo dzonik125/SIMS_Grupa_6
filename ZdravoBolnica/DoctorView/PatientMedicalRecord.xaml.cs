@@ -82,13 +82,18 @@ namespace SIMS.DoctorView
         protected override void OnClosing(CancelEventArgs e)
         {
             this.Visibility = Visibility.Hidden;
+            //this.Close();
             e.Cancel = true;
+            patient = null;
+            PatientsView pw = PatientsView.Instance;
+            pw.selectedPatient = null;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             PrescriptionView prescription = new PrescriptionView();
             prescription.Show();
+
         }
 
         public void refreshPrescriptions()
