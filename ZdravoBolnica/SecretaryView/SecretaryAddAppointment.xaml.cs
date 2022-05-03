@@ -58,9 +58,9 @@ namespace SIMS.SecretaryView
             else
             {
                 ac.SaveAppointment(a);
-                this.Close();
+                
                 appointments.Refresh();
-
+                this.Close();
             }
         }
 
