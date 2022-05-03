@@ -23,7 +23,7 @@ namespace SIMS.DoctorView
     public partial class RecordExamination : Window
     {
         public ExaminationReportController examinationReportController = new ExaminationReportController();
-        public Appointment appointment;
+        public Appointment appointment = new Appointment();
         public RecordExamination(Appointment a)
         {
             appointment = a;
@@ -42,6 +42,7 @@ namespace SIMS.DoctorView
             examinationReport.medicalRecord = new MedicalRecord();
             examinationReport.medicalRecord.id = PatientsView.Instance.selectedPatient.medicalRecord.id;
             examinationReport.treatmentPlan = Therapy.Text;
+            examinationReport.appointment = new Appointment();
             examinationReport.appointment.id = appointment.id;
             examinationReportController.Create(examinationReport);
             PatientMedicalRecord.Instance.refreshExaminationReports();

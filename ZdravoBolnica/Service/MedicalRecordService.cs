@@ -44,7 +44,6 @@ namespace Service
                 if (med.name.Equals(medication.name))
                 {
                     return true;
-                    break;
                 }
             }
             return false;
