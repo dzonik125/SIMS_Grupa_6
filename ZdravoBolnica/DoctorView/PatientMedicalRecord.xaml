@@ -20,7 +20,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <Label Content="Petar Petrovic" FontSize="25" FontWeight="Bold" Margin="244,0,244,0"/>
+                        <Label Content="Petar Petrovic" Name="Name" FontSize="25" FontWeight="Bold" Margin="244,0,244,0"/>
                     </Grid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
@@ -39,21 +39,21 @@
                                 <RowDefinition Height="30"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Content="Pol:" FontSize="15"/>
-                            <Label Grid.Row="0" Content="M" FontSize="15" Margin="30,0,250,0"/>
-                            <Label Grid.Row="1" Content="JMBG:" FontSize="15"/>
-                            <Label Grid.Row="1" Content="12345667788" FontSize="15" Margin="50,0,15,0"/>
+                            <Label Grid.Row="0" Content="M" Name="Gender" FontSize="15" Margin="30,0,250,0"/>
+                            <Label Grid.Row="1" Content="JMBG:"  FontSize="15"/>
+                            <Label Grid.Row="1" Content="12345667788" Name="JMBG" FontSize="15" Margin="50,0,15,0"/>
                             <Label Grid.Row="2" Content="LBO:" FontSize="15"/>
-                            <Label Grid.Row="2" Content="13124325" FontSize="15" Margin="35,0,0,0"/>
-                            <Label Grid.Row="3" Content="Datum rodjenja:" FontSize="15"/>
-                            <Label Grid.Row="3" Content="12.12.2000" FontSize="15" Margin="110,0,0,0"/>
+                            <Label Grid.Row="2" Content="13124325" Name="LBO" FontSize="15" Margin="35,0,0,0"/>
+                            <Label Grid.Row="3" Content="Datum rodjenja:"  FontSize="15"/>
+                            <Label Grid.Row="3" Content="12.12.2000" Name="Birth" FontSize="15" Margin="110,0,0,0"/>
                             <Label Grid.Row="4" Content="Telefon:" FontSize="15"/>
-                            <Label Grid.Row="4" Content="060000000" FontSize="15" Margin="55,0,0,0"/>
+                            <Label Grid.Row="4" Content="060000000" Name="Phone" FontSize="15" Margin="55,0,0,0"/>
                             <Label Grid.Row="5" Content="Email:" FontSize="15"/>
-                            <Label Grid.Row="5" Content="13124325" FontSize="15" Margin="45,0,0,0"/>
+                            <Label Grid.Row="5" Content="13124325" Name="Email" FontSize="15" Margin="45,0,0,0"/>
                             <Label Grid.Row="6" Content="Hospitalizacija:" FontSize="15"/>
-                            <Label Grid.Row="6" Content="4" FontSize="15" Margin="105,0,0,0"/>
-                            <Label Grid.Row="7" Content="Krvna Grupa:" FontSize="15"/>
-                            <Label Grid.Row="7" Content="A+" FontSize="15" Margin="95,0,0,0"/>
+                            <Label Grid.Row="6" Content="4" FontSize="15" Name="Hospitalization" Margin="105,0,0,0"/>
+                            <Label Grid.Row="7" Content="Krvna Grupa:"  FontSize="15"/>
+                            <Label Grid.Row="7" Content="A+" FontSize="15" Name="BloodType" Margin="95,0,0,0"/>
                         </Grid>
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>

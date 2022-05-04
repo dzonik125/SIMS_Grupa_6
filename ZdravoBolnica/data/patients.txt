@@ -1,3 +1,2 @@
-1|Ime|Prezime||||1||123|321||False|0|1
-2|\sxas|ideifj||||2||123|123||False|1|2
-3|dww|wqdq||||3||123|123|12.12.2000|False|1|3
+1|Petar|Petrovic|wejiw@email.com|||4|0943590|1001|1230123|11.09.2010|False|0|4
+2|Borko|Borkovic|qew@mbr.com|||5|02394039|2130139|123123|23.06.2000|False|0|5
