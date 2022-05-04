@@ -68,7 +68,11 @@ namespace SIMS.DoctorView
         {
             get
             {
-                return instance;
+                if(instance == null)
+                {
+                    return new PatientMedicalRecord();
+                }else
+                    return instance;
             }
         }
 
@@ -77,16 +81,22 @@ namespace SIMS.DoctorView
             PatientsView pw = PatientsView.Instance;
             patient = new Patient();
             patient = pw.selectedPatient;
+            Name.Content = patient.FullName;
+            Gender.Content = patient.gender;
+            JMBG.Content = patient.jmbg;
+            LBO.Content = patient.lbo;
+            Birth.Content = patient.birthdate;
+            Phone.Content = patient.phone;
+            Email.Content = patient.email;
+            Hospitalization.Content = "/";
         }
 
         protected override void OnClosing(CancelEventArgs e)
         {
+            instance = null;
             this.Visibility = Visibility.Hidden;
-            //this.Close();
             e.Cancel = true;
-            patient = null;
-            PatientsView pw = PatientsView.Instance;
-            pw.selectedPatient = null;
+          
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

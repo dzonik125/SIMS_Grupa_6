@@ -47,17 +47,17 @@ namespace SIMS.DoctorView
             Appointments appointments = Appointments.Instance;
             a.Doctor = new Doctor();
             a.Doctor.id = appointments.doctorUser.id;
-            if (ac.IntersectionWithAppointments(a.patient.id, a.Doctor.id, a.Room.id, a.startTime, a.duration))
+            /*if (ac.IntersectionWithAppointments(a.patient.id, a.Doctor.id, a.Room.id, a.startTime, a.duration))
             {
                 MessageBox.Show("ne.");
                 return;
             }
             else
-            {   
-                ac.SaveAppointment(a);
-                this.Close();
-                appointments.Refresh();
-            }
+            */   
+            ac.SaveAppointment(a);
+            this.Close();
+            appointments.Refresh();
+            
 
         }
 

@@ -100,7 +100,7 @@ namespace Service
             {
                 if (a.Doctor.id == id)
                 {
-                    if (a.startTime >= DateTime.Now)
+                    if (a.startTime.AddMinutes(a.duration) >= DateTime.Now)
                     {
 
                         futureAppointments.Add(a);
