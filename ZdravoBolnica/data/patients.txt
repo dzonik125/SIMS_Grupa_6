@@ -1,2 +1,2 @@
-1|Petar|Petrovic|wejiw@email.com|||4|0943590|1001|1230123|11.09.2010|False|0|4
-2|Borko|Borkovic|qew@mbr.com|||5|02394039|2130139|123123|23.06.2000|False|0|5
+1|Janko|Petrovic|janko@gmail.com|j|janko|1|0640092198|17231877|3428141829|12.3.2012.|False|0|1
+2|Petar|Maric||||2|||3192312919||True|0|0
