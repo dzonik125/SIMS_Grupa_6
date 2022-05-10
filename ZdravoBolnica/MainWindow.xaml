@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIMS"
         mc:Ignorable="d"
+        
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Button Content="Pacijent" HorizontalAlignment="Left" Margin="98,180,0,0" VerticalAlignment="Top" Height="37" Width="84" Click="Button_Click"/>
