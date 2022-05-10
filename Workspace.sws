@@ -5,7 +5,8 @@
 <Workspace>
 	<Local Expanded="Yes">
 		<Model Expanded="Yes" ID="{78A27A1D-1747-4AA3-8363-7A118993C995}" Loaded="No" Name="SequenceDiagram" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="SequenceDiagram.oom"/>
-		<Model Expanded="Yes" ID="{6D6C6990-FA47-4ACD-93F7-633B727A2F09}" Name="Diagrams" Selected="Yes" Type="{FF4B6538-9856-42CF-B9B9-304ED370CEAA}" URL="/Users/Todor/Desktop/sims/SIMS_Grupa_6/Diagrams/Diagrams.prj"/>
+		<Model Expanded="Yes" ID="{6D6C6990-FA47-4ACD-93F7-633B727A2F09}" Loaded="No" Name="Diagrams" Type="{FF4B6538-9856-42CF-B9B9-304ED370CEAA}" URL="/Users/Todor/Desktop/sims/SIMS_Grupa_6/Diagrams/Diagrams.prj"/>
+		<Model Expanded="Yes" ID="{11741336-3B07-4C11-A23A-BD65A8A90649}" Name="ActivityDiagram" Selected="Yes" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="../../Sredoje/ActivityDiagram.oom"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
 </Workspace>

@@ -277,6 +277,9 @@ namespace SIMS
         private void ShowRoomInventory_Click(object sender, RoutedEventArgs e)
         {
             Room selectedRoom = roomsTable.SelectedItem as Room;
+            Floor.Text = selectedRoom.floor.ToString();
+            RoomNum.Text = selectedRoom.roomNum.ToString();
+            Purpose.Text = Conversion.RoomTypeToString(selectedRoom.roomType);
             roomSource = selectedRoom;
             if (selectedRoom == null)
             {
@@ -309,6 +312,11 @@ namespace SIMS
         {
             Renovation renovation = new Renovation();
             renovation.ShowDialog();
+
+        }
+
+        private void TabControl_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
 
         }
     }
