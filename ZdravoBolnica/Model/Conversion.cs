@@ -17,7 +17,7 @@ namespace SIMS.Model
                 RoomType.ward => "Bolesnička soba",
                 RoomType.storage => "Magacin",
                 RoomType.laboratory => "laboratorija",
-                RoomType.waitingRoom => "cekaonica",
+                RoomType.waitingRoom => "Cekaonica",
 
                 _ => "",
             };
@@ -111,7 +111,8 @@ namespace SIMS.Model
                 AppointmentType.examination => "pregled",
                 AppointmentType.surgery => "operacija",
                 AppointmentType.renovation => "renoviranje",
-                _ => "",
+                AppointmentType.transfer => "premestanje opreme",
+               _ => "",
             };
         }
 
@@ -121,6 +122,8 @@ namespace SIMS.Model
             {
                 "pregled" => AppointmentType.examination,
                 "operacija" => AppointmentType.surgery,
+                "renoviranje" => AppointmentType.renovation,
+                "premestanje opreme" => AppointmentType.transfer,
                 _ => AppointmentType.surgery,
             };
         }
