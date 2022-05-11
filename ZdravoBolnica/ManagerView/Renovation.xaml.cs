@@ -31,7 +31,9 @@ namespace SIMS.ManagerView
 
         private void MergeRooms_Click(object sender, RoutedEventArgs e)
         {
-
+            MergeRooms mergeRooms = new MergeRooms();
+            mergeRooms.ShowDialog();
+            this.Close();
         }
 
         private void RoomRenovation_Click(object sender, RoutedEventArgs e)

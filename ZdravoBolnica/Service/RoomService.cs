@@ -150,6 +150,21 @@ namespace Service
 
         }
 
+        public int FindRoomFloorByRoomId(int roomId1)
+        {
+            List<Room> rooms = new List<Room>();
+            rooms = roomsCRUD.FindAll();
+            foreach (Room r in rooms)
+            {
+                if (r.id == roomId1)
+                {
+                    return r.floor;
+                }
+            }
+            return 0;
+
+        }
+
         public bool FindRoomByFloor(int roomNum, int floor)
         {
             if (roomsCRUD.FindRoomByFloor(roomNum, floor))
@@ -157,6 +172,20 @@ namespace Service
                 return true;
             }
             return false;
+        }
+
+        public int FindSmallerRoomNumber(int room1Id, int room2Id)
+        {
+            Room room1 = new Room();
+            room1 = FindRoomById(room1Id);
+            Room room2 = new Room();
+            room2 = FindRoomById(room2Id);
+            if(room1.roomNum < room2.roomNum)
+            {
+                return room1.roomNum;
+            }
+            return room2.roomNum;
+
         }
 
 
