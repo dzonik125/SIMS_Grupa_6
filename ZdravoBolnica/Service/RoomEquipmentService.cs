@@ -83,6 +83,14 @@ namespace SIMS.Service
 
         }
 
+        public void ExecuteEquipmentMovingToWarehouse(int storageId, List<RoomEquipment> roomEquipment)
+        {
+            foreach(RoomEquipment re in roomEquipment)
+            {
+                FindEquipmentInWarehouse(re, storageId);
+            }
+        }
+
         public void CreateRoomEquipment(RoomEquipment roomEquipment)
         {
             rer.Create(roomEquipment);
@@ -221,6 +229,22 @@ namespace SIMS.Service
                 }
             }
 
+        }
+
+        public List<RoomEquipment> GetEquipmentByRoom(Room room)
+        {
+            List<RoomEquipment> allRoomEquipment = FindAll();
+            List<RoomEquipment> roomEquipmentInRoom = new List<RoomEquipment>();
+            foreach (RoomEquipment re in allRoomEquipment)
+            {
+                if(re.roomId == room.id)
+                {
+                    roomEquipmentInRoom.Add(re);
+                }
+                
+
+            }
+            return roomEquipmentInRoom;
         }
 
     
