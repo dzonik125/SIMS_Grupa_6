@@ -98,11 +98,14 @@ namespace SIMS.Service
         {
             _roomService.UpdateRoom(room);
             _roomEquipmentService.MoveEquipmentToWarehouse(mergeRooms.roomId1, mergeRooms.roomId2);
-            if(room.id != mergeRooms.roomId1)
+            if (room.id != mergeRooms.roomId1)
             {
                 _roomService.DeleteRoomById(mergeRooms.roomId1);
             }
-            _roomService.DeleteRoomById(mergeRooms.roomId2);
+            else
+            {
+                _roomService.DeleteRoomById(mergeRooms.roomId2);
+            }
         }
 
         public int FindSmallerId(int id1, int id2)

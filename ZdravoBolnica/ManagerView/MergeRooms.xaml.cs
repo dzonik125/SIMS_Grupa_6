@@ -50,7 +50,21 @@ namespace SIMS.ManagerView
             DateTime startTimeRenovation = DateTime.Parse(startDate.Text);
             DateTime endTimeRenovation = DateTime.Parse(endDate.Text);
             int duration = ((endTimeRenovation - startTimeRenovation).Days) * 24 * 60;
-      
+
+            if(room1.id == 0 )
+            {
+                MessageBox.Show("Prva soba koju ste uneli ne postoji na ovom spratu: ");
+                return;
+
+            }
+
+            if (room2.id == 0)
+            {
+                MessageBox.Show("Druga soba koju ste uneli ne postoji na ovom spratu: ");
+                return;
+
+            }
+
             if (_appointmentController.isRoomOccupied(room1, startTimeRenovation, duration) || _appointmentController.isRoomOccupied(room2,startTimeRenovation,duration))
              {
 

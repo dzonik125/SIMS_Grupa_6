@@ -23,7 +23,7 @@
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.Column="1" FontSize="20" Grid.ColumnSpan="3" FontWeight="Bold" Margin="0,0,30,0">Izaberite tip renoviranja</Label>
-        <Button Name="ChangePurpose" Grid.Column="1" Grid.ColumnSpan="3" Margin="16,90,53,10" Grid.RowSpan="2" Click="ChangePurpose_Click">Promena namene</Button>
+        <Button Name="SeparateRooms" Grid.Column="1" Grid.ColumnSpan="3" Margin="16,90,53,10" Grid.RowSpan="2" Click="SeparateRooms_Click">Razdvajanje prostorija</Button>
         <Button Name="MergeRooms" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Margin="16,6,53,94" Grid.RowSpan="2" Click="MergeRooms_Click">Spajanje prostorije</Button>
         <Button Name="RoomRenovation" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" Margin="16,16,53,84" Grid.RowSpan="2" Click="RoomRenovation_Click">Renoviranje prostorije</Button>
     </Grid>

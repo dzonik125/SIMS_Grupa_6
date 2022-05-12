@@ -7,10 +7,6 @@
     <ApplicationIcon>LOGO.ico</ApplicationIcon>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="data\" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="System.Threading.Timer" Version="4.3.0" />

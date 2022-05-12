@@ -71,7 +71,7 @@ namespace SIMS.Model
                 "Cekaonica" => RoomType.waitingRoom,
                 "Laboratorija" => RoomType.laboratory,
                 "Magacin" => RoomType.storage,
-                "Bolnicka soba" => RoomType.ward,
+                "Bolesnička soba" => RoomType.ward,
                 _ => RoomType.ward,
 
             };
