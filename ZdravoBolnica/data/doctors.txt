@@ -1,2 +1,2 @@
-1|Djordje|Djordjevic|Lekar opste prakse
-2|Petar|Petrovic|Lekar opste prakse
+1|Djordje|Djordjevic|Lekar opste prakse|dj|dj
+2|Petar|Petrovic|Lekar opste prakse|p|p

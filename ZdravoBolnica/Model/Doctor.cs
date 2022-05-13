@@ -8,18 +8,18 @@ using System;
 
 namespace Model
 {
-   public class Doctor : Account, Serializable
-   {
-      public Double grade;
-      
-      public System.Collections.Generic.List<Appointment> appointments { get; set; }
-      
-      /// <summary>
-      /// Property for collection of Appointment
-      /// </summary>
-      /// <pdGenerated>Default opposite class collection property</pdGenerated>
-      
-   
+    public class Doctor : Account, Serializable
+    {
+        public Double grade;
+
+        public System.Collections.Generic.List<Appointment> appointments { get; set; }
+
+        /// <summary>
+        /// Property for collection of Appointment
+        /// </summary>
+        /// <pdGenerated>Default opposite class collection property</pdGenerated>
+
+
 
         public string[] ToCSV()
         {
@@ -29,6 +29,8 @@ namespace Model
                 name,
                 surname,
                 Conversion.SpecializationToString(specialization),
+                password,
+                username,
             };
             return csvValues;
         }
@@ -39,22 +41,24 @@ namespace Model
             name = values[1];
             surname = values[2];
             specialization = Conversion.StringToSpecialization(values[3]);
+            password = values[4];
+            username = values[5];
         }
 
         public Specialization specialization;
-      
-      /// <summary>
-      /// Property for Specialization
-      /// </summary>
-      /// <pdGenerated>Default opposite class property</pdGenerated>
-      public Specialization Specialization
-      {
-         get
-         {
-            return specialization;
-         }
-     
-      }
-   
-   }
+
+        /// <summary>
+        /// Property for Specialization
+        /// </summary>
+        /// <pdGenerated>Default opposite class property</pdGenerated>
+        public Specialization Specialization
+        {
+            get
+            {
+                return specialization;
+            }
+
+        }
+
+    }
 }

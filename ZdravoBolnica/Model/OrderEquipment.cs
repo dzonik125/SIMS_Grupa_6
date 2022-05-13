@@ -21,65 +21,65 @@ namespace SIMS.Model
         {
             roomDestiantionId = int.Parse(values[0]);
             transferDate = DateTime.Parse(values[1]);
-            /*     List<int> q = new List<int>();
-                 if (values[2] != "")
-                 {
-                     string[] parts = values[2].Split(',');
+            List<int> q = new List<int>();
+            if (values[2] != "")
+            {
+                string[] parts = values[2].Split(',');
 
-                     foreach (string s in parts)
-                     {
-                         q.Add(Convert.ToInt32(s));
-                     }
-                     foreach (int i in q)
-                     {
-                         equipments.Add(er.FindById(i));
-                     }
-                 }
+                foreach (string s in parts)
+                {
+                    q.Add(Convert.ToInt32(s));
+                }
+                foreach (int i in q)
+                {
+                    equipments.Add(er.FindById(i));
+                }
+            }
 
-                 List<int> ids = new List<int>();
-                 if (values[3] != "")
-                 {
-                     string[] parts = values[3].Split(',');
+            List<int> ids = new List<int>();
+            if (values[3] != "")
+            {
+                string[] parts = values[3].Split(',');
 
-                     foreach (string s in parts)
-                     {
-                         ids.Add(Convert.ToInt32(s));
-                     }
-                     foreach (int i in ids)
-                     {
-                         equipments.Add(er.FindById(i));
-                     }
-                 }*/
+                foreach (string s in parts)
+                {
+                    ids.Add(Convert.ToInt32(s));
+                }
+                foreach (int i in ids)
+                {
+                    equipments.Add(er.FindById(i));
+                }
+            }
 
         }
 
 
         public string[] ToCSV()
         {
-            /*      foreach (Equipment e in equipments)
-                  {
-                      ids = ids + e.id + ",";
-                  }
-                  if (ids != "")
-                  {
-                      ids = ids.Remove(ids.Length - 1, 1);
-                  }
+            foreach (Equipment e in equipments)
+            {
+                ids = ids + e.id + ",";
+            }
+            if (ids != "")
+            {
+                ids = ids.Remove(ids.Length - 1, 1);
+            }
 
-                  foreach (Equipment e in equipments)
-                  {
-                      q = q + e.quantity + ",";
-                  }
-                  if (q != "")
-                  {
-                      q = q.Remove(q.Length - 1, 1);
-                  }*/
+            foreach (Equipment e in equipments)
+            {
+                q = q + e.quantity + ",";
+            }
+            if (q != "")
+            {
+                q = q.Remove(q.Length - 1, 1);
+            }
 
             string[] csvValues =
             {
                 roomDestiantionId.ToString(),
                 transferDate.ToString(),
-            //    q.ToString(),
-             //   ids.ToString(),
+                q.ToString(),
+               ids.ToString(),
             };
             return csvValues;
         }

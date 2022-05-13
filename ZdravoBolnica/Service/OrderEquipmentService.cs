@@ -28,6 +28,7 @@ namespace SIMS.Service
                 {
                     App.Current.Dispatcher.Invoke((Action)delegate
                     {
+
                         /* Room rDestionation = new Room();
                          rDestionation = rs.FindRoomById(oe.roomDestiantionId);
                          List<Equipment> equip = new List<Equipment>();

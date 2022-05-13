@@ -57,7 +57,7 @@ namespace SIMS.SecretaryView
 
             orderE.roomDestiantionId = rc.GetRoomIdByStorage(Conversion.StringToRoomType("Magacin"));
             orderE.transferDate = DateTime.Now.AddMinutes(1);
-            //orderE.q = Quantity.Text;
+            orderE.q = Quantity.Text;
 
 
             eq.Add(equip);
@@ -75,7 +75,7 @@ namespace SIMS.SecretaryView
         private async void Order_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             oec.SendEquipment(eq);
-            oec.SaveOrder(orderE);
+
             timer = new Timer(new TimerCallback(oec.CreateOrder), null, 1000, 60000);
             foreach (Equipment equipment in eq)
             {
@@ -87,6 +87,7 @@ namespace SIMS.SecretaryView
                 //   }
 
             }
+            oec.SaveOrder(orderE);
 
             //eq.Clear();
         }
