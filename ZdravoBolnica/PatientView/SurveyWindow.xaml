@@ -1,0 +1,14 @@
+﻿<Window x:Class="SIMS.PatientView.SurveyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIMS.PatientView"
+        mc:Ignorable="d"
+        Title="SurveyWindow" Height="450" Width="800">
+	<Grid>
+		<Label Content="Dostupne ankete" HorizontalAlignment="Center" Margin="0,35,0,0" VerticalAlignment="Top" FontSize="20"/>
+		<ComboBox SelectionChanged="Cb_OnSelectionChanged" Name="cb" HorizontalAlignment="Left" Margin="294,87,0,0" VerticalAlignment="Top" Width="217" Height="40"/>
+
+	</Grid>
+</Window>

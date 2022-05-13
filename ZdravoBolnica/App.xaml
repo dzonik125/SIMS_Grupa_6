@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:SIMS"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+         <FontFamily x:Key="GothamMedium">pack://application:,,,/Fonts/#Gotham</FontFamily>
     </Application.Resources>
 </Application>

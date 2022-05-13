@@ -432,13 +432,28 @@ namespace Service
             return toRet;
         }
 
-        public List<Appointment> getFutureAppointmentsForPatient(string id)
+        public List<Appointment> GetAllAppointmentsForPatient(int id)
+        {
+            List<Appointment> toRet = new List<Appointment>();
+            List<Appointment> apps = GetAllApointments();
+            foreach (Appointment a in apps)
+            {
+                if (a.patient.id == id)
+                {
+                    toRet.Add(a);
+                }
+            }
+
+            return toRet;
+        }
+
+        public List<Appointment> getFutureAppointmentsForPatient(int id)
         {
             List<Appointment> potentialAppointments = GetAllApointments();
             List<Appointment> futureAppointments = new List<Appointment>();
             foreach (Appointment a in potentialAppointments)
             {
-                if (a.patient.id.Equals(id))
+                if (a.patient.id == id)
                 {
                     if (a.startTime >= DateTime.Now)
                     {

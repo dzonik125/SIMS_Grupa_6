@@ -207,7 +207,7 @@ namespace SIMS.PatientView
                 app.Room.id = rc.findFreeRoom(app.startTime).id;
                 app.duration = 30;
                 app.Type = AppointmentType.examination;
-                app.patient = new Patient();
+                app.patient = new PatientController().FindAllPatients()[0];
                 ac.SaveAppointment(app);
                 PatientWindow pw = PatientWindow.Instance;
                 pw.refresh();

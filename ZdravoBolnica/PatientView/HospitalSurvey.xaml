@@ -1,0 +1,22 @@
+﻿<Window x:Class="SIMS.PatientView.HospitalSurvey"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIMS.PatientView"
+        mc:Ignorable="d"
+        Title="HospitalSurvey" Height="450" Width="800">
+	<Grid>
+		<Label Content="1. Kako ste zadovoljni ZDRAVO CORP bolnicom?" HorizontalAlignment="Left" Margin="272,19,0,0" VerticalAlignment="Top"/>
+		<ComboBox Name="cb1" HorizontalAlignment="Left" Margin="330,50,0,0" VerticalAlignment="Top" Width="120"/>
+		<Label Content="2. Kako ste zadovoljni ljubaznoscu zaposlenih?" HorizontalAlignment="Center" Margin="0,90,0,0" VerticalAlignment="Top"/>
+		<ComboBox Name="cb2" HorizontalAlignment="Left" Margin="330,122,0,0" VerticalAlignment="Top" Width="120"/>
+		<Label Content="3. Kako ocenjujete cene?" HorizontalAlignment="Left" Margin="320,146,0,0" VerticalAlignment="Top"/>
+		<ComboBox Name="cb3" HorizontalAlignment="Left" Margin="330,178,0,0" VerticalAlignment="Top" Width="120"/>
+		<Label Content="4. Ocenite profesionalnost osoblja" HorizontalAlignment="Left" Margin="293,0,0,0" VerticalAlignment="Center"/>
+		<ComboBox Name="cb4" HorizontalAlignment="Left" Margin="331,236,0,0" VerticalAlignment="Top" Width="120"/>
+		<Label Content="5. Kako ste zadovoljni higijenom" HorizontalAlignment="Left" Margin="293,264,0,0" VerticalAlignment="Top"/>
+		<ComboBox Name="cb5" HorizontalAlignment="Left" Margin="331,295,0,0" VerticalAlignment="Top" Width="120"/>
+		<Button Content="Potvrdi" HorizontalAlignment="Left" Margin="373,355,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+	</Grid>
+</Window>
