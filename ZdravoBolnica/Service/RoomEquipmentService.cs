@@ -1,5 +1,6 @@
 ﻿using Model;
 using Repository;
+using Service;
 using SIMS.Model;
 using SIMS.Repository;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace SIMS.Service
     {
         private RoomEquipmentRepository rer = new RoomEquipmentRepository();
         private RoomsCRUD rr = new RoomsCRUD();
+        private RoomService _roomService = new RoomService();
         public void setRoomEquipment(int id, List<Equipment> equipmentlist)
         {
             rer.setRoomEquipment(id, equipmentlist);
@@ -75,6 +77,14 @@ namespace SIMS.Service
 
             return roomInventory;
 
+        }
+
+        public void ExecuteEquipmentMovingToWarehouse(int storageId, List<RoomEquipment> roomEquipment)
+        {
+            foreach(RoomEquipment re in roomEquipment)
+            {
+                FindEquipmentInWarehouse(re, storageId);
+            }
         }
 
         public void CreateRoomEquipment(RoomEquipment roomEquipment)
@@ -143,6 +153,66 @@ namespace SIMS.Service
 
         }
 
+        public void MoveEquipmentToWarehouse(int roomId1, int roomId2)
+        {
+            int storageId = _roomService.GetRoomIdByStorage(RoomType.storage);
+            List<RoomEquipment> roomEquipment = new List<RoomEquipment>();
+            roomEquipment = FindAll();
+            foreach(RoomEquipment re in roomEquipment)
+            {
+                if(re.roomId == roomId1 || re.roomId == roomId2)
+                {
+                    FindEquipmentInWarehouse(re, storageId);
+
+                }
+                
+            }
+            //pronadji magacin
+            //uzmi svu opremu sa id-jem sobe
+            //prebaci u magacin ako postoji uvecati kolicinu
+            //ako ne postoji napraviti novu
+        }
+
+        public void FindEquipmentInWarehouse(RoomEquipment roomInventory, int storageId)
+        {
+            RoomEquipment storageEquipment = new RoomEquipment();
+            storageEquipment.roomId = storageId;
+            storageEquipment.equipmentId = roomInventory.equipmentId;
+            storageEquipment.quantity = roomInventory.quantity;
+            bool exist = RoomEquipmentExsist(storageEquipment);
+            if(exist)
+            {
+                UpdateRoomEquipment(storageEquipment);  
+            }
+            else 
+            {
+                CreateRoomEquipment(storageEquipment);
+            }
+
+            DeleteRoomEquipment(roomInventory);
+
+
+        }
+
+        public void DeleteRoomEquipment(RoomEquipment roomEquipment)
+        {
+            rer.DeleteEntity(roomEquipment);
+        }
+
+        public bool RoomEquipmentExsist(RoomEquipment roomInventory)
+        {
+            List<RoomEquipment> roomEquipment = new List<RoomEquipment>();
+            roomEquipment = FindAll();
+            foreach (RoomEquipment re in roomEquipment)
+            {
+               if(re.equipmentId == roomInventory.equipmentId && re.roomId == roomInventory.roomId)
+                {
+                    return true;
+                }
+
+            }
+            return false;
+        }
         public void DeleteEquipmentFromRoomByEquipmentId(int id)
         {
             List<RoomEquipment> roomInventory = new List<RoomEquipment>();
@@ -156,5 +226,23 @@ namespace SIMS.Service
             }
 
         }
+
+        public List<RoomEquipment> GetEquipmentByRoom(Room room)
+        {
+            List<RoomEquipment> allRoomEquipment = FindAll();
+            List<RoomEquipment> roomEquipmentInRoom = new List<RoomEquipment>();
+            foreach (RoomEquipment re in allRoomEquipment)
+            {
+                if(re.roomId == room.id)
+                {
+                    roomEquipmentInRoom.Add(re);
+                }
+                
+
+            }
+            return roomEquipmentInRoom;
+        }
+
+    
     }
 }

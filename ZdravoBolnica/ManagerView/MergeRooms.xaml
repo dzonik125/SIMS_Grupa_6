@@ -1,0 +1,44 @@
+﻿<Window x:Class="SIMS.ManagerView.MergeRooms"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIMS.ManagerView"
+        mc:Ignorable="d"
+        Title="MergeRooms" Height="450" Width="600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="Broj sobe 1:" Margin="53,69,71,81" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <TextBox Name="roomNum1" Grid.Row="0" Grid.Column="1" Margin="57,63,22,2" Grid.ColumnSpan="2"></TextBox>
+        <Label Grid.Row="1" Content="Broj sobe 2:" Margin="53,69,71,81" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <TextBox Name="roomNum2" Grid.Row="1" Grid.Column="1" Margin="57,60,22,5" Grid.ColumnSpan="2"/>
+        <Label Grid.Row="2" Content="Sprat:" Margin="53,69,71,81" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <TextBox  Name="Floor" Grid.Row="2" Grid.Column="1" Margin="57,60,22,5" Grid.ColumnSpan="2"/>
+        <Label Grid.Row="3" Content="Nova namena prostorije:" Margin="15,69,48,81" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <ComboBox Name="newPurpose" Grid.Row="3" Grid.Column="1" Margin="57,60,22,5" Grid.ColumnSpan="2"  />
+        <Label Grid.Row="0" Content="Datum pocetka:" Margin="45,59,38,91" Grid.ColumnSpan="2"  Grid.Column="3" Grid.RowSpan="2"/>
+        <DatePicker Name="startDate" Grid.Row="0" Grid.Column="4" Margin="74,57,26,6" Grid.ColumnSpan="2"></DatePicker>
+        <Label Grid.Row="1" Content="Vreme pocetka:" Margin="45,59,38,91" Grid.ColumnSpan="2"  Grid.Column="3" Grid.RowSpan="2"/>
+        <TextBox  Name="startTime" Grid.Row="1" Grid.Column="4" Margin="74,60,22,5" Grid.ColumnSpan="2"/>
+        <Label Grid.Row="2" Content="Datum pocetka:" Margin="45,59,38,91" Grid.ColumnSpan="2"  Grid.Column="3" Grid.RowSpan="2"/>
+        <DatePicker Name="endDate" Grid.Row="2" Grid.Column="4" Margin="74,57,26,6" Grid.ColumnSpan="2"></DatePicker>
+        <Button Name="ConfirmMergeRooms" Grid.Column="3" Grid.Row="3" Width="100" Height="40" Content="Potrvdi" Margin="70,59,30,1" Grid.ColumnSpan="2" Click="ConfirmMergeRooms_Click"></Button>
+        <Button Name="DiscardMergeRooms" Grid.Column="4" Grid.Row="3" Width="100" Height="40" Content="Odustani" Margin="89,59,11,1" Click="DiscardMergeRooms_Click" Grid.ColumnSpan="2"/>
+
+
+    </Grid>
+</Window>
