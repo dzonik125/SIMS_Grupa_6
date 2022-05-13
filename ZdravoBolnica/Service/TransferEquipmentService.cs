@@ -2,17 +2,16 @@
 using Repository;
 using Service;
 using SIMS.Model;
+using SIMS.Repository;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SIMS.Service
 {
     class TransferEquipmentService
     {
         private EquipmentTransferRepository etr = new EquipmentTransferRepository();
+        private OrderEquipmentRepository oer = new OrderEquipmentRepository();
         private RoomService rs = new RoomService();
         private EquipmentService es = new EquipmentService();
         private RoomEquipmentService res = new RoomEquipmentService();
@@ -24,7 +23,7 @@ namespace SIMS.Service
             {
                 if (DateTime.Compare(DateTime.Now, et.transferDate) == 0 || DateTime.Compare(et.transferDate, DateTime.Now) < 0)
                 {
-                   
+
                     App.Current.Dispatcher.Invoke((Action)delegate
                     {
                         Room rSource = new Room();
@@ -36,16 +35,18 @@ namespace SIMS.Service
                         res.TransferEquipment(rSource, rDestionation, equip, et.quantity);
                         etr.Remove(et);
                     });
-                }    
+                }
 
 
             }
         }
 
+
+
         public void SaveTransfer(Room roomSource, Room roomDestination, DateTime transferDate, int quantity, Equipment equipment)
         {
             EquipmentTransfer transferEquipment = new EquipmentTransfer();
-            transferEquipment.roomSourceId = rs.FindRoomId(roomSource.floor,roomSource.roomNum);
+            transferEquipment.roomSourceId = rs.FindRoomId(roomSource.floor, roomSource.roomNum);
             transferEquipment.roomDestiantionId = rs.FindRoomId(roomDestination.floor, roomDestination.roomNum);
             transferEquipment.transferDate = transferDate;
             transferEquipment.quantity = quantity;

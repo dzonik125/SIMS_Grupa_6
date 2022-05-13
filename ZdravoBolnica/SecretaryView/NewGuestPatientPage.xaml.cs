@@ -17,10 +17,11 @@ namespace SIMS.SecretaryView
         public Adress adress;
         public MedicalRecordController mrc = new MedicalRecordController();
         public MedicalRecord mr;
-
-        public NewGuestPatientPage()
+        public int lastPage;
+        public NewGuestPatientPage(int p)
         {
             InitializeComponent();
+            lastPage = p;
         }
 
         private void AddGuest_Click(object sender, RoutedEventArgs e)
@@ -50,8 +51,18 @@ namespace SIMS.SecretaryView
             ac.AddAdress(adress);
             pc.AddPatient(patient);
 
-            RegistrationPatient rgi = new RegistrationPatient();
-            SecretaryView.Instance.SetContent(new RegistrationPatient());
+            if (lastPage == 1)
+            {
+                RegistrationPatient rgi = new RegistrationPatient();
+                SecretaryView.Instance.SetContent(new RegistrationPatient());
+            }
+            else
+            {
+                AddEmergencyExaminationPage aeep = new AddEmergencyExaminationPage(Model.AppointmentType.examination);
+                SecretaryView.Instance.SetContent(new AddEmergencyExaminationPage(Model.AppointmentType.examination));
+            }
+
+
         }
 
         private void Reject_Click(object sender, RoutedEventArgs e)

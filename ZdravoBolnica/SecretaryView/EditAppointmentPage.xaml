@@ -30,11 +30,11 @@
                 </Grid>
                 <Grid Width="400"  FlowDirection="LeftToRight" HorizontalAlignment="Center">
                     <Label Content="Vreme:" HorizontalAlignment="Left" Margin="132,9,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="72"/>
-                    <TextBox HorizontalAlignment="Left" x:Name="Time" Margin="134,38,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="123" FontSize="18" Height="26"/>
+                    <ComboBox HorizontalAlignment="Left" x:Name="Time" Margin="134,38,0,0" VerticalAlignment="Top"  Width="123" Height="29" />
                 </Grid>
                 <Grid Width="400"  FlowDirection="LeftToRight">
                     <Label Content="Trajanje:" HorizontalAlignment="Left" Margin="129,8,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="73"/>
-                    <TextBox HorizontalAlignment="Left" x:Name="Duration" Margin="134,38,0,2" Text="" TextWrapping="Wrap" Width="123" FontSize="18" Height="26"/>
+                    <ComboBox HorizontalAlignment="Left" x:Name="Duration" Margin="134,38,0,0" VerticalAlignment="Top"  Width="123" Height="29" />
                 </Grid>
                 <Grid Margin="50,150,0,0" Width="400" FlowDirection="LeftToRight">
                     <Button Content="Izmeni" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="40" Width="80" Margin="34,0,0,0" Click="Edit_Click" FontSize="16"/>

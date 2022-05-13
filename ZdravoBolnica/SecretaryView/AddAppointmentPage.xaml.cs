@@ -33,6 +33,12 @@ namespace SIMS.SecretaryView
             RoomBox.ItemsSource = rooms;
             DoctorBox.ItemsSource = doctors;
 
+            List<string> duration = new List<string>() { "30 minuta", "60 minuta", "90 minuta" };
+            Duration.ItemsSource = duration;
+
+            List<string> appointmentsTime = new List<string>() { "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00" };
+            Time.ItemsSource = appointmentsTime;
+
         }
 
         private void Schedule_Click(object sender, RoutedEventArgs e)
@@ -49,21 +55,52 @@ namespace SIMS.SecretaryView
             String dateAndTime = DatePicker.Text + " " + Time.Text;
             DateTime timeStamp = DateTime.Parse(dateAndTime);
             a.startTime = timeStamp;
-            a.duration = int.Parse(Duration.Text);
+
+            if (Duration.SelectedIndex == 0)
+                a.duration = 30;
+            else if (Duration.SelectedIndex == 1)
+                a.duration = 60;
+            else
+                a.duration = 90;
+
+            // a.duration = int.Parse(Duration.Text);
             CreateAppointment appointments = CreateAppointment.Instance;
 
-            if (ac.IntersectionWithAppointments(a.patient.id, a.Doctor.id, a.Room.id, a.startTime, a.duration))
-            {
-                MessageBox.Show("ne.");
-                return;
-            }
-            else
+            // if (ac.IntersectionWithAppointments(a.patient.id, a.Doctor.id, a.Room.id, a.startTime, a.duration))
+            // {
+            //    MessageBox.Show("Popini sva polja.");
+            //    return;
+            // }
+            if (ValidationAppointment(a))
             {
                 ac.SaveAppointment(a);
-
                 appointments.Refresh();
                 SecretaryView.Instance.SetContent(new CreateAppointmentPage());
             }
+
+        }
+
+        private bool ValidationAppointment(Appointment appointment)
+        {
+            AppointmentController appointmentController = new AppointmentController();
+            List<Appointment> appointments = appointmentController.GetAllApointments();
+            foreach (Appointment a in appointments)
+            {
+                if (a.GetEndTime() > appointment.startTime && a.startTime < appointment.GetEndTime() && !a.id.Equals(appointment.id))
+                {
+                    if (a.Doctor.id.Equals(appointment.Doctor.id))
+                    {
+                        MessageBox.Show("Doktor je zauzet u ovom terminu!");
+                        return false;
+                    }
+                    else if (a.Room.id.Equals(appointment.Room.id))
+                    {
+                        MessageBox.Show("Soba je zauzeta u ovom terminu!");
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
 
 

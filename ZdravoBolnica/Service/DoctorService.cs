@@ -9,9 +9,9 @@ using System.Collections.Generic;
 
 namespace Service
 {
-   public class DoctorService
-   {
-      private Doctor findFreeDoctor()
+    public class DoctorService
+    {
+        private Doctor findFreeDoctor()
         {
             return null;
         }
@@ -41,7 +41,12 @@ namespace Service
             return doctorRepository.FindById(id);
         }
 
+        // public List<string> GetSpecializationString()
+        // {
+        //     return doctorRepository.GetSpecializationString();
+        // }
+
         public Repository.DoctorRepository doctorRepository = new Repository.DoctorRepository();
-   
-   }
+
+    }
 }

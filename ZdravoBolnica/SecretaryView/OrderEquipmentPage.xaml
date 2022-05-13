@@ -1,0 +1,47 @@
+﻿<Page x:Class="SIMS.SecretaryView.OrderEquipmentPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SIMS.SecretaryView"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1000"
+      Title="OrderEquipmentPage">
+
+    <Grid Height="800" Width="400">
+        <Label Content="Naručivanje dinamičke opreme" FontSize="30" HorizontalAlignment="Left" Margin="278,52,0,748"/>
+        <StackPanel Width="400" Height="800" Orientation="Vertical" Margin="288,10,-288,-10">
+            <Grid Width="400" Margin="10,10" Height="70">
+                <Label Content="Naziv:" FontSize="20" VerticalAlignment="Top" Height="40" Margin="145,0,185,0" />
+                <TextBox Width="100" Height="20" Name="Name" VerticalAlignment="Top" Margin="150,40,150,0" />
+            </Grid>
+            <Grid Width="400" Height="70" HorizontalAlignment="Left" Margin="10,10" >
+                <Label Content="Kolicina:" FontSize="20" HorizontalAlignment="Left" Margin="145,1,0,28"/>
+                <TextBox Width="100" Height="20" x:Name="Quantity" VerticalAlignment="Top" Margin="150,40,150,0"/>
+            </Grid>
+            <Grid>
+                <DataGrid x:Name="equipmentTable" HorizontalAlignment="Left" Height="126" VerticalAlignment="Top" Width="122" ItemsSource="{Binding Path=eq}" CanUserAddRows="False" AutoGenerateColumns="False" Margin="150,10,0,0">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding item}"  DataGridColumn.CanUserResize="False"/>
+                        <DataGridTextColumn Header="Kolicina" Width="*" Binding="{Binding quantity}"  DataGridColumn.CanUserResize="False"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button Content="Dodaj" x:Name="add" Width="50" Height="20" Margin="290,15,60,101" Click="Add_Click"/>
+                <Button Content="Izbaci" x:Name="add_Copy" Width="50" Height="20" Margin="290,38,60,78" Click="Remove_Click"/>
+            </Grid>
+            <Grid>
+                <DataGrid x:Name="magacinTable" HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="310" ItemsSource="{Binding Path=order}" CanUserAddRows="False" AutoGenerateColumns="False" Margin="-258,-221,0,0">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding item}"  DataGridColumn.CanUserResize="False"/>
+                        <DataGridTextColumn Header="Kolicina" Width="*" Binding="{Binding quantity}"  DataGridColumn.CanUserResize="False"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <Grid Width="400" Height="54" HorizontalAlignment="Center">
+                <Button x:Name="ordering" Content="Poruči" Width="50" Height="20" Margin="150,17,200,17" Click="Order_Click"/>
+                <Button x:Name="cancel" Content="Odustani" Height="20" Margin="233,17,108,17"/>
+            </Grid>
+
+        </StackPanel>
+    </Grid>
+</Page>

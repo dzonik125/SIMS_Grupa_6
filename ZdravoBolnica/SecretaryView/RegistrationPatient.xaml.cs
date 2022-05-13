@@ -73,7 +73,7 @@ namespace SIMS.SecretaryView
 
         private void NewGuestPatient_Click(object sender, RoutedEventArgs e)
         {
-            SecretaryView.Instance.SetContent(new NewGuestPatientPage());
+            SecretaryView.Instance.SetContent(new NewGuestPatientPage(1));
         }
 
         private void EditPatient_Click(object sender, RoutedEventArgs e)

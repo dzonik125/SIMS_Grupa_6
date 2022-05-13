@@ -74,7 +74,8 @@ namespace SIMS.SecretaryView
 
         private void EmergencyExamination_Click(object sender, RoutedEventArgs e)
         {
-
+            AppointmentType type = AppointmentType.examination;
+            SecretaryView.Instance.SetContent(new AddEmergencyExaminationPage(type));
         }
 
         private void EmergencySurgery_Click(object sender, RoutedEventArgs e)

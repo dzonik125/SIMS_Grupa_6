@@ -1,2 +1,7 @@
 1|Janko|Petrovic|janko@gmail.com|j|janko|1|0640092198|17231877|3428141829|12.3.2012.|False|0|1
 2|Petar|Maric||||2|||3192312919||True|0|0
+3|stefan|stefanovski||||3|||9999999||True|0|0
+4|pero|mitic||||4|||9999||True|0|0
+5|janko|jankic||||5|||90||True|0|0
+6|mitar|miric||||6|||999||False|1|2
+7|test|||||7|||||False|1|3
