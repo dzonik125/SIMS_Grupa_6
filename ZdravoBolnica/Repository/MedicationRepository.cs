@@ -36,11 +36,7 @@ namespace SIMS.Repository
             throw new NotImplementedException();
         }
 
-        public void DeleteById(Medication id)
-        {
-            throw new NotImplementedException();
-        }
-
+       
         public void DeleteById(int id)
         {
             List<Medication> medications = FindAll();
@@ -79,7 +75,20 @@ namespace SIMS.Repository
 
         public void Update(Medication entity)
         {
-            throw new NotImplementedException();
+            List<Medication> medications = FindAll();
+            foreach(Medication m in medications)
+            {
+                if(m.id == entity.id)
+                {
+                    m.name = entity.name;
+                    m.Amount = entity.Amount;
+                    m.status = entity.status;
+                    m.components = entity.components;
+                    m.medicationReplacementIds = entity.medicationReplacementIds;
+                    break;
+                }
+            }
+            medicationSerializer.toCSV(filename, medications);
         }
 
     }

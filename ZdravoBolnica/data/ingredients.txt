@@ -1,0 +1,3 @@
+sastojak 1
+sastojak 2
+sastojak 3

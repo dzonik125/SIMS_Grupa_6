@@ -1,4 +1,5 @@
 ﻿using Model;
+using SIMS.Model;
 using SIMS.Service;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,11 @@ namespace SIMS.Controller
         {
             es.DeleteEquipmentById(id);
             return true;
+        }
+
+        public List<Equipment> GetiEquipmentByType(EquipmentType type)
+        {
+            return es.GetiEquipmentByType(type);
         }
     }
 }

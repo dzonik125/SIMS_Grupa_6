@@ -30,6 +30,7 @@ namespace SIMS
         private RoomEquipmentController rec = new RoomEquipmentController();
         private AppointmentController ac = new AppointmentController();
         private TransferEquipmentController transferEquipmentController = new TransferEquipmentController();
+        private MedicationController _medicationController = new MedicationController();
         private static Timer timer;
         private Room roomSource;
 
@@ -48,6 +49,7 @@ namespace SIMS
             this.DataContext = this;
             equipList = new ObservableCollection<Equipment>();
             List<Equipment> inventory = new List<Equipment>();
+            medicationList = new ObservableCollection<Medication>();
             inventory = ec.FindAll();
 
             foreach (Equipment e in inventory)
@@ -61,11 +63,12 @@ namespace SIMS
             {
                 refreshRoomInventoryTable(ro);
             }
-           // DateTime transferDate = new DateTime();
-           // Room r = roomsTable.SelectedItem as Room;
-          //  transferDate = ac.FindDate(r);
+            // DateTime transferDate = new DateTime();
+            // Room r = roomsTable.SelectedItem as Room;
+            //  transferDate = ac.FindDate(r);
 
-
+            refreshMedicationTable();
+            CombroFilter.ItemsSource = Conversion.GetEquipmentTypes();
 
 
         }
@@ -77,8 +80,7 @@ namespace SIMS
             }
         }
 
-
-
+        public ObservableCollection<Medication> medicationList { get; set; }
 
         public ObservableCollection<Room> list
         {
@@ -122,6 +124,21 @@ namespace SIMS
             {
                 list.Add(r);
             }
+        }
+
+        public void refreshMedicationTable()
+        {
+            medicationList.Clear();
+            List<Medication> medications = new List<Medication>();
+            medications = _medicationController.FindAll();
+            medications.Sort((Medication x, Medication y) => x.Amount.CompareTo(y.Amount));
+            List<Medication> bindgingMedicationList = new List<Medication>();
+            foreach (Medication m in medications)
+            {
+
+                medicationList.Add(m);
+            }
+            
         }
 
         public void refreshEquipmentTable()
@@ -316,6 +333,125 @@ namespace SIMS
         }
 
         private void TabControl_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void AddMedication_Click(object sender, RoutedEventArgs e)
+        {
+            AddMedication addMedication = new AddMedication();
+            addMedication.ShowDialog();
+        }
+
+        private void EditMedication_Click(object sender, RoutedEventArgs e)
+        {
+            Medication selectedMedication = medicationTable.SelectedItem as Medication;
+            EditMedication editMed = new EditMedication(selectedMedication);
+            editMed.ShowDialog();
+        }
+
+        private void DeleteMEdication_Click(object sender, RoutedEventArgs e)
+        {
+            Medication selectedMedication = medicationTable.SelectedItem as Medication;
+            _medicationController.DeleteById(selectedMedication.id);
+            refreshMedicationTable();
+        }
+
+        private void ShowMedicationInfo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SearchBoxTextChanged(object sender, TextChangedEventArgs e)
+        {
+            // filterModeLisst.Clear();
+            //            
+            medicationList = new ObservableCollection<Medication>();
+            medicationList.Clear();
+
+            if (searchBox.Text.Equals(""))
+            {
+                foreach(Medication m in _medicationController.FindAll())
+                {
+                    medicationList.Add(m);
+                }
+               // filterModeLisst.AddRange(_animals);
+            }
+            else
+            {
+                foreach (Medication m in _medicationController.FindAll())
+                {
+                    //medicationList.Clear();
+                    if (m.name.Contains(searchBox.Text) || m.Amount.ToString().Contains(searchBox.Text) || m.id.ToString().Contains(searchBox.Text) || Conversion.MedicationStatusTypeToString( m.status).Contains(searchBox.Text))
+                    {
+                        
+                        medicationList.Add(m);
+                    }
+                }
+            }
+
+            medicationTable.ItemsSource = medicationList;
+        }
+
+        private void SearchBoxEquipmentTextChanged(object sender, TextChangedEventArgs e)
+        {
+            equipList = new ObservableCollection<Equipment>();
+            equipList.Clear();
+
+            if (searchEquipmentBox.Text.Equals(""))
+            {
+                foreach (Equipment eq in ec.FindAll())
+                {
+                    equipList.Add(eq);
+                }
+                // filterModeLisst.AddRange(_animals);
+            }
+            else
+            {
+                foreach (Equipment eq in ec.FindAll())
+                {
+                    //medicationList.Clear();
+                    if (eq.item.Contains(searchEquipmentBox.Text) || eq.id.ToString().Contains(searchEquipmentBox.Text) || eq.quantity.ToString().Contains(searchEquipmentBox.Text) || Conversion.EquipmentTypeToString(eq.type).Contains(searchEquipmentBox.Text))
+                    {
+
+                        equipList.Add(eq);
+                    }
+                }
+            }
+
+            equipmenttTable.ItemsSource = equipList;
+
+        }
+
+        private void CombroFilter_DropDownClosed(object sender, EventArgs e)
+        {
+            equipList = new ObservableCollection<Equipment>();
+            if (CombroFilter.Text.Equals("potrosna"))
+            {
+              
+                foreach(Equipment eq in ec.GetiEquipmentByType(EquipmentType.potrosna))
+                {
+                    equipList.Add(eq);
+                }
+            }
+            else if(CombroFilter.Text.Equals("nepotrosna"))
+            {
+                foreach (Equipment eq in ec.GetiEquipmentByType(EquipmentType.nepotrosna))
+                {
+                    equipList.Add(eq);
+                }
+            }
+            else
+            {
+               foreach(Equipment eq in ec.FindAll())
+                {
+                    equipList.Add(eq);
+                }
+            }
+            equipmenttTable.ItemsSource = equipList;
+        }
+
+        private void CombroFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

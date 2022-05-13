@@ -219,8 +219,12 @@
             </TabItem >
             <TabItem Background="#191E29" BorderThickness="105" Foreground="White" BorderBrush="Gray" Width="90" Header="      Oprema" Margin="17,0,-17,0">
                 <Grid Background="#8BA19B">
-                    <Rectangle Fill="#006666" Margin="0,0,701,0" RenderTransformOrigin="0.193,0.517"/>
-                    <TabControl Background="#8BA19B" TabStripPlacement="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="429*"/>
+                        <ColumnDefinition Width="365*"/>
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Fill="#006666" Margin="0,0,336,0" RenderTransformOrigin="0.193,0.517"/>
+                    <TabControl Background="#8BA19B" TabStripPlacement="Left" Grid.ColumnSpan="2">
                         <TabItem Background="#006666"  Width="70" Foreground="White" Height="30" Header="Inventar">
                             <Grid Background="#8BA19B">
                                 <Grid.ColumnDefinitions>
@@ -265,6 +269,8 @@
 
                                 </DataGrid>
                                 <Label FontSize="30" FontWeight="Bold"  Foreground="White" Grid.ColumnSpan="7" RenderTransformOrigin="0.578,0.489" Margin="50,0,29,30">Pregled celokupne opreme unutar bolnice</Label>
+                                <TextBox Name="searchEquipmentBox"  Grid.Column="5" Grid.Row="0"  Height="40" TextChanged="SearchBoxEquipmentTextChanged" Text="" Margin="64,70,24,90" Grid.RowSpan="2"  Grid.ColumnSpan="2"></TextBox>
+                                <ComboBox Name="CombroFilter" DropDownClosed="CombroFilter_DropDownClosed" Grid.Column="5" Grid.Row="1"  Height="40"  Margin="64,16,24,44"  Grid.ColumnSpan="2" SelectionChanged="CombroFilter_SelectionChanged"/>
                                 <Button Name="AddEquipment" Content="Dodaj" Grid.Column="5" Grid.Row="1"  Background="Green" Foreground="White" FontWeight="Bold" Height="40" Margin="64,70,24,90" Grid.RowSpan="2" Click="AddEquipment_Click" Grid.ColumnSpan="2"/>
                                 <Button Name="EditEquipment" Content="Izmeni"  Background="#475A4B" Foreground="White" FontWeight="Bold" Grid.Column="5" Grid.Row="2" Height="40" Margin="64,22,24,38" Click="EditEquipment_Click" Grid.ColumnSpan="2"/>
                                 <Button Name="DeleteEquipment" Content="Izbrisi"  Background="DarkRed" Foreground="White" FontWeight="Bold" Grid.Column="5" Grid.Row="2" Height="40" Margin="64,74,24,86" Grid.RowSpan="2" Click="DeleteEquipment_Click" Grid.ColumnSpan="2"/>
@@ -272,6 +278,55 @@
                             </Grid>
 
                         </TabItem>
+                        <TabItem Background="#006666"  Width="70" Foreground="White" Height="30" Header="Lekovi">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition Height="100"/>
+                                </Grid.RowDefinitions>
+                                <DataGrid x:Name="medicationTable" Background="#879D8C" ItemsSource="{Binding Path = medicationList}" Grid.Row="0"  Grid.RowSpan="4" Grid.ColumnSpan="6" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged_1" Margin="17,74,88,72">
+                                    <DataGrid.Resources>
+                                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                            <Setter Property="Background" Value="#99B29F" />
+                                            <Setter Property="Foreground" Value="White"></Setter>
+                                        </Style>
+                                    </DataGrid.Resources>
+                                    <DataGrid.RowStyle>
+                                        <Style BasedOn="{StaticResource {x:Type DataGridRow}}" TargetType="{x:Type DataGridRow}">
+                                            <Setter Property="Background" Value="#879D8C"></Setter>
+                                            <Setter Property="Foreground" Value="White"></Setter>
+                                        </Style>
+                                    </DataGrid.RowStyle>
+                                    <DataGrid.Columns>
+
+                                        <DataGridTextColumn Foreground="White"  Header="Sifra" Binding="{Binding id}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Foreground="white" Header="Naziv" Binding="{Binding name}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Foreground="white" Header="Zamena" Binding="{Binding Amount}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Foreground="white" Header="Status" Binding="{Binding MedicationStatusTypeString}" Width="*"></DataGridTextColumn>
+
+
+                                    </DataGrid.Columns>
+
+                                </DataGrid>
+                                <TextBox Name="searchBox"  Grid.Column="5" Grid.Row="0"  Height="40" TextChanged="SearchBoxTextChanged" Text="" Margin="64,70,24,90" Grid.RowSpan="2"  Grid.ColumnSpan="2"></TextBox>
+                                <Button Name="AddMedication" Content="Dodaj" Grid.Column="5" Grid.Row="1"  Background="Green" Foreground="White" FontWeight="Bold" Height="40" Margin="64,70,24,90" Grid.RowSpan="2" Click="AddMedication_Click" Grid.ColumnSpan="2"/>
+                                <Button Name="EditMedication" Content="Izmeni"  Background="#475A4B" Foreground="White" FontWeight="Bold" Grid.Column="5" Grid.Row="2" Height="40" Margin="64,22,24,38" Click="EditMedication_Click" Grid.ColumnSpan="2"/>
+                                <Button Name="DeleteMEdication" Content="Izbrisi"  Background="DarkRed" Foreground="White" FontWeight="Bold" Grid.Column="5" Grid.Row="2" Height="40" Margin="64,74,24,86" Grid.RowSpan="2" Click="DeleteMEdication_Click" Grid.ColumnSpan="2"/>
+                            </Grid>
+                        </TabItem>
+                        <Button x:Name="AddEquipment_Copy" Content="Dodaj"  Background="Green" Foreground="White" FontWeight="Bold" Height="40" Click="AddEquipment_Click" Width="128"/>
                     </TabControl>
                 </Grid>
             </TabItem>

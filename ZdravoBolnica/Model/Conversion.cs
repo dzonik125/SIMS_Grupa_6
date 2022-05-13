@@ -23,6 +23,28 @@ namespace SIMS.Model
             };
         }
 
+        public static string MedicationStatusTypeToString(MedicationStatusType tip)
+        {
+            return tip switch
+            {
+                MedicationStatusType.accepted => "Odobreno",
+                MedicationStatusType.waiting => "Na cekanju",
+                MedicationStatusType.rejected => "Odbijeno",
+                _ => "",
+            };
+        }
+
+        public static MedicationStatusType StringToMedicationStatusType(string tip)
+        {
+            return tip switch
+            {
+                  "Odobreno" => MedicationStatusType.accepted,
+                  "Na cekanju" => MedicationStatusType.waiting,
+                  "Odbijeno" => MedicationStatusType.rejected,
+                   _ => MedicationStatusType.waiting,
+            };
+        }
+
         public static string BloodTypeToString(BloodType tip)
         {
             return tip switch
@@ -46,6 +68,17 @@ namespace SIMS.Model
             foreach (RoomType tip in Enum.GetValues(typeof(RoomType)))
             {
                 string s = RoomTypeToString(tip);
+                tipovi.Add(s);
+            }
+            return tipovi;
+        }
+
+        public static List<string> GetMEdicationStatusTypes()
+        {
+            List<string> tipovi = new List<string>();
+            foreach (MedicationStatusType tip in Enum.GetValues(typeof(MedicationStatusType)))
+            {
+                string s = MedicationStatusTypeToString(tip);
                 tipovi.Add(s);
             }
             return tipovi;

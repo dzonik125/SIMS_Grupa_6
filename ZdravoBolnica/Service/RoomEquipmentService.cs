@@ -39,7 +39,7 @@ namespace SIMS.Service
             {
                 if (re.equipmentId == roomEquipment.equipmentId && re.roomId == roomEquipment.roomId)
                 {
-                    re.quantity += roomEquipment.quantity;
+                    re.quantity = roomEquipment.quantity;
                     rer.Update(re);
                 }
             }
