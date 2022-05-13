@@ -32,6 +32,8 @@
 		<Button Name="delete" Content="Obrisi" HorizontalAlignment="Left" Margin="622,318,0,0" VerticalAlignment="Top" Height="66" Width="132" Click="Button_Click_3" />
 		<Button Content="VRATI" HorizontalAlignment="Left" Margin="714,39,0,0" VerticalAlignment="Top" Height="32" Width="64" Click="Button_Click_1"/>
 		<Button Content="notifikacije" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Click="Button_Click_2"/>
+		<Button Click="ButtonBase_OnClick" Content="HCI" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top"/>
+		<Button Content="Ankete" HorizontalAlignment="Left" Margin="704,119,0,0" VerticalAlignment="Top" Height="36" Width="73" Click="Button_Click_4"/>
 	</Grid>
 
 </Window>

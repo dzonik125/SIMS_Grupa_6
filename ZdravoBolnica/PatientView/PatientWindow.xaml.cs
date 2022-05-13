@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using SIMS.DoctorView;
+using SIMS.HCI;
 using SIMS.PatientView;
 
 namespace SIMS
@@ -52,7 +53,7 @@ namespace SIMS
             InitializeComponent();
             this.DataContext = this;
             list = new ObservableCollection<Appointment>();
-            List<Appointment> apps = ac.getFutureAppointmentsForPatient("1");
+            List<Appointment> apps = ac.getFutureAppointmentsForPatient(1);
             foreach (Appointment a in apps)
             {
                 Doctor d = dc.GetDoctorByID(a.Doctor.id);
@@ -128,10 +129,9 @@ namespace SIMS
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-        }
-
+        }      
         
-
+         
         public void refresh()
         {
             list.Clear();
@@ -173,6 +173,19 @@ namespace SIMS
         {
             Notifications notifications = new Notifications();
             notifications.Show();
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            HCI.HCI_Main hm = new HCI_Main();
+            hm.Show();
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            SurveyWindow s = new SurveyWindow();
+            s.ShowDialog();
         }
     }
 }

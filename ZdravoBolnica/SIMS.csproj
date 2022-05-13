@@ -7,6 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Fonts\GothamMedium.ttf" />
+    <None Remove="HCI\calendar-cursor.png" />
+    <None Remove="HCI\LOGO.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="HCI\calendar-cursor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="HCI\LOGO.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="data\" />
   </ItemGroup>
 
@@ -14,6 +29,13 @@
   <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.3.0" />
     <PackageReference Include="System.Threading.Timer" Version="4.3.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Resource Include="Fonts\GothamMedium.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 

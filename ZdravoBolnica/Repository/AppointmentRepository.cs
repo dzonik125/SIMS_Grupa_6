@@ -128,7 +128,7 @@ namespace Repository
             List<Appointment> appointments = FindAll();
             foreach (Appointment a in appointments)
             {
-                if (a.id.Equals(entity.id))
+                if (a.id == entity.id)
                 {
                     int index = appointments.IndexOf(a);
                     if (index != -1)
