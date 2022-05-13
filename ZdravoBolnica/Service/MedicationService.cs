@@ -22,15 +22,12 @@ namespace SIMS.Service
             throw new NotImplementedException();
         }
 
-        public void DeleteById(Medication id)
-        {
-            throw new NotImplementedException();
-        }
-
         public void DeleteById(int id)
         {
-            throw new NotImplementedException();
+            medicationRepository.DeleteById(id);
         }
+
+       
 
         public List<Medication> FindAll()
         {
@@ -41,14 +38,34 @@ namespace SIMS.Service
 
         public Medication FindById(int key)
         {
-            throw new NotImplementedException();
+            return medicationRepository.FindById(key);
         }
 
 
 
         public void Update(Medication entity)
         {
-            throw new NotImplementedException();
+            medicationRepository.Update(entity);
+        }
+
+        public List<Medication> FindAllWithoutThisOne(string name)
+        {
+            List<Medication> medications = FindAll();
+            medications = RemoveMedicineFromList(medications, name);
+            return medications;
+        }
+
+        public List<Medication> RemoveMedicineFromList(List<Medication> medications, string name)
+        {
+            foreach (Medication m in medications)
+            {
+                if (m.name.Equals(name))
+                {
+                    medications.Remove(m);
+                    break;
+                }
+            }
+            return medications;
         }
     }
 }
