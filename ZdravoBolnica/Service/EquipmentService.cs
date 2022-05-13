@@ -4,13 +4,10 @@ using SIMS.Model;
 using SIMS.Repository;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SIMS.Service
 {
-     public class EquipmentService
+    public class EquipmentService
     {
         private EquipmentRepository er = new EquipmentRepository();
         private RoomEquipmentService res = new RoomEquipmentService();
@@ -36,9 +33,9 @@ namespace SIMS.Service
                     exist = true;
                     break;
                 }
-            
+
             }
-           
+
             foreach (Equipment e in inventory)
             {
                 if (e.item.Equals(equipment.item))
@@ -46,7 +43,7 @@ namespace SIMS.Service
                     e.quantity += equipment.quantity;
                     UpdateEquipment(e);
                     return true;
-                
+
                 }
 
             }
@@ -105,7 +102,7 @@ namespace SIMS.Service
                 }
             }
             return "";
-         }
+        }
 
         public Equipment FindEquipmentById(int id)
         {

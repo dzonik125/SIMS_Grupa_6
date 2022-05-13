@@ -1,0 +1,90 @@
+﻿<Page x:Class="SIMS.SecretaryView.NewPatientPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SIMS.SecretaryView"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1000"
+      Title="NewPatientPage"
+      WindowWidth="720"
+      WindowHeight="1000">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Ime:" HorizontalAlignment="Left" Margin="213,101,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="42"/>
+        <TextBox HorizontalAlignment="Left" x:Name ="Name" Margin="219,134,0,0" Text=""  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="18" Height="26"/>
+
+        <Label Content="Prezime:"  HorizontalAlignment="Left" Margin="213,166,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="73"/>
+        <TextBox HorizontalAlignment="Left" x:Name ="Surname" Margin="218,199,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="18" Height="26"/>
+
+        <Label Content="LBO:" HorizontalAlignment="Left" Margin="213,232,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="44"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Lbo" Margin="219,265,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="18" Height="26"/>
+
+        <Label Content="JMBG:"  HorizontalAlignment="Left" Margin="215,294,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="56"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Jmbg" Margin="218,327,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="18" Height="26"/>
+
+        <Label Content="Datum rodjenja:"  HorizontalAlignment="Left" Margin="213,358,0,0" VerticalAlignment="Top" FontSize="17" Height="32" Width="130"/>
+        <TextBox HorizontalAlignment="Left" x:Name="BirthDate" Margin="218,393,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="18" Height="26"/>
+
+        <Label Content="Email:"  HorizontalAlignment="Left" Margin="443,354,0,0" VerticalAlignment="Top" FontSize="17" Height="32" Width="54"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Email" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="18" Height="26" Margin="444,389,0,0"/>
+
+        <Label Content="Broj telefona:"  HorizontalAlignment="Left" Margin="213,427,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="109"/>
+        <TextBox HorizontalAlignment="Left" x:Name="PhoneNum" Margin="218,459,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="18" Height="26"/>
+
+        <Label Content="Username:"  HorizontalAlignment="Left" Margin="444,420,0,0" VerticalAlignment="Top" FontSize="17" Height="32" Width="89"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Username" Margin="444,454,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="18" Height="26"/>
+
+        <Label Content="Password:"  HorizontalAlignment="Left" Margin="444,487,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="84"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Password" Margin="446,520,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="18" Height="26"/>
+
+        <Label Content="Drzava:"  HorizontalAlignment="Left" Margin="439,100,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="65"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Country" Margin="442,134,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="18" Height="26"/>
+
+        <Label Content="Grad:"  HorizontalAlignment="Left" Margin="440,166,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="50"/>
+        <TextBox HorizontalAlignment="Left" x:Name="City" Margin="442,199,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="18" Height="26"/>
+
+        <Label Content="Ulica:"  HorizontalAlignment="Left" Margin="439,232,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="50"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Street" Margin="442,265,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="18" Height="26"/>
+
+        <Label Content="Broj:"  HorizontalAlignment="Left" Margin="439,294,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="43"/>
+        <TextBox HorizontalAlignment="Left" x:Name="StreetNum" Margin="442,327,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="18" Height="26"/>
+
+        <Button Content="Registruj" HorizontalAlignment="Left" Margin="643,565,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.171,0.842" FontSize="20" Height="45" Width="90" Click="AddPatient_Click" />
+
+        <Button Content="Odustani" HorizontalAlignment="Left" Margin="808,565,0,0" VerticalAlignment="Top" FontSize="20" Height="45" Width="92" Click="CloseNew_Click"/>
+
+        <ComboBox x:Name="bloodType" IsReadOnly="True" HorizontalAlignment="Left" Margin="716,200,0,0" VerticalAlignment="Top" Width="120" Height="28"/>
+        <Label Content="Broj kartona:" HorizontalAlignment="Left" Margin="713,100,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.591,-4.698" FontSize="17" Height="33" Width="105"/>
+        <Label Content="Krvna grupa:" HorizontalAlignment="Left" Margin="713,166,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="105"/>
+        <TextBox HorizontalAlignment="Left" x:Name="brojK" Margin="716,134,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="18" Height="26"/>
+        <Label Content="Pol:" HorizontalAlignment="Left" Margin="213,490,0,0" VerticalAlignment="Top" FontSize="20" Height="37" Width="41"/>
+        <RadioButton Content="Muško" Height="24" Margin="213,527,0,0" x:Name="MaleRadioButton" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75" FontSize="16"/>
+        <RadioButton Content="Žensko" Height="24" HorizontalAlignment="Left" Margin="293,527,0,0" x:Name="FemaleRadioButton" VerticalAlignment="Top" Width="75" FontSize="16"/>
+
+        <ComboBox DisplayMemberPath="name" HorizontalAlignment="Left" IsReadOnly="True" ItemsSource="{Binding medallergs}"  x:Name="MedAllergsBox"  Margin="719,263,0,0" VerticalAlignment="Top" Width="120" Height="29" />
+        <Button Content="-" x:Name="removeMedicine" HorizontalAlignment="Left" Margin="853,312,0,0" VerticalAlignment="Top" Width="22" Height="22" Click="removeMedicine_Click"/>
+        <Button Content="+" x:Name="addMedicine" HorizontalAlignment="Left" Margin="853,265,0,0" VerticalAlignment="Top" Width="22" Height="22" Click="addMedicine_Click"/>
+        <Label Content="Alergeni lekovi:" HorizontalAlignment="Left" Margin="714,233,0,0" VerticalAlignment="Top" Height="34" Width="131" FontSize="17"/>
+        <DataGrid x:Name="medAllergs_table" HorizontalAlignment="Left" Height="120" Margin="721,314,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding al}" CanUserAddRows="False" AutoGenerateColumns="False">
+            <DataGrid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.353"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DataGrid.RenderTransform>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Alergeni" Width="*" Binding="{Binding name}"  CanUserResize="False"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Registruj novog pacijenta" HorizontalAlignment="Center" Margin="0,34,0,0" VerticalAlignment="Top" FontSize="30"/>
+
+    </Grid>
+</Page>

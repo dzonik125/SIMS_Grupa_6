@@ -1,6 +1,5 @@
 ﻿using Model;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace SIMS.Model
@@ -17,7 +16,7 @@ namespace SIMS.Model
                 RoomType.ward => "Bolesnička soba",
                 RoomType.storage => "Magacin",
                 RoomType.laboratory => "laboratorija",
-                RoomType.waitingRoom => "cekaonica",
+                RoomType.waitingRoom => "Cekaonica",
 
                 _ => "",
             };
@@ -62,6 +61,18 @@ namespace SIMS.Model
             return tipovi;
         }
 
+        public static List<string> GetSpecializationType()
+        {
+            List<string> tipovi = new List<string>();
+            foreach (Specialization tip in Enum.GetValues(typeof(Specialization)))
+            {
+                string s = SpecializationToString(tip);
+                tipovi.Add(s);
+            }
+            return tipovi;
+        }
+
+
         public static RoomType StringToRoomType(string str)
         {
             return str switch
@@ -71,7 +82,7 @@ namespace SIMS.Model
                 "Cekaonica" => RoomType.waitingRoom,
                 "Laboratorija" => RoomType.laboratory,
                 "Magacin" => RoomType.storage,
-                "Bolnicka soba" => RoomType.ward,
+                "Bolesnička soba" => RoomType.ward,
                 _ => RoomType.ward,
 
             };
@@ -111,7 +122,8 @@ namespace SIMS.Model
                 AppointmentType.examination => "pregled",
                 AppointmentType.surgery => "operacija",
                 AppointmentType.renovation => "renoviranje",
-                _ => "",
+                AppointmentType.transfer => "premestanje opreme",
+               _ => "",
             };
         }
 
@@ -121,6 +133,8 @@ namespace SIMS.Model
             {
                 "pregled" => AppointmentType.examination,
                 "operacija" => AppointmentType.surgery,
+                "renoviranje" => AppointmentType.renovation,
+                "premestanje opreme" => AppointmentType.transfer,
                 _ => AppointmentType.surgery,
             };
         }

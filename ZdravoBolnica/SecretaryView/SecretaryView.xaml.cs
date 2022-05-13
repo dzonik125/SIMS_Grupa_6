@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace SIMS.SecretaryView
 {
@@ -18,26 +19,72 @@ namespace SIMS.SecretaryView
             }
         }
 
+        // public void SetLabel(string label)
+        //  {
+        //     MainLabel.Content = label;
+        // }
+        public void SetContent(Page page)
+        {
+            Page.Content = page;
+        }
+
         public SecretaryView()
         {
             InitializeComponent();
+            //SetContent(new SecretaryView());
         }
 
-        private void addPatient_Click(object sender, RoutedEventArgs e)
-        {
-            SecretaryUI sui = SecretaryUI.Instance;
-            sui.Show();
-            this.Close();
+        //      private void addPatient_Click(object sender, RoutedEventArgs e)
+        //     {
+        //          SecretaryUI sui = SecretaryUI.Instance;
+        //         sui.Show();
+        //       this.Close();
 
+
+        //     }
+
+        //   private void scheduleAppointment_Click(object sender, RoutedEventArgs e)
+        //     {
+        //     CreateAppointment ca = new CreateAppointment();
+        //       ca.Show();
+        //       this.Close();
+
+        //   }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
 
         }
 
-        private void scheduleAppointment_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            CreateAppointment ca = new CreateAppointment();
-            ca.Show();
-            this.Close();
 
+        }
+
+        private void HomePage_Click(object sender, RoutedEventArgs e)
+        {
+            HomePage hp = HomePage.Instance;
+            Page.Content = hp;
+        }
+
+        private void Register_Click(object sender, RoutedEventArgs e)
+        {
+            SetContent(new RegistrationPatient());
+        }
+
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Schedule_Click(object sender, RoutedEventArgs e)
+        {
+            SetContent(new CreateAppointmentPage());
+        }
+
+        private void OrderEquipment_Click(object sender, RoutedEventArgs e)
+        {
+            SetContent(new OrderEquipmentPage());
         }
     }
 }

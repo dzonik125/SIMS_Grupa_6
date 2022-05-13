@@ -1,0 +1,46 @@
+﻿<Page x:Class="SIMS.SecretaryView.EditAppointmentPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SIMS.SecretaryView"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1000"
+      Title="EditAppointmentPage">
+
+    <Grid Height="720" Width="1000">
+        <Label Content="Izmena termina" FontSize="30" HorizontalAlignment="Center" Margin="0,52,0,600"/>
+        <Grid>
+            <StackPanel Width="400" Height="800" Orientation="Vertical" Margin="308,99,292,-179">
+                <Grid Width="400" FlowDirection="LeftToRight" HorizontalAlignment="Center">
+                    <Label Content="Pacijent:" HorizontalAlignment="Left" Margin="128,7,0,30" FontSize="17" Height="33" Width="73"/>
+                    <ComboBox DisplayMemberPath="FullName" x:Name="PatientBox" Margin="134,38,143,2" Height="29"/>
+                </Grid>
+                <Grid Width="400" FlowDirection="LeftToRight" HorizontalAlignment="Center">
+                    <Label Content="Doktor:" HorizontalAlignment="Left" Margin="128,7,0,0" VerticalAlignment="Top" FontSize="17" Height="32" Width="74"/>
+                    <ComboBox HorizontalAlignment="Left" DisplayMemberPath="FullName" x:Name="DoctorBox" Margin="134,38,0,0" VerticalAlignment="Top"  Width="123" Height="29"/>
+                </Grid>
+                <Grid Width="400"  FlowDirection="LeftToRight" HorizontalAlignment="Center">
+                    <Label Content="Sala:" HorizontalAlignment="Left" Margin="130,10,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="54"/>
+                    <ComboBox HorizontalAlignment="Left" x:Name="RoomBox" Margin="134,38,0,0" DisplayMemberPath="roomNum" VerticalAlignment="Top"  Width="123" Height="29" />
+                </Grid>
+                <Grid Width="400"  FlowDirection="LeftToRight" HorizontalAlignment="Center">
+                    <Label Content="Datum:" HorizontalAlignment="Left" Margin="131,8,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="74"/>
+                    <DatePicker HorizontalAlignment="Left" x:Name="DatePicker" Margin="134,38,0,0" VerticalAlignment="Top" Width="123"/>
+                </Grid>
+                <Grid Width="400"  FlowDirection="LeftToRight" HorizontalAlignment="Center">
+                    <Label Content="Vreme:" HorizontalAlignment="Left" Margin="132,9,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="72"/>
+                    <ComboBox HorizontalAlignment="Left" x:Name="Time" Margin="134,38,0,0" VerticalAlignment="Top"  Width="123" Height="29" />
+                </Grid>
+                <Grid Width="400"  FlowDirection="LeftToRight">
+                    <Label Content="Trajanje:" HorizontalAlignment="Left" Margin="129,8,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="73"/>
+                    <ComboBox HorizontalAlignment="Left" x:Name="Duration" Margin="134,38,0,0" VerticalAlignment="Top"  Width="123" Height="29" />
+                </Grid>
+                <Grid Margin="50,150,0,0" Width="400" FlowDirection="LeftToRight">
+                    <Button Content="Izmeni" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="40" Width="80" Margin="34,0,0,0" Click="Edit_Click" FontSize="16"/>
+                    <Button Content="Zatvori" Height="40" Width="80" FontSize="16" Click="Close_Click" Margin="174,10,146,10"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

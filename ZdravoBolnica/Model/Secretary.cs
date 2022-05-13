@@ -3,20 +3,30 @@
 // Created: Thursday, April 7, 2022 10:12:55
 // Purpose: Definition of Class Secretary
 
-using System;
-
 namespace Model
 {
     public class Secretary : Account, Serializable
     {
-        public void FromCSV(string[] values)
-        {
-            throw new NotImplementedException();
-        }
-
         public string[] ToCSV()
         {
-            throw new NotImplementedException();
+            string[] csvValues =
+            {
+                id.ToString(),
+                name,
+                surname,
+                password,
+                username,
+            };
+            return csvValues;
+        }
+
+        public void FromCSV(string[] values)
+        {
+            id = int.Parse(values[0]);
+            name = values[1];
+            surname = values[2];
+            password = values[3];
+            username = values[4];
         }
     }
 }

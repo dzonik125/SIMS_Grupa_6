@@ -1,2 +1,0 @@
-1|1|1|True|Magacin
-2|2|1|True|Prostorija za preglede

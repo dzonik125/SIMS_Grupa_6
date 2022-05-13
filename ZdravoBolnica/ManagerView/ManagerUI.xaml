@@ -4,8 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIMS"
+       
         mc:Ignorable="d"
-        Title="ManagerUI" Height="450" Background="#123" Width="800">
+        
+        Title="ManagerUI" Height="450" Background="#123" Width="800" ResizeMode="NoResize">
     <Window.Resources>
         <Style TargetType="{x:Type TabItem}">
             <Setter Property="Template">
@@ -16,7 +18,7 @@
                                 <Grid>
                                     <Border x:Name="border" 
                                             CornerRadius="3,3,0,0"
-                                            Background="#191E29"/>
+                                            Background="#006666"/>
                                 </Grid>
                                 <ContentPresenter ContentSource="Header"
                                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -28,13 +30,13 @@
                                      Value="True">
                                 <Setter TargetName="border"
                                         Property="Background"
-                                        Value="#323D52" />
+                                        Value="#5C8F81" />
                             </Trigger>
                             <Trigger Property="IsSelected"
                                      Value="True">
                                 <Setter TargetName="border"
                                         Property="Background"
-                                        Value="#323D52" />
+                                        Value="#5C8F81" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -42,26 +44,28 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid Background="Gray">
+    <Grid Background="#006666">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="43*"/>
             <ColumnDefinition Width="57*"/>
         </Grid.ColumnDefinitions>
-        <TabControl Background="#191E29" BorderBrush="#123" Grid.ColumnSpan="2">
-            <TabItem  Background="#191E29" BorderThickness="105" Foreground="White" BorderBrush="#123" Header="Pocetna stranica" Margin="20,0,-20,0">
+        <Rectangle Fill="#006666" Stroke="white" Margin="0,2,0,387" Grid.ColumnSpan="2"/>
+        <TabControl Background="#8BA19B" BorderBrush="#8BA19B" Grid.ColumnSpan="2" Margin="0,34,0,0">
+            <TabItem  Background="#006666" BorderThickness="105"   Foreground="White" Width="90" Height="30" BorderBrush="Gray" Header="Pocetna stranica" Margin="15,0,-15,0">
                 <TabItem.Resources>
                     <SolidColorBrush x:Key="AccentColorBrush" Color="White"/>
                     <SolidColorBrush x:Key="HighlightBrush" Color="SteelBlue"/>
                 </TabItem.Resources>
-                <Grid Background="DarkSlateGray" Height="359" Margin="-1,0,-2,0">
+                <Grid Background="#8BA19B" Height="359" Margin="-1,0,-2,0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="16*"/>
-                        <ColumnDefinition Width="35*"/>
+                        <ColumnDefinition Width="142*"/>
+                        <ColumnDefinition Width="108*"/>
+                        <ColumnDefinition Width="547*"/>
                     </Grid.ColumnDefinitions>
-                    <Calendar Margin="186,18,0,86" Grid.Column="1"/>
-                    <GroupBox Header="Today's tasks" Margin="10,18,64,135"/>
-                    <GroupBox Header="New notifications" Margin="221,18,367,135" Grid.ColumnSpan="2"/>
-                    <GroupBox Header="Latest reports" Margin="189,194,33,14" Grid.Column="1" RenderTransformOrigin="0.5,0.5">
+                    <Calendar Margin="186,18,0,86" Grid.Column="2"/>
+                    <GroupBox Header="Today's tasks" Margin="10,18,64,135" Grid.ColumnSpan="2"/>
+                    <GroupBox Header="New notifications" Margin="79,18,367,135" Grid.ColumnSpan="2" Grid.Column="1"/>
+                    <GroupBox Header="Latest reports" Margin="189,184,33,24" Grid.Column="2" RenderTransformOrigin="0.5,0.5">
                         <GroupBox.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -74,15 +78,15 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Background="#191E29" Foreground="White" Header="Prostorije" Margin="41,0,-41,0">
-                <Grid Background="#191E29">
+            <TabItem Background="#006666" BorderThickness="105" Foreground="White" Width="90"  BorderBrush="Gray" Header="     Prostorije" Margin="16,0,-16,0" Height="30" VerticalAlignment="Center">
+                <Grid Background="#006666">
                     <Grid.ColumnDefinitions>
 
                     </Grid.ColumnDefinitions>
-                    <Rectangle Fill="#001933" Margin="0,10,692,0"/>
-                    <TabControl   TabStripPlacement="Left" Margin="0,10,0,0"  >
-                        <TabItem  Background="DarkSlateGray" Foreground="White"  Header="Prostorije">
-                            <Grid Background="#323D52">
+                    <Rectangle Fill="#006666" Width="90" Margin="0,10,692,0"/>
+                    <TabControl  Background="#8BA19B"  TabStripPlacement="Left" SelectionChanged="TabControl_SelectionChanged_1"  >
+                        <TabItem  Background="#006666"  Width="70" Foreground="White" Height="30" Header="  Prostorije" Margin="0,-2,0,-9">
+                            <Grid Background="#8BA19B" Width="723" >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width = "100" />
                                     <ColumnDefinition Width = "24.124" />
@@ -103,7 +107,7 @@
                                 <Label Foreground="White" Grid.Row="0"  Grid.Column="0" Margin="1,6,35,65">Sprat:</Label>
                                 <ComboBox Grid.Row="0" Margin="58,6,0,65" Grid.ColumnSpan="4" />
 
-                                <DataGrid x:Name="roomsTable" ItemsSource="{Binding Path = list}" Margin="-1,86,13,24" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False" Grid.ColumnSpan="5" Grid.RowSpan="4">
+                                <DataGrid x:Name="roomsTable" Background="#879D8C"  ItemsSource="{Binding Path = list}" IsReadOnly="True" Margin="3,86,78,71" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False"  SelectionMode="Single" CanUserAddRows="False" Grid.ColumnSpan="6" Grid.RowSpan="4">
                                     <DataGrid.RenderTransform>
                                         <TransformGroup>
                                             <ScaleTransform/>
@@ -112,53 +116,43 @@
                                             <TranslateTransform/>
                                         </TransformGroup>
                                     </DataGrid.RenderTransform>
-
+                                    <DataGrid.Resources>
+                                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                            <Setter Property="Background" Value="#99B29F" />
+                                            <Setter Property="Foreground" Value="White"></Setter>
+                                        </Style>
+                                    </DataGrid.Resources>
+                                    <DataGrid.RowStyle>
+                                        <Style BasedOn="{StaticResource {x:Type DataGridRow}}" TargetType="{x:Type DataGridRow}">
+                                            <Setter Property="Background" Value="#879D8C"></Setter>
+                                            <Setter Property="Foreground" Value="White"></Setter>
+                                        </Style>
+                                    </DataGrid.RowStyle>
                                     <DataGrid.Columns>
 
 
-                                        <DataGridTextColumn Header="ID" Width="*" Binding="{Binding id}" DataGridColumn.CanUserResize="False"/>
-                                        <DataGridTextColumn Header="Broj sobe" Width="*" Binding="{Binding roomNum}"  DataGridColumn.CanUserResize="False"/>
-                                        <DataGridTextColumn Header="Namena" Width="*" Binding="{Binding  RoomTypeString}"  DataGridColumn.CanUserResize="False"/>
-                                        <DataGridTextColumn Header="Sprat" Width="*" Binding="{Binding floor}" DataGridColumn.CanUserResize="False"/>
+                                        <DataGridTextColumn Header="    ID"  Width="60" Binding="{Binding id}" DataGridColumn.CanUserResize="False"/>
+                                        <DataGridTextColumn Header="Broj sobe" Width="60" Binding="{Binding roomNum}"  DataGridColumn.CanUserResize="False"/>
+                                        <DataGridTextColumn Header="   Sprat" Width="60" Binding="{Binding floor}" DataGridColumn.CanUserResize="False"/>
+                                        <DataGridTextColumn Header="           Namena" Width="*" Binding="{Binding  RoomTypeString}"  DataGridColumn.CanUserResize="False"/>
 
                                     </DataGrid.Columns>
                                 </DataGrid>
-                                <Rectangle    Stroke="White" Grid.Column="5" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Margin="0,2,0,56" Grid.RowSpan="2"/>
-                                <Label Foreground="White" Grid.Row="1" Grid.Column="5" Margin="0,88,0,78" Grid.RowSpan="2">Opremljenost:</Label>
-                                <Label Foreground="White" Grid.Row="0" Grid.Column="5" Margin="10,15,10,50" Content="Soba:" RenderTransformOrigin="0.5,1.476"/>
-                                <Label Foreground="White" Grid.Row="0" Grid.Column="5" Margin="10,59,10,1" Content="Namena:" RenderTransformOrigin="0.5,1.476"/>
-                                <Label Foreground="White" Grid.Column="5" Margin="10,99,10,61" Content="Dostupnost:" RenderTransformOrigin="0.5,1.476" Grid.RowSpan="2"/>
-                                <TextBox Grid.Column="6" HorizontalAlignment="Left" Name="Floor" Margin="0,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" FontSize="15" Height="30" RenderTransformOrigin="0.5,0.5">
-                                    <TextBox.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform ScaleY="-1"/>
-                                            <SkewTransform/>
-                                            <RotateTransform/>
-                                            <TranslateTransform/>
-                                        </TransformGroup>
-                                    </TextBox.RenderTransform>
+                                <Rectangle    Stroke="White" Grid.Column="5" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3" Margin="48,2,52,56" Grid.RowSpan="2"/>
+                                <Label Foreground="White" Grid.Row="1" Grid.Column="5" Margin="52,56,48,10" Grid.ColumnSpan="2">Opremljenost:</Label>
+                                <Label Foreground="White" Grid.Row="0" Grid.Column="5" Margin="58,17,62,48" Content="Soba:" RenderTransformOrigin="0.5,1.476" Grid.ColumnSpan="2"/>
+                                <Label Foreground="White" Grid.Row="0" Grid.Column="5" Margin="54,59,66,1" Content="Sprat:" RenderTransformOrigin="0.5,1.476" Grid.ColumnSpan="2"/>
+                                <Label Foreground="White" Grid.Column="5" Margin="52,99,68,61" Content="Namena:" RenderTransformOrigin="0.5,1.476" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+                                <TextBox Grid.Column="6" TextAlignment="Center" IsReadOnly="True" Foreground="White" Background="#475A4B" HorizontalAlignment="Left" Name="RoomNum" Margin="39,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" FontSize="10" Height="30" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+
                                 </TextBox>
-                                <TextBox Grid.Column="6" HorizontalAlignment="Left" x:Name="Floor_Copy" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" FontSize="15" Height="30" RenderTransformOrigin="0.5,0.5" Margin="0,58,0,0">
-                                    <TextBox.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform ScaleY="-1"/>
-                                            <SkewTransform/>
-                                            <RotateTransform/>
-                                            <TranslateTransform/>
-                                        </TransformGroup>
-                                    </TextBox.RenderTransform>
+                                <TextBox Grid.Column="6" TextAlignment="Center" IsReadOnly="True"   Foreground="White" HorizontalAlignment="Left" x:Name="Floor" Background="#475A4B" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" FontSize="10" Height="30" RenderTransformOrigin="0.5,0.5" Margin="39,58,0,0" Grid.ColumnSpan="2">
+
                                 </TextBox>
-                                <TextBox Grid.Column="6" HorizontalAlignment="Left" x:Name="Floor_Copy1" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" FontSize="15" Height="30" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
-                                    <TextBox.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform ScaleY="-1"/>
-                                            <SkewTransform/>
-                                            <RotateTransform/>
-                                            <TranslateTransform/>
-                                        </TransformGroup>
-                                    </TextBox.RenderTransform>
+                                <TextBox Grid.Column="6" TextAlignment="Center" IsReadOnly="True" Foreground="White" HorizontalAlignment="Left" x:Name="Purpose" Background="#475A4B"  VerticalAlignment="Top" Width="100" FontSize="10" Height="30" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Margin="39,0,0,0" Grid.ColumnSpan="2">
+
                                 </TextBox>
-                                <DataGrid x:Name="roomsEquipmentTable" ItemsSource="{Binding Path = listRoomInventory}"  Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="5" Margin="0,22,4,25" Grid.Row="2" SelectionChanged="DataGrid_SelectionChanged" AutoGenerateColumns="False">
+                                <DataGrid x:Name="roomsEquipmentTable" Background="#879D8C" ItemsSource="{Binding Path = listRoomInventory}" CanUserAddRows="False" Grid.ColumnSpan="3" Grid.RowSpan="3" Grid.Column="5" Margin="48,88,56,59" Grid.Row="1" SelectionChanged="DataGrid_SelectionChanged" IsReadOnly="True" AutoGenerateColumns="False">
                                     <DataGrid.RenderTransform>
                                         <TransformGroup>
                                             <ScaleTransform/>
@@ -167,27 +161,50 @@
                                             <TranslateTransform/>
                                         </TransformGroup>
                                     </DataGrid.RenderTransform>
+                                    <DataGrid.Resources>
+                                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                            <Setter Property="Background" Value="#99B29F" />
+                                            <Setter Property="Foreground" Value="White"></Setter>
+                                        </Style>
+                                    </DataGrid.Resources>
+                                    <DataGrid.RowStyle>
+                                        <Style BasedOn="{StaticResource {x:Type DataGridRow}}" TargetType="{x:Type DataGridRow}">
+                                            <Setter Property="Background" Value="#879D8C"></Setter>
+                                            <Setter Property="Foreground" Value="White"></Setter>
+                                        </Style>
+                                    </DataGrid.RowStyle>
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Width="*" Header="Oprema" Binding="{Binding item}"></DataGridTextColumn>
                                         <DataGridTextColumn Width="*" Header="Kolicina" Binding="{Binding quantity}"></DataGridTextColumn>
                                     </DataGrid.Columns>
 
                                 </DataGrid>
-                                <Button Content="Dodaj" Grid.Column="7" Height="40" Click="Button_Click" Margin="91,8,9,52" Grid.ColumnSpan="2"></Button>
-                                <Button Content="Izmeni" Grid.Column="7" Height="40" Click="Button_Click_2" Margin="91,60,9,0" Grid.ColumnSpan="2"/>
-                                <Button Content="Izbrisi" Grid.Column="7" Grid.Row="1" Height="40" Click="Button_Click_1" Margin="91,15,9,45" Grid.ColumnSpan="2"/>
-                                <Button Name="RoomInventory" Content="Dodaj opremu u prostoriju" Grid.Column="7" Grid.Row="1" Height="40" Click="RoomInventory_Click" Margin="92,67,8,93" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-                                <Button Name="ShowRoomInventory" Content="Prikazi opremu prostorije" Grid.Column="7" Grid.Row="2" Height="40" Click="ShowRoomInventory_Click" Margin="92,22,8,38" Grid.ColumnSpan="2"/>
-                                <Button Name="TransferEquipment" Content="Premesti opremu" Grid.Column="7" Grid.Row="2" Click="TransferEquipment_Click" Margin="92,79,8,82" Grid.ColumnSpan="2" RenderTransformOrigin="0.462,-0.538" Grid.RowSpan="2"/>
-                                <Button  Name="Renovation" Content="Renoviranje" Grid.Column="7" Grid.Row="3" Margin="92,30,8,32" Grid.ColumnSpan="2" Click="Renovation_Click"/>
+                                <Button Content="Dodaj" Background="Green" Foreground="White" FontWeight="Bold" Grid.Column="7" Width="120" Height="40" Click="Button_Click" Margin="77,8,23,52" Grid.ColumnSpan="2">
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="Gray"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+
+                                </Button>
+                                <Button Content="Izmeni" Background="#475A4B" Foreground="White" FontWeight="Bold" Grid.Column="7" Width="120" Height="40" Click="Button_Click_2" Margin="77,62,23,98" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                                <Button Content="Izbrisi" Background="DarkRed" Foreground="White" FontWeight="Bold" Grid.Column="7" Width="120" Grid.Row="1" Height="40" Click="Button_Click_1" Margin="78,15,25,45" Grid.ColumnSpan="2"/>
+                                <Button Name="ShowRoomInventory"  Background="#475A4B" Foreground="White" FontWeight="Bold" Width="120"  Content="Prikazi opremu " Grid.Column="7" Grid.Row="1" Height="40" Click="ShowRoomInventory_Click" Margin="78,70,25,90" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                                <Button Name="TransferEquipment"  Background="#475A4B" Foreground="White" FontWeight="Bold" Width="120" Height="40" Content="Premesti opremu" Grid.Column="7" Grid.Row="2" Click="TransferEquipment_Click" Margin="78,25,25,35" Grid.ColumnSpan="2" RenderTransformOrigin="0.462,-0.538"/>
+                                <Button  Name="Renovation"  Background="#475A4B" Foreground="White" FontWeight="Bold" Width="120" Height="40" Content="Renoviranje" Grid.Column="7" Grid.Row="2" Margin="78,80,25,80" Grid.ColumnSpan="2" Click="Renovation_Click" Grid.RowSpan="2"/>
+
                             </Grid>
 
 
 
 
                         </TabItem>
-                        <TabItem Background="#123" FontSize="15" Foreground="White" Header="Dostupnost" Margin="-1,26,5,-29">
-                            <Grid Background="#FFE5E5E5" Margin="10,0,0,0">
+                        <TabItem Background="#123"  Foreground="White" Header="Dostupnost" Margin="0,6,0,-6" Height="30" RenderTransformOrigin="0.507,0.621">
+                            <Grid Background="#FFE5E5E5">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="43*"/>
                                     <RowDefinition Height="119*"/>
@@ -200,11 +217,12 @@
 
 
             </TabItem >
-            <TabItem Background="#191E29" Foreground="White" Header="Oprema" Margin="59,0,-59,0">
-                <Grid Background="#FFE5E5E5">
-                    <TabControl TabStripPlacement="Left">
-                        <TabItem Header="Inventar">
-                            <Grid Background="#FFE5E5E5">
+            <TabItem Background="#191E29" BorderThickness="105" Foreground="White" BorderBrush="Gray" Width="90" Header="      Oprema" Margin="17,0,-17,0">
+                <Grid Background="#8BA19B">
+                    <Rectangle Fill="#006666" Margin="0,0,701,0" RenderTransformOrigin="0.193,0.517"/>
+                    <TabControl Background="#8BA19B" TabStripPlacement="Left">
+                        <TabItem Background="#006666"  Width="70" Foreground="White" Height="30" Header="Inventar">
+                            <Grid Background="#8BA19B">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width = "100" />
                                     <ColumnDefinition Width = "100" />
@@ -220,21 +238,36 @@
                                     <RowDefinition Height="100"/>
                                     <RowDefinition Height="100"/>
                                 </Grid.RowDefinitions>
-                                <DataGrid x:Name="equipmenttTable" ItemsSource="{Binding Path = equipList}" Grid.Row="0"  Grid.RowSpan="4" Grid.ColumnSpan="5" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged_1" Margin="5,70,0,72" Grid.Column="1">
+
+
+                                <DataGrid x:Name="equipmenttTable" Background="#879D8C" ItemsSource="{Binding Path = equipList}" Grid.Row="0"  Grid.RowSpan="4" Grid.ColumnSpan="6" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged_1" Margin="11,70,94,72">
+                                    <DataGrid.Resources>
+                                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                            <Setter Property="Background" Value="#99B29F" />
+                                            <Setter Property="Foreground" Value="White"></Setter>
+                                        </Style>
+                                    </DataGrid.Resources>
+                                    <DataGrid.RowStyle>
+                                        <Style BasedOn="{StaticResource {x:Type DataGridRow}}" TargetType="{x:Type DataGridRow}">
+                                            <Setter Property="Background" Value="#879D8C"></Setter>
+                                            <Setter Property="Foreground" Value="White"></Setter>
+                                        </Style>
+                                    </DataGrid.RowStyle>
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn  Header="Sifra" Binding="{Binding id}" Width="*"></DataGridTextColumn>
-                                        <DataGridTextColumn  Header="Naziv" Binding="{Binding item}" Width="*"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Tip" Binding="{Binding type}" Width="*"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Kolicina" Binding="{Binding quantity}" Width="*"></DataGridTextColumn>
+
+                                        <DataGridTextColumn Foreground="White"  Header="Sifra" Binding="{Binding id}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Foreground="white" Header="Naziv" Binding="{Binding item}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Foreground="white" Header="Tip" Binding="{Binding type}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Foreground="white" Header="Kolicina" Binding="{Binding quantity}" Width="*"></DataGridTextColumn>
 
 
                                     </DataGrid.Columns>
 
                                 </DataGrid>
-                                <Label FontSize="20" FontWeight="Bold" FontStyle="Oblique"  Grid.Column="1" Grid.ColumnSpan="5" RenderTransformOrigin="0.578,0.489" Margin="50,0,26,30">Pregled celokupne opreme unutar bolnice</Label>
-                                <Button Name="AddEquipment" Content="Dodaj" Grid.Column="6" Grid.Row="1" Width="80" Margin="25,80,26,87" Grid.RowSpan="2" Click="AddEquipment_Click"/>
-                                <Button Name="EditEquipment" Content="Izmeni" Grid.Column="6" Grid.Row="2" Width="80" Margin="25,37,26,30" Click="EditEquipment_Click"/>
-                                <Button Name="DeleteEquipment" Content="Izbrisi" Grid.Column="6" Grid.Row="2" Width="80" Margin="25,92,26,75" Grid.RowSpan="2" Click="DeleteEquipment_Click"/>
+                                <Label FontSize="30" FontWeight="Bold"  Foreground="White" Grid.ColumnSpan="7" RenderTransformOrigin="0.578,0.489" Margin="50,0,29,30">Pregled celokupne opreme unutar bolnice</Label>
+                                <Button Name="AddEquipment" Content="Dodaj" Grid.Column="5" Grid.Row="1"  Background="Green" Foreground="White" FontWeight="Bold" Height="40" Margin="64,70,24,90" Grid.RowSpan="2" Click="AddEquipment_Click" Grid.ColumnSpan="2"/>
+                                <Button Name="EditEquipment" Content="Izmeni"  Background="#475A4B" Foreground="White" FontWeight="Bold" Grid.Column="5" Grid.Row="2" Height="40" Margin="64,22,24,38" Click="EditEquipment_Click" Grid.ColumnSpan="2"/>
+                                <Button Name="DeleteEquipment" Content="Izbrisi"  Background="DarkRed" Foreground="White" FontWeight="Bold" Grid.Column="5" Grid.Row="2" Height="40" Margin="64,74,24,86" Grid.RowSpan="2" Click="DeleteEquipment_Click" Grid.ColumnSpan="2"/>
 
                             </Grid>
 
@@ -242,16 +275,17 @@
                     </TabControl>
                 </Grid>
             </TabItem>
-            <TabItem Background="#191E29" Foreground="White" Header="Zaposleni" Margin="71,0,-71,0">
+            <TabItem Background="#191E29" BorderThickness="105" Foreground="White" Width="90" Header="     Zaposleni" Margin="19,0,-19,0">
                 <Grid Background="#FFE5E5E5"/>
 
             </TabItem>
-            <TabItem Background="#191E29" Foreground="White" Header="Grafikoni" Margin="92,0,-92,0">
+            <TabItem Background="#191E29"  BorderThickness="105" Foreground="White" Width="90" Header="      Grafikoni" Margin="20,0,-20,0">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
-            <TabItem Background="#191E29" Foreground="White" Header="Pomoc" Margin="108,0,-108,0">
+            <TabItem Background="#191E29" BorderThickness="105" Foreground="White" Width="90" Header="      Pomoc" Margin="22,0,-22,0">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
+        <Rectangle Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="648,415,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
     </Grid>
 </Window>

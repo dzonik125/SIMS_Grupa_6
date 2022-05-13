@@ -24,20 +24,24 @@ namespace SIMS.ManagerView
             InitializeComponent();
         }
 
-        private void ChangePurpose_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void MergeRooms_Click(object sender, RoutedEventArgs e)
         {
-
+            MergeRooms mergeRooms = new MergeRooms();
+            mergeRooms.ShowDialog();
+            this.Close();
         }
 
         private void RoomRenovation_Click(object sender, RoutedEventArgs e)
         {
             RoomRenovationWindow rrw = new RoomRenovationWindow();
             rrw.Show();
+            this.Close();
+        }
+
+        private void SeparateRooms_Click(object sender, RoutedEventArgs e)
+        {
+            RoomSeparation roomSeparation = new RoomSeparation();
+            roomSeparation.ShowDialog();
             this.Close();
         }
     }
