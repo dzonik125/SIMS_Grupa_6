@@ -2,9 +2,6 @@
 using Repository;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SIMS.Repository
 {
@@ -19,18 +16,18 @@ namespace SIMS.Repository
             int num = inventory.Count;
             if (num > 0)
             {
-                
+
                 entity.id = inventory[num - 1].id;
                 entity.id++;
-               
+
             }
             else
             {
                 entity.id = 1;
             }
-           
-             inventory.Add(entity);
-             equipmentSerializer.toCSV(filename, inventory);
+
+            inventory.Add(entity);
+            equipmentSerializer.toCSV(filename, inventory);
 
         }
 
@@ -52,18 +49,26 @@ namespace SIMS.Repository
                 }
             }
             equipmentSerializer.toCSV(filename, inventory);
-                
+
         }
 
         public List<Equipment> FindAll()
         {
             return equipmentSerializer.fromCSV(filename);
-            
+
         }
 
         public Equipment FindById(int key)
         {
-            throw new NotImplementedException();
+            List<Equipment> equipments = FindAll();
+            foreach (Equipment e in equipments)
+            {
+                if (e.id.Equals(key))
+                {
+                    return e;
+                }
+            }
+            return null;
         }
 
         public void Update(Equipment entity)

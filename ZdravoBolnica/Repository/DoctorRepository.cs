@@ -31,7 +31,7 @@ namespace Repository
             throw new NotImplementedException();
         }
 
-      
+
         public List<Doctor> FindAll()
         {
             return doctorSerializer.fromCSV(filename);
@@ -52,6 +52,20 @@ namespace Repository
             }
             return null;
         }
+
+        /*  public List<string> GetSpecializationString()
+          {
+              List<String> retVal = new List<String>();
+
+              foreach (Doctor d in base.GetAll())
+              {
+                  DoctorDTO doctorDTO = new DoctorDTO(d);
+                  if (!retVal.Contains(doctorDTO.SpecializationString))
+                      retVal.Add(doctorDTO.SpecializationString);
+              }
+
+              return retVal;
+          }*/
 
         public void Update(Doctor entity)
         {

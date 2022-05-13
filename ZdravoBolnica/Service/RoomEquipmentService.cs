@@ -3,11 +3,7 @@ using Repository;
 using Service;
 using SIMS.Model;
 using SIMS.Repository;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SIMS.Service
 {
@@ -39,7 +35,7 @@ namespace SIMS.Service
             {
                 if (re.equipmentId == roomEquipment.equipmentId && re.roomId == roomEquipment.roomId)
                 {
-                    re.quantity += roomEquipment.quantity;
+                    re.quantity = roomEquipment.quantity;
                     rer.Update(re);
                 }
             }
@@ -50,18 +46,18 @@ namespace SIMS.Service
         {
             List<Equipment> roomInventory = new List<Equipment>();
             foreach (Equipment e in allInventory)
+            {
+                e.RoomNum = new List<int>();
+                foreach (RoomEquipment re in roomEquipment)
                 {
-                    e.RoomNum = new List<int>();
-                    foreach (RoomEquipment re in roomEquipment)
+
+                    if (e.id == re.equipmentId)
                     {
 
-                        if (e.id == re.equipmentId)
-                        {
-
-                            e.RoomNum.Add(re.roomId);
-                            e.quantity = getQuantityByRoomId(e.id, roomId);
+                        e.RoomNum.Add(re.roomId);
+                        e.quantity = getQuantityByRoomId(e.id, roomId);
                     }
-                    }
+                }
             }
 
             foreach (Equipment e in allInventory)
@@ -96,7 +92,7 @@ namespace SIMS.Service
             rer.Create(roomEquipment);
         }
 
-        public void TransferEquipment(Room roomSource,Room roomDestination, Equipment selectedEquipment, int quantity)
+        public void TransferEquipment(Room roomSource, Room roomDestination, Equipment selectedEquipment, int quantity)
         {
             List<Room> rooms = new List<Room>();
             rooms = rr.FindAll();
@@ -113,7 +109,7 @@ namespace SIMS.Service
                     {
                         foreach (RoomEquipment re in roomEquipment)
                         {
-                            if (re.roomId == roomEq.roomId && re.equipmentId == roomEq.equipmentId )
+                            if (re.roomId == roomEq.roomId && re.equipmentId == roomEq.equipmentId)
                             {
                                 re.quantity += quantity;
                                 rer.Update(re);
@@ -154,7 +150,7 @@ namespace SIMS.Service
 
                 }
             }
-            
+
         }
 
         public void MoveEquipmentToWarehouse(int roomId1, int roomId2)

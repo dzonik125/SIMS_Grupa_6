@@ -1,5 +1,0 @@
-1|1|1|True|Magacin
-2|2|1|True|Bolesnička soba
-3|3|1|False|Cekaonica
-4|4|1|False|Cekaonica
-5|5|1|False|Prostorija za preglede

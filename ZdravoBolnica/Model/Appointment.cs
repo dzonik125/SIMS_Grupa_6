@@ -24,6 +24,31 @@ namespace Model
         public DateTime startTime { get; set; }
         public int duration { get; set; }
         public int id { get; set; }
+        public Doctor Doctor { get; set; }
+
+        public Room Room { get; set; }
+
+        public Patient patient { get; set; }
+
+        public AppointmentType Type { get; set; }
+
+
+        /* public Appointment(DateTime st, AppointmentType type, Doctor doctor, Patient patient, Room room)
+         {
+             startTime = startTime;
+             duration = duration;
+             Type = type;
+             Doctor = doctor;
+             patient = patient;
+             Room = room;
+             id = id;
+         }*/
+
+
+
+
+
+
 
         public int timesEdited = 0;
 
@@ -33,12 +58,22 @@ namespace Model
             set => timesEdited = value;
         }
 
+
         public String AppointmentDate { get { return startTime.ToString("dd.MM.yyyy."); } }
 
         public String AppointmentTime { get { return startTime.ToString("HH:mm"); } }
 
+        public String GetAppoitmentTime()
+        {
+            return startTime.ToString("HH:mm");
+        }
 
-        public AppointmentType Type { get; set; }
+        public DateTime GetEndTime()
+        {
+            return startTime.AddMinutes(duration);
+        }
+
+
 
         public String AppointmentTypeString
         {
@@ -55,27 +90,10 @@ namespace Model
             }
         }
 
-
         public String GetDoctorName()
         {
             return Doctor.FullName;
         }
-
-        public string Duration { get; set; }
-
-
-        public Doctor Doctor
-        {
-            get;
-            set;
-        }
-
-
-
-        public Room Room { get; set; }
-
-        public Patient patient { get; set; }
-
 
         public string[] ToCSV()
         {

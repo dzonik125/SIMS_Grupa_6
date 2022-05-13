@@ -1,6 +1,5 @@
 ﻿using Model;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace SIMS.Model
@@ -61,6 +60,18 @@ namespace SIMS.Model
             }
             return tipovi;
         }
+
+        public static List<string> GetSpecializationType()
+        {
+            List<string> tipovi = new List<string>();
+            foreach (Specialization tip in Enum.GetValues(typeof(Specialization)))
+            {
+                string s = SpecializationToString(tip);
+                tipovi.Add(s);
+            }
+            return tipovi;
+        }
+
 
         public static RoomType StringToRoomType(string str)
         {

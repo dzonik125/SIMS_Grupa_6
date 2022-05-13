@@ -81,5 +81,10 @@ namespace SIMS.SecretaryView
         {
             SetContent(new CreateAppointmentPage());
         }
+
+        private void OrderEquipment_Click(object sender, RoutedEventArgs e)
+        {
+            SetContent(new OrderEquipmentPage());
+        }
     }
 }

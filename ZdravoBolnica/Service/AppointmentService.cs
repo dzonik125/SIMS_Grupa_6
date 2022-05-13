@@ -8,32 +8,30 @@ using Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Controller;
-using SIMS;
 
 namespace Service
 {
-   public class AppointmentService
-   {
-      public List<Appointment> GetAllApointments()
-      {
+    public class AppointmentService
+    {
+        public List<Appointment> GetAllApointments()
+        {
             return appointmentRepository.FindAll();
-      }
-      
-      public void UpdateAppointment(Appointment a)
-      {
+        }
+
+        public void UpdateAppointment(Appointment a)
+        {
             appointmentRepository.Update(a);
-      }
-      
-      public void DeleteAppointmentById(int id)
-      {
+        }
+
+        public void DeleteAppointmentById(int id)
+        {
             appointmentRepository.DeleteById(id);
         }
-      
-      public void SaveAppointment(Appointment a)
-      {
+
+        public void SaveAppointment(Appointment a)
+        {
             appointmentRepository.Create(a);
-      }
+        }
 
         public void bindRoomsWithAppointments(List<Room> rooms, List<Appointment> appointments)
         {
@@ -47,7 +45,7 @@ namespace Service
                     }
                 }
             }
-            
+
         }
 
         public void bindDoctorsWithAppointments(List<Doctor> doctors, List<Appointment> appointments)
@@ -74,7 +72,7 @@ namespace Service
                     {
                         a.patient = p;
                     }
-                    
+
                 }
             }
         }
@@ -104,7 +102,7 @@ namespace Service
                     {
 
                         futureAppointments.Add(a);
-                        
+
                     }
                 }
             }
@@ -178,14 +176,14 @@ namespace Service
             List<Appointment> apps = GetAllApointments();
             List<Doctor> docs = ds.GetAllDoctors();
             bool cont = true;
-            DateTime startToUse = (DateTime) start;
+            DateTime startToUse = (DateTime)start;
             DateTime min = startToUse.AddHours(21);
             DateTime finish = startToUse.AddMinutes(30);
             bool dontAdd = false;
             int id = 0;
             foreach (Doctor d in docs)
             {
-                startToUse = (DateTime) start;
+                startToUse = (DateTime)start;
                 startToUse = startToUse.AddHours(8);
                 finish = startToUse.AddMinutes(30);
 
@@ -249,13 +247,21 @@ namespace Service
 
                 } while (cont);
             }
-            
+
             String convMin = min.ToString();
             String convID = id.ToString();
             String toReturn = convMin + "=" + convID;
             return toReturn;
 
         }
+
+        //  public List<DateTime> GetAppointmentBySpecialization(DateTime? start, DateTime? end, int id, Specialization s)
+        //  {
+
+        //     List<Doctor> docs = getDoctorBySpecialization(s);
+
+        //     return;
+        //  }
 
         public List<DateTime> getTenNextAppointmentsForDoctorForDate(DateTime? start, DateTime? end, int id)
         {
@@ -335,7 +341,7 @@ namespace Service
             List<Appointment> apps = GetAllApointments();
             List<Doctor> docs = ds.GetAllDoctors();
             bool cont = true;
-            DateTime startToUse = (DateTime) start;
+            DateTime startToUse = (DateTime)start;
             startToUse = startToUse.AddHours(8);
             DateTime finish = startToUse.AddMinutes(30);
             bool dontAdd = false;
@@ -443,7 +449,7 @@ namespace Service
 
                 }
 
-                
+
 
             }
 
@@ -466,13 +472,48 @@ namespace Service
             return appointmentRepository.FindByRoomId(roomID);
         }
 
+        public List<Appointment> getAppointmentBySpecialization(Specialization s)
+        {
+            List<Appointment> appointmentList = new List<Appointment>();
+            /*
+             List<Doctor> doctorList = new List<Doctor>();
+             doctorList = getDoctorBySpecialization(s);
+             foreach (Doctor d in doctorList)
+             {
+                 if (
+
+
+                     )
+             }
+            */
+
+
+            return appointmentList;
+        }
+
+        public List<Doctor> getDoctorBySpecialization(Specialization specialization)
+        {
+            List<Doctor> doctors = new();
+            List<Doctor> doctorSpec = new();
+            doctors = doctorRepository.FindAll();
+            foreach (Doctor d in doctors)
+            {
+                if (d.Specialization.Equals(specialization))
+                {
+                    doctorSpec.Add(d);
+                }
+            }
+            return doctorSpec;
+
+        }
+
 
         public Appointment findPatientAppointment(Patient p)
         {
-            List <Appointment> appointments= getAppointmentsByPatientId(p.id);
-            foreach(Appointment a in appointments)
+            List<Appointment> appointments = getAppointmentsByPatientId(p.id);
+            foreach (Appointment a in appointments)
             {
-                if(a.startTime <= DateTime.Now && a.startTime.AddMinutes(a.duration) >= DateTime.Now)
+                if (a.startTime <= DateTime.Now && a.startTime.AddMinutes(a.duration) >= DateTime.Now)
                 {
                     return a;
                 }
@@ -485,10 +526,10 @@ namespace Service
             List<Appointment> doctorAppointments = getAppointmentsByDoctorId(doctorID);
             List<Appointment> roomAppointments = getAppointmentsByRoomId(roomID);
             List<Appointment> patientAppointments = getAppointmentsByPatientId(patientID);
-            
-            foreach(Appointment a in doctorAppointments)
+
+            foreach (Appointment a in doctorAppointments)
             {
-                if(!((a.startTime.AddMinutes(a.duration) < date && a.startTime < date || (date.AddMinutes(duration) < a.startTime && date < a.startTime))))
+                if (!((a.startTime.AddMinutes(a.duration) < date && a.startTime < date || (date.AddMinutes(duration) < a.startTime && date < a.startTime))))
                 {
                     return true;
                 }
@@ -511,7 +552,7 @@ namespace Service
             return false;
         }
 
-        
+
 
 
         public Appointment GetAppointmentByID(string id)
@@ -519,9 +560,10 @@ namespace Service
             throw new NotImplementedException();
         }
 
-        
+
         public AppointmentRepository appointmentRepository = new AppointmentRepository();
+        public DoctorRepository doctorRepository = new DoctorRepository();
         //public RoomService rs = new RoomService();
         public DoctorService ds = new DoctorService();
-   }
+    }
 }

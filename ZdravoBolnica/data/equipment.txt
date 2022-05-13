@@ -1,4 +1,0 @@
-1|sto|10|nepotrosna
-2|stolica|30|nepotrosna
-3|flaster|34|potrosna
-4|igla|29|potrosna

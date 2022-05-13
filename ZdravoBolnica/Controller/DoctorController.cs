@@ -3,15 +3,14 @@
 // Created: Saturday, April 9, 2022 18:36:58
 // Purpose: Definition of Class DoctorService
 
-using System;
+using Model;
 using System;
 using System.Collections.Generic;
-using Model;
 namespace Controller
 {
-   public class DoctorController
-   {
-      public Doctor findFreeDoctor()
+    public class DoctorController
+    {
+        public Doctor findFreeDoctor()
         {
             return null;
         }
@@ -41,7 +40,13 @@ namespace Controller
             return doctorService.GetDoctorByID(id);
         }
 
+        // public List<string> GetSpecializationString()
+        // {
+
+        //     return doctorService.GetSpecializationString();
+        //  }
+
         public Service.DoctorService doctorService = new Service.DoctorService();
-   
-   }
+
+    }
 }

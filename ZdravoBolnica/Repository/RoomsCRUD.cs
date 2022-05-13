@@ -113,6 +113,8 @@ namespace Repository
             return roomsByType;
         }
 
+
+
         public bool FindRoomByFloor(int roomNum, int floor)
         {
 
@@ -130,7 +132,7 @@ namespace Repository
             foreach (Room r in roomsByFloor)
             {
                 if (r.roomNum == roomNum)
-                { 
+                {
                     return true;
                 }
             }
