@@ -98,5 +98,11 @@ namespace SIMS.DoctorView
             RecordSurgery rs = new RecordSurgery();
             rs.ShowDialog();
         }
+
+        private void Referral_Click(object sender, RoutedEventArgs e)
+        {
+            Referral referral = new Referral();
+            referral.ShowDialog();
+        }
     }
 }

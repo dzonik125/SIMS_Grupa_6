@@ -47,7 +47,6 @@ namespace Repository
                 if (d.id == key)
                 {
                     return d;
-                    break;
                 }
             }
             return null;
@@ -70,6 +69,18 @@ namespace Repository
         public void Update(Doctor entity)
         {
             throw new NotImplementedException();
+        }
+
+        public List<Doctor> findBySpecialization(Specialization specialization)
+        {   
+            List<Doctor> doctors = FindAll();
+            List<Doctor> returnDoctors = new List<Doctor>();
+            foreach (Doctor d in doctors)
+            {
+                if (d.specialization == specialization)
+                    returnDoctors.Add(d);
+            }
+            return returnDoctors;
         }
     }
 }

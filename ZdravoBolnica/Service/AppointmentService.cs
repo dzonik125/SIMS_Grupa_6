@@ -5,6 +5,7 @@
 
 using Model;
 using Repository;
+using SIMS.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -170,6 +171,52 @@ namespace Service
 
             return toReturn;
         }
+
+        public List<Appointment> getAppointmentsForDoctors(List<Doctor> doctors)
+        {
+            List<Appointment> returnAppointments = new();
+            foreach(Doctor d in doctors)
+            {
+                List<Appointment> appointmentsForDoctor = getAppointmentsByDoctorId(d.id);
+                returnAppointments.AddRange(appointmentsForDoctor);
+            }
+
+            return returnAppointments;
+        }
+
+        public List<Appointment> findFreeTermsForReferral(Specialization spec, DateRange dateRange, Patient patient)
+        {
+            List<Appointment> returnAppointments = new();
+            List<Doctor> doctors = doctorRepository.findBySpecialization(spec);
+            List<Appointment> doctorsAppointments = getAppointmentsForDoctors(doctors);
+            List<Appointment> patientAppointments = GetAllAppointmentsForPatient(patient.id);
+            doctorsAppointments.AddRange(patientAppointments);
+            findFreeTerms(doctorsAppointments, dateRange, returnAppointments);
+            return returnAppointments;
+        }
+
+        private List<Appointment> findFreeTerms(List<Appointment> doctorsAppointments, DateRange dateRange, List<Appointment> returnAppointments)
+        {
+            dateRange.startTime = dateRange.startTime.AddHours(7); //ovo mozes i pre svih funcija povecati
+            while(dateRange.startTime < dateRange.endTime)
+            {
+                if (dateRange.startTime.Hour == 20)
+                   dateRange.startTime = dateRange.startTime.AddHours(11);
+                dateRange.startTime = dateRange.startTime.AddMinutes(30);
+                //  checkIfFreeAppointmentExists(doctorsAppointments, dateRange.startTime);
+
+            }
+            throw new NotImplementedException();
+        }
+
+        /*private Appointment checkIfFreeAppointmentExists(List<Appointment> doctorsAppointments, DateTime dateTime)
+        {
+            for(int i = 0; i < doctorsAppointments.Count - 1; i++)
+            {
+                Appointment temp = doctorsAppointments[i];
+                if(temp.)
+            }
+        }*/
 
         public string getFirstFreeAppointment(DateTime? start, DateTime? end)
         {
@@ -580,5 +627,6 @@ namespace Service
         public DoctorRepository doctorRepository = new DoctorRepository();
         //public RoomService rs = new RoomService();
         public DoctorService ds = new DoctorService();
+        public DoctorService doctorService = new DoctorService();
     }
 }
