@@ -85,6 +85,7 @@ namespace SIMS.Repository
                     m.status = entity.status;
                     m.components = entity.components;
                     m.medicationReplacementIds = entity.medicationReplacementIds;
+                    m.comment = entity.comment;
                     break;
                 }
             }

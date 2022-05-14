@@ -38,6 +38,8 @@
                                 <RowDefinition Height="55"/>
                                 <RowDefinition Height="55"/>
                                 <RowDefinition Height="55"/>
+                                <RowDefinition Height="55"/>
+                                <RowDefinition Height="55"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
@@ -45,7 +47,9 @@
                             <Button Content="Termini" Grid.Row="0" Background="#009494" Click="Appointments_Click" />
                             <Button Content="Pacijenti" Grid.Row="1" Background="#009494" Click="Patients_Click"/>
                             <Button Content="Istorija" Grid.Row="2" Background="#009494"/>
-                            <Button Content="Profil" Grid.Row="3" Background="#009494"/>
+                            <Button Content="Lekovi" Grid.Row="3" Background="#009494" Click="Button_Click"/>
+                            <Button Content="Slobodni dani" Grid.Row="4" Background="#009494"/>
+                            <Button Content="Profil" Grid.Row="5" Background="#009494"/>
                         </Grid>
 
                     </Grid>

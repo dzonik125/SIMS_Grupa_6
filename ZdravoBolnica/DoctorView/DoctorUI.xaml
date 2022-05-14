@@ -20,9 +20,9 @@
 
             <DataGrid.Columns>
 
-                <DataGridTextColumn Header="Termin" Width="*" Binding="{Binding AppointmentTypeString}" DataGridColumn.CanUserResize="False"/>
-                <DataGridTextColumn Header="Pacijent" Width="*" Binding="{Binding patient.FullName}" DataGridColumn.CanUserResize="False"/>
-                <DataGridTextColumn Header="Datum" Width="*"  Binding="{Binding AppointmentDate}" DataGridColumn.CanUserResize="False"/>
+                <DataGridTextColumn Header="Sifra" Width="*" Binding="{Binding AppointmentTypeString}" DataGridColumn.CanUserResize="False"/>
+                <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding patient.FullName}" DataGridColumn.CanUserResize="False"/>
+                <DataGridTextColumn Header="Status" Width="*"  Binding="{Binding AppointmentDate}" DataGridColumn.CanUserResize="False"/>
                 <DataGridTextColumn Header="Početak" Width="*" Binding="{Binding AppointmentTime}"  DataGridColumn.CanUserResize="False"/>
                 <DataGridTextColumn Header="Trajanje" Width="*" Binding="{Binding duration}"  DataGridColumn.CanUserResize="False"/>
                 <DataGridTextColumn Header="Prostorija" Width="*" Binding="{Binding Room.roomNum}" DataGridColumn.CanUserResize="False"/>

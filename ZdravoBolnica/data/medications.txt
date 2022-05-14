@@ -1,1 +1,1 @@
-1|brufen|Na cekanju|14||sastojak 2|Sastojak 2 nije dobar|
+1|Bromazepam|Odbijeno|10||sastojak 1,sastojak 2|ne valja

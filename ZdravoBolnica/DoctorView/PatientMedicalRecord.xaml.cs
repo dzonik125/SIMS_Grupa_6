@@ -58,8 +58,11 @@ namespace SIMS.DoctorView
                 allergies.Add(a.name);
             }
             List<Medication> medications = medicalRecord.medications;
+          
             foreach(Medication m  in medications)
             {
+                if (m == null)
+                    break;
                 allergies.Add(m.name);
             }
         }
