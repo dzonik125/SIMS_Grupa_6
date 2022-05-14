@@ -298,6 +298,7 @@ namespace SIMS
             RoomNum.Text = selectedRoom.roomNum.ToString();
             Purpose.Text = Conversion.RoomTypeToString(selectedRoom.roomType);
             roomSource = selectedRoom;
+            
             if (selectedRoom == null)
             {
                 MessageBox.Show("Izaberite prostoriju");

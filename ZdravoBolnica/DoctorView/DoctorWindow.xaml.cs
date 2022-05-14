@@ -27,6 +27,7 @@ namespace SIMS.DoctorView
         //MedicationController medicationController = new();
         public static DoctorWindow instance = new DoctorWindow();
         private DoctorController doctorController = new DoctorController();
+        private MedicationController medicationController = new MedicationController();
         public Doctor doctorUser = new Doctor();
 
         public static DoctorWindow Instance
@@ -42,12 +43,12 @@ namespace SIMS.DoctorView
         private DoctorWindow()
         {
 
-            /* Medication med = new();
-             med.name = "Brufen";
-             Medication med1 = new();
-             med1.name = "Bromazepam";
-             medicationController.Create(med);
-             medicationController.Create(med1);*/
+            /*Medication med = new();
+            med.name = "Brufen";
+            Medication med1 = new();
+            med1.name = "Bromazepam";
+            medicationController.Create(med);
+            medicationController.Create(med1);*/
             doctorUser = doctorController.GetAllDoctors()[0];
             InitializeComponent();
         }
@@ -63,6 +64,12 @@ namespace SIMS.DoctorView
             PatientsView pw = PatientsView.Instance;
             Page.Content = pw;
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Medications medications = Medications.Instance;
+            Page.Content = medications;
         }
     }
 }
