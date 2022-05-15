@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Model;
+using Service;
+using SIMS.Model;
+using SIMS.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +23,13 @@ namespace SIMS.DoctorView
     /// </summary>
     public partial class Referral : Window
     {
-        public Referral()
-        {
+        public Patient selectedPatient = new Patient();
+        public AppointmentService aps = new AppointmentService();
+        public Referral(Patient p)
+        {  
             InitializeComponent();
+            selectedPatient = p;
+            SpecializationBox.ItemsSource = Conversion.GetSpecializationType();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -32,6 +40,15 @@ namespace SIMS.DoctorView
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void EndTime_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DateRange dateRange = new();
+            dateRange.startTime = (DateTime)StartTime.SelectedDate;
+            dateRange.endTime = (DateTime)EndTime.SelectedDate;
+            List<Appointment> appo = aps.findFreeTermsForReferral(Specialization.general, dateRange, selectedPatient);
+            Time.ItemsSource = appo;
         }
     }
 }
