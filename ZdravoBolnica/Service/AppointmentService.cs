@@ -14,6 +14,7 @@ namespace Service
 {
     public class AppointmentService
     {
+        
         public List<Appointment> GetAllApointments()
         {
             return appointmentRepository.FindAll();
@@ -93,6 +94,7 @@ namespace Service
 
         public List<Appointment> getFutureAppointmentsForDoctor(int id)
         {
+            
             List<Appointment> potentialAppointments = GetAllApointments();
             List<Appointment> futureAppointments = new List<Appointment>();
             foreach (Appointment a in potentialAppointments)
@@ -180,7 +182,6 @@ namespace Service
                 List<Appointment> appointmentsForDoctor = getAppointmentsByDoctorId(d.id);
                 returnAppointments.AddRange(appointmentsForDoctor);
             }
-
             return returnAppointments;
         }
 
@@ -195,28 +196,46 @@ namespace Service
             return returnAppointments;
         }
 
-        private List<Appointment> findFreeTerms(List<Appointment> doctorsAppointments, DateRange dateRange, List<Appointment> returnAppointments)
+        public List<Appointment> findFreeTerms(List<Appointment> doctorsAppointments, DateRange dateRange, List<Appointment> returnAppointments)
         {
             dateRange.startTime = dateRange.startTime.AddHours(7); //ovo mozes i pre svih funcija povecati
             while(dateRange.startTime < dateRange.endTime)
             {
-                if (dateRange.startTime.Hour == 20)
-                   dateRange.startTime = dateRange.startTime.AddHours(11);
+                addPotentialAppointment(doctorsAppointments, dateRange, returnAppointments);
                 dateRange.startTime = dateRange.startTime.AddMinutes(30);
-                //  checkIfFreeAppointmentExists(doctorsAppointments, dateRange.startTime);
+                if (dateRange.startTime.Hour == 20)
+                    dateRange.startTime = dateRange.startTime.AddHours(12);
 
             }
-            throw new NotImplementedException();
+            return returnAppointments;
         }
 
-        /*private Appointment checkIfFreeAppointmentExists(List<Appointment> doctorsAppointments, DateTime dateTime)
+        public void addPotentialAppointment(List<Appointment> doctorsAppointments, DateRange dateRange, List<Appointment> returnAppoinments)
         {
+           RoomService roomService = new RoomService();
+           Appointment firstAppointment = doctorsAppointments[0];
+           Appointment lastAppointment = doctorsAppointments[doctorsAppointments.Count - 1];
+           if (dateRange.startTime.AddMinutes(30) <= firstAppointment.startTime)
+                roomService.findRoomForAppointment(firstAppointment, dateRange, returnAppoinments);
+            else if (dateRange.startTime >= lastAppointment.startTime.AddMinutes(lastAppointment.duration))
+               roomService.findRoomForAppointment(lastAppointment, dateRange, returnAppoinments);
+            else getAppoinmentsBetweenScheduled(doctorsAppointments, dateRange, returnAppoinments);
+
+        }
+
+        public void getAppoinmentsBetweenScheduled(List<Appointment> doctorsAppointments, DateRange dateRange, List<Appointment> returnAppoinments)
+        {
+            RoomService roomService = new RoomService();
             for(int i = 0; i < doctorsAppointments.Count - 1; i++)
             {
-                Appointment temp = doctorsAppointments[i];
-                if(temp.)
+                if (dateRange.checkIfBetween(doctorsAppointments[i].startTime.AddMinutes(doctorsAppointments[i].duration), doctorsAppointments[i + 1].startTime))
+                    roomService.findRoomForAppointment(doctorsAppointments[i], dateRange, returnAppoinments);
+                
             }
-        }*/
+
+        }
+
+        
 
         public string getFirstFreeAppointment(DateTime? start, DateTime? end)
         {

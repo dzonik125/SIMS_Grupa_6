@@ -1,1 +1,1 @@
-1|Bromazepam|Odbijeno|10||sastojak 1,sastojak 2|ne valja
+1|Bromazepam|Odobreno|10||sastojak 1,sastojak 2|ne valja

@@ -39,8 +39,8 @@
                         </Grid.RowDefinitions>
                         <ComboBox Name="SpecializationBox" Grid.Row="0" Margin="0,17,40,12"/>
                         <DatePicker Name="StartTime" Grid.Row="1" Margin="0,17,40,12"/>
-                        <DatePicker Name="EndTime" Grid.Row="2" Margin="0,17,40,12"/>
-                        <ComboBox Name="Time" Grid.Row="3" Margin="0,17,40,12"/>
+                        <DatePicker Name="EndTime" Grid.Row="2" Margin="0,17,40,12" SelectedDateChanged="EndTime_SelectedDateChanged"/>
+                        <ComboBox Name="Time" Grid.Row="3" Margin="0,17,40,12" DisplayMemberPath="startTime"/>
                         <Button Grid.Row="4" Name="Exit" Margin="50,36,40,38" Content="Izadji" Click="Exit_Click"/>
                     </Grid>
                 </Grid>

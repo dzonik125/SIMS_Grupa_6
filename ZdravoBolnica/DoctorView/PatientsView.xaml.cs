@@ -101,7 +101,8 @@ namespace SIMS.DoctorView
 
         private void Referral_Click(object sender, RoutedEventArgs e)
         {
-            Referral referral = new Referral();
+            selectedPatient = PatientsDataGrid.SelectedItem as Patient;
+            Referral referral = new Referral(selectedPatient);
             referral.ShowDialog();
         }
     }

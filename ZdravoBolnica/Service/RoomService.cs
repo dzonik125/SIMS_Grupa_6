@@ -9,6 +9,7 @@ using System.Reflection.Metadata.Ecma335;
 using Model;
 using Repository;
 using SIMS.Model;
+using SIMS.Util;
 
 namespace Service
 {
@@ -16,7 +17,7 @@ namespace Service
    {
         
 
-        public RoomsCRUD roomsCrud = new RoomsCRUD();
+        //public RoomsCRUD roomsCrud = new RoomsCRUD();
         public AppointmentService appointmentService = new AppointmentService();
 
       public Room FindRoomById(int id)
@@ -208,7 +209,34 @@ namespace Service
             return "";
         }
 
-        public Repository.RoomsCRUD roomsCRUD = new Repository.RoomsCRUD();
+        public void findRoomForAppointment(Appointment appointment, DateRange dateRange, List<Appointment> returnAppointmets)
+        {
+            Appointment a = new Appointment();
+            List<Room> rooms = FindAll();
+            foreach(Room r in rooms)
+            {
+                if(!checkIfRoomIsBusy(r, dateRange))
+                {
+                    a.Room = r;
+                    a.startTime = dateRange.startTime;
+                    returnAppointmets.Add(a);
+                    break;
+                }
+            }
+        }
+
+        public bool checkIfRoomIsBusy(Room r, DateRange dateRange)
+        {
+            List<Appointment> appointments = appointmentService.getAppointmentsByRoomId(r.id);
+            foreach(Appointment a in appointments)
+            {
+                if (dateRange.checkForIntersection(a.startTime, a.duration))
+                    return true;
+            }
+            return false;
+        }
+
+       public Repository.RoomsCRUD roomsCRUD = new Repository.RoomsCRUD();
       
 
    }
