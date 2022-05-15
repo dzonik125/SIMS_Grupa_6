@@ -19,11 +19,11 @@
                 </Grid>
                 <Grid Width="400" FlowDirection="LeftToRight" HorizontalAlignment="Center">
                     <Label Content="Specijalizacija:" HorizontalAlignment="Left" Margin="128,7,0,0" VerticalAlignment="Top" FontSize="17" Height="32" Width="114"/>
-                    <ComboBox x:Name="Specialization" HorizontalAlignment="Left" Margin="135,38,0,0" VerticalAlignment="Top"  Width="123" Height="29"/>
+                    <ComboBox DropDownClosed="Specialization_DropDownClosed" x:Name="Specialization" HorizontalAlignment="Left" Margin="135,38,0,0" VerticalAlignment="Top" Width="123" Height="29"/>
                 </Grid>
                 <Grid  Width="400" FlowDirection="LeftToRight" HorizontalAlignment="Center">
                     <Label Content="Vreme:" HorizontalAlignment="Left" Margin="132,9,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="72"/>
-                    <ComboBox HorizontalAlignment="Left" x:Name="TimeBox" Margin="134,38,0,0" VerticalAlignment="Top"  Width="123" Height="29" />
+                    <ComboBox  HorizontalAlignment="Left" x:Name="TimeBox" Margin="135,38,0,0" VerticalAlignment="Top"  Width="123" Height="29" />
                 </Grid>
                 <Grid Width="400"  FlowDirection="LeftToRight"/>
                 <Grid Margin="50,150,0,0" Width="400" FlowDirection="LeftToRight">

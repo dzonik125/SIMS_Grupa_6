@@ -10,6 +10,7 @@ namespace SIMS.Service
     public class EquipmentService
     {
         private EquipmentRepository er = new EquipmentRepository();
+        private EquipmentForOrderRepository efo = new EquipmentForOrderRepository();
         private RoomEquipmentService res = new RoomEquipmentService();
         private RoomService rs = new RoomService();
         public List<Equipment> FindAll()
@@ -59,6 +60,38 @@ namespace SIMS.Service
             return true;
         }
 
+        public bool AddEquipmentForOrder(Equipment equipment)
+        {
+            List<Equipment> inventory = new List<Equipment>();
+            inventory = efo.FindAll();
+            //bool exist = false;
+
+
+            foreach (Equipment e in inventory)
+            {
+                if (e.item.Equals(equipment.item))
+                {
+                    //e.quantity += equipment.quantity;
+                    UpdateEquipmentForOrder(e);
+                    return true;
+
+                }
+
+            }
+            efo.Create(equipment);
+            /*     if (!exist)
+                 {
+                     RoomEquipment rEquipment = new RoomEquipment();
+                     rEquipment.equipmentId = GetEquipmentIdByItem(equipment);
+                     rEquipment.roomId = rs.GetRoomIdByStorage(RoomType.storage);
+                     rEquipment.quantity = equipment.quantity;
+                     res.CreateRoomEquipment(rEquipment);
+                 }*/
+            return true;
+        }
+
+
+
         private int GetEquipmentIdByItem(Equipment equipment)
         {
             List<Equipment> invetory = new List<Equipment>();
@@ -81,6 +114,12 @@ namespace SIMS.Service
         public bool UpdateEquipment(Equipment e)
         {
             er.Update(e);
+            return true;
+        }
+
+        public bool UpdateEquipmentForOrder(Equipment e)
+        {
+            efo.Update(e);
             return true;
         }
 

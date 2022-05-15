@@ -19,6 +19,12 @@ namespace SIMS.Controller
             return true;
         }
 
+        public bool AddEquipmentForOrder(Equipment equipment)
+        {
+            es.AddEquipmentForOrder(equipment);
+            return true;
+        }
+
         /* public bool AddDynamicEquipment(BindingList<Equipment> equipment)
          {
              es.AddDynamicEquipment(equipment);
@@ -28,6 +34,12 @@ namespace SIMS.Controller
         public bool UpdateEquipment(Equipment e)
         {
             es.UpdateEquipment(e);
+            return true;
+        }
+
+        public bool UpdateEquipmentForOrder(Equipment e)
+        {
+            es.UpdateEquipmentForOrder(e);
             return true;
         }
 

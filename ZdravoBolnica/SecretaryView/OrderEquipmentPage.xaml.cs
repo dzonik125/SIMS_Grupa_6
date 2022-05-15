@@ -57,13 +57,15 @@ namespace SIMS.SecretaryView
 
             orderE.roomDestiantionId = rc.GetRoomIdByStorage(Conversion.StringToRoomType("Magacin"));
             orderE.transferDate = DateTime.Now.AddMinutes(1);
-            orderE.q = Quantity.Text;
+            orderE.quantity = Int32.Parse(Quantity.Text);
 
 
             eq.Add(equip);
 
 
             orderE.equipments = eq.ToList<Equipment>();
+
+
 
         }
 
@@ -72,22 +74,25 @@ namespace SIMS.SecretaryView
             eq.Remove((Equipment)equipmentTable.SelectedItem);
         }
 
-        private async void Order_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Order_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+
             oec.SendEquipment(eq);
 
-            timer = new Timer(new TimerCallback(oec.CreateOrder), null, 1000, 60000);
+            //  timer = new Timer(new TimerCallback(oec.CreateOrder), null, 1000, 60000);
             foreach (Equipment equipment in eq)
             {
 
                 //  MessageBox.Show("Naruceno");
-                //  ec.AddEquipment(equipment);
-                order.Add(equipment);
+                // ec.AddEquipment(equipment);
+                ec.AddEquipmentForOrder(equipment);
+                // order.Add(equipment);
                 SecretaryView.Instance.SetContent(new OrderEquipmentPage());
                 //   }
 
             }
             oec.SaveOrder(orderE);
+
 
             //eq.Clear();
         }
