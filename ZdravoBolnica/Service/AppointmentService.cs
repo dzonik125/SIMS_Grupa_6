@@ -35,21 +35,7 @@ namespace Service
             appointmentRepository.Create(a);
         }
 
-        public void SaveBusyAppointment(Appointment a, Patient p)
-        {
-            Appointment appointment = new Appointment();
-            //a.patient;
-            //appointmentRepository.Create();
-
-
-
-            Appointment app = new Appointment();
-            app = a;
-            app.patient = p;
-            appointmentRepository.Update(app);
-
-            //appointmentRepository.Create(a);
-        }
+        
 
 
         public void bindRoomsWithAppointments(List<Room> rooms, List<Appointment> appointments)
@@ -109,18 +95,7 @@ namespace Service
             return false;
         }
 
-        public Appointment getFirstFreeAppointment(DateTime startTime, DateTime endTime, Doctor d, Patient p)
-        {
-            List<Appointment> apps = appointmentRepository.FindAll();
-            Appointment returnAppointment = new Appointment();
-            foreach (Appointment a in apps)
-            {
-
-            }
-
-
-            return null;
-        }
+        
 
         public List<Appointment> getFutureAppointmentsForDoctor(int id)
         {
@@ -142,20 +117,7 @@ namespace Service
             return futureAppointments;
         }
 
-        public Appointment getFirstFuture(List<Appointment> apps)
-        {
-            Appointment forReturn = new Appointment();
-            foreach (Appointment appointment in apps)
-            {
-                if (appointment.startTime.CompareTo(DateTime.Now.AddHours(1)) > 0)
-                {
-                    return appointment;
-                }
-
-            }
-            return null;
-        }
-
+        
 
 
         public Boolean IsExist(int id)
@@ -299,6 +261,10 @@ namespace Service
             return toReturn;
         }
 
+
+        //public Appointment getTermForUrgent
+
+
         public List<Appointment> getAppointmentsForDoctors(List<Doctor> doctors)
         {
             List<Appointment> returnAppointments = new();
@@ -309,6 +275,65 @@ namespace Service
             }
             return returnAppointments;
         }
+
+
+
+        public Appointment getFirstFreeAppointment(Specialization spec, Patient p)
+        {
+            DateRange dateRange = new DateRange();
+            dateRange.startTime = DateTime.Now.AddHours(0);
+            dateRange.endTime = DateTime.Now.AddHours(2);
+            List<Appointment> freeAppointments = findFreeTermsForReferral(spec, dateRange, p);
+            if(freeAppointments.Count > 0)
+            {
+                return freeAppointments[0];
+            }
+            return null;
+        }
+
+        public Appointment getFirstFuture(List<Appointment> apps)
+        {
+            Appointment forReturn = new Appointment();
+            foreach (Appointment appointment in apps)
+            {
+                if (appointment.startTime.CompareTo(DateTime.Now.AddHours(2)) < 0)
+                {
+                    return appointment;
+                }
+
+            }
+            return null;
+        }
+
+        public void SaveBusyAppointment(Appointment a, Patient p, Specialization spec)
+        {
+            Appointment appointment = new Appointment();
+            //a.patient;
+            //appointmentRepository.Create();
+
+
+
+            Appointment app = new Appointment();
+            app = a;
+            app.patient = p;
+            appointmentRepository.Update(app);
+            appointment = findFreeAppointmentForPatient(p, spec);
+            appointment.patient = p;
+            appointment.duration = 30;
+            appointmentRepository.Create(appointment);
+        }
+
+        public Appointment findFreeAppointmentForPatient(Patient p, Specialization spec)
+        {
+            DateRange dateRange = new DateRange();
+            dateRange.startTime = DateTime.Now;
+            dateRange.endTime = DateTime.Now.AddDays(3);
+            dateRange.duration = 30;
+            List<Appointment> appointments = findFreeTermsForReferral(spec, dateRange, p);
+            return appointments[0];
+        }
+
+
 
         public List<Appointment> findFreeTermsForReferral(Specialization spec, DateRange dateRange, Patient patient)
         {
