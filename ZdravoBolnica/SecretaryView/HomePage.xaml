@@ -8,9 +8,22 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="HomePage">
 
-    <Grid>
-        <Button x:Name="addPatient" Content="Dodaj Pacijenta" HorizontalAlignment="Left" Margin="180,253,0,0" VerticalAlignment="Top" Click="addPatient_Click" Height="55"/>
-        <Button x:Name="scheduleAppointment" Content="Pregledi" HorizontalAlignment="Left" Margin="532,246,0,0" VerticalAlignment="Top" Click="scheduleAppointment_Click" Height="60"/>
+    <Grid Height="450" Width="800">
+        <Grid Width="800" Margin="0,153,0,238">
+            <Button  x:Name="registration" Content="Registracija" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="80" Height="40" Margin="161,0,0,0" Click="Registration_Click"/>
+            <Button x:Name="schedule"  Click="schedule_Click" Content="Zakaži termin" HorizontalAlignment="Center" VerticalAlignment="Top" Width="80" Height="40"/>
+            <Button x:Name="order"  Click="order_Click" Content="Naruči opremu" HorizontalAlignment="Left" VerticalAlignment="Top" Width="85" Height="40" Margin="560,0,0,0"/>
+        </Grid>
+        <Grid Height="50" Width="800" Margin="0,360,0,40">
+            <Button Content="Zahtev za odmor" HorizontalAlignment="Left" VerticalAlignment="Top" Width="98" Height="40" RenderTransformOrigin="-0.438,-0.125" Margin="248,-7,0,0"/>
+            <Button Content="Hitan slucaj" Background="Firebrick"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Height="40" Margin="475,-7,0,0"/>
+        </Grid>
+        <Image Width="90" Height="80" Margin="160,58,550,312" Source="/images/register.png" Stretch="Fill"/>
+        <Image Width="90" Height="80" Margin="354,58,356,312" Source="/images/PngItem_2005182.png" Stretch="Fill"/>
+        <Image Width="90" Height="80" Margin="565,58,145,312" Source="/images/NicePng_order-icon-png_2992961.png" Stretch="Fill"/>
+        <Image Width="90" Height="80" Margin="472,261,238,109" Source="/images/PinClipart.com_hospital-clipart_3976044.png" Stretch="Fill"/>
+        <Image Width="90" Height="80" Margin="253,259,457,111" Source="/images/NicePng_note-png_4357930.png" Stretch="Fill"/>
+
 
     </Grid>
 </Page>
