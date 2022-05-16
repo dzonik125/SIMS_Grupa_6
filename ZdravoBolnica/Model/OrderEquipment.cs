@@ -12,10 +12,11 @@ namespace SIMS.Model
         public string q = "";
 
         private EquipmentRepository er = new EquipmentRepository();
+        private EquipmentForOrderRepository efo = new EquipmentForOrderRepository();
         public int roomDestiantionId { get; set; }
         public DateTime transferDate { get; set; }
         public int quantity { get; set; }
-        public int equipmentId { get; set; }
+        //    public int equipmentId { get; set; }
 
         public void FromCSV(string[] values)
         {
@@ -32,7 +33,7 @@ namespace SIMS.Model
                 }
                 foreach (int i in q)
                 {
-                    equipments.Add(er.FindById(i));
+                    equipments.Add(efo.FindById(i));
                 }
             }
 
@@ -47,7 +48,7 @@ namespace SIMS.Model
                 }
                 foreach (int i in ids)
                 {
-                    equipments.Add(er.FindById(i));
+                    equipments.Add(efo.FindById(i));
                 }
             }
 
@@ -79,7 +80,7 @@ namespace SIMS.Model
                 roomDestiantionId.ToString(),
                 transferDate.ToString(),
                 q.ToString(),
-               ids.ToString(),
+                ids.ToString(),
             };
             return csvValues;
         }

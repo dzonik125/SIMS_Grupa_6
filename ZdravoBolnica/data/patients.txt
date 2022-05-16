@@ -1,1 +1,2 @@
 1|marko|||1234|marelegenda|1|||||False|0|2
+2|stefan|markovic||||1|||689887||True|0|0

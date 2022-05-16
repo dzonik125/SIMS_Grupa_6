@@ -15,20 +15,30 @@ namespace SIMS.Service
         private EquipmentService equipmentService = new EquipmentService();
         private RoomService rs = new RoomService();
         private EquipmentService es = new EquipmentService();
-        private BindingList<Equipment> equipmentList;
+        private List<Equipment> equipment = new List<Equipment>();
         public void CreateOrder()
         {
             List<OrderEquipment> orderEquipment = new List<OrderEquipment>();
             orderEquipment = oer.FindAll();
-            List<Equipment> equipments = new List<Equipment>();
-            equipments = er.FindAll();
+            // List<Equipment> equipments = new List<Equipment>();
+            // equipments = er.FindAll();
+            int id = 0;
             foreach (OrderEquipment oe in orderEquipment)
             {
+                foreach (Equipment ee in oe.equipments)
+                {
+                    //    orderEquipment.ids = ee.id;
+                }
                 if (DateTime.Compare(DateTime.Now, oe.transferDate) == 0 || DateTime.Compare(oe.transferDate, DateTime.Now) < 0)
                 {
                     App.Current.Dispatcher.Invoke((Action)delegate
                     {
+                        Equipment equip = new Equipment();
+                        foreach (Equipment e in equipment)
+                        {
 
+                            //  equip.id = es.FindEquipmentById(Int32.Parse(oe.equipments));
+                        }
                         /* Room rDestionation = new Room();
                          rDestionation = rs.FindRoomById(oe.roomDestiantionId);
                          List<Equipment> equip = new List<Equipment>();
@@ -36,11 +46,11 @@ namespace SIMS.Service
                          {
                              equip = es.FindEquipmentById(e.id);
                          }*/
-                        foreach (Equipment e in equipmentList)
-                        {
-                            equipmentService.AddEquipment(e);
+                        //foreach (Equipment e in equipment)
+                        //   {
+                        equipmentService.AddEquipment(equip);
 
-                        }
+                        //  }
 
                         //res.TransferEquipment(rSource, rDestionation, equip, et.quantity);
                         oer.Remove(oe);
@@ -57,7 +67,7 @@ namespace SIMS.Service
 
         public void SendEquipment(BindingList<Equipment> eq)
         {
-            equipmentList = eq;
+            // equipmentList = eq;
         }
     }
 }

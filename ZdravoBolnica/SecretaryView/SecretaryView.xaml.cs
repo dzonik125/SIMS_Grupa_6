@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using SIMS.Controller;
+using System.Threading;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace SIMS.SecretaryView
@@ -10,6 +12,8 @@ namespace SIMS.SecretaryView
     {
         private static SecretaryView instance = new SecretaryView();
         private SecretaryUI sui;
+        private Timer timer;
+        private OrderEquipmentController oec = new OrderEquipmentController();
 
         public static SecretaryView Instance
         {
@@ -31,7 +35,8 @@ namespace SIMS.SecretaryView
         public SecretaryView()
         {
             InitializeComponent();
-            //SetContent(new SecretaryView());
+            SetContent(new HomePage());
+            //  timer = new Timer(new TimerCallback(oec.CreateOrder), null, 1000, 60000);
         }
 
         //      private void addPatient_Click(object sender, RoutedEventArgs e)
@@ -74,7 +79,9 @@ namespace SIMS.SecretaryView
 
         private void LogOut_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Hide();
+            MainWindow mw = new MainWindow();
+            mw.Show();
         }
 
         private void Schedule_Click(object sender, RoutedEventArgs e)

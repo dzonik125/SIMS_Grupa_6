@@ -39,12 +39,30 @@ namespace Controller
             return appointmentService.getTenNextFreeAppointmentsForDoctor(id);
         }
 
+        public List<DateTime> getTenNextFreeAppointmentsForDoctorToday(int id)
+        {
+            return appointmentService.getTenNextFreeAppointmentsForDoctorToday(id);
+        }
+
         public List<Appointment> getFutureAppointmentsForDoctor(int id)
         {
             return appointmentService.getFutureAppointmentsForDoctor(id);
         }
 
+        public Appointment getFirstFuture(List<Appointment> apps)
+        {
+            return appointmentService.getFirstFuture(apps);
+        }
+
+        public void SaveBusyAppointment(Appointment a, Patient p)
+        {
+            appointmentService.SaveBusyAppointment(a, p);
+        }
+
+        //public List<Appointment> getFutureAppointmentsForPatient(string id)
+
         public List<Appointment> getFutureAppointmentsForPatient(int id)
+
         {
             return appointmentService.getFutureAppointmentsForPatient(id);
         }
@@ -116,6 +134,10 @@ namespace Controller
             return appointmentService.getTenNextAppointmentsForDoctorForDate(start, end, id);
         }
 
+        public Boolean IsExist(int id)
+        {
+            return appointmentService.IsExist(id);
+        }
 
 
         public Service.AppointmentService appointmentService = new Service.AppointmentService();
