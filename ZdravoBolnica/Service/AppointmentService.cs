@@ -173,6 +173,17 @@ namespace Service
 
             return toReturn;
         }
+        
+       /* public List<Appointment> getFreeTermsForUrgentSurgery(Specialization spec, DateRange dateRange, Patient p)
+        {
+            dateRange.startTime = DateTime.Now.AddMinutes(30);
+
+            if(findFreeTermsForReferral(spec, dateRange, p) == null) 
+            {
+                for appointment in futureappointments
+                    getRescheduleTimeDifference
+            }
+        }*/
 
         public List<Appointment> getAppointmentsForDoctors(List<Doctor> doctors)
         {

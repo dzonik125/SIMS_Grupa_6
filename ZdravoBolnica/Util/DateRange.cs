@@ -12,6 +12,7 @@ namespace SIMS.Util
         public DateTime startTime { get; set; }
         public DateTime endTime { get; set; }
 
+        public double duration { get; set; }
 
         public bool checkIfBetween(DateTime first, DateTime second)
         {
@@ -20,10 +21,11 @@ namespace SIMS.Util
             return false;
         }
 
-        public bool checkForIntersection(DateTime startTimeAppoinment, int duration)
+
+        public bool checkForIntersection(DateTime startTimeAppoinment, double appointmentDuration)
         {
-            if (!((startTimeAppoinment.AddMinutes(duration) < startTime && startTimeAppoinment < startTime ||
-                (startTime.AddMinutes(30) < startTimeAppoinment && startTime < startTimeAppoinment))))
+            if (!((startTimeAppoinment.AddMinutes(appointmentDuration) <= startTime && startTimeAppoinment <= startTime ||
+                (startTime.AddMinutes(duration) <= startTimeAppoinment && startTime <= startTimeAppoinment))))
             {
                 return true;
             }

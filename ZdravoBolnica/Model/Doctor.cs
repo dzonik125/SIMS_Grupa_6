@@ -5,6 +5,7 @@
 
 using SIMS.Model;
 using System;
+using System.Collections.Generic;
 
 namespace Model
 {
@@ -20,6 +21,7 @@ namespace Model
         /// <pdGenerated>Default opposite class collection property</pdGenerated>
 
 
+        public List<VacationPeriod> vacationPeriods { get; set; }
 
         public string[] ToCSV()
         {

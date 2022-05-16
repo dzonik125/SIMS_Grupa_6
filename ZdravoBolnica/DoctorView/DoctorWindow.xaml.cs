@@ -71,5 +71,11 @@ namespace SIMS.DoctorView
             Medications medications = Medications.Instance;
             Page.Content = medications;
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            VacationPeriodsView vacationPeriodsView = VacationPeriodsView.Instance;
+            Page.Content = vacationPeriodsView;
+        }
     }
 }

@@ -83,5 +83,11 @@ namespace SIMS.DoctorView
             Medication med = medications[DrugComboBox.SelectedIndex];
             return med;
         }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+
+        }
     }
 }

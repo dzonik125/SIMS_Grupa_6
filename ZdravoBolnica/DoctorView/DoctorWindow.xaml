@@ -48,7 +48,7 @@
                             <Button Content="Pacijenti" Grid.Row="1" Background="#009494" Click="Patients_Click"/>
                             <Button Content="Istorija" Grid.Row="2" Background="#009494"/>
                             <Button Content="Lekovi" Grid.Row="3" Background="#009494" Click="Button_Click"/>
-                            <Button Content="Slobodni dani" Grid.Row="4" Background="#009494"/>
+                            <Button Content="Slobodni dani" Grid.Row="4" Background="#009494" Click="Button_Click_1"/>
                             <Button Content="Profil" Grid.Row="5" Background="#009494"/>
                         </Grid>
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIMS.DoctorView"
         mc:Ignorable="d"
-        Title="PrescriptionView" Height="430" Width="330">
+        Title="PrescriptionView" Height="342" Width="330">
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
