@@ -36,8 +36,8 @@ namespace Service
 
         public void SaveBusyAppointment(Appointment a, Patient p)
         {
-            Appointment aAppointment = new Appointment();
-            a.patient =
+            Appointment appointment = new Appointment();
+            //a.patient;
             //appointmentRepository.Create();
 
 
@@ -45,7 +45,7 @@ namespace Service
             Appointment app = new Appointment();
             app = a;
             app.patient = p;
-            UpdateAppointment(app);
+            appointmentRepository.Update(app);
 
             //appointmentRepository.Create(a);
         }
@@ -108,16 +108,13 @@ namespace Service
             return false;
         }
 
-        public Appointment getFirstFreeAppointmentForDoctor(DateTime startTime, DateTime endTime, int id)
+        public Appointment getFirstFreeAppointment(DateTime startTime, DateTime endTime, Doctor d, Patient p)
         {
-            List<Appointment> apps = new List<Appointment>();
+            List<Appointment> apps = appointmentRepository.FindAll();
             Appointment returnAppointment = new Appointment();
             foreach (Appointment a in apps)
             {
-                if (a.Doctor.id == id)
-                {
 
-                }
             }
 
 

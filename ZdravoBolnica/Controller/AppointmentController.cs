@@ -48,6 +48,11 @@ namespace Controller
             return appointmentService.getFirstFuture(apps);
         }
 
+        public void SaveBusyAppointment(Appointment a, Patient p)
+        {
+            appointmentService.SaveBusyAppointment(a, p);
+        }
+
         public List<Appointment> getFutureAppointmentsForPatient(string id)
         {
             return appointmentService.getFutureAppointmentsForPatient(id);

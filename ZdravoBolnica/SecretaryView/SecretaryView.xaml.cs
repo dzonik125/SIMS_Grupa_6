@@ -35,7 +35,7 @@ namespace SIMS.SecretaryView
         public SecretaryView()
         {
             InitializeComponent();
-            //SetContent(new SecretaryView());
+            SetContent(new HomePage());
             //  timer = new Timer(new TimerCallback(oec.CreateOrder), null, 1000, 60000);
         }
 
@@ -79,7 +79,9 @@ namespace SIMS.SecretaryView
 
         private void LogOut_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Hide();
+            MainWindow mw = new MainWindow();
+            mw.Show();
         }
 
         private void Schedule_Click(object sender, RoutedEventArgs e)

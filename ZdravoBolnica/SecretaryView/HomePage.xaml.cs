@@ -10,7 +10,6 @@ namespace SIMS.SecretaryView
     public partial class HomePage : Page
     {
         public static HomePage instance = new HomePage();
-        RegistrationPatient rui;
         public static HomePage Instance
         {
             get
@@ -23,20 +22,19 @@ namespace SIMS.SecretaryView
             InitializeComponent();
         }
 
-
-        private void addPatient_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Registration_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            RegistrationPatient rui = RegistrationPatient.Instance;
-            //Page.Content = rui;
-            //this.Close();
-
+            SecretaryView.Instance.SetContent(new RegistrationPatient());
         }
 
-        private void scheduleAppointment_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void schedule_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            CreateAppointment ca = new CreateAppointment();
-            ca.Show();
-            //this.Close();
+            SecretaryView.Instance.SetContent(new CreateAppointmentPage());
+        }
+
+        private void order_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            SecretaryView.Instance.SetContent(new OrderEquipmentPage());
         }
     }
 }

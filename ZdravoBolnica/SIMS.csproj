@@ -7,6 +7,34 @@
     <ApplicationIcon>LOGO.ico</ApplicationIcon>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="images\aaa.png" />
+    <None Remove="images\LOGO.png" />
+    <None Remove="images\NicePng_note-png_4357930.png" />
+    <None Remove="images\NicePng_order-icon-png_2992961.png" />
+    <None Remove="images\pngfind.com-language-icon-png-5572694.png" />
+    <None Remove="images\pngfind.com-night-png-759829.png" />
+    <None Remove="images\PngItem_2005182.png" />
+    <None Remove="images\register.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\NicePng_note-png_4357930.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\LOGO.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\aaa.png" />
+    <Resource Include="images\NicePng_order-icon-png_2992961.png" />
+    <Resource Include="images\pngfind.com-language-icon-png-5572694.png" />
+    <Resource Include="images\pngfind.com-night-png-759829.png" />
+    <Resource Include="images\PngItem_2005182.png" />
+    <Resource Include="images\register.png" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="System.Threading.Timer" Version="4.3.0" />

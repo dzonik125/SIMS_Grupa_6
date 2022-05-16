@@ -81,7 +81,7 @@ namespace SIMS.SecretaryView
                     foreach (DateTime dt in ac.getTenNextFreeAppointmentsForDoctorToday(doc.id))
                     {
 
-                        Boolean b = ac.IsExist(doc.appointments[0].id);
+                        //   Boolean b = ac.IsExist(doc.appointments[0].id);
                         datess.Add(dt);
                         //TimeBox.Items.Add(dt.ToString() + "," + doc.name + " " + doc.surname);
                     }
