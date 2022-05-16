@@ -92,6 +92,23 @@ namespace SIMS.Service
 
 
 
+
+        public List<Equipment> GetiEquipmentByType(EquipmentType type)
+        {
+            List<Equipment> inventory = new List<Equipment>();
+           
+            
+            foreach(Equipment e in FindAll())
+            {
+                if(e.type == type)
+                {
+                    inventory.Add(e);   
+                }
+            }
+            return inventory;
+        }
+
+
         private int GetEquipmentIdByItem(Equipment equipment)
         {
             List<Equipment> invetory = new List<Equipment>();

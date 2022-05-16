@@ -98,5 +98,12 @@ namespace SIMS.DoctorView
             RecordSurgery rs = new RecordSurgery();
             rs.ShowDialog();
         }
+
+        private void Referral_Click(object sender, RoutedEventArgs e)
+        {
+            selectedPatient = PatientsDataGrid.SelectedItem as Patient;
+            Referral referral = new Referral(selectedPatient);
+            referral.ShowDialog();
+        }
     }
 }

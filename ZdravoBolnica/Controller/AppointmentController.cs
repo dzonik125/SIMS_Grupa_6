@@ -12,6 +12,12 @@ namespace Controller
 {
     public class AppointmentController
     {
+
+        public List<Appointment> GetAllAppointmentsForPatient(int id)
+        {
+            return appointmentService.GetAllAppointmentsForPatient(id);
+        }
+
         public List<Appointment> GetAllApointments()
         {
 
@@ -53,7 +59,10 @@ namespace Controller
             appointmentService.SaveBusyAppointment(a, p);
         }
 
-        public List<Appointment> getFutureAppointmentsForPatient(string id)
+        //public List<Appointment> getFutureAppointmentsForPatient(string id)
+
+        public List<Appointment> getFutureAppointmentsForPatient(int id)
+
         {
             return appointmentService.getFutureAppointmentsForPatient(id);
         }

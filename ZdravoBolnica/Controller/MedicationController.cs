@@ -10,12 +10,13 @@ namespace SIMS.Controller
 {
     public class MedicationController
     {
-        MedicationService medicationService = new();
+        private MedicationService _medicationService = new MedicationService();
+        
 
 
         public void Create(Medication entity)
         {
-            medicationService.Create(entity);
+            _medicationService.Create(entity);
         }
 
         public void DeleteAll()
@@ -23,34 +24,35 @@ namespace SIMS.Controller
             throw new NotImplementedException();
         }
 
-        public void DeleteById(Medication id)
-        {
-            throw new NotImplementedException();
-        }
+     
 
         public void DeleteById(int id)
         {
-            throw new NotImplementedException();
+            _medicationService.DeleteById(id);
         }
 
         public List<Medication> FindAll()
         {
-            return medicationService.FindAll();
+            return _medicationService.FindAll();
         }
 
 
 
         public Medication FindById(int key)
         {
-            throw new NotImplementedException();
+            return _medicationService.FindById(key);
         }
 
 
 
         public void Update(Medication entity)
         {
-            throw new NotImplementedException();
+            _medicationService.Update(entity);
         }
 
+        public List<Medication> FindAllWithoutThisOne(string name)
+        {
+            return _medicationService.FindAllWithoutThisOne(name);
+        }
     }
 }

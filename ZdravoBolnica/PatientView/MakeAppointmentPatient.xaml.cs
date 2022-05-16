@@ -43,13 +43,13 @@ namespace SIMS
 
         void Program_MyEvent(object sender, EventArgs e)
         {
-            if (!(TextBox.Text == "" || ComboBox.SelectedItem == null || DatePicker.SelectedDate == null || DatePicker.SelectedDate < DateTime.Today || DatePicker.SelectedDate == DateTime.Today))
+            if (!(TextBox.Text == "" || ComboBox.SelectedItem == null || DatePicker.SelectedDate == null || DatePicker.SelectedDate < DateTime.Today/* || DatePicker.SelectedDate == DateTime.Today*/))
             {
                 zakazi.IsEnabled = true;
             }
 
             if (TextBox.Text == "" || ComboBox.SelectedItem == null || DatePicker.SelectedDate == null ||
-                DatePicker.SelectedDate < DateTime.Today || DatePicker.SelectedDate == DateTime.Today)
+                DatePicker.SelectedDate < DateTime.Today/* || DatePicker.SelectedDate == DateTime.Today*/)
             {
                 zakazi.IsEnabled = false;
             }

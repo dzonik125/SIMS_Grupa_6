@@ -1,0 +1,55 @@
+﻿<Window x:Class="SIMS.DoctorView.MedicationDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIMS.DoctorView"
+        mc:Ignorable="d"
+        Title="MedicationDetails" Height="530" Width="400">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Lek:" Margin="21,12,11,11" FontSize="15"/>
+            <Label Content="Kolicina:" Margin="21,0,7,28" FontSize="15" Grid.Row="1"/>
+            <Label Grid.Row="2" Content="Sastojci:" Margin="21,3,7,65" FontSize="15"/>
+            <Label Grid.Row="3" Content="Zamena:" Margin="21,3,7,65" FontSize="15"/>
+            <Label Grid.Row="4" Content="Komentar:" Margin="21,3,7,35" FontSize="15"/>
+            <Button Grid.Row="5" Content="Odobri" Margin="26,33,0,24" Click="Button_Click"/>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="90"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Brufen" FontSize="15" Margin="5,12,78,12" Name="MedName"/>
+            <TextBox Grid.Row="1" Margin="11,10,26,15" Name ="Amount" IsReadOnly="True" />
+            <DataGrid Grid.Row="2" Margin="11,10,26,0" Name="Ingredients" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Naziv" Binding="{Binding name}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid Grid.Row="3" Margin="11,10,26,0" Name="Replacements" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Naziv" Binding="{Binding name}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <TextBox Grid.Row="4" Margin="11,10,26,0" Name="Comment" TextWrapping="Wrap"  AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
+            <Button Grid.Row="5" Content="Odbij" Margin="120,33,26,24" Click="Button_Click_1"/>
+        </Grid>
+    </Grid>
+</Window>

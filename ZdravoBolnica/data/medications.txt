@@ -1,2 +1,1 @@
-1|Brufen
-2|Bromazepam
+1|Bromazepam|Odobreno|10||sastojak 1,sastojak 2|ne valja
