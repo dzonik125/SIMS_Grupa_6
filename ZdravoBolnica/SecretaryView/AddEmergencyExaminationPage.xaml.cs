@@ -69,7 +69,7 @@ namespace SIMS.SecretaryView
             List<DateTime> datess = new List<DateTime>();
 
 
-            foreach (Doctor doc in dc.GetAllDoctors())
+            /*foreach (Doctor doc in dc.GetAllDoctors())
             {
 
                 // List<Appointment> apps = ac.getFutureAppointmentsForDoctor(doc.id);
@@ -87,16 +87,20 @@ namespace SIMS.SecretaryView
                     }
 
                 }
-            }
+            }*/
 
-            if (datess.Count() == 0)
+            Appointment app = new Appointment();
+            app = ac.getFirstFreeAppointment(Conversion.StringToSpecialization(help), (Patient)PatientBox.SelectedItem);
+            if(app != null)
             {
-
+                TimeBox.Items.Add(app.startTime);
+            }
+            else
+            {
                 Appointment first = ac.getFirstFuture(ac.getFutureAppointmentsForDoctor(dc.GetAllDoctors()[0].id));
                 Patient patient = (Patient)PatientBox.SelectedItem;
-                ac.SaveBusyAppointment(first, patient);
+                ac.SaveBusyAppointment(first, patient, Conversion.StringToSpecialization(help));
                 TimeBox.Items.Add(first.startTime);
-
             }
 
             if (id == -1)

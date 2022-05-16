@@ -219,6 +219,7 @@ namespace Service
                 {
                     a.Room = r;
                     a.startTime = dateRange.startTime;
+                    a.Doctor = appointment.Doctor;
                     returnAppointmets.Add(a);
                     break;
                 }

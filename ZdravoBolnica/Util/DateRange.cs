@@ -22,10 +22,18 @@ namespace SIMS.Util
         }
 
 
+
         public bool checkForIntersection(DateTime startTimeAppoinment, double appointmentDuration)
         {
             if (!((startTimeAppoinment.AddMinutes(appointmentDuration) <= startTime && startTimeAppoinment <= startTime ||
                 (startTime.AddMinutes(duration) <= startTimeAppoinment && startTime <= startTimeAppoinment))))
+        }
+
+        public bool checkForIntersection(DateTime startTimeAppoinment, int Appduration)
+        {
+            if (!((startTimeAppoinment.AddMinutes(Appduration) < startTime && startTimeAppoinment < startTime ||
+                (startTime.AddMinutes(duration) < startTimeAppoinment && startTime < startTimeAppoinment))))
+
             {
                 return true;
             }
