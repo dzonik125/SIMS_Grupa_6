@@ -106,7 +106,6 @@ namespace Model
                 startTime.ToString(),
                 duration.ToString(),
                 Conversion.AppointmentTypeToString(Type),
-
                 timesEdited.ToString(),
 
             };
