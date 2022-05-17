@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIMS.DoctorView"
         mc:Ignorable="d"
-        Title="Referral" Height="330" Width="330">
+        Title="Referral" Height="470" Width="330">
     <Grid>
         <TabControl>
             <TabItem Header="Pregled">
@@ -20,13 +20,17 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
                             <RowDefinition Height="100"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Content="Specijalizacija:" Margin="35,10,10,10" />
-                        <Label Grid.Row="1" Content="Pocetni Datum:" Margin="35,10,10,10"/>
-                        <Label Grid.Row="2" Content="Krajnji Datum:"  Margin="35,10,10,10"/>
-                        <Label Grid.Row="3" Content="Vreme:"  Margin="35,10,10,10"/>
-                        <Button Grid.Row="4" Content="Zakazi" Margin="40,36,0,38" Click="Button_Click"/>
+                        <RadioButton Grid.Row="0" GroupName="type" Name="Type" Content="Pregled" Margin="40,15,10,10"/>
+                        <Label Grid.Row="1" Content="Specijalizacija:" Margin="35,10,10,10" />
+                        <Label Grid.Row="3" Content="Pocetni Datum:" Margin="35,10,10,10"/>
+                        <Label Grid.Row="4" Content="Krajnji Datum:"  Margin="35,10,10,10"/>
+                        <Label Grid.Row="2" Content="Trajanje:"  Margin="35,10,10,10"/>
+                        <Label Grid.Row="5" Content="Vreme:"  Margin="35,10,10,10"/>
+                        <Button Grid.Row="6" Content="Zakazi" Margin="40,36,0,38" Click="Button_Click"/>
                     </Grid>
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
@@ -34,14 +38,18 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
                             <RowDefinition Height="100"/>
 
                         </Grid.RowDefinitions>
-                        <ComboBox Name="SpecializationBox" Grid.Row="0" Margin="0,17,40,12"/>
-                        <DatePicker Name="StartTime" Grid.Row="1" Margin="0,17,40,12"/>
-                        <DatePicker Name="EndTime" Grid.Row="2" Margin="0,17,40,12" SelectedDateChanged="EndTime_SelectedDateChanged"/>
-                        <ComboBox Name="Time" Grid.Row="3" Margin="0,17,40,12" DisplayMemberPath="startTime"/>
-                        <Button Grid.Row="4" Name="Exit" Margin="50,36,40,38" Content="Izadji" Click="Exit_Click"/>
+                        <RadioButton Grid.Row="0" GroupName="type" Name="Surgery" Content="Operacija" Margin="0,15,40,12"/>
+                        <ComboBox Name="SpecializationBox" Grid.Row="1" Margin="0,17,40,12"/>
+                        <DatePicker Name="StartTime" Grid.Row="3" Margin="0,17,40,12"/>
+                        <DatePicker Name="EndTime" Grid.Row="4" Margin="0,17,40,12" SelectedDateChanged="EndTime_SelectedDateChanged"/>
+                        <ComboBox Name="Time" Grid.Row="5" Margin="0,17,40,12" DisplayMemberPath="startTime"/>
+                        <TextBox Name="Duration" Grid.Row="2" Margin="0,17,40,12"/>
+                        <Button Grid.Row="6" Name="Exit" Margin="50,36,40,38" Content="Izadji" Click="Exit_Click"/>
                     </Grid>
                 </Grid>
             </TabItem>

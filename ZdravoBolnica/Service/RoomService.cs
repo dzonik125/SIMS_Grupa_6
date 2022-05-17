@@ -18,7 +18,7 @@ namespace Service
         
 
         //public RoomsCRUD roomsCrud = new RoomsCRUD();
-        public AppointmentService appointmentService = new AppointmentService();
+        
 
       public Room FindRoomById(int id)
       {
@@ -209,25 +209,24 @@ namespace Service
             return "";
         }
 
-        public void findRoomForAppointment(Appointment appointment, DateRange dateRange, List<Appointment> returnAppointmets)
+        public Appointment getAppointmentWithRoom(Appointment appointment, DateRange dateRange)
         {
-            Appointment a = new Appointment();
-            List<Room> rooms = FindAll();
+
+            List<Room> rooms = getRoomsByType(dateRange.type);
             foreach(Room r in rooms)
             {
                 if(!checkIfRoomIsBusy(r, dateRange))
                 {
-                    a.Room = r;
-                    a.startTime = dateRange.startTime;
-                    a.Doctor = appointment.Doctor;
-                    returnAppointmets.Add(a);
-                    break;
+                    appointment.Room = r;
+                    return appointment;
                 }
             }
+            return null;
         }
 
         public bool checkIfRoomIsBusy(Room r, DateRange dateRange)
         {
+            AppointmentService appointmentService = new AppointmentService();
             List<Appointment> appointments = appointmentService.getAppointmentsByRoomId(r.id);
             foreach(Appointment a in appointments)
             {
@@ -237,6 +236,7 @@ namespace Service
             return false;
         }
 
+        
        public Repository.RoomsCRUD roomsCRUD = new Repository.RoomsCRUD();
       
 

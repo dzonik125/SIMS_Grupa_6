@@ -14,7 +14,7 @@ namespace Service
 {
     public class AppointmentService
     {
-
+        //public RoomService roomService;
         public List<Appointment> GetAllApointments()
         {
             return appointmentRepository.FindAll();
@@ -261,19 +261,6 @@ namespace Service
             return toReturn;
         }
         
-       /* public List<Appointment> getFreeTermsForUrgentSurgery(Specialization spec, DateRange dateRange, Patient p)
-        {
-            dateRange.startTime = DateTime.Now.AddMinutes(30);
-
-            if(findFreeTermsForReferral(spec, dateRange, p) == null) 
-            {
-                for appointment in futureappointments
-                    getRescheduleTimeDifference
-            }
-        }*/
-
-
-        //public Appointment getTermForUrgent
 
 
         public List<Appointment> getAppointmentsForDoctors(List<Doctor> doctors)
@@ -284,6 +271,7 @@ namespace Service
                 List<Appointment> appointmentsForDoctor = getAppointmentsByDoctorId(d.id);
                 returnAppointments.AddRange(appointmentsForDoctor);
             }
+          
             return returnAppointments;
         }
 
@@ -294,7 +282,8 @@ namespace Service
             DateRange dateRange = new DateRange();
             dateRange.startTime = DateTime.Now.AddHours(0);
             dateRange.endTime = DateTime.Now.AddHours(2);
-            List<Appointment> freeAppointments = findFreeTermsForReferral(spec, dateRange, p);
+            dateRange.specializationType = spec;
+            List<Appointment> freeAppointments = findFreeTermsForReferral( dateRange, p);
             if(freeAppointments.Count > 0)
             {
                 return freeAppointments[0];
@@ -319,19 +308,15 @@ namespace Service
         public void SaveBusyAppointment(Appointment a, Patient p, Specialization spec)
         {
             Appointment appointment = new Appointment();
-            //a.patient;
-            //appointmentRepository.Create();
-
-
 
             Appointment app = new Appointment();
+            appointment = findFreeAppointmentForPatient(p, spec);
+            appointment.patient = a.patient;
+            appointment.duration = 30;
+            appointmentRepository.Create(appointment);
             app = a;
             app.patient = p;
             appointmentRepository.Update(app);
-            appointment = findFreeAppointmentForPatient(p, spec);
-            appointment.patient = p;
-            appointment.duration = 30;
-            appointmentRepository.Create(appointment);
         }
 
         public Appointment findFreeAppointmentForPatient(Patient p, Specialization spec)
@@ -340,62 +325,65 @@ namespace Service
             dateRange.startTime = DateTime.Now;
             dateRange.endTime = DateTime.Now.AddDays(3);
             dateRange.duration = 30;
-            List<Appointment> appointments = findFreeTermsForReferral(spec, dateRange, p);
+            dateRange.specializationType = spec;
+            List<Appointment> appointments = findFreeTermsForReferral(dateRange, p);
             return appointments[0];
         }
 
 
 
-        public List<Appointment> findFreeTermsForReferral(Specialization spec, DateRange dateRange, Patient patient)
+        public List<Appointment> findFreeTermsForReferral(DateRange dateRange, Patient patient)
         {
             List<Appointment> returnAppointments = new();
-            List<Doctor> doctors = doctorRepository.findBySpecialization(spec);
-            List<Appointment> doctorsAppointments = getAppointmentsForDoctors(doctors);
-            List<Appointment> patientAppointments = GetAllAppointmentsForPatient(patient.id);
-            doctorsAppointments.AddRange(patientAppointments);
-            findFreeTerms(doctorsAppointments, dateRange, returnAppointments);
-            return returnAppointments;
+            List<Appointment> patientAppointments = GetAllAppointmentsForPatient(patient.id);  
+            return findFreeTerms(patientAppointments, dateRange);
+
         }
 
-        public List<Appointment> findFreeTerms(List<Appointment> doctorsAppointments, DateRange dateRange, List<Appointment> returnAppointments)
+        public List<Appointment> findFreeTerms(List<Appointment> patientAppointments, DateRange dateRange)
         {
-            dateRange.startTime = dateRange.startTime.AddHours(7); //ovo mozes i pre svih funcija povecati
-            while(dateRange.startTime < dateRange.endTime)
+            List<Appointment> potentialAppointments = new();
+            while (dateRange.startTime < dateRange.endTime)
             {
-                addPotentialAppointment(doctorsAppointments, dateRange, returnAppointments);
-                dateRange.startTime = dateRange.startTime.AddMinutes(30);
-                if (dateRange.startTime.Hour == 20)
-                    dateRange.startTime = dateRange.startTime.AddHours(12);
+                Appointment app = findPotentialAppointment(patientAppointments, dateRange);
+                if (app != null)
+                    potentialAppointments.Add(app);
+                dateRange.step();
 
             }
-            return returnAppointments;
+            return potentialAppointments;
         }
 
-        public void addPotentialAppointment(List<Appointment> doctorsAppointments, DateRange dateRange, List<Appointment> returnAppoinments)
+        public Appointment findPotentialAppointment(List<Appointment> patientAppointments, DateRange dateRange)
         {
-           RoomService roomService = new RoomService();
-           Appointment firstAppointment = doctorsAppointments[0];
-           Appointment lastAppointment = doctorsAppointments[doctorsAppointments.Count - 1];
-           if (dateRange.startTime.AddMinutes(30) <= firstAppointment.startTime)
-                roomService.findRoomForAppointment(firstAppointment, dateRange, returnAppoinments);
-            else if (dateRange.startTime >= lastAppointment.startTime.AddMinutes(lastAppointment.duration))
-               roomService.findRoomForAppointment(lastAppointment, dateRange, returnAppoinments);
-            else getAppoinmentsBetweenScheduled(doctorsAppointments, dateRange, returnAppoinments);
-
+           Appointment potentialAppointment = new(); 
+           foreach(Appointment a in patientAppointments)
+            {
+                if(dateRange.checkForIntersection(a.startTime, a.duration))
+                {
+                    continue;
+                }
+                else
+                {
+                    if (checkIfRoomAndDoctorAreFree(potentialAppointment, dateRange))
+                    {
+                        potentialAppointment.startTime = dateRange.startTime;
+                        return potentialAppointment;
+                    }
+                }
+            }
+            return null;
         }
 
-        public void getAppoinmentsBetweenScheduled(List<Appointment> doctorsAppointments, DateRange dateRange, List<Appointment> returnAppoinments)
+        private bool checkIfRoomAndDoctorAreFree(Appointment potentialAppointment, DateRange dateRange)
         {
             RoomService roomService = new RoomService();
-            for(int i = 0; i < doctorsAppointments.Count - 1; i++)
-            {
-                if (dateRange.checkIfBetween(doctorsAppointments[i].startTime.AddMinutes(doctorsAppointments[i].duration), doctorsAppointments[i + 1].startTime))
-                    roomService.findRoomForAppointment(doctorsAppointments[i], dateRange, returnAppoinments);
-                
-            }
-
+            DoctorService doctorService = new DoctorService();
+            if (roomService.getAppointmentWithRoom(potentialAppointment, dateRange) == null
+                || doctorService.getAppointmentWithDoctor(potentialAppointment, dateRange) == null)
+                return false;
+            return true;
         }
-
         
 
         public string getFirstFreeAppointment(DateTime? start, DateTime? end)
@@ -670,7 +658,7 @@ namespace Service
                     toRet.Add(a);
                 }
             }
-
+            
             return toRet;
         }
 
@@ -690,8 +678,6 @@ namespace Service
                     }
 
                 }
-
-
 
             }
 
@@ -804,6 +790,6 @@ namespace Service
         public DoctorRepository doctorRepository = new DoctorRepository();
         //public RoomService rs = new RoomService();
         public DoctorService ds = new DoctorService();
-        public DoctorService doctorService = new DoctorService();
+        //public DoctorService doctorService = new DoctorService();
     }
 }

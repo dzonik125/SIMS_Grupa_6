@@ -1,2 +1,3 @@
 1|Djordje|Djordjevic|Lekar opste prakse|dj|dj
 2|Petar|Petrovic|Lekar opste prakse|p|p
+3|Milos|Milosevic|Dermatolog|d|d

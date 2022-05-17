@@ -49,7 +49,7 @@ namespace SIMS.DoctorView
             med1.name = "Bromazepam";
             medicationController.Create(med);
             medicationController.Create(med1);*/
-            doctorUser = doctorController.GetAllDoctors()[0];
+            
             InitializeComponent();
         }
 
