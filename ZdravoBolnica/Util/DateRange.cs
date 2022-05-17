@@ -1,9 +1,5 @@
 ﻿using Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SIMS.Util
 {
@@ -13,6 +9,8 @@ namespace SIMS.Util
         public DateTime endTime { get; set; }
 
         public double duration { get; set; }
+        public RoomType type { get; set; }
+        public Specialization specializationType { get; set; }
 
         public bool checkIfBetween(DateTime first, DateTime second)
         {
@@ -21,16 +19,23 @@ namespace SIMS.Util
             return false;
         }
 
-        public bool checkForIntersection(DateTime startTimeAppoinment, int Appduration)
+        public void step()
         {
-            if (!((startTimeAppoinment.AddMinutes(Appduration) < startTime && startTimeAppoinment < startTime ||
-                (startTime.AddMinutes(duration) < startTimeAppoinment && startTime < startTimeAppoinment))))
-            {
-                return true;
-            }
-            return false;
+            startTime = startTime.AddMinutes(duration);
+            //  if (startTime.Hour >= 20)
+            //{
+            //     startTime = startTime.AddHours(12);
+            // }
         }
-        
+        public bool checkForIntersection(DateTime startTimeAppoinment, double appointmentDuration)
+        {
+            if (!((startTimeAppoinment.AddMinutes(appointmentDuration) <= startTime && startTimeAppoinment <= startTime ||
+                (startTime.AddMinutes(duration) <= startTimeAppoinment && startTime <= startTimeAppoinment))))
+                return true;
+            else
+                return false;
+        }
+
     }
 
 }

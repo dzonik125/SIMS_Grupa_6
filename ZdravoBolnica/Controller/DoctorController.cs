@@ -25,6 +25,10 @@ namespace Controller
             throw new NotImplementedException();
         }
 
+        public List<Doctor> findBySpecialization(Specialization spec)
+        {
+            return doctorService.findBySpecialization(spec);
+        }
         public void DeleteDoctor(Doctor d)
         {
             throw new NotImplementedException();

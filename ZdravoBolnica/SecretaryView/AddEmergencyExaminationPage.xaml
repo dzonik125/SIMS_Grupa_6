@@ -27,7 +27,7 @@
                 </Grid>
                 <Grid Width="400"  FlowDirection="LeftToRight"/>
                 <Grid Margin="50,150,0,0" Width="400" FlowDirection="LeftToRight">
-                    <Button Content="Zakazi" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="40" Width="80" Margin="34,0,0,0" Click="Schedule_Click" FontSize="16"/>
+                    <Button Background="LightGreen" Content="Zakazi" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="40" Width="80" Margin="34,0,0,0" Click="Schedule_Click" FontSize="16"/>
                     <Button Content="Zatvori" Height="40" Width="80" FontSize="16" Click="Close_Click" Margin="174,10,146,10"/>
                 </Grid>
             </StackPanel>

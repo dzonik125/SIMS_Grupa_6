@@ -25,12 +25,12 @@
 
         <Grid>
             <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" Margin="0,297,0,80">
-                <Button Content="Dodaj" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,20"  Click="AddPatient_Click" Width="80" Height="31"/>
-                <Button Content="Dodaj Guest" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,20" Width="80" Height="31" Click="NewGuestPatient_Click"/>
+                <Button Background="LightGreen" Content="Dodaj" VerticalAlignment="Bottom" Margin="20,20"  Click="AddPatient_Click" Width="80" Height="31"/>
+                <Button Background="LightGreen" Content="Dodaj Guest" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,20" Width="80" Height="31" Click="NewGuestPatient_Click"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Margin="380,297,0,80">
-                <Button Content="Izmeni" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,20" Width="80" Height="31" Click="EditPatient_Click"/>
-                <Button Content="Obrisi" Width="80" Height="30" VerticalAlignment="Bottom" Margin="20,20"   Click="DeletePatient_Click"/>
+                <Button Background="LightBlue" Content="Izmeni" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,20" Width="80" Height="31" Click="EditPatient_Click"/>
+                <Button Background="Firebrick" Content="Obrisi" Width="80" Height="30" VerticalAlignment="Bottom" Margin="20,20"   Click="DeletePatient_Click"/>
             </StackPanel>
         </Grid>
 

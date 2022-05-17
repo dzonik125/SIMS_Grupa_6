@@ -28,14 +28,14 @@
         </StackPanel>
         <Grid>
             <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" Margin="0,297,0,80">
-                    <Button Content="Zakazi pregled" Margin="10,10" VerticalAlignment="Top" Width="100" Height="38" Click="Scehdule_Click"/>
-                    <Button Content="Zakazi operaciju" HorizontalAlignment="Left" Margin="10,10" VerticalAlignment="Top" Width="100" Height="38"  Click="ScheduleSurgery_Click"/>
-                    <Button Content="Hitan pregled" HorizontalAlignment="Left" Margin="10,10" VerticalAlignment="Top" Width="100" Height="38" Click="EmergencyExamination_Click"/>
-                    <Button Content="Hitna operacija" HorizontalAlignment="Left" Margin="10,10" VerticalAlignment="Top" Width="100" Height="38" Click="EmergencySurgery_Click"/>
+                <Button Background="LightGreen" Content="Zakazi pregled" Margin="10,10" VerticalAlignment="Top" Width="100" Height="38" Click="Scehdule_Click"/>
+                <Button Background="LightGreen" Content="Zakazi operaciju" HorizontalAlignment="Left" Margin="10,10" VerticalAlignment="Top" Width="100" Height="38"  Click="ScheduleSurgery_Click"/>
+                <Button Background="Firebrick" Content="Hitan pregled" HorizontalAlignment="Left" Margin="10,10" VerticalAlignment="Top" Width="100" Height="38" Click="EmergencyExamination_Click"/>
+                <Button Background="Firebrick" Content="Hitna operacija" HorizontalAlignment="Left" Margin="10,10" VerticalAlignment="Top" Width="100" Height="38" Click="EmergencySurgery_Click"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Margin="480,296,0,91">
                     <Button Content="Izbrisi" HorizontalAlignment="Left" Margin="10,10" VerticalAlignment="Top" Width="100" Height="38" Click="DeleteApp_Click"/>
-                    <Button Content="Izmeni" HorizontalAlignment="Left" Margin="10,10" VerticalAlignment="Top" Width="100" Height="38" Click="EditApp_Click"/>
+                <Button Background="Lightblue" Content="Izmeni" HorizontalAlignment="Left" Margin="10,10" VerticalAlignment="Top" Width="100" Height="38" Click="EditApp_Click"/>
                 </StackPanel>
             </Grid>
         

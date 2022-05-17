@@ -3,7 +3,6 @@ using Model;
 using SIMS.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Controls;
 
 namespace SIMS.SecretaryView
@@ -23,13 +22,17 @@ namespace SIMS.SecretaryView
         public AppointmentType appointmentType;
         public List<Appointment> appointments;
         public AppointmentController ac = new AppointmentController();
+        private Appointment app;
+        private Appointment first;
+        private Patient patient;
+        private String spec;
+
         public AddEmergencyExaminationPage(AppointmentType type)
         {
             appointmentType = type;
             RoomType roomType = type == AppointmentType.examination ? RoomType.examination : RoomType.surgery;
             InitializeComponent();
             patients = pc.FindAllPatients();
-
 
             Specialization.ItemsSource = Conversion.GetSpecializationType();
             Specialization.SelectedIndex = 0;
@@ -46,7 +49,13 @@ namespace SIMS.SecretaryView
 
         private void Schedule_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            String spec = Specialization.Text;
+            if (app != null)
+            {
+                ac.SaveAppointment(app);
+            }
+            else
+                ac.SaveBusyAppointment(first, patient, Conversion.StringToSpecialization(spec));
         }
 
         private void Close_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -62,11 +71,34 @@ namespace SIMS.SecretaryView
         private void Specialization_DropDownClosed(object sender, System.EventArgs e)
         {
             TimeBox.Items.Clear();
-            String help = Specialization.Text;
-            //  System.Diagnostics.Trace.WriteLine(help);
-            int id = -1;
+            String spec = Specialization.Text;
 
-            List<DateTime> datess = new List<DateTime>();
+            app = new Appointment();
+
+            app = ac.getFirstFreeAppointmentInOneHour(Conversion.StringToSpecialization(spec), (Patient)PatientBox.SelectedItem);
+            if (app != null)
+            {
+                TimeBox.Items.Add(app.startTime);
+                app.patient = (Patient)PatientBox.SelectedItem;
+                app.duration = 30;
+            }
+            else
+            {
+                first = ac.getFirstAppointmentForDoctor(ac.getAppointmentsForDoctors(dc.findBySpecialization(Conversion.StringToSpecialization(spec))));
+                patient = (Patient)PatientBox.SelectedItem;
+                TimeBox.Items.Add(first.startTime);
+            }
+
+
+
+
+
+
+
+            //  System.Diagnostics.Trace.WriteLine(help);
+            // int id = -1;
+
+            //List<DateTime> datess = new List<DateTime>();
 
 
             /*foreach (Doctor doc in dc.GetAllDoctors())
@@ -89,32 +121,6 @@ namespace SIMS.SecretaryView
                 }
             }*/
 
-            Appointment app = new Appointment();
-            app = ac.getFirstFreeAppointment(Conversion.StringToSpecialization(help), (Patient)PatientBox.SelectedItem);
-            if(app != null)
-            {
-                TimeBox.Items.Add(app.startTime);
-            }
-            else
-            {
-                Appointment first = ac.getFirstFuture(ac.getFutureAppointmentsForDoctor(dc.GetAllDoctors()[0].id));
-                Patient patient = (Patient)PatientBox.SelectedItem;
-                ac.SaveBusyAppointment(first, patient, Conversion.StringToSpecialization(help));
-                TimeBox.Items.Add(first.startTime);
-            }
-
-            if (id == -1)
-            {
-                return;
-            }
-
-            // List<DateTime> dates;
-
-
-            //foreach (DateTime dt in datess)
-            //   {
-
-            //  }
         }
     }
 }

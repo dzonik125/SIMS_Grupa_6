@@ -4,17 +4,8 @@ using SIMS.Model;
 using SIMS.Util;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SIMS.DoctorView
 {
@@ -26,7 +17,7 @@ namespace SIMS.DoctorView
         public Patient selectedPatient = new Patient();
         public AppointmentService aps = new AppointmentService();
         public Referral(Patient p)
-        {  
+        {
             InitializeComponent();
             selectedPatient = p;
             SpecializationBox.ItemsSource = Conversion.GetSpecializationType();
@@ -47,7 +38,7 @@ namespace SIMS.DoctorView
             DateRange dateRange = new();
             dateRange.startTime = (DateTime)StartTime.SelectedDate;
             dateRange.endTime = (DateTime)EndTime.SelectedDate;
-            List<Appointment> appo = aps.findFreeTermsForReferral(Specialization.general, dateRange, selectedPatient);
+            List<Appointment> appo = aps.findFreeTermsForReferral(dateRange, selectedPatient);
             Time.ItemsSource = appo;
         }
     }

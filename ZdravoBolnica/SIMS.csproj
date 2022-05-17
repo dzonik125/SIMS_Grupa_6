@@ -12,6 +12,7 @@
     <None Remove="images\LOGO.png" />
     <None Remove="images\NicePng_note-png_4357930.png" />
     <None Remove="images\NicePng_order-icon-png_2992961.png" />
+    <None Remove="images\pngegg.png" />
     <None Remove="images\pngfind.com-language-icon-png-5572694.png" />
     <None Remove="images\pngfind.com-night-png-759829.png" />
     <None Remove="images\PngItem_2005182.png" />
@@ -36,6 +37,10 @@
     <None Remove="Fonts\GothamMedium.ttf" />
     <None Remove="HCI\calendar-cursor.png" />
     <None Remove="HCI\LOGO.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\pngegg.png" />
   </ItemGroup>
 
   <ItemGroup>

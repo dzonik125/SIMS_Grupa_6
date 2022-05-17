@@ -1,0 +1,3 @@
+1|jod|20|potrosna
+2|igle|13|potrosna
+3|zavoj|10|potrosna

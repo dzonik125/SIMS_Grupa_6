@@ -37,7 +37,7 @@
                     <ComboBox HorizontalAlignment="Left" x:Name="Duration" Margin="134,38,0,0" VerticalAlignment="Top"  Width="123" Height="29" />
                 </Grid>
                 <Grid Margin="50,150,0,0" Width="400" FlowDirection="LeftToRight">
-                    <Button Content="Izmeni" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="40" Width="80" Margin="34,0,0,0" Click="Edit_Click" FontSize="16"/>
+                    <Button Background="LightGreen" Content="Izmeni" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="40" Width="80" Margin="40,0,0,0" Click="Edit_Click" FontSize="16"/>
                     <Button Content="Zatvori" Height="40" Width="80" FontSize="16" Click="Close_Click" Margin="174,10,146,10"/>
                 </Grid>
             </StackPanel>

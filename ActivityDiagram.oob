@@ -950,7 +950,7 @@ IndxFKName=%REFR%_FK
 IndxThreshold=
 ColnFKName=%.3:PARENT%_%COLUMN%
 ColnFKNameUse=No</a:ModelOptionsText>
-<a:RepositoryFilename>D:\David\SIMS\SIMS_Grupa_6\ActivityDiagram.oom</a:RepositoryFilename>
+<a:RepositoryFilename>C:\sims\SIMS_Grupa_6\ActivityDiagram.oom</a:RepositoryFilename>
 <c:ObjectLanguage>
 <o:Shortcut Id="o3">
 <a:ObjectID>ED8B4E8C-8D89-464B-A771-C7419FCA95DE</a:ObjectID>
@@ -2424,7 +2424,7 @@ DESTINATION 0 Microsoft Sans Serif,8,N</a:FontList>
 </o:FlowSymbol>
 <o:FlowSymbol Id="o91">
 <a:ModificationDate>1651609377</a:ModificationDate>
-<a:Rect>((-14615,-30984), (-9641,-24857))</a:Rect>
+<a:Rect>((-14615,-30984), (-9716,-24857))</a:Rect>
 <a:ListOfPoints>((-10575,-25257),(-12395,-25257),(-12395,-30359),(-14215,-30359))</a:ListOfPoints>
 <a:CornerStyle>2</a:CornerStyle>
 <a:ArrowStyle>1</a:ArrowStyle>
@@ -2444,8 +2444,8 @@ DESTINATION 0 Microsoft Sans Serif,8,N</a:FontList>
 </o:FlowSymbol>
 <o:FlowSymbol Id="o93">
 <a:ModificationDate>1651609381</a:ModificationDate>
-<a:Rect>((-22481,-42558), (-12365,-33089))</a:Rect>
-<a:ListOfPoints>((-22081,-33489),(-22081,-37824),(-12990,-37824),(-12990,-42158))</a:ListOfPoints>
+<a:Rect>((-22481,-42559), (-12365,-33089))</a:Rect>
+<a:ListOfPoints>((-22081,-33489),(-22081,-37824),(-12990,-37824),(-12990,-42159))</a:ListOfPoints>
 <a:CornerStyle>2</a:CornerStyle>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>16711680</a:LineColor>
@@ -2586,7 +2586,7 @@ DESTINATION 0 Microsoft Sans Serif,8,N</a:FontList>
 </o:FlowSymbol>
 <o:FlowSymbol Id="o107">
 <a:ModificationDate>1651609584</a:ModificationDate>
-<a:Rect>((-44330,-47459), (-29547,-29959))</a:Rect>
+<a:Rect>((-44256,-47459), (-29547,-29959))</a:Rect>
 <a:ListOfPoints>((-29947,-30359),(-40956,-30359),(-40956,-47059))</a:ListOfPoints>
 <a:CornerStyle>2</a:CornerStyle>
 <a:ArrowStyle>1</a:ArrowStyle>
@@ -2628,8 +2628,8 @@ DESTINATION 0 Microsoft Sans Serif,8,N</a:FontList>
 </o:FlowSymbol>
 <o:FlowSymbol Id="o111">
 <a:ModificationDate>1651609584</a:ModificationDate>
-<a:Rect>((-62036,-51966), (-48353,-50368))</a:Rect>
-<a:ListOfPoints>((-48753,-51239),(-50490,-51239),(-50490,-51341),(-61636,-51341))</a:ListOfPoints>
+<a:Rect>((-62036,-51967), (-48353,-50369))</a:Rect>
+<a:ListOfPoints>((-48753,-51239),(-50490,-51239),(-50490,-51342),(-61636,-51342))</a:ListOfPoints>
 <a:CornerStyle>2</a:CornerStyle>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>16711680</a:LineColor>
@@ -2649,8 +2649,8 @@ DESTINATION 0 Microsoft Sans Serif,8,N</a:FontList>
 </o:FlowSymbol>
 <o:FlowSymbol Id="o113">
 <a:ModificationDate>1651609595</a:ModificationDate>
-<a:Rect>((-62923,-62256), (-61671,-52251))</a:Rect>
-<a:ListOfPoints>((-62311,-52651),(-62295,-61856))</a:ListOfPoints>
+<a:Rect>((-62920,-62256), (-61670,-52252))</a:Rect>
+<a:ListOfPoints>((-62295,-52652),(-62295,-61856))</a:ListOfPoints>
 <a:CornerStyle>2</a:CornerStyle>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>16711680</a:LineColor>
@@ -2670,8 +2670,8 @@ DESTINATION 0 Microsoft Sans Serif,8,N</a:FontList>
 </o:FlowSymbol>
 <o:FlowSymbol Id="o115">
 <a:ModificationDate>1651609438</a:ModificationDate>
-<a:Rect>((-4129,-54250), (21986,-43757))</a:Rect>
-<a:ListOfPoints>((-3729,-44157),(21361,-44157),(21361,-53850))</a:ListOfPoints>
+<a:Rect>((-3990,-54250), (21986,-43758))</a:Rect>
+<a:ListOfPoints>((-3590,-44158),(21361,-44158),(21361,-53850))</a:ListOfPoints>
 <a:CornerStyle>2</a:CornerStyle>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>16711680</a:LineColor>
@@ -2690,8 +2690,8 @@ DESTINATION 0 Microsoft Sans Serif,8,N</a:FontList>
 </o:FlowSymbol>
 <o:FlowSymbol Id="o116">
 <a:ModificationDate>1651609571</a:ModificationDate>
-<a:Rect>((-65010,-52051), (-21851,-43757))</a:Rect>
-<a:ListOfPoints>((-22251,-44157),(-61636,-44157),(-61636,-51651))</a:ListOfPoints>
+<a:Rect>((-64936,-52052), (-21990,-43758))</a:Rect>
+<a:ListOfPoints>((-22390,-44158),(-61636,-44158),(-61636,-51652))</a:ListOfPoints>
 <a:CornerStyle>2</a:CornerStyle>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>16711680</a:LineColor>
@@ -3465,7 +3465,7 @@ DISPNAME 0 Arial,8,N</a:FontList>
 <o:ActivitySymbol Id="o112">
 <a:ModificationDate>1651609571</a:ModificationDate>
 <a:IconMode>-1</a:IconMode>
-<a:Rect>((-65051,-52651), (-58221,-50652))</a:Rect>
+<a:Rect>((-64893,-52652), (-58379,-50653))</a:Rect>
 <a:LineColor>33023</a:LineColor>
 <a:FillColor>8637161</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -3482,7 +3482,7 @@ LABL 0 Arial,8,N</a:FontList>
 <o:BaseDecisionSymbol Id="o94">
 <a:ModificationDate>1651609381</a:ModificationDate>
 <a:IconMode>-1</a:IconMode>
-<a:Rect>((-22251,-46156), (-3729,-42158))</a:Rect>
+<a:Rect>((-22390,-46157), (-3590,-42159))</a:Rect>
 <a:LineColor>32896</a:LineColor>
 <a:FillColor>12648447</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>

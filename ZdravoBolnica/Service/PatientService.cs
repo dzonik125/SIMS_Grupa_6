@@ -5,7 +5,6 @@
 
 using Model;
 using Repository;
-using System;
 using System.Collections.Generic;
 
 namespace Service
@@ -13,9 +12,9 @@ namespace Service
     public class PatientService
     {
         private PatientRepository pr = new PatientRepository();
-        public Patient FindPatientById(string id)
+        public Patient FindPatientById(int id)
         {
-            throw new NotImplementedException();
+            return pr.FindById(id);
         }
 
         public List<Patient> FindAllPatients()
