@@ -43,6 +43,12 @@ namespace SIMS.DoctorView
             dateRange.endTime = (DateTime)EndTime.SelectedDate;
             TimeSpan ts = dateRange.endTime - dateRange.startTime;
             dateRange.duration = ts.TotalMinutes;
+
+            if(dateRange.startTime < DateTime.Now.AddDays(2))
+            {
+                MessageBox.Show("Morate zakazati minimalno dva dana ranije!");
+                return;
+            }
             
             if (vacationPeriodController.checkIfDoctorHasAppoinmentsInPeriod(DoctorWindow.Instance.doctorUser, dateRange) && (bool)Urgent.IsChecked == false)
             {
@@ -50,7 +56,7 @@ namespace SIMS.DoctorView
                 return;
             }
 
-            if (vacationPeriodController.checkForDoctorsOnVacation(DoctorWindow.Instance.doctorUser, dateRange) && (bool)Urgent.IsChecked == false)
+            if (vacationPeriodController.checkIfDoctorIsAlreadyOnVacation(DoctorWindow.Instance.doctorUser, dateRange) && (bool)Urgent.IsChecked == false)
             {
                 MessageBox.Show("Vec imate slobodne dane u ovom periodu!");
                 return;
@@ -58,7 +64,7 @@ namespace SIMS.DoctorView
 
             if (vacationPeriodController.checkForDoctorsOnVacation(DoctorWindow.Instance.doctorUser, dateRange) && (bool)Urgent.IsChecked == false)
             {
-                MessageBox.Show("Vise od dva doktora vase specijalizacije imaju slobodne dane u ovom periodu!");
+                MessageBox.Show("Vise od jednog doktora vase specijalizacije ima slobodne dane u ovom periodu!");
                 return;
             }
             VacationPeriod vacationPeriod = new();
