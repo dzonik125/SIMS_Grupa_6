@@ -337,7 +337,7 @@ namespace Service
         public List<Appointment> findFreeTermsForReferral(DateRange dateRange, Patient patient)
         {
             List<Appointment> returnAppointments = new();
-            List<Appointment> patientAppointments = GetAllAppointmentsForPatient(patient.id);  
+            List<Appointment> patientAppointments = GetAllAppointmentsForPatient(patient.id);
             return findFreeTerms(patientAppointments, dateRange);
 
         }
