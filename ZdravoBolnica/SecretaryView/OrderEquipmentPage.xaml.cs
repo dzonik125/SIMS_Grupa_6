@@ -78,22 +78,13 @@ namespace SIMS.SecretaryView
         {
 
             oec.SendEquipment(eq);
-
-            //  timer = new Timer(new TimerCallback(oec.CreateOrder), null, 1000, 60000);
+            oec.SaveOrder(orderE);
+            timer = new Timer(new TimerCallback(oec.CreateOrder), null, 1000, 60000);
             foreach (Equipment equipment in eq)
             {
-
-                //  MessageBox.Show("Naruceno");
-                // ec.AddEquipment(equipment);
-                ec.AddEquipmentForOrder(equipment);
-                // order.Add(equipment);
+                order.Add(equipment);
                 SecretaryView.Instance.SetContent(new OrderEquipmentPage());
-                //   }
-
             }
-            oec.SaveOrder(orderE);
-
-
             //eq.Clear();
         }
     }

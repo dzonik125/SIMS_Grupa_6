@@ -60,7 +60,15 @@ namespace Repository
 
         public Patient FindById(int key)
         {
-            throw new NotImplementedException();
+            List<Patient> patients = FindAll();
+            foreach (Patient p in patients)
+            {
+                if (p.id == key)
+                {
+                    return p;
+                }
+            }
+            return null;
         }
 
 

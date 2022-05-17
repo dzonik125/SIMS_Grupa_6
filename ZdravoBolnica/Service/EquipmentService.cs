@@ -9,64 +9,58 @@ namespace SIMS.Service
 {
     public class EquipmentService
     {
-        private EquipmentRepository er = new EquipmentRepository();
+        private EquipmentRepository equipmentRepository = new EquipmentRepository();
         private EquipmentForOrderRepository efo = new EquipmentForOrderRepository();
-        private RoomEquipmentService res = new RoomEquipmentService();
-        private RoomService rs = new RoomService();
+        private RoomEquipmentService roomEquipmentService = new RoomEquipmentService();
+        private RoomService roomService = new RoomService();
+        private bool exist = false;
         public List<Equipment> FindAll()
         {
-            return er.FindAll();
+            return equipmentRepository.FindAll();
         }
 
         public bool AddEquipment(Equipment equipment)
         {
-            List<Equipment> inventory = new List<Equipment>();
-            inventory = er.FindAll();
-            List<RoomEquipment> roomInvetory = new List<RoomEquipment>();
-            roomInvetory = res.FindAll();
-            bool exist = false;
-            foreach (RoomEquipment re in roomInvetory)
+
+            foreach (RoomEquipment roomEquipment in roomEquipmentService.FindAll())
             {
-                if (GetEquipmentItemNameById(re.equipmentId).Equals(equipment.item) && rs.GetRoomTypeById(re.roomId).Equals("Magacin"))
+                if (GetEquipmentItemNameById(roomEquipment.equipmentId).Equals(equipment.item) && roomService.GetRoomTypeById(roomEquipment.roomId).Equals("Magacin"))
                 {
-                    re.quantity += equipment.quantity;
-                    res.UpdateRoomEquipment(re);
+                    roomEquipment.quantity += equipment.quantity;
+                    roomEquipmentService.UpdateRoomEquipment(roomEquipment);
                     exist = true;
                     break;
                 }
-
             }
 
-            foreach (Equipment e in inventory)
+            foreach (Equipment e in equipmentRepository.FindAll())
             {
                 if (e.item.Equals(equipment.item))
                 {
                     e.quantity += equipment.quantity;
                     UpdateEquipment(e);
                     return true;
-
                 }
-
             }
-            er.Create(equipment);
+            equipmentRepository.Create(equipment);
             if (!exist)
             {
                 RoomEquipment rEquipment = new RoomEquipment();
                 rEquipment.equipmentId = GetEquipmentIdByItem(equipment);
-                rEquipment.roomId = rs.GetRoomIdByStorage(RoomType.storage);
+                rEquipment.roomId = roomService.GetRoomIdByStorage(RoomType.storage);
                 rEquipment.quantity = equipment.quantity;
-                res.CreateRoomEquipment(rEquipment);
+                roomEquipmentService.CreateRoomEquipment(rEquipment);
             }
             return true;
         }
+
+
 
         public bool AddEquipmentForOrder(Equipment equipment)
         {
             List<Equipment> inventory = new List<Equipment>();
             inventory = efo.FindAll();
             //bool exist = false;
-
-
             foreach (Equipment e in inventory)
             {
                 if (e.item.Equals(equipment.item))
@@ -74,9 +68,7 @@ namespace SIMS.Service
                     //e.quantity += equipment.quantity;
                     UpdateEquipmentForOrder(e);
                     return true;
-
                 }
-
             }
             efo.Create(equipment);
             /*     if (!exist)
@@ -96,13 +88,13 @@ namespace SIMS.Service
         public List<Equipment> GetiEquipmentByType(EquipmentType type)
         {
             List<Equipment> inventory = new List<Equipment>();
-           
-            
-            foreach(Equipment e in FindAll())
+
+
+            foreach (Equipment e in FindAll())
             {
-                if(e.type == type)
+                if (e.type == type)
                 {
-                    inventory.Add(e);   
+                    inventory.Add(e);
                 }
             }
             return inventory;
@@ -130,7 +122,7 @@ namespace SIMS.Service
 
         public bool UpdateEquipment(Equipment e)
         {
-            er.Update(e);
+            equipmentRepository.Update(e);
             return true;
         }
 
@@ -142,8 +134,8 @@ namespace SIMS.Service
 
         public void DeleteEquipmentById(int id)
         {
-            res.DeleteEquipmentFromRoomByEquipmentId(id);
-            er.DeleteById(id);
+            roomEquipmentService.DeleteEquipmentFromRoomByEquipmentId(id);
+            equipmentRepository.DeleteById(id);
         }
 
         public String GetEquipmentItemNameById(int id)

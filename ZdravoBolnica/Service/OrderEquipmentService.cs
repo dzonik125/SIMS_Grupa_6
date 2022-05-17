@@ -3,71 +3,62 @@ using Service;
 using SIMS.Model;
 using SIMS.Repository;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace SIMS.Service
 {
     class OrderEquipmentService
     {
-        private OrderEquipmentRepository oer = new OrderEquipmentRepository();
+        public OrderEquipmentRepository orderEquipmentRepository = new OrderEquipmentRepository();
         private EquipmentRepository er = new EquipmentRepository();
         private EquipmentService equipmentService = new EquipmentService();
         private RoomService rs = new RoomService();
         private EquipmentService es = new EquipmentService();
-        private List<Equipment> equipment = new List<Equipment>();
+        private BindingList<Equipment> equipmentList = new BindingList<Equipment>();
+        //private List<OrderEquipment> orderEquipment;
+        private Equipment equipment = new Equipment();
         public void CreateOrder()
         {
-            List<OrderEquipment> orderEquipment = new List<OrderEquipment>();
-            orderEquipment = oer.FindAll();
-            // List<Equipment> equipments = new List<Equipment>();
-            // equipments = er.FindAll();
-            int id = 0;
-            foreach (OrderEquipment oe in orderEquipment)
+            //orderEquipment = oer.FindAll();
+            CheckIsTimeNow();
+        }
+
+        public void CheckIsTimeNow()
+        {
+            foreach (OrderEquipment order in orderEquipmentRepository.FindAll())
             {
-                foreach (Equipment ee in oe.equipments)
+                if (DateTime.Compare(DateTime.Now, order.transferDate) == 0 || DateTime.Compare(order.transferDate, DateTime.Now) < 0)
                 {
-                    //    orderEquipment.ids = ee.id;
+                    DispatcherForAdd();
+                    orderEquipmentRepository.Remove(order);
                 }
-                if (DateTime.Compare(DateTime.Now, oe.transferDate) == 0 || DateTime.Compare(oe.transferDate, DateTime.Now) < 0)
-                {
-                    App.Current.Dispatcher.Invoke((Action)delegate
-                    {
-                        Equipment equip = new Equipment();
-                        foreach (Equipment e in equipment)
-                        {
+            }
+        }
+        public void DispatcherForAdd()
+        {
+            App.Current.Dispatcher.Invoke((Action)delegate
+            {
+                AddEquipmentToStorage();
+            });
+        }
 
-                            //  equip.id = es.FindEquipmentById(Int32.Parse(oe.equipments));
-                        }
-                        /* Room rDestionation = new Room();
-                         rDestionation = rs.FindRoomById(oe.roomDestiantionId);
-                         List<Equipment> equip = new List<Equipment>();
-                         foreach (Equipment e in equip)
-                         {
-                             equip = es.FindEquipmentById(e.id);
-                         }*/
-                        //foreach (Equipment e in equipment)
-                        //   {
-                        equipmentService.AddEquipment(equip);
-
-                        //  }
-
-                        //res.TransferEquipment(rSource, rDestionation, equip, et.quantity);
-                        oer.Remove(oe);
-                    });
-
-                }
+        public void AddEquipmentToStorage()
+        {
+            foreach (Equipment e in equipmentList)
+            {
+                equipment = e;
+                equipmentService.AddEquipment(equipment);
             }
         }
 
         public void SaveOrder(OrderEquipment equipment)
         {
-            oer.Create(equipment);
+            orderEquipmentRepository.Create(equipment);
         }
 
-        public void SendEquipment(BindingList<Equipment> eq)
+        public void SendEquipment(BindingList<Equipment> equipments)
         {
-            // equipmentList = eq;
+            equipmentList = equipments;
         }
     }
 }

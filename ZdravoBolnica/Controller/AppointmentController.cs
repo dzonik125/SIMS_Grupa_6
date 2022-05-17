@@ -45,9 +45,9 @@ namespace Controller
         }
 
 
-        public Appointment getFirstFreeAppointment(Specialization spec, Patient p)
+        public Appointment getFirstFreeAppointmentInOneHour(Specialization spec, Patient p)
         {
-            return appointmentService.getFirstFreeAppointment(spec, p);
+            return appointmentService.getFirstFreeAppointmentInOneHour(spec, p);
         }
 
         public List<Appointment> getFutureAppointmentsForDoctor(int id)
@@ -55,9 +55,14 @@ namespace Controller
             return appointmentService.getFutureAppointmentsForDoctor(id);
         }
 
-        public Appointment getFirstFuture(List<Appointment> apps)
+        public List<Appointment> getAppointmentsForDoctors(List<Doctor> doctors)
         {
-            return appointmentService.getFirstFuture(apps);
+            return appointmentService.getAppointmentsForDoctors(doctors);
+        }
+
+        public Appointment getFirstAppointmentForDoctor(List<Appointment> apps)
+        {
+            return appointmentService.getFirstAppointmentForDoctor(apps);
         }
 
         public void SaveBusyAppointment(Appointment a, Patient p, Specialization spec)

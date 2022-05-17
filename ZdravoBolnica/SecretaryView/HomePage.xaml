@@ -21,8 +21,8 @@
         <Image Width="90" Height="80" Margin="160,58,550,312" Source="/images/register.png" Stretch="Fill"/>
         <Image Width="90" Height="80" Margin="354,58,356,312" Source="/images/PngItem_2005182.png" Stretch="Fill"/>
         <Image Width="90" Height="80" Margin="565,58,145,312" Source="/images/NicePng_order-icon-png_2992961.png" Stretch="Fill"/>
-        <Image Width="90" Height="80" Margin="472,261,238,109" Source="/images/PinClipart.com_hospital-clipart_3976044.png" Stretch="Fill"/>
         <Image Width="90" Height="80" Margin="253,259,457,111" Source="/images/NicePng_note-png_4357930.png" Stretch="Fill"/>
+        <Image Width="90" Height="80" Margin="471,252,239,118" Source="/images/pngegg.png" Stretch="Fill"/>
 
 
     </Grid>

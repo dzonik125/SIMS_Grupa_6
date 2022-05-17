@@ -3,57 +3,56 @@
 // Created: Thursday, April 7, 2022 18:05:19
 // Purpose: Definition of Class RoomService
 
-using System;
-using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
 using Model;
 using Repository;
 using SIMS.Model;
 using SIMS.Util;
+using System;
+using System.Collections.Generic;
 
 namespace Service
 {
-   public class RoomService
-   {
-        
+    public class RoomService
+    {
+
 
         //public RoomsCRUD roomsCrud = new RoomsCRUD();
         
 
-      public Room FindRoomById(int id)
-      {
-          return roomsCRUD.FindById(id);
-      }
-      
-      public bool UpdateRoom(Room r)
-      {
+        public Room FindRoomById(int id)
+        {
+            return roomsCRUD.FindById(id);
+        }
+
+        public bool UpdateRoom(Room r)
+        {
             roomsCRUD.Update(r);
             return true;
-      }
-      
-      public bool DeleteRoomById(int id)
-      {
+        }
+
+        public bool DeleteRoomById(int id)
+        {
             roomsCRUD.DeleteById(id);
             return true;
-      }
-      
-      public bool DeleteAllRooms()
-      {
-         throw new NotImplementedException();
-      }
-      
-      public bool AddRoom(Room room)
-      {
+        }
+
+        public bool DeleteAllRooms()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool AddRoom(Room room)
+        {
             roomsCRUD.Create(room);
             return true;
-      }
-      
-      public List<Room> FindAll()
-      {
-            return roomsCRUD.FindAll();
-      }
+        }
 
-        
+        public List<Room> FindAll()
+        {
+            return roomsCRUD.FindAll();
+        }
+
+
 
         public List<Room> getRoomsByType(RoomType type)
         {
@@ -82,7 +81,7 @@ namespace Service
         {
 
             bool roomIsFree = false;
-            
+
             List<Room> rooms = roomsCRUD.FindAll();
 
             foreach (Room r in rooms)
@@ -102,7 +101,7 @@ namespace Service
 
                 foreach (Appointment app in temp.appointment)
                 {
-                    
+
 
                     if (!(app.startTime.AddMinutes(app.duration) <= dt && app.startTime <= dt || (dt.AddMinutes(30) <= app.startTime && dt <= app.startTime)))
                     {
@@ -141,7 +140,7 @@ namespace Service
             List<Room> rooms = new List<Room>();
             rooms = roomsCRUD.FindAll();
             foreach (Room r in rooms)
-            { 
+            {
                 if (r.floor == floor && r.roomNum == roomNum)
                 {
                     return r.id;
@@ -181,7 +180,7 @@ namespace Service
             room1 = FindRoomById(room1Id);
             Room room2 = new Room();
             room2 = FindRoomById(room2Id);
-            if(room1.roomNum < room2.roomNum)
+            if (room1.roomNum < room2.roomNum)
             {
                 return room1.roomNum;
             }
@@ -191,9 +190,9 @@ namespace Service
 
 
         public List<Room> GetAvailableRooms(DateTime startTime, DateTime endTime)
-      {
-         throw new NotImplementedException();
-      }
+        {
+            throw new NotImplementedException();
+        }
 
         public String GetRoomTypeById(int id)
         {
@@ -213,9 +212,24 @@ namespace Service
         {
 
             List<Room> rooms = getRoomsByType(dateRange.type);
-            foreach(Room r in rooms)
+            foreach (Room r in rooms)
             {
-                if(!checkIfRoomIsBusy(r, dateRange))
+                if (!checkIfRoomIsBusy(r, dateRange))
+                {
+                    appointment.Room = r;
+                    return appointment;
+                }
+            }
+            return null;
+        }
+
+        public void findRoomForAppointment(Appointment appointment, DateRange dateRange, List<Appointment> returnAppointmets)
+        {
+            Appointment a = new Appointment();
+            List<Room> rooms = FindAll();
+            foreach (Room r in rooms)
+            {
+                if (!checkIfRoomIsBusy(r, dateRange))
                 {
                     appointment.Room = r;
                     return appointment;
@@ -228,7 +242,7 @@ namespace Service
         {
             AppointmentService appointmentService = new AppointmentService();
             List<Appointment> appointments = appointmentService.getAppointmentsByRoomId(r.id);
-            foreach(Appointment a in appointments)
+            foreach (Appointment a in appointments)
             {
                 if (dateRange.checkForIntersection(a.startTime, a.duration))
                     return true;
@@ -236,9 +250,9 @@ namespace Service
             return false;
         }
 
-        
-       public Repository.RoomsCRUD roomsCRUD = new Repository.RoomsCRUD();
-      
 
-   }
+        public Repository.RoomsCRUD roomsCRUD = new Repository.RoomsCRUD();
+
+
+    }
 }
