@@ -22,7 +22,7 @@
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Content="Pocetni Datum:" Margin="35,10,10,10"/>
                 <Label Grid.Row="1" Content="Krajnji Datum:"  Margin="35,10,10,10"/>
-                <CheckBox Grid.Row="3" Content="Hitno"  Margin="40,15,10,10"/>
+                <CheckBox Grid.Row="3" Content="Hitno"  Name="Urgent" Margin="40,15,10,10"/>
                 <Label Grid.Row="2" Content="Komentar:"  Margin="35,10,10,10"/>
                 <Button Grid.Row="4" Content="Potvrdi" Margin="40,36,0,38" Name="Accept" Click="Accept_Click"/>
 

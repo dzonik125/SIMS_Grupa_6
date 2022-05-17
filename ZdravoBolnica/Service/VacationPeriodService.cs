@@ -53,6 +53,21 @@ namespace SIMS.Service
             return vacationPeriodRepository.findAllByDoctorId(id);
         }
 
+        public bool checkIfDoctorIsAlreadyOnVacation(Doctor doctor, DateRange dateRange)
+        {
+            List<VacationPeriod> docVacationPeriods = findAllByDoctorId(doctor.id);
+            foreach(VacationPeriod v in docVacationPeriods)
+            {
+                TimeSpan vacationDuration = v.EndTime - v.StartTime;
+                if (dateRange.checkForIntersection(v.StartTime, vacationDuration.TotalMinutes))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
         public bool checkForDoctorsOnVacation(Doctor doctor, DateRange dateRange)
         {
             List<VacationPeriod> vacationPeriods = findAllByDoctorSpecialization(doctor.specialization);

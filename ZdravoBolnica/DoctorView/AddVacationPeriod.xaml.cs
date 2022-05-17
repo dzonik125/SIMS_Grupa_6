@@ -1,4 +1,5 @@
-﻿using SIMS.Model;
+﻿using SIMS.Controller;
+using SIMS.Model;
 using SIMS.Service;
 using SIMS.Util;
 using System;
@@ -14,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static SIMS.Model.VacationPeriodStatus;
 
 namespace SIMS.DoctorView
 {
@@ -22,7 +24,7 @@ namespace SIMS.DoctorView
     /// </summary>
     public partial class AddVacationPeriod : Window
     {
-        public VacationPeriodService vacationPeriodService = new VacationPeriodService();
+        public VacationPeriodController vacationPeriodController = new VacationPeriodController();
         public AddVacationPeriod()
         {
             InitializeComponent();
@@ -42,13 +44,39 @@ namespace SIMS.DoctorView
             TimeSpan ts = dateRange.endTime - dateRange.startTime;
             dateRange.duration = ts.TotalMinutes;
             
-            if (vacationPeriodService.checkIfDoctorHasAppoinmentsInPeriod(DoctorWindow.Instance.doctorUser, dateRange))
+            if (vacationPeriodController.checkIfDoctorHasAppoinmentsInPeriod(DoctorWindow.Instance.doctorUser, dateRange) && (bool)Urgent.IsChecked == false)
             {
                 MessageBox.Show("Imate zakazane termine u ovom periodu!");
+                return;
             }
 
-            
+            if (vacationPeriodController.checkForDoctorsOnVacation(DoctorWindow.Instance.doctorUser, dateRange) && (bool)Urgent.IsChecked == false)
+            {
+                MessageBox.Show("Vec imate slobodne dane u ovom periodu!");
+                return;
+            }
 
+            if (vacationPeriodController.checkForDoctorsOnVacation(DoctorWindow.Instance.doctorUser, dateRange) && (bool)Urgent.IsChecked == false)
+            {
+                MessageBox.Show("Vise od dva doktora vase specijalizacije imaju slobodne dane u ovom periodu!");
+                return;
+            }
+            VacationPeriod vacationPeriod = new();
+            vacationPeriod.comment = Comment.Text;
+            vacationPeriod.doctor = DoctorWindow.Instance.doctorUser;
+            vacationPeriod.StartTime = dateRange.startTime;
+            vacationPeriod.EndTime = dateRange.endTime;
+            vacationPeriod.status = VacationPeriodStatusType.waiting;
+            if ((bool)Urgent.IsChecked)
+            {
+                vacationPeriod.type = VacationPeriodType.urgent;
+            }
+            else
+                vacationPeriod.type = VacationPeriodType.regular;
+
+            vacationPeriodController.Create(vacationPeriod);
+            VacationPeriodsView.Instance.refresh();
+            this.Close();
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

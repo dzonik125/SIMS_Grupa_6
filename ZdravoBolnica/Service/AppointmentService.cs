@@ -283,7 +283,9 @@ namespace Service
             dateRange.startTime = DateTime.Now.AddHours(0);
             dateRange.endTime = DateTime.Now.AddHours(2);
             dateRange.specializationType = spec;
-            List<Appointment> freeAppointments = findFreeTermsForReferral( dateRange, p);
+            dateRange.type = RoomType.examination;
+            dateRange.duration = 30;
+            List<Appointment> freeAppointments = findFreeTermsForReferral(dateRange, p);
             if(freeAppointments.Count > 0)
             {
                 return freeAppointments[0];
