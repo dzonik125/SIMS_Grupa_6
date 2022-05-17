@@ -58,6 +58,7 @@ namespace SIMS
                 if (username.Text.Equals(d.username) && password.Password.Equals(d.password))
                 {
                     DoctorWindow dw = DoctorWindow.Instance;
+                    dw.doctorUser = d;
                     dw.Show();
                     this.Close();
                     return;

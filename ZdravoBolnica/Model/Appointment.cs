@@ -32,6 +32,11 @@ namespace Model
 
         public AppointmentType Type { get; set; }
 
+        /*public static explicit operator Appointment(object v)
+        {
+            throw new NotImplementedException();
+        }*/
+
 
         /* public Appointment(DateTime st, AppointmentType type, Doctor doctor, Patient patient, Room room)
          {

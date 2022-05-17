@@ -16,7 +16,7 @@
 
         </Grid.RowDefinitions>
 
-        
+
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -25,14 +25,18 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
-                <Grid Background="#009494">
+                <Grid Background="#00796B">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="100"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
+                    <Grid Grid.Row="0">
+                        <Image Source="/images/LOGO.png" Visibility="Visible" Margin="62,10,62,10" />
+                    </Grid>
+
                     <Grid Grid.Row="1">
-                        <Grid Background="#009494">
+                        <Grid Background="#00796B">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="55"/>
                                 <RowDefinition Height="55"/>
@@ -44,12 +48,12 @@
                             </Grid.RowDefinitions>
 
 
-                            <Button Content="Termini" Grid.Row="0" Background="#009494" Click="Appointments_Click" />
-                            <Button Content="Pacijenti" Grid.Row="1" Background="#009494" Click="Patients_Click"/>
-                            <Button Content="Istorija" Grid.Row="2" Background="#009494"/>
-                            <Button Content="Lekovi" Grid.Row="3" Background="#009494" Click="Button_Click"/>
-                            <Button Content="Slobodni dani" Grid.Row="4" Background="#009494"/>
-                            <Button Content="Profil" Grid.Row="5" Background="#009494"/>
+                            <Button Content="Termini" Grid.Row="0" Background="#00796B" Click="Appointments_Click" />
+                            <Button Content="Pacijenti" Grid.Row="1" Background="#00796B" Click="Patients_Click"/>
+                            <Button Content="Istorija" Grid.Row="2" Background="#00796B"/>
+                            <Button Content="Lekovi" Grid.Row="3" Background="#00796B" Click="Button_Click"/>
+                            <Button Content="Slobodni dani" Grid.Row="4" Background="#00796B" Click="Button_Click_1"/>
+                            <Button Content="Profil" Grid.Row="5" Background="#00796B"/>
                         </Grid>
 
                     </Grid>
@@ -63,16 +67,16 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0" Background="#004A49">
-                        
+                    <Grid Grid.Row="0" Background="#224B66">
+
                     </Grid>
                     <Grid Grid.Row="1" Background="#E2E2E2">
                         <Frame x:Name="Page" NavigationUIVisibility="Hidden"/>
                     </Grid>
-                    
+
                 </Grid>
             </Grid>
-            
+
 
 
         </Grid>

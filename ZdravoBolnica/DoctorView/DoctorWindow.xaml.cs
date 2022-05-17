@@ -49,7 +49,7 @@ namespace SIMS.DoctorView
             med1.name = "Bromazepam";
             medicationController.Create(med);
             medicationController.Create(med1);*/
-            doctorUser = doctorController.GetAllDoctors()[0];
+            
             InitializeComponent();
         }
 
@@ -70,6 +70,12 @@ namespace SIMS.DoctorView
         {
             Medications medications = Medications.Instance;
             Page.Content = medications;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            VacationPeriodsView vacationPeriodsView = VacationPeriodsView.Instance;
+            Page.Content = vacationPeriodsView;
         }
     }
 }

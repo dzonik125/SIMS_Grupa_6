@@ -1,11 +1,14 @@
 ﻿using Model;
+using SIMS.Model;
 using System;
 
 namespace SIMS.Util
 {
     public class DateRange
     {
-        public DateTime startTime { get; set; }
+        public DateTime startTime;
+
+       
         public DateTime endTime { get; set; }
 
         public double duration { get; set; }
@@ -22,11 +25,12 @@ namespace SIMS.Util
         public void step()
         {
             startTime = startTime.AddMinutes(duration);
-            //  if (startTime.Hour >= 20)
-            //{
-            //     startTime = startTime.AddHours(12);
-            // }
+            if (startTime.Hour >= 20)
+            {
+                startTime = startTime.AddHours(12);
+            }
         }
+
         public bool checkForIntersection(DateTime startTimeAppoinment, double appointmentDuration)
         {
             if (!((startTimeAppoinment.AddMinutes(appointmentDuration) <= startTime && startTimeAppoinment <= startTime ||
@@ -34,8 +38,8 @@ namespace SIMS.Util
                 return true;
             else
                 return false;
-        }
-
+        }      
+  
     }
 
 }

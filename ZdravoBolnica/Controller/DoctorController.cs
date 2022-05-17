@@ -29,6 +29,7 @@ namespace Controller
         {
             return doctorService.findBySpecialization(spec);
         }
+
         public void DeleteDoctor(Doctor d)
         {
             throw new NotImplementedException();

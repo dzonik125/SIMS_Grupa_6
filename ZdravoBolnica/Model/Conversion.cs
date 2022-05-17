@@ -1,6 +1,7 @@
 ﻿using Model;
 using System;
 using System.Collections.Generic;
+using static SIMS.Model.VacationPeriodStatus;
 
 namespace SIMS.Model
 {
@@ -41,6 +42,48 @@ namespace SIMS.Model
                   "Na cekanju" => MedicationStatusType.waiting,
                   "Odbijeno" => MedicationStatusType.rejected,
                    _ => MedicationStatusType.waiting,
+            };
+        }
+
+        public static string VacationPeriodStatusTypeToString(VacationPeriodStatusType tip)
+        {
+            return tip switch
+            {
+                VacationPeriodStatusType.accepted => "Odobreno",
+                VacationPeriodStatusType.waiting => "Na cekanju",
+                VacationPeriodStatusType.rejected => "Odbijeno",
+                _ => "",
+            };
+        }
+
+        public static VacationPeriodStatusType StringToVacationStatusType(string tip)
+        {
+            return tip switch
+            {
+                "Odobreno" => VacationPeriodStatusType.accepted,
+                "Na cekanju" => VacationPeriodStatusType.waiting,
+                "Odbijeno" => VacationPeriodStatusType.rejected,
+                _ => VacationPeriodStatusType.waiting,
+            };
+        }
+
+        public static string VacationPeriodTypeToString(VacationPeriodType tip)
+        {
+            return tip switch
+            {
+                VacationPeriodType.regular => "Regularno",
+                VacationPeriodType.urgent => "Hitno",
+                _ => "",
+            };
+        }
+
+        public static VacationPeriodType StringToVacationPeriodType(string tip)
+        {
+            return tip switch
+            {
+                "Regularno" => VacationPeriodType.regular,
+                "Hitno" => VacationPeriodType.urgent,
+                _ => VacationPeriodType.regular,
             };
         }
 
