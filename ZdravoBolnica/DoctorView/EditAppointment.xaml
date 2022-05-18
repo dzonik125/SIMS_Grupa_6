@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIMS.DoctorView"
         mc:Ignorable="d"
-        Title="EditAppointment" Height="600" Width="600">
+        Title="EditAppointment" Height="600" Width="600" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label Content="Pacijent" HorizontalAlignment="Left" Margin="127,109,0,0" VerticalAlignment="Top" Width="111" FontSize="16"/>
         <Label Content="Sala" HorizontalAlignment="Left" Margin="147,175,0,0" VerticalAlignment="Top" FontSize="16"/>

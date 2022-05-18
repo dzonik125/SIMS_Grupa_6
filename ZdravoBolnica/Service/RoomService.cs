@@ -223,7 +223,7 @@ namespace Service
             return null;
         }
 
-        public void findRoomForAppointment(Appointment appointment, DateRange dateRange, List<Appointment> returnAppointmets)
+        public Appointment findRoomForAppointment(Appointment appointment, DateRange dateRange, List<Appointment> returnAppointmets)
         {
             Appointment a = new Appointment();
             List<Room> rooms = FindAll();

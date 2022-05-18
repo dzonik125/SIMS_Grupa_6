@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIMS.DoctorView"
         mc:Ignorable="d"
-        Title="PrescriptionView" Height="342" Width="330">
-    <Grid>
+        Title="PrescriptionView" Height="432" Width="330" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#224B66"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="#E2E2E2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#0078d7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#E2E2E2">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="140"/>
@@ -26,7 +47,7 @@
                 <Label Grid.Row="2" Content="Krajnji Datum:"  Margin="35,10,10,10"/>
                 <Label Grid.Row="3" Content="Ucestalost:"  Margin="35,10,10,10"/>
                 <Label Grid.Row="4" Content="Komentar:"  Margin="35,10,10,10"/>
-                <Button Grid.Row="5" Content="Potvrdi" Margin="40,36,0,38" Click="Potvrdi_Click"/>
+                <Button Grid.Row="5" Content="Potvrdi" Margin="40,36,0,27" Click="Potvrdi_Click"/>
 
             </Grid>
             <Grid Grid.Column="1">
@@ -43,7 +64,7 @@
                 <DatePicker Name="EndTime" Grid.Row="2" Margin="0,17,40,12"/>
                 <TextBox Name="Frequency" Grid.Row="3" Margin="0,17,40,12"/>
                 <TextBox Name="Comment" Grid.Row="4" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="0,17,40,0"/>
-                <Button Grid.Row="5" Margin="50,36,40,38" Content="Izadji"/>
+                <Button Grid.Row="5" Margin="50,36,40,29" Content="Izadji" Background="#760000" Click="Button_Click" />
             </Grid>
         </Grid>
     </Grid>

@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIMS.DoctorView"
         mc:Ignorable="d"
-        Title="Patient Medical Record" Height="450" Width="800">
-    <Grid>
+        Title="Patient Medical Record" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#224B66"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="#E2E2E2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#0078d7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#E2E2E2">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="60"/>
@@ -20,7 +41,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <Label Content="Petar Petrovic" Name="Name" FontSize="25" FontWeight="Bold" Margin="244,0,244,0"/>
+                        <Label Content="Petar Petrovic" Name="Name" FontSize="25" FontWeight="Bold" HorizontalContentAlignment="Center"/>
                     </Grid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
@@ -63,13 +84,13 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                         
-                            <Label Grid.Row="0" Content="Alergije:" FontSize="15"/>
-                            <DataGrid Grid.Row="1" Margin="0,0,86,0" ItemsSource="{Binding Path = allergies}" AutoGenerateColumns="False">
+                            <Label Grid.Row="0" Content="Alergije:" FontSize="15" Margin="78,0,0,0"/>
+                            <DataGrid Grid.Row="1" Margin="78,0,8,0" ItemsSource="{Binding Path = allergies}" AutoGenerateColumns="False">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Naziv" Binding="{Binding}" Width="*"></DataGridTextColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <Button Grid.Row="2" Content="Napisi recept" Margin="0,10,244,10" Click="Button_Click"/>
+                            <Button Grid.Row="2" Content="Napisi recept" Margin="78,10,166,10" Click="Button_Click"/>
                         </Grid>
 
                     </Grid>

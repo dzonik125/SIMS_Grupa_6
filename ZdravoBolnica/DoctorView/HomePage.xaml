@@ -1,0 +1,33 @@
+﻿<Page x:Class="SIMS.DoctorView.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SIMS.DoctorView"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="840"
+      Title="HomePage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <Label Content="Dobrodosli," FontSize="58"/>
+            <Label Grid.Row="1" Content="Petar Petrovic" FontSize="58"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" Margin="70" Background="#e3cb2d"/>
+            <Calendar Grid.Column="1" Margin="61,90,27,26"/>
+        </Grid>
+    </Grid>
+</Page>

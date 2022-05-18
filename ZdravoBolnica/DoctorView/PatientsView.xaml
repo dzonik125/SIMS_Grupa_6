@@ -52,7 +52,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Ime" Binding="{Binding name}" Width="*"  DataGridColumn.CanUserResize="False"/>
                     <DataGridTextColumn Header="Prezime" Binding="{Binding surname}" Width="*"  DataGridColumn.CanUserResize="False"/>
-                    <DataGridTextColumn Header="Pol" Binding="{Binding gender}" Width="*"  DataGridColumn.CanUserResize="False"/>
+                    <DataGridTextColumn Header="Pol" Binding="{Binding GenderTypeToString}" Width="*"  DataGridColumn.CanUserResize="False"/>
                     <DataGridTextColumn Header="Datum rodjenja" Binding="{Binding birthdate}" Width="*"  DataGridColumn.CanUserResize="False"/>
                 </DataGrid.Columns>
             </DataGrid>

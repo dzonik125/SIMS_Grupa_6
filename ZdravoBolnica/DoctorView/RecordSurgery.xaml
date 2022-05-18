@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIMS.DoctorView"
         mc:Ignorable="d"
-        Title="Record Surgery" Height="500" Width="400">
+        Title="Record Surgery" Height="500" Width="400" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
@@ -18,9 +18,9 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="150"/>
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Content="Pacijent:" Margin="72,10,11,13" FontSize="15"/>
-            <Label Grid.Row="1" Content="Opis:" Margin="92,0,8,103" FontSize="15"/>
-            <Label Grid.Row="2" Content="Napomene:" Margin="52,0,11,23" FontSize="15"/>
+            <Label Grid.Row="0" Content="Pacijent:" Margin="21,10,7,10" FontSize="15"/>
+            <Label Grid.Row="1" Content="Opis:" Margin="21,0,7,10" FontSize="15"/>
+            <Label Grid.Row="2" Content="Napomene:" Margin="21,10,7,10" FontSize="15"/>
             <Button Grid.Row="3" Content="Evidentiraj" Margin="10,85,0,30"/>
         </Grid>
         <Grid Grid.Column="1">
@@ -31,9 +31,9 @@
                 <RowDefinition Height="150"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Content="Petar Petrovic" FontSize="15" Margin="11,10,72,13"/>
-            <TextBox Grid.Row="1" Margin="11,0,26,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
-            <TextBox Grid.Row="2" Margin="11,10,26,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
-            <Button Grid.Row="3" Content="Izadji" Margin="96,85,14,30"/>
+            <TextBox Grid.Row="1" Margin="11,10,26,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
+            <TextBox Grid.Row="2" Margin="11,20,26,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
+            <Button Grid.Row="3" Content="Izadji" Margin="84,85,26,30"/>
         </Grid>
     </Grid>
 </Window>

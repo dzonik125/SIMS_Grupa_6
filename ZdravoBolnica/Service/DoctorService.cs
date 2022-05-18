@@ -48,10 +48,7 @@ namespace Service
         {
             return doctorRepository.FindById(id);
         }
-        public List<Doctor> findBySpecialization(Specialization spec)
-        {
-            return doctorRepository.findBySpecialization(spec);
-        }
+        
 
         public Appointment getAppointmentWithDoctor(Appointment appointment, DateRange dateRange)
         {
@@ -90,33 +87,7 @@ namespace Service
         public Repository.DoctorRepository doctorRepository = new Repository.DoctorRepository();
 
 
-        public Appointment getAppointmentWithDoctor(Appointment appointment, DateRange dateRange)
-        {
 
-            List<Doctor> doctors = findBySpecialization(dateRange.specializationType);
-            foreach (Doctor d in doctors)
-            {
-                if (!checkIfDoctorIsBusy(d, dateRange))
-                {
-                    appointment.Doctor = d;
-                    return appointment;
-                }
-            }
-            return null;
-        }
-
-
-        public bool checkIfDoctorIsBusy(Doctor d, DateRange dateRange)
-        {
-            AppointmentRepository appointmentRepository = new AppointmentRepository();
-            List<Appointment> appointments = appointmentRepository.FindByDoctorId(d.id);
-            foreach (Appointment a in appointments)
-            {
-                if (dateRange.checkForIntersection(a.startTime, a.duration))
-                    return true;
-            }
-            return false;
-        }
 
     }
 }

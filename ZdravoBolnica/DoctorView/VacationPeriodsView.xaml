@@ -6,8 +6,29 @@
       xmlns:local="clr-namespace:SIMS.DoctorView"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="840"
-      Title="VacationPeriodsView">
+      Title="VacationPeriodsView" >
 
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#224B66"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="#E2E2E2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#0078d7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
     <Grid>
         <DataGrid x:Name="dataGridAppointments" ItemsSource="{Binding Path = vacationPeriods}" 
                     Grid.Row="0" Margin="86,84,94,122" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False">
@@ -32,6 +53,6 @@
         </DataGrid>
         <Button Content="Zakazi" HorizontalAlignment="Left" Margin="86,450,0,0" Name="Schedule" VerticalAlignment="Top" Width="100" Height="38" Click="Schedule_Click"/>
         <Button Content="Izmeni" HorizontalAlignment="Left" Margin="202,450,0,0" Name="Edit" VerticalAlignment="Top" Width="100" Height="38" Click="Edit_Click"/>
-        <Button Content="Izbrisi" HorizontalAlignment="Left" Margin="645,450,0,0" Name="Delete" VerticalAlignment="Top" Width="100" Height="38" Click="Delete_Click"/>
+        <Button Content="Izbrisi" HorizontalAlignment="Left" Margin="645,450,0,0" Name="Delete" VerticalAlignment="Top" Width="100" Height="38" Click="Delete_Click" Background="#760000"/>
     </Grid>
 </Page>

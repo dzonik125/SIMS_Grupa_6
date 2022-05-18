@@ -5,11 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIMS.DoctorView"
         mc:Ignorable="d"
-        Title="Referral" Height="470" Width="330">
+        Title="Referral" Height="470" Width="350" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#224B66"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="#E2E2E2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#0078d7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <TabControl>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="173*"/>
+            <ColumnDefinition Width="157*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl Grid.ColumnSpan="2">
             <TabItem Header="Pregled">
-                <Grid>
+                <Grid Background="#E2E2E2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="140"/>
                         <ColumnDefinition/>
@@ -30,7 +55,7 @@
                         <Label Grid.Row="4" Content="Krajnji Datum:"  Margin="35,10,10,10"/>
                         <Label Grid.Row="2" Content="Trajanje:"  Margin="35,10,10,10"/>
                         <Label Grid.Row="5" Content="Vreme:"  Margin="35,10,10,10"/>
-                        <Button Grid.Row="6" Content="Zakazi" Margin="40,36,0,38" Click="Button_Click"/>
+                        <Button Grid.Row="6" Content="Zakazi" Margin="40,36,0,24" Click="Button_Click"/>
                     </Grid>
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
@@ -49,12 +74,12 @@
                         <DatePicker Name="EndTime" Grid.Row="4" Margin="0,17,40,12" SelectedDateChanged="EndTime_SelectedDateChanged"/>
                         <ComboBox Name="Time" Grid.Row="5" Margin="0,17,40,12" DisplayMemberPath="startTime"/>
                         <TextBox Name="Duration" Grid.Row="2" Margin="0,17,40,12"/>
-                        <Button Grid.Row="6" Name="Exit" Margin="50,36,40,38" Content="Izadji" Click="Exit_Click"/>
+                        <Button Grid.Row="6" Name="Exit" Margin="50,36,40,24" Content="Izadji" Click="Exit_Click" Background="#760000"/>
                     </Grid>
                 </Grid>
             </TabItem>
             <TabItem Header="Operacija">
-                
+
             </TabItem>
         </TabControl>
     </Grid>

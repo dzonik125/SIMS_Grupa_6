@@ -18,6 +18,17 @@ namespace Model
         public MedicalRecord medicalRecord = new MedicalRecord();
         public System.Collections.Generic.List<Appointment> appointment;
 
+        public String GenderTypeToString
+        {
+            get
+            {
+                if (gender == Gender.female)
+                    return "Zensko";
+                else if (gender == Gender.male)
+                    return "Musko";
+                else return "Zensko";
+            }
+        }
 
         public System.Collections.Generic.List<Appointment> Appointment
         {

@@ -1,1 +1,2 @@
-1|Bromazepam|Odbijeno|10||sastojak 1,sastojak 2|asd
+1|Bromazepam|Odobreno|10||sastojak 1,sastojak 2|asd
+2|Brufen|Odobreno|3|1|sastojak 1,sastojak 2|

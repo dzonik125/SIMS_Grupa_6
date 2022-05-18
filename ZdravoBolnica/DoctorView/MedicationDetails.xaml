@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIMS.DoctorView"
         mc:Ignorable="d"
-        Title="MedicationDetails" Height="530" Width="400">
-    <Grid>
+        Title="MedicationDetails" Height="530" Width="400" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#224B66"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="#E2E2E2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#0078d7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid  Background="#E2E2E2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="140"/>
             <ColumnDefinition Width="*"/>
@@ -49,7 +70,7 @@
                 </DataGrid.Columns>
             </DataGrid>
             <TextBox Grid.Row="4" Margin="11,10,26,0" Name="Comment" TextWrapping="Wrap"  AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
-            <Button Grid.Row="5" Content="Odbij" Margin="120,33,26,24" Click="Button_Click_1"/>
+            <Button Grid.Row="5" Content="Odbij" Margin="120,33,26,24"  Background="#760000" Click="Button_Click_1"/>
         </Grid>
     </Grid>
 </Window>

@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIMS.DoctorView"
         mc:Ignorable="d"
-        Title="AddVacationPeriod" Height="340" Width="330">
-    <Grid>
+        Title="AddVacationPeriod" Height="340" Width="330" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#224B66"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="#E2E2E2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#0078d7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#E2E2E2">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="140"/>
@@ -38,7 +59,7 @@
                 <DatePicker Name="StartTime" Grid.Row="0" Margin="0,17,40,12"/>
                 <DatePicker Name="EndTime" Grid.Row="1" Margin="0,17,40,12"/>
                 <TextBox Name="Comment" Grid.Row="2" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="0,17,40,0"/>
-                <Button Grid.Row="4" Margin="50,36,40,38" Name="Exit" Click="Exit_Click" Content="Izadji"/>
+                <Button Grid.Row="4" Margin="50,36,40,38" Name="Exit" Background="#760000" Click="Exit_Click" Content="Izadji"/>
             </Grid>
         </Grid>
     </Grid>

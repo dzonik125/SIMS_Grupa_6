@@ -85,7 +85,7 @@ namespace SIMS.DoctorView
             patient = new Patient();
             patient = pw.selectedPatient;
             Name.Content = patient.FullName;
-            Gender.Content = patient.gender;
+            Gender.Content = patient.GenderTypeToString;
             JMBG.Content = patient.jmbg;
             LBO.Content = patient.lbo;
             Birth.Content = patient.birthdate;

@@ -51,6 +51,8 @@ namespace SIMS.DoctorView
             medicationController.Create(med1);*/
             
             InitializeComponent();
+            //HomePage homePage = new HomePage();
+            //Page.Content = homePage;
         }
 
         private void Appointments_Click(object sender, RoutedEventArgs e)
