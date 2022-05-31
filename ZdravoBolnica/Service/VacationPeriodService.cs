@@ -5,9 +5,6 @@ using SIMS.Repository;
 using SIMS.Util;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static SIMS.Model.VacationPeriodStatus;
 
 namespace SIMS.Service
@@ -40,7 +37,7 @@ namespace SIMS.Service
         public bool checkIfDoctorHasAppoinmentsInPeriod(Doctor doctor, DateRange dateRange)
         {
             List<Appointment> appointments = appointmentService.getAppointmentsByDoctorId(doctor.id);
-            foreach(Appointment a in appointments)
+            foreach (Appointment a in appointments)
             {
                 if (dateRange.checkForIntersection(a.startTime, a.duration))
                     return true;
@@ -56,7 +53,7 @@ namespace SIMS.Service
         public bool checkIfDoctorIsAlreadyOnVacation(Doctor doctor, DateRange dateRange)
         {
             List<VacationPeriod> docVacationPeriods = findAllByDoctorId(doctor.id);
-            foreach(VacationPeriod v in docVacationPeriods)
+            foreach (VacationPeriod v in docVacationPeriods)
             {
                 TimeSpan vacationDuration = v.EndTime - v.StartTime;
                 if (dateRange.checkForIntersection(v.StartTime, vacationDuration.TotalMinutes))
@@ -72,7 +69,7 @@ namespace SIMS.Service
         {
             List<VacationPeriod> vacationPeriods = findAllByDoctorSpecialization(doctor.specialization);
             int numOfDoctorsOnVacation = 0;
-            foreach(VacationPeriod v in vacationPeriods)
+            foreach (VacationPeriod v in vacationPeriods)
             {
                 TimeSpan vacationPeriodDuration = v.EndTime - v.StartTime;
                 if (dateRange.checkForIntersection(v.StartTime, vacationPeriodDuration.TotalMinutes))
@@ -86,9 +83,9 @@ namespace SIMS.Service
             List<VacationPeriod> vacationPeriods = FindAll();
             List<VacationPeriod> returnPeriods = new List<VacationPeriod>();
             bindDoctorsWithVacationPeriods(vacationPeriods);
-            foreach(VacationPeriod v in vacationPeriods)
+            foreach (VacationPeriod v in vacationPeriods)
             {
-                if((v.doctor.specialization == specialization) && v.status != VacationPeriodStatusType.rejected)
+                if ((v.doctor.specialization == specialization) && v.status != VacationPeriodStatusType.rejected)
                 {
                     returnPeriods.Add(v);
                 }
@@ -111,14 +108,15 @@ namespace SIMS.Service
             }
         }
 
-        public VacationPeriod FindById(int key)
+        public VacationPeriod FindById(int id)
         {
-            throw new NotImplementedException();
+            return vacationPeriodRepository.FindById(id);
         }
 
-        public void Update(VacationPeriod entity)
+        public bool Update(VacationPeriod vp)
         {
-            throw new NotImplementedException();
+            vacationPeriodRepository.Update(vp);
+            return true;
         }
     }
 }

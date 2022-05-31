@@ -81,7 +81,7 @@ namespace SIMS.SecretaryView
             Patient selectedPatient = patientTable.SelectedItem as Patient;
             if (selectedPatient == null)
             {
-                MessageBox.Show("Izabrati pacijenta za brisanje:");
+                MessageBox.Show("Izabrati pacijenta za izmenu:");
                 return;
             }
             SecretaryView.Instance.SetContent(new EditPatientPage(selectedPatient));

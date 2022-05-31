@@ -277,7 +277,7 @@ namespace Service
                 List<Appointment> appointmentsForDoctor = getAppointmentsByDoctorId(d.id);
                 returnAppointments.AddRange(appointmentsForDoctor);
             }
-          
+
             return returnAppointments;
         }
 
@@ -291,12 +291,12 @@ namespace Service
             dateRange.type = RoomType.examination;
             dateRange.duration = 30;
             List<Appointment> freeAppointments = findFreeTermsForReferral(dateRange, p);
-            if(freeAppointments.Count > 0)
-
             if (freeAppointments.Count > 0)
-            {
-                return freeAppointments[0];
-            }
+
+                if (freeAppointments.Count > 0)
+                {
+                    return freeAppointments[0];
+                }
             return null;
         }
 
@@ -671,7 +671,7 @@ namespace Service
                     toRet.Add(a);
                 }
             }
-            
+
             return toRet;
         }
 

@@ -166,7 +166,7 @@ namespace SIMS.SecretaryView
         private bool ValidationAppointment()
         {
             AppointmentController appointmentController = new AppointmentController();
-            List<Appointment> appointments = appointmentController.GetAllApointments();
+            List<Appointment> appointments = appointmentController.GetAllAppointments();
             foreach (Appointment a in appointments)
             {
                 if (a.GetEndTime() > appointment.startTime && a.startTime < appointment.GetEndTime() && !a.id.Equals(appointment.id))

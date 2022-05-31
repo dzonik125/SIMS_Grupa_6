@@ -11,7 +11,6 @@ namespace SIMS.SecretaryView
     public partial class SecretaryView : Window
     {
         private static SecretaryView instance = new SecretaryView();
-        private SecretaryUI sui;
         private Timer timer;
         private OrderEquipmentController oec = new OrderEquipmentController();
 
@@ -92,6 +91,11 @@ namespace SIMS.SecretaryView
         private void OrderEquipment_Click(object sender, RoutedEventArgs e)
         {
             SetContent(new OrderEquipmentPage());
+        }
+
+        private void VacationPeriod_Click(object sender, RoutedEventArgs e)
+        {
+            SetContent(new VacationPeriodPage());
         }
     }
 }

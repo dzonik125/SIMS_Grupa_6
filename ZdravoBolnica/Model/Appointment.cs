@@ -112,7 +112,6 @@ namespace Model
                 duration.ToString(),
                 Conversion.AppointmentTypeToString(Type),
                 timesEdited.ToString(),
-
             };
             return csvValues;
         }

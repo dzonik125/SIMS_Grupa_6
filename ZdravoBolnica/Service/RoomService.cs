@@ -17,7 +17,7 @@ namespace Service
 
 
         //public RoomsCRUD roomsCrud = new RoomsCRUD();
-        
+        public AppointmentService appointmentService = new AppointmentService();
 
         public Room FindRoomById(int id)
         {
@@ -231,11 +231,13 @@ namespace Service
             {
                 if (!checkIfRoomIsBusy(r, dateRange))
                 {
-                    appointment.Room = r;
-                    return appointment;
+                    a.Room = r;
+                    a.startTime = dateRange.startTime;
+                    a.Doctor = appointment.Doctor;
+                    returnAppointmets.Add(a);
+                    break;
                 }
             }
-            return null;
         }
 
         public bool checkIfRoomIsBusy(Room r, DateRange dateRange)
@@ -249,7 +251,6 @@ namespace Service
             }
             return false;
         }
-
 
         public Repository.RoomsCRUD roomsCRUD = new Repository.RoomsCRUD();
 

@@ -16,31 +16,24 @@ namespace Repository
     {
         private String filename = @".\..\..\..\Data\appointments.txt";
         private Serializer<Appointment> appointmentSerializer = new Serializer<Appointment>();
+        
+        private List<Appointment> appointments = new();
+        private List<Appointment> patientAppointments = new();
         public Appointment FindById(int id)
         {
-            List<Appointment> appointments = FindAll();
-            foreach (Appointment a in appointments)
+            foreach (Appointment a in FindAll())
             {
                 if (a.id == id)
-                {
                     return a;
-                }
             }
-
             return null;
         }
-
-        public List<Appointment> FindByPatientId(int pid)
+        public List<Appointment> FindByPatientId(int patientId)
         {
-            List<Appointment> appointments = new();
-            List<Appointment> patientAppointments = new();
-            appointments = FindAll();
-            foreach (Appointment a in appointments)
+            foreach (Appointment appointment in FindAll())
             {
-                if (a.patient.id == pid)
-                {
-                    patientAppointments.Add(a);
-                }
+                if (appointment.patient.id == patientId)
+                    patientAppointments.Add(appointment);
             }
             return patientAppointments;
         }

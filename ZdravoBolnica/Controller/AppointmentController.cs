@@ -12,146 +12,107 @@ namespace Controller
 {
     public class AppointmentController
     {
-
+        private readonly Service.AppointmentService appointmentService = new Service.AppointmentService();
         public List<Appointment> GetAllAppointmentsForPatient(int id)
         {
             return appointmentService.GetAllAppointmentsForPatient(id);
         }
-
-        public List<Appointment> GetAllApointments()
+        public List<Appointment> GetAllAppointments()
         {
-
             return appointmentService.GetAllApointments();
         }
-
         public void UpdateAppointment(Appointment a)
         {
             appointmentService.UpdateAppointment(a);
         }
-
         public void DeleteAppointmentById(int id)
         {
             appointmentService.DeleteAppointmentById(id);
         }
-
-        public List<DateTime> getTenNextFreeAppointmentsForDoctor(int id)
+        public List<DateTime> GetTenNextFreeAppointmentsForDoctor(int id)
         {
             return appointmentService.getTenNextFreeAppointmentsForDoctor(id);
         }
-
-        public List<DateTime> getTenNextFreeAppointmentsForDoctorToday(int id)
+        public List<DateTime> GetTenNextFreeAppointmentsForDoctorToday(int id)
         {
             return appointmentService.getTenNextFreeAppointmentsForDoctorToday(id);
         }
-
-
-        public Appointment getFirstFreeAppointmentInOneHour(Specialization spec, Patient p)
+        public Appointment GetFirstFreeAppointmentInOneHour(Specialization specialization, Patient patient)
         {
-            return appointmentService.getFirstFreeAppointmentInOneHour(spec, p);
+            return appointmentService.getFirstFreeAppointmentInOneHour(specialization, patient);
         }
-
-        public List<Appointment> getFutureAppointmentsForDoctor(int id)
+        public List<Appointment> GetFutureAppointmentsForDoctor(int id)
         {
             return appointmentService.getFutureAppointmentsForDoctor(id);
         }
-
-        public List<Appointment> getAppointmentsForDoctors(List<Doctor> doctors)
+        public List<Appointment> GetAppointmentsForDoctors(List<Doctor> doctors)
         {
             return appointmentService.getAppointmentsForDoctors(doctors);
         }
-
-        public Appointment getFirstAppointmentForDoctor(List<Appointment> apps)
+        public Appointment GetFirstAppointmentForDoctor(List<Appointment> appointments)
         {
-            return appointmentService.getFirstAppointmentForDoctor(apps);
+            return appointmentService.getFirstAppointmentForDoctor(appointments);
         }
-
-        public void SaveBusyAppointment(Appointment a, Patient p, Specialization spec)
+        public void SaveBusyAppointment(Appointment appointment, Patient patient, Specialization specialization)
         {
-            appointmentService.SaveBusyAppointment(a, p, spec);
+            appointmentService.SaveBusyAppointment(appointment, patient, specialization);
         }
-
-        //public List<Appointment> getFutureAppointmentsForPatient(string id)
-
-        public List<Appointment> getFutureAppointmentsForPatient(int id)
-
+        public List<Appointment> GetFutureAppointmentsForPatient(int id)
         {
             return appointmentService.getFutureAppointmentsForPatient(id);
         }
-
-        public List<Appointment> getAppointmentBySpecialization(Specialization s)
+        public List<Appointment> GetAppointmentBySpecialization(Specialization specialization)
         {
-            return appointmentService.getAppointmentBySpecialization(s);
+            return appointmentService.getAppointmentBySpecialization(specialization);
         }
-
-        public void SaveAppointment(Appointment a)
+        public void SaveAppointment(Appointment appointment)
         {
-            appointmentService.SaveAppointment(a);
+            appointmentService.SaveAppointment(appointment);
         }
-
-        public bool IntersectionWithAppointments(int patientID, int doctorID, int roomID, DateTime date, int duration)
-
+        public bool IntersectionWithAppointments(int patientId, int doctorId, int roomId, DateTime date, int duration)
         {
-            return appointmentService.IntersectionWithAppointments(patientID, doctorID, roomID, date, duration);
+            return appointmentService.IntersectionWithAppointments(patientId, doctorId, roomId, date, duration);
         }
-
-        public Appointment GetAppointmentByID(int id)
+        public Appointment GetAppointmentById(int id)
         {
             throw new NotImplementedException();
         }
-
-        public void bindRoomsWithAppointments(List<Room> rooms, List<Appointment> appointments)
+        public void BindRoomsWithAppointments(List<Room> rooms, List<Appointment> appointments)
         {
             appointmentService.bindRoomsWithAppointments(rooms, appointments);
         }
-
-        public void bindDoctorsWithAppointments(List<Doctor> doctors, List<Appointment> appointments)
+        public void BindDoctorsWithAppointments(List<Doctor> doctors, List<Appointment> appointments)
         {
             appointmentService.bindDoctorsWithAppointments(doctors, appointments);
         }
-
-        public bool isRoomOccupied(Room roomDestination, DateTime transferDate, int duration)
+        public bool IsRoomOccupied(Room roomDestination, DateTime transferDate, int duration)
         {
             return appointmentService.isRoomOccupied(roomDestination, transferDate, duration);
         }
-
-        public void bindPatientsWithAppointments(List<Patient> patients, List<Appointment> appointments)
+        public void BindPatientsWithAppointments(List<Patient> patients, List<Appointment> appointments)
         {
             appointmentService.bindPatientsWithAppointments(patients, appointments);
         }
-
-        public String getFirstFreeAppointment(DateTime? start, DateTime? finish)
+        public String GetFirstFreeAppointment(DateTime? start, DateTime? finish)
         {
             return appointmentService.getFirstFreeAppointment(start, finish);
         }
-
-        public List<String> getFirstFiveFreeApointmentsForDate(DateTime? start, DateTime? end)
+        public List<String> GetFirstFiveFreeAppointmentsForDate(DateTime? start, DateTime? end)
         {
             return appointmentService.getFirstFiveFreeApointmentsForDate(start, end);
         }
-
-
-        public Appointment findPatientAppointment(Patient p)
+        public Appointment FindPatientAppointment(Patient patient)
         {
-            return appointmentService.findPatientAppointment(p);
+            return appointmentService.findPatientAppointment(patient);
         }
-
-        public List<Appointment> findAllAppointments()
+        public List<Appointment> FindAllAppointments()
         {
             return appointmentService.GetAllApointments();
         }
-
-        public List<DateTime> getTenNextAppointmentsForDoctorForDate(DateTime? start, DateTime? end, int id)
+        public List<DateTime> GetTenNextAppointmentsForDoctorForDate(DateTime? start, DateTime? end, int id)
         {
             return appointmentService.getTenNextAppointmentsForDoctorForDate(start, end, id);
         }
-
-        public Boolean IsExist(int id)
-        {
-            return appointmentService.IsExist(id);
-        }
-
-
-        public Service.AppointmentService appointmentService = new Service.AppointmentService();
 
     }
 }

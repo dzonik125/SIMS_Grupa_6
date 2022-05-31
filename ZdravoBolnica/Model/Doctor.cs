@@ -15,12 +15,6 @@ namespace Model
 
         public System.Collections.Generic.List<Appointment> appointments { get; set; }
 
-        /// <summary>
-        /// Property for collection of Appointment
-        /// </summary>
-        /// <pdGenerated>Default opposite class collection property</pdGenerated>
-
-
         public List<VacationPeriod> vacationPeriods { get; set; }
 
         public string[] ToCSV()
@@ -48,11 +42,6 @@ namespace Model
         }
 
         public Specialization specialization;
-
-        /// <summary>
-        /// Property for Specialization
-        /// </summary>
-        /// <pdGenerated>Default opposite class property</pdGenerated>
         public Specialization Specialization
         {
             get

@@ -6,7 +6,6 @@
 using Model;
 using Repository;
 using System.Collections.Generic;
-
 namespace Service
 {
     public class PatientService
@@ -47,6 +46,5 @@ namespace Service
         }
 
         public Repository.PatientRepository patientRepository;
-
     }
 }

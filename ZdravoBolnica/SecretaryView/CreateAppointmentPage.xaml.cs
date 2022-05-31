@@ -44,13 +44,13 @@ namespace SIMS.SecretaryView
         {
             Apps.Clear();
 
-            List<Appointment> appointments = appController.GetAllApointments();
+            List<Appointment> appointments = appController.GetAllAppointments();
             List<Patient> patients = patientController.FindAllAccounts();
             List<Room> rooms = roomController.FindAll();
             List<Doctor> doctors = doctorController.GetAllDoctors();
-            appController.bindPatientsWithAppointments(patients, appointments);
-            appController.bindRoomsWithAppointments(rooms, appointments);
-            appController.bindDoctorsWithAppointments(doctors, appointments);
+            appController.BindPatientsWithAppointments(patients, appointments);
+            appController.BindRoomsWithAppointments(rooms, appointments);
+            appController.BindDoctorsWithAppointments(doctors, appointments);
 
             foreach (Appointment a in appointments)
             {

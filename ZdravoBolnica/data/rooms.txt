@@ -1,6 +1,3 @@
-3|4|1|True|Prostorija za preglede
-4|5|1|True|Operaciona sala
 4|2|1|True|Prostorija za preglede
 5|1|1|True|Magacin
 6|3|1|True|Prostorija za preglede
-

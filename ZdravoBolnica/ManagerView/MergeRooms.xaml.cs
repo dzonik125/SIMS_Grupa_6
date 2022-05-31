@@ -65,7 +65,7 @@ namespace SIMS.ManagerView
 
             }
 
-            if (_appointmentController.isRoomOccupied(room1, startTimeRenovation, duration) || _appointmentController.isRoomOccupied(room2,startTimeRenovation,duration))
+            if (_appointmentController.IsRoomOccupied(room1, startTimeRenovation, duration) || _appointmentController.IsRoomOccupied(room2,startTimeRenovation,duration))
              {
 
                 MessageBox.Show("Soba je zauzeta u ovom periodu");

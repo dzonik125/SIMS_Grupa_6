@@ -50,7 +50,7 @@ namespace SIMS.ManagerView
             appointment.duration = ((endDate - appointment.startTime).Days)*24*60;
             appointment.Type = AppointmentType.renovation;
             appointment.timesEdited = 0;
-            if (ac.isRoomOccupied(room, appointment.startTime, appointment.duration))
+            if (ac.IsRoomOccupied(room, appointment.startTime, appointment.duration))
             {
                 MessageBox.Show("Soba koju zelite da renovirate nije slobodna u ovo vreme");
                 return;

@@ -12,7 +12,6 @@ namespace SIMS
     {
 
         public ManagerUI mui;
-        public SecretaryUI sui;
         public DoctorController dc = new DoctorController();
         public PatientController pc = new PatientController();
         // public SecretaryView sv;

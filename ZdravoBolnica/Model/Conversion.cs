@@ -38,10 +38,10 @@ namespace SIMS.Model
         {
             return tip switch
             {
-                  "Odobreno" => MedicationStatusType.accepted,
-                  "Na cekanju" => MedicationStatusType.waiting,
-                  "Odbijeno" => MedicationStatusType.rejected,
-                   _ => MedicationStatusType.waiting,
+                "Odobreno" => MedicationStatusType.accepted,
+                "Na cekanju" => MedicationStatusType.waiting,
+                "Odbijeno" => MedicationStatusType.rejected,
+                _ => MedicationStatusType.waiting,
             };
         }
 
@@ -114,6 +114,19 @@ namespace SIMS.Model
             }
             return tipovi;
         }
+
+        public static List<string> GetVacationPeriodStatusType()
+        {
+            List<string> tipovi = new List<string>();
+            foreach (VacationPeriodStatusType vacationPeriod in Enum.GetValues(typeof(VacationPeriodStatusType)))
+            {
+                string s = VacationPeriodStatusTypeToString(vacationPeriod);
+                tipovi.Add(s);
+            }
+            return tipovi;
+        }
+
+
 
         public static List<string> GetMEdicationStatusTypes()
         {
@@ -199,7 +212,7 @@ namespace SIMS.Model
                 AppointmentType.surgery => "operacija",
                 AppointmentType.renovation => "renoviranje",
                 AppointmentType.transfer => "premestanje opreme",
-               _ => "",
+                _ => "",
             };
         }
 
