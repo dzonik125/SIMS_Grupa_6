@@ -74,7 +74,7 @@ namespace Service
             }
             return false;
         }
-
+*/
 
         // public List<string> GetSpecializationString()
         // {
@@ -82,6 +82,5 @@ namespace Service
         // }
 
         public Repository.DoctorRepository doctorRepository = new Repository.DoctorRepository();
-
     }
 }

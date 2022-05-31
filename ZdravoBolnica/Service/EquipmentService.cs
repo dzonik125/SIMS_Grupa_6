@@ -22,17 +22,28 @@ namespace SIMS.Service
         public bool AddEquipment(Equipment equipment)
         {
 
-            foreach (RoomEquipment roomEquipment in roomEquipmentService.FindAll())
-            {
-                if (GetEquipmentItemNameById(roomEquipment.equipmentId).Equals(equipment.item) && roomService.GetRoomTypeById(roomEquipment.roomId).Equals("Magacin"))
-                {
-                    roomEquipment.quantity += equipment.quantity;
-                    roomEquipmentService.UpdateRoomEquipment(roomEquipment);
-                    exist = true;
-                    break;
-                }
-            }
+            IncreaseRoomEquipmentQuantity(equipment);
 
+            if (UpdateEquipmentQuantity(equipment)) return true;
+            equipmentRepository.Create(equipment);
+            RoomEquipmentDoesntExists(equipment);
+            return true;
+        }
+
+        private void RoomEquipmentDoesntExists(Equipment equipment)
+        {
+            if (!exist)
+            {
+                RoomEquipment rEquipment = new RoomEquipment();
+                rEquipment.equipmentId = GetEquipmentIdByItem(equipment);
+                rEquipment.roomId = roomService.GetRoomIdByStorage(RoomType.storage);
+                rEquipment.quantity = equipment.quantity;
+                roomEquipmentService.CreateRoomEquipment(rEquipment);
+            }
+        }
+
+        private bool UpdateEquipmentQuantity(Equipment equipment)
+        {
             foreach (Equipment e in equipmentRepository.FindAll())
             {
                 if (e.item.Equals(equipment.item))
@@ -42,18 +53,24 @@ namespace SIMS.Service
                     return true;
                 }
             }
-            equipmentRepository.Create(equipment);
-            if (!exist)
-            {
-                RoomEquipment rEquipment = new RoomEquipment();
-                rEquipment.equipmentId = GetEquipmentIdByItem(equipment);
-                rEquipment.roomId = roomService.GetRoomIdByStorage(RoomType.storage);
-                rEquipment.quantity = equipment.quantity;
-                roomEquipmentService.CreateRoomEquipment(rEquipment);
-            }
-            return true;
+
+            return false;
         }
 
+        private void IncreaseRoomEquipmentQuantity(Equipment equipment)
+        {
+            foreach (RoomEquipment roomEquipment in roomEquipmentService.FindAll())
+            {
+                if (GetEquipmentItemNameById(roomEquipment.equipmentId).Equals(equipment.item) &&
+                    roomService.GetRoomTypeById(roomEquipment.roomId).Equals("Magacin"))
+                {
+                    roomEquipment.quantity += equipment.quantity;
+                    roomEquipmentService.UpdateRoomEquipment(roomEquipment);
+                    exist = true;
+                    break;
+                }
+            }
+        }
 
 
         public bool AddEquipmentForOrder(Equipment equipment)
@@ -85,11 +102,9 @@ namespace SIMS.Service
 
 
 
-        public List<Equipment> GetiEquipmentByType(EquipmentType type)
+        public List<Equipment> GetEquipmentByType(EquipmentType type)
         {
             List<Equipment> inventory = new List<Equipment>();
-
-
             foreach (Equipment e in FindAll())
             {
                 if (e.type == type)
@@ -103,16 +118,15 @@ namespace SIMS.Service
 
         private int GetEquipmentIdByItem(Equipment equipment)
         {
-            List<Equipment> invetory = new List<Equipment>();
-            invetory = FindAll();
-            foreach (Equipment e in invetory)
+            int id = 0;
+            foreach (Equipment e in FindAll())
             {
                 if (e.item == equipment.item)
                 {
-                    return e.id;
+                    id = e.id;
                 }
             }
-            return 0;
+            return id;
         }
 
         public void UpdateQuantity(Equipment equipment)
@@ -140,30 +154,28 @@ namespace SIMS.Service
 
         public String GetEquipmentItemNameById(int id)
         {
-            List<Equipment> invetory = new List<Equipment>();
-            invetory = FindAll();
-            foreach (Equipment e in invetory)
+            string equipmentName = "";
+            foreach (Equipment e in FindAll())
             {
                 if (e.id == id)
                 {
-                    return e.item;
+                    equipmentName = e.item;
                 }
             }
-            return "";
+            return equipmentName;
         }
 
         public Equipment FindEquipmentById(int id)
         {
-            List<Equipment> invetory = new List<Equipment>();
-            invetory = FindAll();
-            foreach (Equipment e in invetory)
+            Equipment equipment = null;
+            foreach (Equipment e in FindAll())
             {
                 if (e.id == id)
                 {
-                    return e;
+                    equipment =  e;
                 }
             }
-            return null;
+            return equipment;
         }
     }
 }

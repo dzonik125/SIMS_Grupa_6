@@ -52,7 +52,7 @@ namespace SIMS.Controller
 
         public List<Equipment> GetiEquipmentByType(EquipmentType type)
         {
-            return es.GetiEquipmentByType(type);
+            return es.GetEquipmentByType(type);
         }
     }
 }

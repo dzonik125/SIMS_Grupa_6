@@ -1,10 +1,11 @@
-﻿using Controller;
-using Model;
-using SIMS.Model;
-using System;
+﻿using System;
 using System.Windows;
+using Controller;
+using Model;
+using SIMS.ManagerView.ViewModel;
+using SIMS.Model;
 
-namespace SIMS
+namespace SIMS.ManagerView
 {
 
 
@@ -18,10 +19,13 @@ namespace SIMS
         {
             room = new Room();
             InitializeComponent();
-            TypeCombo.ItemsSource = Conversion.GetRoomTypes();
+            //TypeCombo.ItemsSource = Conversion.GetRoomTypes();
+            var vm = new NewRoomViewModel();
+            DataContext = vm;
+            vm.OnRequestClose += (s, e) => Close();
         }
 
-        private void NewRoom_Click(object sender, RoutedEventArgs e)
+        /*private void NewRoom_Click(object sender, RoutedEventArgs e)
         {
             room.roomNum = Int32.Parse(RoomNum.Text);
             room.floor = Int32.Parse(Floor.Text);
@@ -52,6 +56,6 @@ namespace SIMS
         private void TypeCombo_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
 
-        }
+        }*/
     }
 }
