@@ -63,18 +63,33 @@ namespace Service
         {
             List<Room> rooms = new List<Room>();
             rooms = roomsCRUD.FindAll();
+            if (CheckIfWarehouse(room, rooms)) return true;
+            return false;
+        }
+
+        private static bool CheckIfWarehouse(Room room, List<Room> rooms)
+        {
             if (Conversion.RoomTypeToString(room.roomType).Equals("Magacin"))
             {
-                foreach (Room r in rooms)
-                {
+                if (FindWarehouse(rooms)) return true;
+            }
 
-                    if (Conversion.RoomTypeToString(r.roomType).Equals("Magacin"))
-                    {
-                        return true;
-                    }
+            return false;
+        }
+
+        private static bool FindWarehouse(List<Room> rooms)
+        {
+            bool exists = false;
+            foreach (Room r in rooms)
+            {
+                if (Conversion.RoomTypeToString(r.roomType).Equals("Magacin"))
+                {
+                    exists = true;
+                    break;
                 }
             }
-            return false;
+
+            return exists;
         }
 
         public Room findFreeRoom(DateTime dt)
@@ -123,45 +138,42 @@ namespace Service
 
         internal int GetRoomIdByStorage(RoomType storage)
         {
-            List<Room> rooms = new List<Room>();
-            rooms = FindAll();
-            foreach (Room r in rooms)
+            int idRoom = 0;
+            foreach (Room r in FindAll())
             {
                 if (Conversion.RoomTypeToString(r.roomType).Equals(Conversion.RoomTypeToString(storage)))
                 {
-                    return r.id;
+                    idRoom =  r.id;
                 }
             }
-            return 0;
+            return idRoom;
         }
 
         public int FindRoomId(int floor, int roomNum)
         {
-            List<Room> rooms = new List<Room>();
-            rooms = roomsCRUD.FindAll();
-            foreach (Room r in rooms)
+            int roomId = 0;
+            foreach (Room r in FindAll())
             {
                 if (r.floor == floor && r.roomNum == roomNum)
                 {
-                    return r.id;
+                    roomId = r.id;
                 }
             }
-            return 0;
+            return roomId;
 
         }
 
         public int FindRoomFloorByRoomId(int roomId1)
         {
-            List<Room> rooms = new List<Room>();
-            rooms = roomsCRUD.FindAll();
-            foreach (Room r in rooms)
+            int roomFloor = 0;
+            foreach (Room r in FindAll())
             {
                 if (r.id == roomId1)
                 {
-                    return r.floor;
+                    roomFloor = r.floor;
                 }
             }
-            return 0;
+            return roomFloor;
 
         }
 
@@ -176,15 +188,14 @@ namespace Service
 
         public int FindSmallerRoomNumber(int room1Id, int room2Id)
         {
-            Room room1 = new Room();
-            room1 = FindRoomById(room1Id);
-            Room room2 = new Room();
-            room2 = FindRoomById(room2Id);
+            Room room1 = FindRoomById(room1Id);
+            Room room2 = FindRoomById(room2Id);
+            int smallerRoomNum = room2.roomNum;
             if (room1.roomNum < room2.roomNum)
             {
-                return room1.roomNum;
+                smallerRoomNum = room1.roomNum;
             }
-            return room2.roomNum;
+            return smallerRoomNum;
 
         }
 
@@ -196,16 +207,15 @@ namespace Service
 
         public String GetRoomTypeById(int id)
         {
-            List<Room> rooms = new List<Room>();
-            rooms = FindAll();
-            foreach (Room r in rooms)
+            string roomType = "";
+            foreach (Room r in FindAll())
             {
                 if (r.id == id)
                 {
-                    return Conversion.RoomTypeToString(r.roomType);
+                   roomType = Conversion.RoomTypeToString(r.roomType);
                 }
             }
-            return "";
+            return roomType;
         }
 
         public Appointment getAppointmentWithRoom(Appointment appointment, DateRange dateRange)
@@ -223,7 +233,7 @@ namespace Service
             return null;
         }
 
-        public void findRoomForAppointment(Appointment appointment, DateRange dateRange, List<Appointment> returnAppointmets)
+       /* public void findRoomForAppointment(Appointment appointment, DateRange dateRange, List<Appointment> returnAppointmets)
         {
             Appointment a = new Appointment();
             List<Room> rooms = FindAll();
@@ -237,7 +247,7 @@ namespace Service
             }
             return null;
         }
-
+*/
         public bool checkIfRoomIsBusy(Room r, DateRange dateRange)
         {
             AppointmentService appointmentService = new AppointmentService();

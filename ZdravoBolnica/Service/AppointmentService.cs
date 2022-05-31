@@ -389,12 +389,12 @@ namespace Service
 
 
         private bool checkIfRoomAndDoctorAreFree(Appointment potentialAppointment, DateRange dateRange)
-        {
+        {/*
             RoomService roomService = new RoomService();
             DoctorService doctorService = new DoctorService();
             if (roomService.getAppointmentWithRoom(potentialAppointment, dateRange) == null
                 || doctorService.getAppointmentWithDoctor(potentialAppointment, dateRange) == null)
-                return false;
+                return false;*/
             return true;
         }
 

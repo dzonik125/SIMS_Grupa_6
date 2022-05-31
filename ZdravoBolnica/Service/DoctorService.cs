@@ -48,7 +48,7 @@ namespace Service
         {
             return doctorRepository.FindById(id);
         }
-        public List<Doctor> findBySpecialization(Specialization spec)
+      /*  public List<Doctor> findBySpecialization(Specialization spec)
         {
             return doctorRepository.findBySpecialization(spec);
         }
@@ -80,7 +80,7 @@ namespace Service
             }
             return false;
         }
-
+*/
 
         // public List<string> GetSpecializationString()
         // {
@@ -90,7 +90,7 @@ namespace Service
         public Repository.DoctorRepository doctorRepository = new Repository.DoctorRepository();
 
 
-        public Appointment getAppointmentWithDoctor(Appointment appointment, DateRange dateRange)
+       /* public Appointment getAppointmentWithDoctor(Appointment appointment, DateRange dateRange)
         {
 
             List<Doctor> doctors = findBySpecialization(dateRange.specializationType);
@@ -116,7 +116,7 @@ namespace Service
                     return true;
             }
             return false;
-        }
+        }*/
 
     }
 }
