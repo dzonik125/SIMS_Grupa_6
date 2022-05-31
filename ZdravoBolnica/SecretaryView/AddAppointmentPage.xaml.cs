@@ -65,7 +65,7 @@ namespace SIMS.SecretaryView
                 a.duration = 90;
 
             // a.duration = int.Parse(Duration.Text);
-            CreateAppointment appointments = CreateAppointment.Instance;
+            CreateAppointmentPage appointments = CreateAppointmentPage.Instance;
 
             // if (ac.IntersectionWithAppointments(a.patient.id, a.Doctor.id, a.Room.id, a.startTime, a.duration))
             // {
@@ -84,7 +84,7 @@ namespace SIMS.SecretaryView
         private bool ValidationAppointment(Appointment appointment)
         {
             AppointmentController appointmentController = new AppointmentController();
-            List<Appointment> appointments = appointmentController.GetAllApointments();
+            List<Appointment> appointments = appointmentController.GetAllAppointments();
             foreach (Appointment a in appointments)
             {
                 if (a.GetEndTime() > appointment.startTime && a.startTime < appointment.GetEndTime() && !a.id.Equals(appointment.id))

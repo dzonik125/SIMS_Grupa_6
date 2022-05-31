@@ -53,10 +53,10 @@ namespace SIMS
             InitializeComponent();
             this.DataContext = this;
             list = new ObservableCollection<Appointment>();
-            List<Appointment> apps = ac.getFutureAppointmentsForPatient(1);
+            List<Appointment> apps = ac.GetFutureAppointmentsForPatient(1);
             foreach (Appointment a in apps)
             {
-                Doctor d = dc.GetDoctorByID(a.Doctor.id);
+                Doctor d = dc.GetDoctorById(a.Doctor.id);
                 a.Doctor = d;
                 Room r = rc.FindRoomById(a.Room.id);
                 a.Room = r;
@@ -135,11 +135,11 @@ namespace SIMS
         public void refresh()
         {
             list.Clear();
-            List<Appointment> allAppointments = ac.GetAllApointments();
+            List<Appointment> allAppointments = ac.GetAllAppointments();
             List<Doctor> doctors = dc.GetAllDoctors();
             List<Room> rooms = rc.FindAll();
-            ac.bindDoctorsWithAppointments(doctors, allAppointments);
-            ac.bindRoomsWithAppointments(rooms, allAppointments);
+            ac.BindDoctorsWithAppointments(doctors, allAppointments);
+            ac.BindRoomsWithAppointments(rooms, allAppointments);
             foreach (Appointment a in allAppointments)
             {
                 list.Add(a);

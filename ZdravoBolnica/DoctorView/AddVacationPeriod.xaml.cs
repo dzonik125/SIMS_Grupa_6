@@ -1,20 +1,8 @@
 ﻿using SIMS.Controller;
 using SIMS.Model;
-using SIMS.Service;
 using SIMS.Util;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using static SIMS.Model.VacationPeriodStatus;
 
 namespace SIMS.DoctorView
@@ -32,8 +20,8 @@ namespace SIMS.DoctorView
 
         private void Accept_Click(object sender, RoutedEventArgs e)
         {
-          
-            if((StartTime.SelectedDate == null) || (EndTime.SelectedDate == null) || Comment.Text.Equals(""))
+
+            if ((StartTime.SelectedDate == null) || (EndTime.SelectedDate == null) || Comment.Text.Equals(""))
             {
                 MessageBox.Show("Popunite sva polja!");
                 return;
@@ -44,12 +32,12 @@ namespace SIMS.DoctorView
             TimeSpan ts = dateRange.endTime - dateRange.startTime;
             dateRange.duration = ts.TotalMinutes;
 
-            if(dateRange.startTime < DateTime.Now.AddDays(2))
+            if (dateRange.startTime < DateTime.Now.AddDays(2))
             {
                 MessageBox.Show("Morate zakazati minimalno dva dana ranije!");
                 return;
             }
-            
+
             if (vacationPeriodController.checkIfDoctorHasAppoinmentsInPeriod(DoctorWindow.Instance.doctorUser, dateRange) && (bool)Urgent.IsChecked == false)
             {
                 MessageBox.Show("Imate zakazane termine u ovom periodu!");
@@ -69,6 +57,7 @@ namespace SIMS.DoctorView
             }
             VacationPeriod vacationPeriod = new();
             vacationPeriod.comment = Comment.Text;
+            vacationPeriod.rejectComment = "";
             vacationPeriod.doctor = DoctorWindow.Instance.doctorUser;
             vacationPeriod.StartTime = dateRange.startTime;
             vacationPeriod.EndTime = dateRange.endTime;

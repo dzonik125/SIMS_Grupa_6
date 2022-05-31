@@ -1,9 +1,5 @@
 ﻿using Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static SIMS.Model.VacationPeriodStatus;
 
 namespace SIMS.Model
@@ -14,7 +10,9 @@ namespace SIMS.Model
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 
-        public String comment { get; set; } 
+        public String comment { get; set; }
+
+        public String rejectComment { get; set; }
 
         public Doctor doctor { get; set; }
 
@@ -58,7 +56,8 @@ namespace SIMS.Model
             EndTime = DateTime.Parse(values[3]);
             status = Conversion.StringToVacationStatusType(values[4]);
             comment = values[5];
-            type = Conversion.StringToVacationPeriodType(values[6]);
+            rejectComment = values[6];
+            type = Conversion.StringToVacationPeriodType(values[7]);
         }
 
         public string[] ToCSV()
@@ -71,6 +70,7 @@ namespace SIMS.Model
                 EndTime.ToString(),
                 Conversion.VacationPeriodStatusTypeToString(status),
                 comment,
+                rejectComment,
                 Conversion.VacationPeriodTypeToString(type),
             };
             return values;

@@ -1,3 +1,0 @@
-1|1|1|True|Magacin
-8|7|3|False|Prostorija za preglede
-9|2|1|False|Bolesnička soba

@@ -166,10 +166,6 @@ namespace SIMS.SecretaryView
                 mr.medications = medications.ToList<Medication>();
             }
 
-
-
-
-
             selectedPatient.name = Name.Text;
             System.Diagnostics.Trace.WriteLine(selectedPatient.name);
             selectedPatient.surname = Surname.Text;

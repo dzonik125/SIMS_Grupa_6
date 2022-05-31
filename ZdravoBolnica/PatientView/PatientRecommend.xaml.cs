@@ -175,7 +175,7 @@ namespace SIMS.PatientView
                 return;
             }
 
-            List<DateTime> dates = ac.getTenNextFreeAppointmentsForDoctor(id);
+            List<DateTime> dates = ac.GetTenNextFreeAppointmentsForDoctor(id);
             
 
             foreach (DateTime dt in dates)
@@ -364,12 +364,12 @@ namespace SIMS.PatientView
             if (dp1.SelectedDate != null)
             {
 
-                List<String> toTry = ac.getFirstFiveFreeApointmentsForDate(start, finish);
+                List<String> toTry = ac.GetFirstFiveFreeAppointmentsForDate(start, finish);
                 for (int i = 0; i < toTry.Count; i++)
                 {
                     cb3.Items.Add(toTry.ElementAt(i).Split(' ')[0] + " " + toTry.ElementAt(i).Split(' ')[1] + " " +
                                   toTry.ElementAt(i).Split(' ')[2] + " " +
-                                  dc.GetDoctorByID(Int32.Parse(toTry.ElementAt(i).Split(' ')[3])).FullName);
+                                  dc.GetDoctorById(Int32.Parse(toTry.ElementAt(i).Split(' ')[3])).FullName);
                 }
 
                 //tb1.Text = ac.getFirstFreeAppointment(start, finish).Split("=")[0];
@@ -398,12 +398,12 @@ namespace SIMS.PatientView
             start = dp1.SelectedDate;
             if (dp2.SelectedDate != null)
             {
-                List<String> toTry = ac.getFirstFiveFreeApointmentsForDate(start, finish);
+                List<String> toTry = ac.GetFirstFiveFreeAppointmentsForDate(start, finish);
                 for (int i = 0; i < toTry.Count; i++)
                 {
                     cb3.Items.Add(toTry.ElementAt(i).Split(' ')[0] + " " + toTry.ElementAt(i).Split(' ')[1] + " " +
                                   toTry.ElementAt(i).Split(' ')[2] + " " +
-                                  dc.GetDoctorByID(Int32.Parse(toTry.ElementAt(i).Split(' ')[3])).FullName);
+                                  dc.GetDoctorById(Int32.Parse(toTry.ElementAt(i).Split(' ')[3])).FullName);
                 }
                 //tb1.Text = ac.getFirstFreeAppointment(start, finish).Split("=")[0];
             }
@@ -438,10 +438,10 @@ namespace SIMS.PatientView
                     }
                 }
 
-                ac.getTenNextAppointmentsForDoctorForDate(start, finish, id);
-                for (int i = 0; i < ac.getTenNextAppointmentsForDoctorForDate(start, finish, id).Count; i++)
+                ac.GetTenNextAppointmentsForDoctorForDate(start, finish, id);
+                for (int i = 0; i < ac.GetTenNextAppointmentsForDoctorForDate(start, finish, id).Count; i++)
                 {
-                    cb5.Items.Add(ac.getTenNextAppointmentsForDoctorForDate(start, finish, id).ElementAt(i));
+                    cb5.Items.Add(ac.GetTenNextAppointmentsForDoctorForDate(start, finish, id).ElementAt(i));
                 }
             }
 
@@ -475,10 +475,10 @@ namespace SIMS.PatientView
                     }
                 }
 
-                ac.getTenNextAppointmentsForDoctorForDate(start, finish, id);
-                for (int i = 0; i < ac.getTenNextAppointmentsForDoctorForDate(start, finish, id).Count; i++)
+                ac.GetTenNextAppointmentsForDoctorForDate(start, finish, id);
+                for (int i = 0; i < ac.GetTenNextAppointmentsForDoctorForDate(start, finish, id).Count; i++)
                 {
-                    cb5.Items.Add(ac.getTenNextAppointmentsForDoctorForDate(start, finish, id).ElementAt(i));
+                    cb5.Items.Add(ac.GetTenNextAppointmentsForDoctorForDate(start, finish, id).ElementAt(i));
                 }
             }
         }
@@ -498,10 +498,10 @@ namespace SIMS.PatientView
                     }
                 }
 
-                ac.getTenNextAppointmentsForDoctorForDate(start, finish, id);
-                for (int i = 0; i < ac.getTenNextAppointmentsForDoctorForDate(start, finish, id).Count; i++)
+                ac.GetTenNextAppointmentsForDoctorForDate(start, finish, id);
+                for (int i = 0; i < ac.GetTenNextAppointmentsForDoctorForDate(start, finish, id).Count; i++)
                 {
-                    cb5.Items.Add(ac.getTenNextAppointmentsForDoctorForDate(start, finish, id).ElementAt(i));
+                    cb5.Items.Add(ac.GetTenNextAppointmentsForDoctorForDate(start, finish, id).ElementAt(i));
                 }
             }
         }

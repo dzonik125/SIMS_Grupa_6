@@ -1,5 +1,5 @@
 1|marko|||1234|marelegenda|1|||||False|0|2
-2|stefan|markovic||||1|||689887||True|0|0
+2|stefan|markovic||||1|||689887||False|1|2
 3|jovan|peric||||2|||3271341873||True|0|0
 4|luka|lukic||||3|||12871871||True|0|0
 5|nikola|nikolic||||4|||||False|1|1

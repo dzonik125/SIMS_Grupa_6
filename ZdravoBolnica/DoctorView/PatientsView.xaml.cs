@@ -79,7 +79,7 @@ namespace SIMS.DoctorView
                 return;
             }else
             {
-                Appointment a = appointmentController.findPatientAppointment(selectedPatient);
+                Appointment a = appointmentController.FindPatientAppointment(selectedPatient);
                 if(a == null)
                 {
                     MessageBox.Show("Izabrani pacijent nema ni jedan zakazan termin u ovom periodu!");

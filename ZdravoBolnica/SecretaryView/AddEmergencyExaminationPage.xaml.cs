@@ -75,7 +75,7 @@ namespace SIMS.SecretaryView
 
             app = new Appointment();
 
-            app = ac.getFirstFreeAppointmentInOneHour(Conversion.StringToSpecialization(spec), (Patient)PatientBox.SelectedItem);
+            app = ac.GetFirstFreeAppointmentInOneHour(Conversion.StringToSpecialization(spec), (Patient)PatientBox.SelectedItem);
             if (app != null)
             {
                 TimeBox.Items.Add(app.startTime);
@@ -84,17 +84,11 @@ namespace SIMS.SecretaryView
             }
             else
             {
-                first = ac.getFirstAppointmentForDoctor(ac.getAppointmentsForDoctors(dc.findBySpecialization(Conversion.StringToSpecialization(spec))));
+                first = ac.GetFirstAppointmentForDoctor(ac.GetAppointmentsForDoctors(dc.FindBySpecialization(Conversion.StringToSpecialization(spec))));
                 patient = (Patient)PatientBox.SelectedItem;
                 TimeBox.Items.Add(first.startTime);
             }
-
-
-
-
-
-
-
+            
             //  System.Diagnostics.Trace.WriteLine(help);
             // int id = -1;
 

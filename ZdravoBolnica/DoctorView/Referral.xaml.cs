@@ -28,14 +28,14 @@ namespace SIMS.DoctorView
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+
 
 
             Appointment a = new Appointment();
             Appointment temp = (Time.SelectedItem as Appointment);
             a.startTime = temp.startTime;
             a.Room = temp.Room;
-            a.Doctor = dc.findBySpecialization(Conversion.StringToSpecialization(SpecializationBox.Text))[0];
+            a.Doctor = dc.FindBySpecialization(Conversion.StringToSpecialization(SpecializationBox.Text))[0];
             a.duration = int.Parse(Duration.Text);
             a.patient = selectedPatient;
             if ((bool)Surgery.IsChecked)

@@ -10,48 +10,34 @@ namespace Controller
 {
     public class DoctorController
     {
+        public Service.DoctorService doctorService = new Service.DoctorService();
         public Doctor findFreeDoctor()
         {
             return null;
         }
-
         public List<Doctor> GetAllDoctors()
         {
             return doctorService.GetAllDoctors();
         }
-
         public void UpdateDoctor(Doctor d)
         {
             throw new NotImplementedException();
         }
-
-        public List<Doctor> findBySpecialization(Specialization spec)
+        public List<Doctor> FindBySpecialization(Specialization specialization)
         {
-            return doctorService.findBySpecialization(spec);
+            return doctorService.findBySpecialization(specialization);
         }
-
-        public void DeleteDoctor(Doctor d)
+        public void DeleteDoctor(Doctor doctor)
         {
             throw new NotImplementedException();
         }
-
-        public void SaveDoctor(Doctor d)
+        public void SaveDoctor(Doctor doctor)
         {
-            doctorService.SaveDoctor(d);
+            doctorService.SaveDoctor(doctor);
         }
-
-        public Doctor GetDoctorByID(int id)
+        public Doctor GetDoctorById(int id)
         {
             return doctorService.GetDoctorByID(id);
         }
-
-        // public List<string> GetSpecializationString()
-        // {
-
-        //     return doctorService.GetSpecializationString();
-        //  }
-
-        public Service.DoctorService doctorService = new Service.DoctorService();
-
     }
 }

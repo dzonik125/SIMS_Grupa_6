@@ -61,11 +61,11 @@ namespace SIMS.DoctorView
         {
             Apps.Clear();
             List<Appointment> appointments = new();
-            appointments = appController.getFutureAppointmentsForDoctor(doctorUser.id);
+            appointments = appController.GetFutureAppointmentsForDoctor(doctorUser.id);
             List<Patient> patients = patientController.FindAllAccounts();
             List<Room> rooms = roomController.FindAll();
-            appController.bindPatientsWithAppointments(patients, appointments);
-            appController.bindRoomsWithAppointments(rooms, appointments);
+            appController.BindPatientsWithAppointments(patients, appointments);
+            appController.BindRoomsWithAppointments(rooms, appointments);
 
             foreach (Appointment a in appointments)
             {

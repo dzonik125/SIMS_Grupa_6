@@ -134,8 +134,8 @@ namespace SIMS.DoctorView
             List <Doctor> doctors = doctorController.GetAllDoctors();
             erc.bindReporswithDoctors(exReports, doctors);
             List<Room> rooms = roomController.FindAll();
-            List<Appointment> appointments = appointmentController.GetAllApointments();
-            appointmentController.bindRoomsWithAppointments(rooms, appointments);
+            List<Appointment> appointments = appointmentController.GetAllAppointments();
+            appointmentController.BindRoomsWithAppointments(rooms, appointments);
             erc.bindReportswithAppointments(exReports, appointments);
 
             foreach (ExaminationReport e in exReports)
@@ -178,7 +178,7 @@ namespace SIMS.DoctorView
         {
            
             
-            Appointment a = appointmentController.findPatientAppointment(patient);
+            Appointment a = appointmentController.FindPatientAppointment(patient);
             if (a == null)
             {
                 MessageBox.Show("Izabrani pacijent nema ni jedan zakazan termin u ovom periodu!");

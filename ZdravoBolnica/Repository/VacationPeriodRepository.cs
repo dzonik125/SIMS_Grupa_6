@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Model;
+﻿using Model;
 using Repository;
 using SIMS.Model;
+using System;
+using System.Collections.Generic;
 
 namespace SIMS.Repository
 {
@@ -32,7 +29,7 @@ namespace SIMS.Repository
         {
             List<VacationPeriod> toReturn = new List<VacationPeriod>();
             List<VacationPeriod> vacationPeriods = FindAll();
-            foreach(VacationPeriod v in vacationPeriods)
+            foreach (VacationPeriod v in vacationPeriods)
             {
                 if (v.doctor.id == id)
                     toReturn.Add(v);
@@ -56,12 +53,36 @@ namespace SIMS.Repository
 
         public VacationPeriod FindById(int key)
         {
-            throw new NotImplementedException();
+            List<VacationPeriod> vacationPeriods = FindAll();
+            foreach (VacationPeriod vacationPeirod in vacationPeriods)
+            {
+                if (vacationPeirod.id == key)
+                {
+                    return vacationPeirod;
+                }
+            }
+            return null;
         }
 
         public void Update(VacationPeriod entity)
         {
-            throw new NotImplementedException();
+            List<VacationPeriod> vacationPeriods = FindAll();
+            foreach (VacationPeriod vacationPeriod in vacationPeriods)
+            {
+                if (vacationPeriod.id.Equals(entity.id))
+                {
+                    vacationPeriod.StartTime = entity.StartTime;
+                    vacationPeriod.EndTime = entity.EndTime;
+                    vacationPeriod.comment = entity.comment;
+                    vacationPeriod.rejectComment = entity.rejectComment;
+                    vacationPeriod.doctor = entity.doctor;
+                    vacationPeriod.status = entity.status;
+                    vacationPeriod.type = entity.type;
+                    break;
+                }
+            }
+            vacationPeriodSerilizer.toCSV(filename, vacationPeriods);
+
         }
     }
 }

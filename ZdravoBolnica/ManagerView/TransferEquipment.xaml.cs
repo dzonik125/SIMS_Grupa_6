@@ -63,13 +63,13 @@ namespace SIMS
             String dateAndTime = DatePicker.Text + " " + Time.Text;
             DateTime transferDate = DateTime.Parse(dateAndTime);
             int duration = int.Parse(Duration.Text);
-            if (ac.isRoomOccupied(roomDestination,transferDate,duration))
+            if (ac.IsRoomOccupied(roomDestination,transferDate,duration))
             {
                 MessageBox.Show("Soba u koju premestate opremu nije slobodna u ovo vreme");
                 return;
             }
 
-            if (ac.isRoomOccupied(roomSource, transferDate, duration))
+            if (ac.IsRoomOccupied(roomSource, transferDate, duration))
             {
                 MessageBox.Show("Soba iz koje premestate opremu nije slobodna u ovo vreme");
                 return;
