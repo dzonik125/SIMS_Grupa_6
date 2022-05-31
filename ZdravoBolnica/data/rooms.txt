@@ -1,8 +1,0 @@
-1|1|1|True|Magacin
-2|2|1|True|Operaciona sala
-3|5|1|False|Operaciona sala
-4|5|1|False|Operaciona sala
-5|5|1|False|Operaciona sala
-6|5|1|False|Operaciona sala
-7|5|1|False|Operaciona sala
-8|7|3|False|Prostorija za preglede

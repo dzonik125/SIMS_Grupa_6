@@ -17,30 +17,25 @@ namespace SIMS.Service
         private RoomEquipmentService res = new RoomEquipmentService();
         public void MoveInventory()
         {
-            List<EquipmentTransfer> moveEquipment = new List<EquipmentTransfer>();
-            moveEquipment = etr.FindAll();
-            foreach (EquipmentTransfer et in moveEquipment)
+            foreach (EquipmentTransfer et in etr.FindAll())
             {
                 if (DateTime.Compare(DateTime.Now, et.transferDate) == 0 || DateTime.Compare(et.transferDate, DateTime.Now) < 0)
                 {
-
-                    App.Current.Dispatcher.Invoke((Action)delegate
-                    {
-                        Room rSource = new Room();
-                        rSource = rs.FindRoomById(et.roomSourceId);
-                        Room rDestionation = new Room();
-                        rDestionation = rs.FindRoomById(et.roomDestiantionId);
-                        Equipment equip = new Equipment();
-                        equip = es.FindEquipmentById(et.equipmentId);
-                        res.TransferEquipment(rSource, rDestionation, equip, et.quantity);
-                        etr.Remove(et);
-                    });
+                    InvokeTimer(et);
                 }
 
 
             }
         }
 
+        private void InvokeTimer(EquipmentTransfer et)
+        {
+            App.Current.Dispatcher.Invoke((Action)delegate
+            {
+                res.TransferEquipment(et);
+                etr.Remove(et);
+            });
+        }
 
 
         public void SaveTransfer(Room roomSource, Room roomDestination, DateTime transferDate, int quantity, Equipment equipment)
