@@ -155,13 +155,8 @@ namespace SIMS
         public void refreshRoomInventoryTable(Room r)
         {
             listRoomInventory.Clear();
-           
-            List<Equipment> allInventory = new List<Equipment>();
-            allInventory = ec.FindAll();
-            List<RoomEquipment> roomEquipment = new List<RoomEquipment>();
-            roomEquipment = rec.FindAll();
             List<Equipment> roomInventory = new List<Equipment>();
-            roomInventory = rec.GetRoomEquipment(allInventory, roomEquipment,r.id);
+            roomInventory = rec.GetRoomEquipment(ec.FindAll(),r.id);
             foreach (Equipment e in roomInventory)
             {
                 listRoomInventory.Add(e);
@@ -200,9 +195,6 @@ namespace SIMS
 
             EditRoom er = new EditRoom(selectedRoom);
             er.ShowDialog();
-
-
-
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

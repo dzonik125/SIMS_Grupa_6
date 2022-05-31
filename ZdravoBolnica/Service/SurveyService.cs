@@ -20,7 +20,6 @@ namespace SIMS.Service
         {
             return sr.FindAll();
         }
-
         public void CreateSurveysForPatient(int id)
         {
             List<Appointment> apps = aser.GetAllAppointmentsForPatient(id);

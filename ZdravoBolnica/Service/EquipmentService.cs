@@ -75,10 +75,21 @@ namespace SIMS.Service
 
         public bool AddEquipmentForOrder(Equipment equipment)
         {
-            List<Equipment> inventory = new List<Equipment>();
-            inventory = efo.FindAll();
-            //bool exist = false;
-            foreach (Equipment e in inventory)
+            bool exist = false;
+            if (CheckForUpdateAndUpdate(equipment))
+            {
+                exist = true;
+            }
+            else
+            {
+                efo.Create(equipment);
+            }
+            return exist;
+        }
+
+        private bool CheckForUpdateAndUpdate(Equipment equipment)
+        {
+            foreach (Equipment e in efo.FindAll())
             {
                 if (e.item.Equals(equipment.item))
                 {
@@ -87,16 +98,8 @@ namespace SIMS.Service
                     return true;
                 }
             }
-            efo.Create(equipment);
-            /*     if (!exist)
-                 {
-                     RoomEquipment rEquipment = new RoomEquipment();
-                     rEquipment.equipmentId = GetEquipmentIdByItem(equipment);
-                     rEquipment.roomId = rs.GetRoomIdByStorage(RoomType.storage);
-                     rEquipment.quantity = equipment.quantity;
-                     res.CreateRoomEquipment(rEquipment);
-                 }*/
-            return true;
+
+            return false;
         }
 
 

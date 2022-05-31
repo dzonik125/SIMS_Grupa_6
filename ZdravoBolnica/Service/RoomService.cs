@@ -69,12 +69,13 @@ namespace Service
 
         private static bool CheckIfWarehouse(Room room, List<Room> rooms)
         {
+            bool exists = false;
             if (Conversion.RoomTypeToString(room.roomType).Equals("Magacin"))
             {
-                if (FindWarehouse(rooms)) return true;
+                if (FindWarehouse(rooms)) exists = true;
             }
 
-            return false;
+            return exists;
         }
 
         private static bool FindWarehouse(List<Room> rooms)
@@ -94,49 +95,78 @@ namespace Service
 
         public Room findFreeRoom(DateTime dt)
         {
-
             bool roomIsFree = false;
+            Room room = null;
+            room = FindIfFreeRoomExists(dt, roomIsFree);
+            return room;
+        }
 
-            List<Room> rooms = roomsCRUD.FindAll();
-
-            foreach (Room r in rooms)
+        private Room FindIfFreeRoomExists(DateTime dt, bool roomIsFree)
+        {
+            Room room = null;
+            foreach (Room r in roomsCRUD.FindAll())
             {
-                Room temp = new();
-                temp = r;
-                temp.appointment = new AppointmentRepository().FindByRoomId(r.id);
-                if (temp.appointment.Count == 0)
-                {
-                    roomIsFree = true;
-                }
-
+                var temp = TemporaryRoom(r);
+                roomIsFree = RoomIsFree(temp, roomIsFree);
                 if (temp.roomType != RoomType.examination)
                 {
                     continue;
                 }
-
-                foreach (Appointment app in temp.appointment)
-                {
-
-
-                    if (!(app.startTime.AddMinutes(app.duration) <= dt && app.startTime <= dt || (dt.AddMinutes(30) <= app.startTime && dt <= app.startTime)))
-                    {
-                        roomIsFree = false;
-                    }
-                    else
-                    {
-                        roomIsFree = true;
-                    }
-                }
-
-                if (roomIsFree)
-                {
-                    return r;
-                }
+                roomIsFree = CheckAppointmentDurationInRoom(dt, temp);
+                room = CheckIfRoomIsFree(roomIsFree, r);
             }
-            return null;
+            return room;
         }
 
-        internal int GetRoomIdByStorage(RoomType storage)
+        private static Room CheckIfRoomIsFree(bool roomIsFree, Room r)
+        {
+            Room room = null;
+            if (roomIsFree)
+            {
+                room = r;
+            }
+            return room;
+        }
+
+        private static bool CheckAppointmentDurationInRoom(DateTime dt, Room temp)
+        {
+            bool roomIsFree = false;
+            foreach (Appointment app in temp.appointment)
+            {
+                roomIsFree = CompareIfAppointmentsAreInTheSameTime(dt, app);
+            }
+
+            return roomIsFree;
+        }
+
+        private static bool CompareIfAppointmentsAreInTheSameTime(DateTime dt, Appointment app)
+        {
+            bool roomIsFree = true;
+            if (!(app.startTime.AddMinutes(app.duration) <= dt && app.startTime <= dt || (dt.AddMinutes(30) <= app.startTime && dt <= app.startTime)))
+            {
+                roomIsFree = false;
+            }
+            return roomIsFree;
+        }
+
+        private static Room TemporaryRoom(Room r)
+        {
+            Room temp = new();
+            temp = r;
+            temp.appointment = new AppointmentRepository().FindByRoomId(r.id);
+            return temp;
+        }
+
+        private static bool RoomIsFree(Room temp, bool roomIsFree)
+        {
+            if (temp.appointment.Count == 0)
+            {
+                roomIsFree = true;
+            }
+            return roomIsFree;
+        }
+
+        public int GetRoomIdByStorage(RoomType storage)
         {
             int idRoom = 0;
             foreach (Room r in FindAll())
@@ -220,9 +250,7 @@ namespace Service
 
         public Appointment getAppointmentWithRoom(Appointment appointment, DateRange dateRange)
         {
-
-            List<Room> rooms = getRoomsByType(dateRange.type);
-            foreach (Room r in rooms)
+            foreach (Room r in getRoomsByType(dateRange.type))
             {
                 if (!checkIfRoomIsBusy(r, dateRange))
                 {
@@ -233,31 +261,31 @@ namespace Service
             return null;
         }
 
-       /* public void findRoomForAppointment(Appointment appointment, DateRange dateRange, List<Appointment> returnAppointmets)
-        {
-            Appointment a = new Appointment();
-            List<Room> rooms = FindAll();
-            foreach (Room r in rooms)
-            {
-                if (!checkIfRoomIsBusy(r, dateRange))
-                {
-                    appointment.Room = r;
-                    return appointment;
-                }
-            }
-            return null;
-        }
-*/
+        /* public void findRoomForAppointment(Appointment appointment, DateRange dateRange, List<Appointment> returnAppointmets)
+         {
+             Appointment a = new Appointment();
+             List<Room> rooms = FindAll();
+             foreach (Room r in rooms)
+             {
+                 if (!checkIfRoomIsBusy(r, dateRange))
+                 {
+                     appointment.Room = r;
+                     return appointment;
+                 }
+             }
+             return null;
+         }
+ */
         public bool checkIfRoomIsBusy(Room r, DateRange dateRange)
         {
+            bool roomIsBusy = false;
             AppointmentService appointmentService = new AppointmentService();
-            List<Appointment> appointments = appointmentService.getAppointmentsByRoomId(r.id);
-            foreach (Appointment a in appointments)
+            foreach (Appointment a in appointmentService.getAppointmentsByRoomId(r.id))
             {
                 if (dateRange.checkForIntersection(a.startTime, a.duration))
-                    return true;
+                    roomIsBusy = true;
             }
-            return false;
+            return roomIsBusy;
         }
 
 

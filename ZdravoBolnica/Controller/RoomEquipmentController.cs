@@ -22,14 +22,19 @@ namespace SIMS.Controller
             return res.FindAll();
         }
 
-        public List<Equipment> GetRoomEquipment(List<Equipment> allInventory, List<RoomEquipment> roomEquipment, int roomId)
+        public List<Equipment> GetRoomEquipment(List<Equipment> allInventory, int roomId)
         {
-            return res.GetRoomEquipment(allInventory, roomEquipment, roomId);
+            return res.GetRoomEquipment(allInventory,  roomId);
         }
 
         public void TransferEquipment(Room roomSource, Room roomDestination , Equipment selectedEquipment, int quantity)
         {
-            res.TransferEquipment(roomSource,roomDestination, selectedEquipment, quantity);
+            EquipmentTransfer equipmentTransfer = new EquipmentTransfer();
+            equipmentTransfer.quantity = quantity;
+            equipmentTransfer.equipmentId = selectedEquipment.id;
+            equipmentTransfer.roomDestiantionId = roomDestination.id;
+            equipmentTransfer.roomSourceId = roomSource.id;
+            res.TransferEquipment(equipmentTransfer);
         }
     }
 }

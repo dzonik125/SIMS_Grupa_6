@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SIMS.Model;
 
 namespace SIMS.Controller
 {
@@ -14,7 +15,13 @@ namespace SIMS.Controller
 
         public void SaveRoomsMerging(Room room1, Room room2, RoomType roomType, DateTime startTimeRenovation, DateTime endTimeRenovation)
         {
-            _mergeRoomsService.SaveRoomMerging(room1, room2, roomType, startTimeRenovation, endTimeRenovation);
+            MergeRooms mergeRooms = new MergeRooms();
+            mergeRooms.roomId1 = room1.id;
+            mergeRooms.roomId2 = room2.id;
+            mergeRooms.endDate = endTimeRenovation;
+            mergeRooms.startDate = startTimeRenovation;
+            mergeRooms.newRoomType = roomType;
+            _mergeRoomsService.SaveRoomMerging( mergeRooms);
         }
 
 
