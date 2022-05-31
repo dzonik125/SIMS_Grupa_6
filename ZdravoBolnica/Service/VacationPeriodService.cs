@@ -45,6 +45,8 @@ namespace SIMS.Service
             return false;
         }
 
+
+
         public List<VacationPeriod> findAllByDoctorId(int id)
         {
             return vacationPeriodRepository.findAllByDoctorId(id);
