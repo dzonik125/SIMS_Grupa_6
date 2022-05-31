@@ -74,7 +74,7 @@ namespace Service
             }
             return false;
         }
-*/
+
 
         // public List<string> GetSpecializationString()
         // {
