@@ -64,8 +64,6 @@ namespace SIMS.SecretaryView
 
         private void InitRoom()
         {
-
-
             int index = 0;
             rooms = roomController.FindAll();
             RoomBox.ItemsSource = rooms;

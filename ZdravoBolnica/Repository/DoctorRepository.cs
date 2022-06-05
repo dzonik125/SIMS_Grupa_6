@@ -37,8 +37,6 @@ namespace Repository
             return doctorSerializer.fromCSV(filename);
         }
 
-
-
         public Doctor FindById(int key)
         {
             List<Doctor> doctors = FindAll();
@@ -72,7 +70,7 @@ namespace Repository
         }
 
         public List<Doctor> findBySpecialization(Specialization specialization)
-        {   
+        {
             List<Doctor> doctors = FindAll();
             List<Doctor> returnDoctors = new List<Doctor>();
             foreach (Doctor d in doctors)

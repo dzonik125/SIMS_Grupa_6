@@ -10,50 +10,36 @@ namespace SIMS.Service
     class OrderEquipmentService
     {
         public OrderEquipmentRepository orderEquipmentRepository = new OrderEquipmentRepository();
-        private EquipmentRepository er = new EquipmentRepository();
         private EquipmentService equipmentService = new EquipmentService();
-        private RoomService rs = new RoomService();
-        private EquipmentService es = new EquipmentService();
         private BindingList<Equipment> equipmentList = new BindingList<Equipment>();
-        //private List<OrderEquipment> orderEquipment;
-        private Equipment equipment = new Equipment();
+        private Equipment equipmentForAdd = new Equipment();
         public void CreateOrder()
-        {
-            //orderEquipment = oer.FindAll();
-            CheckIsTimeNow();
-        }
-
-        public void CheckIsTimeNow()
         {
             foreach (OrderEquipment order in orderEquipmentRepository.FindAll())
             {
                 if (DateTime.Compare(DateTime.Now, order.transferDate) == 0 || DateTime.Compare(order.transferDate, DateTime.Now) < 0)
                 {
-                    DispatcherForAdd();
+                    InvokeTimer();
                     orderEquipmentRepository.Remove(order);
                 }
             }
         }
-        public void DispatcherForAdd()
+
+        private void InvokeTimer()
         {
             App.Current.Dispatcher.Invoke((Action)delegate
             {
-                AddEquipmentToStorage();
+                foreach (Equipment equipment in equipmentList)
+                {
+                    equipmentForAdd = equipment;
+                    equipmentService.AddEquipment(equipmentForAdd);
+                }
             });
         }
 
-        public void AddEquipmentToStorage()
+        public void SaveOrder(OrderEquipment orderEquipment)
         {
-            foreach (Equipment e in equipmentList)
-            {
-                equipment = e;
-                equipmentService.AddEquipment(equipment);
-            }
-        }
-
-        public void SaveOrder(OrderEquipment equipment)
-        {
-            orderEquipmentRepository.Create(equipment);
+            orderEquipmentRepository.Create(orderEquipment);
         }
 
         public void SendEquipment(BindingList<Equipment> equipments)

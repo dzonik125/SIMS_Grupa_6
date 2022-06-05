@@ -19,13 +19,14 @@ namespace Controller
         {
             return doctorService.GetAllDoctors();
         }
+        
         public void UpdateDoctor(Doctor d)
         {
             throw new NotImplementedException();
         }
         public List<Doctor> FindBySpecialization(Specialization specialization)
         {
-            return doctorService.findBySpecialization(specialization);
+            return doctorService.FindBySpecialization(specialization);
         }
         public void DeleteDoctor(Doctor doctor)
         {
@@ -37,7 +38,7 @@ namespace Controller
         }
         public Doctor GetDoctorById(int id)
         {
-            return doctorService.GetDoctorByID(id);
+            return doctorService.GetDoctorById(id);
         }
     }
 }

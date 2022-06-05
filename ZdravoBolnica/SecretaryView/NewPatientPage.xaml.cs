@@ -2,7 +2,6 @@
 using Model;
 using SIMS.Controller;
 using SIMS.Model;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -16,6 +15,258 @@ namespace SIMS.SecretaryView
     /// </summary>
     public partial class NewPatientPage : Page, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        private string ime;
+        private string preime;
+        private string jmbg;
+        private string ulica;
+        private string broj;
+        private string grad;
+        private string drzava;
+        private string email;
+        private string kontakt;
+        private string korisnickoIme;
+        private string lozinka;
+        private string brojKartona;
+        private string lbo;
+        private string datum;
+
+        public string Ime
+        {
+            get
+            {
+                return ime;
+            }
+            set
+            {
+                if (value != ime)
+                {
+                    ime = value;
+                    OnPropertyChanged("Ime");
+                }
+            }
+        }
+        public string Prezime
+        {
+            get
+            {
+                return preime;
+            }
+            set
+            {
+                if (value != preime)
+                {
+                    preime = value;
+                    OnPropertyChanged("Prezime");
+                }
+            }
+        }
+        public string Jmbg
+        {
+            get
+            {
+                return jmbg;
+            }
+            set
+            {
+                if (value != jmbg)
+                {
+                    jmbg = value;
+                    OnPropertyChanged("Jmbg");
+                }
+            }
+        }
+        public string Grad
+        {
+            get
+            {
+                return grad;
+            }
+            set
+            {
+                if (value != grad)
+                {
+                    grad = value;
+                    OnPropertyChanged("Grad");
+                }
+            }
+        }
+        public string Drzava
+        {
+            get
+            {
+                return drzava;
+            }
+            set
+            {
+                if (value != drzava)
+                {
+                    drzava = value;
+                    OnPropertyChanged("Drzava");
+                }
+            }
+        }
+        public string Ulica
+        {
+            get
+            {
+                return ulica;
+            }
+            set
+            {
+                if (value != ulica)
+                {
+                    ulica = value;
+                    OnPropertyChanged("Ulica");
+                }
+            }
+        }
+        public string Broj
+        {
+            get
+            {
+                return broj;
+            }
+            set
+            {
+                if (value != broj)
+                {
+                    broj = value;
+                    OnPropertyChanged("Broj");
+                }
+            }
+        }
+
+        public string BrojKartona
+        {
+            get
+            {
+                return brojKartona;
+            }
+            set
+            {
+                if (value != brojKartona)
+                {
+                    brojKartona = value;
+                    OnPropertyChanged("BrojKartona");
+                }
+            }
+        }
+
+        public string Lbo
+        {
+            get
+            {
+                return lbo;
+            }
+            set
+            {
+                if (value != lbo)
+                {
+                    lbo = value;
+                    OnPropertyChanged("Lbo");
+                }
+            }
+        }
+
+        public string Email
+        {
+            get
+            {
+                return email;
+            }
+            set
+            {
+                if (value != email)
+                {
+                    email = value;
+                    OnPropertyChanged("Email");
+                }
+            }
+        }
+        public string Kontakt
+        {
+            get
+            {
+                return kontakt;
+            }
+            set
+            {
+                if (value != kontakt)
+                {
+                    kontakt = value;
+                    OnPropertyChanged("Kontakt");
+                }
+            }
+        }
+        public string KorisnickoIme
+        {
+            get
+            {
+                return korisnickoIme;
+            }
+            set
+            {
+                if (value != korisnickoIme)
+                {
+                    korisnickoIme = value;
+                    OnPropertyChanged("KorisnickoIme");
+                }
+            }
+        }
+
+        public string Datum
+        {
+            get
+            {
+                return datum;
+            }
+            set
+            {
+                if (value != datum)
+                {
+                    datum = value;
+                    OnPropertyChanged("Datum");
+                }
+            }
+        }
+
+
+        public string Lozinka
+        {
+            get
+            {
+                return lozinka;
+            }
+            set
+            {
+                if (value != lozinka)
+                {
+                    lozinka = value;
+                    OnPropertyChanged("Lozinka");
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
         public Patient patient = new Patient();
         public MedicalRecord mr;
         public Adress adress;
@@ -23,6 +274,8 @@ namespace SIMS.SecretaryView
         public MedicalRecord medicalRecord = new MedicalRecord();
         public Gender gender;
         public Prescription pr;
+
+
 
         private PatientController pc = new PatientController();
         private AdressController ac = new AdressController();
@@ -40,16 +293,6 @@ namespace SIMS.SecretaryView
         public BindingList<Medication> medications = new BindingList<Medication>();
         public List<Medication> meds = new List<Medication>();
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
-
         public NewPatientPage()
         {
             InitializeComponent();
@@ -65,6 +308,8 @@ namespace SIMS.SecretaryView
 
             // AllergsBox.ItemsSource = allergs;
             MedAllergsBox.ItemsSource = meds;
+
+            DataContext = this;
         }
 
         private void AddPatient_Click(object sender, RoutedEventArgs e)
@@ -73,15 +318,15 @@ namespace SIMS.SecretaryView
             mr = new MedicalRecord();
             pr = new Prescription();
 
-            patient.name = Name.Text;
-            patient.surname = Surname.Text;
-            patient.lbo = Lbo.Text;
-            patient.email = Email.Text;
-            patient.birthdate = BirthDate.Text;
-            patient.password = Password.Text;
-            patient.username = Username.Text;
-            patient.phone = PhoneNum.Text;
-            patient.jmbg = Jmbg.Text;
+            patient.name = textBoxIme.Text;
+            patient.surname = textBoxPrezime.Text;
+            patient.lbo = textBoxLbo.Text;
+            patient.email = textBoxEmail.Text;
+            patient.birthdate = textBoxDatumRodjenja.Text;
+            patient.password = textBoxSifra.Text;
+            patient.username = textBoxKorisnickoIme.Text;
+            patient.phone = textBoxBrojTelefona.Text;
+            patient.jmbg = textBoxJmbg.Text;
 
             if ((bool)MaleRadioButton.IsChecked)
             {
@@ -89,38 +334,41 @@ namespace SIMS.SecretaryView
             }
             else patient.gender = Gender.female;
 
-            adress.number = StreetNum.Text;
-            adress.street = Street.Text;
-            adress.city = City.Text;
-            adress.country = Country.Text;
+            adress.number = textBoxBroj.Text;
+            adress.street = textBoxUlica.Text;
+            adress.city = textBoxGrad.Text;
+            adress.country = textBoxDrzava.Text;
+
+            if (textBoxBrojK.Text.Equals(""))
+            {
+                MessageBox.Show("Unesite broj kartona");
+            }
+            else
+            {
+                mr.cardNum = textBoxBrojK.Text;
+                mr.bloodType = Conversion.StringToBloodType(bloodType.Text);
+
+                mr.medications = medications.ToList<Medication>();
 
 
-            mr.cardNum = Int32.Parse(brojK.Text);
-            mr.bloodType = Conversion.StringToBloodType(bloodType.Text);
+                //  mr.allergies = al.ToList<Allergies>();
 
-            mr.medications = medications.ToList<Medication>();
+                mrc.AddMedicalRecord(mr);
 
+                patient.address = adress;
+                patient.guest = false;
 
-            //  mr.allergies = al.ToList<Allergies>();
+                mr = mrc.FindAll()[mrc.FindAll().Count - 1];
+                patient.medicalRecord = mr;
 
-            mrc.AddMedicalRecord(mr);
+                ac.AddAdress(adress);
+                pc.AddPatient(patient);
 
-            patient.address = adress;
-            patient.guest = false;
+                SecretaryView.Instance.SetContent(new RegistrationPatient());
 
-            mr = mrc.FindAll()[mrc.FindAll().Count - 1];
-            patient.medicalRecord = mr;
-
-            ac.AddAdress(adress);
-            pc.AddPatient(patient);
-
-            SecretaryView.Instance.SetContent(new RegistrationPatient());
-
-            RegistrationPatient rgi = new RegistrationPatient();
-            SecretaryView.Instance.SetContent(new RegistrationPatient());
-            //SecretaryUI sui = SecretaryUI.Instance;
-            // sui.refresh();
-            //this.Close();
+                RegistrationPatient rgi = new RegistrationPatient();
+                SecretaryView.Instance.SetContent(new RegistrationPatient());
+            }
         }
 
         private void CloseNew_Click(object sender, RoutedEventArgs e)
@@ -149,9 +397,5 @@ namespace SIMS.SecretaryView
             medications.Remove((Medication)medAllergs_table.SelectedItem);
         }
 
-        private void CommandBinding_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
-        {
-
-        }
     }
 }

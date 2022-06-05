@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace Model
 {
-   public class Room : Serializable
+    public class Room : Serializable
     {
         public int roomNum { get; set; }
         public int floor { get; set; }
@@ -18,9 +18,9 @@ namespace Model
         public int id { get; set; }
         public RoomType roomType { get; set; }
 
-      public System.Collections.Generic.List<Appointment> appointment;
+        public System.Collections.Generic.List<Appointment> appointment;
 
-      
+
         public String RoomTypeString
         {
             get
@@ -35,57 +35,59 @@ namespace Model
                     return "Cekaonica";
                 else if (roomType == RoomType.storage)
                     return "Magacin";
-                else 
+                else if (roomType == RoomType.meetingRoom)
+                    return "Sala za sastanke";
+                else
                     return "Laboratorija";
             }
         }
 
         public void AddAppointment(Appointment newAppointment)
-      {
-         if (newAppointment == null)
-            return;
-         if (this.appointment == null)
-            this.appointment = new System.Collections.Generic.List<Appointment>();
-         if (!this.appointment.Contains(newAppointment))
-         {
-            this.appointment.Add(newAppointment);
-            newAppointment.Room = this;
-         }
-      }
-      
-      /// <summary>
-      /// Remove an existing Appointment from the collection
-      /// </summary>
-      /// <pdGenerated>Default Remove</pdGenerated>
-      public void RemoveAppointment(Appointment oldAppointment)
-      {
-         if (oldAppointment == null)
-            return;
-         if (this.appointment != null)
-            if (this.appointment.Contains(oldAppointment))
+        {
+            if (newAppointment == null)
+                return;
+            if (this.appointment == null)
+                this.appointment = new System.Collections.Generic.List<Appointment>();
+            if (!this.appointment.Contains(newAppointment))
             {
-               this.appointment.Remove(oldAppointment);
-               oldAppointment.Room = null;
+                this.appointment.Add(newAppointment);
+                newAppointment.Room = this;
             }
-      }
-      
-      /// <summary>
-      /// Remove all instances of Appointment from the collection
-      /// </summary>
-      /// <pdGenerated>Default removeAll</pdGenerated>
-      public void RemoveAllAppointment()
-      {
-         if (appointment != null)
-         {
-            System.Collections.ArrayList tmpAppointment = new System.Collections.ArrayList();
-            foreach (Appointment oldAppointment in appointment)
-               tmpAppointment.Add(oldAppointment);
-            appointment.Clear();
-            foreach (Appointment oldAppointment in tmpAppointment)
-               oldAppointment.Room = null;
-            tmpAppointment.Clear();
-         }
-      }
+        }
+
+        /// <summary>
+        /// Remove an existing Appointment from the collection
+        /// </summary>
+        /// <pdGenerated>Default Remove</pdGenerated>
+        public void RemoveAppointment(Appointment oldAppointment)
+        {
+            if (oldAppointment == null)
+                return;
+            if (this.appointment != null)
+                if (this.appointment.Contains(oldAppointment))
+                {
+                    this.appointment.Remove(oldAppointment);
+                    oldAppointment.Room = null;
+                }
+        }
+
+        /// <summary>
+        /// Remove all instances of Appointment from the collection
+        /// </summary>
+        /// <pdGenerated>Default removeAll</pdGenerated>
+        public void RemoveAllAppointment()
+        {
+            if (appointment != null)
+            {
+                System.Collections.ArrayList tmpAppointment = new System.Collections.ArrayList();
+                foreach (Appointment oldAppointment in appointment)
+                    tmpAppointment.Add(oldAppointment);
+                appointment.Clear();
+                foreach (Appointment oldAppointment in tmpAppointment)
+                    oldAppointment.Room = null;
+                tmpAppointment.Clear();
+            }
+        }
 
         public string[] ToCSV()
         {
@@ -110,7 +112,7 @@ namespace Model
             roomType = Conversion.StringToRoomType(values[4]);
         }
 
-    
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 

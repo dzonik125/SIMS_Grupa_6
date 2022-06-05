@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Documents;
-using System.Windows.Input;
-using Controller;
+﻿using Controller;
 using Model;
 using SIMS.Core;
 using SIMS.Model;
+using System;
+using System.Collections.Generic;
 
 namespace SIMS.ManagerView.ViewModel
 {
@@ -75,13 +73,14 @@ namespace SIMS.ManagerView.ViewModel
             {
                 roomNum = Int32.Parse(RoomNum),
                 floor = Int32.Parse(Floor),
-                roomType = Conversion.StringToRoomType(SelectedType)
+                roomType = Conversion.StringToRoomType(SelectedType),
+                empty = true
             };
             rc.AddRoom(room);
             ManagerUI mui = ManagerUI.Instance;
             mui.refresh();
             OnRequestClose?.Invoke(this, EventArgs.Empty);
-            
+
         }
 
     }

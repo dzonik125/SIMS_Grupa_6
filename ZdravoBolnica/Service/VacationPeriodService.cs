@@ -36,7 +36,7 @@ namespace SIMS.Service
 
         public bool checkIfDoctorHasAppoinmentsInPeriod(Doctor doctor, DateRange dateRange)
         {
-            List<Appointment> appointments = appointmentService.getAppointmentsByDoctorId(doctor.id);
+            List<Appointment> appointments = appointmentService.GetAppointmentsByDoctorId(doctor.id);
             foreach (Appointment a in appointments)
             {
                 if (dateRange.checkForIntersection(a.startTime, a.duration))

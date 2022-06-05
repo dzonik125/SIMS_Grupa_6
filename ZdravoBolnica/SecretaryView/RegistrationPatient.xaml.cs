@@ -13,7 +13,6 @@ namespace SIMS.SecretaryView
     {
         private PatientController pc = new PatientController();
         private static RegistrationPatient instance = new RegistrationPatient();
-        private RegistrationPatient rui;
 
         public static RegistrationPatient Instance
         {

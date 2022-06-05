@@ -2,20 +2,10 @@
 using Model;
 
 using SIMS.Model;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SIMS.DoctorView
 {
@@ -25,13 +15,12 @@ namespace SIMS.DoctorView
     public partial class Appointments : Page
     {
         public static Appointments instance = new Appointments();
-        public  Doctor doctorUser { get; set; }
+        public Doctor doctorUser { get; set; }
 
         private AppointmentController appController = new AppointmentController();
         private AccountController patientController = new AccountController();
         private DoctorController doctorController = new DoctorController();
         private RoomController roomController = new RoomController();
-        private ObservableCollection<Appointment> apps;
 
         public ObservableCollection<Appointment> Apps { get; set; }
 
@@ -52,7 +41,7 @@ namespace SIMS.DoctorView
             DoctorWindow dw = DoctorWindow.instance;
             doctorUser = new Doctor();
             doctorUser = dw.doctorUser;
-            
+
             Refresh();
         }
 
@@ -69,7 +58,7 @@ namespace SIMS.DoctorView
 
             foreach (Appointment a in appointments)
             {
-                if (a.Room == null || a.patient==null)
+                if (a.Room == null || a.patient == null)
                     continue;
                 Apps.Add(a);
             }

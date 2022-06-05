@@ -13,16 +13,12 @@ namespace Service
 {
     public class DoctorService
     {
-        private Doctor findFreeDoctor()
-        {
-            return null;
-        }
 
         public List<Doctor> GetAllDoctors()
         {
             return doctorRepository.FindAll();
         }
-
+        
         public void UpdateDoctor(Doctor d)
         {
             throw new NotImplementedException();
@@ -38,24 +34,22 @@ namespace Service
             doctorRepository.Create(d);
         }
 
-        public Doctor GetDoctorByID(int id)
+        public Doctor GetDoctorById(int id)
         {
             return doctorRepository.FindById(id);
         }
-        public List<Doctor> findBySpecialization(Specialization spec)
+        public List<Doctor> FindBySpecialization(Specialization spec)
         {
             return doctorRepository.findBySpecialization(spec);
         }
 
-        public Appointment getAppointmentWithDoctor(Appointment appointment, DateRange dateRange)
+        public Appointment GetAppointmentWithDoctor(Appointment appointment, DateRange dateRange)
         {
-
-            List<Doctor> doctors = findBySpecialization(dateRange.specializationType);
-            foreach (Doctor d in doctors)
+            foreach (Doctor doctor in FindBySpecialization(dateRange.specializationType))
             {
-                if (!checkIfDoctorIsBusy(d, dateRange))
+                if (!checkIfDoctorIsBusy(doctor, dateRange))
                 {
-                    appointment.Doctor = d;
+                    appointment.Doctor = doctor;
                     return appointment;
                 }
             }
@@ -74,13 +68,7 @@ namespace Service
             }
             return false;
         }
-
-
-        // public List<string> GetSpecializationString()
-        // {
-        //     return doctorRepository.GetSpecializationString();
-        // }
-
+        
         public Repository.DoctorRepository doctorRepository = new Repository.DoctorRepository();
     }
 }

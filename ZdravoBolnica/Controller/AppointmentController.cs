@@ -39,19 +39,19 @@ namespace Controller
         }
         public Appointment GetFirstFreeAppointmentInOneHour(Specialization specialization, Patient patient)
         {
-            return appointmentService.getFirstFreeAppointmentInOneHour(specialization, patient);
+            return appointmentService.GetFirstFreeAppointmentInOneHour(specialization, patient);
         }
         public List<Appointment> GetFutureAppointmentsForDoctor(int id)
         {
-            return appointmentService.getFutureAppointmentsForDoctor(id);
+            return appointmentService.GetFutureAppointmentsForDoctor(id);
         }
         public List<Appointment> GetAppointmentsForDoctors(List<Doctor> doctors)
         {
-            return appointmentService.getAppointmentsForDoctors(doctors);
+            return appointmentService.GetAppointmentsForDoctors(doctors);
         }
         public Appointment GetFirstAppointmentForDoctor(List<Appointment> appointments)
         {
-            return appointmentService.getFirstAppointmentForDoctor(appointments);
+            return appointmentService.GetFirstAppointmentForDoctor(appointments);
         }
         public void SaveBusyAppointment(Appointment appointment, Patient patient, Specialization specialization)
         {
@@ -59,19 +59,11 @@ namespace Controller
         }
         public List<Appointment> GetFutureAppointmentsForPatient(int id)
         {
-            return appointmentService.getFutureAppointmentsForPatient(id);
-        }
-        public List<Appointment> GetAppointmentBySpecialization(Specialization specialization)
-        {
-            return appointmentService.getAppointmentBySpecialization(specialization);
+            return appointmentService.GetFutureAppointmentsForPatient(id);
         }
         public void SaveAppointment(Appointment appointment)
         {
             appointmentService.SaveAppointment(appointment);
-        }
-        public bool IntersectionWithAppointments(int patientId, int doctorId, int roomId, DateTime date, int duration)
-        {
-            return appointmentService.IntersectionWithAppointments(patientId, doctorId, roomId, date, duration);
         }
         public Appointment GetAppointmentById(int id)
         {
@@ -79,19 +71,19 @@ namespace Controller
         }
         public void BindRoomsWithAppointments(List<Room> rooms, List<Appointment> appointments)
         {
-            appointmentService.bindRoomsWithAppointments(rooms, appointments);
+            appointmentService.BindRoomsWithAppointments(rooms, appointments);
         }
         public void BindDoctorsWithAppointments(List<Doctor> doctors, List<Appointment> appointments)
         {
-            appointmentService.bindDoctorsWithAppointments(doctors, appointments);
+            appointmentService.BindDoctorsWithAppointments(doctors, appointments);
         }
         public bool IsRoomOccupied(Room roomDestination, DateTime transferDate, int duration)
         {
-            return appointmentService.isRoomOccupied(roomDestination, transferDate, duration);
+            return appointmentService.IsRoomOccupied(roomDestination, transferDate, duration);
         }
         public void BindPatientsWithAppointments(List<Patient> patients, List<Appointment> appointments)
         {
-            appointmentService.bindPatientsWithAppointments(patients, appointments);
+            appointmentService.BindPatientsWithAppointments(patients, appointments);
         }
         public String GetFirstFreeAppointment(DateTime? start, DateTime? finish)
         {
@@ -103,7 +95,7 @@ namespace Controller
         }
         public Appointment FindPatientAppointment(Patient patient)
         {
-            return appointmentService.findPatientAppointment(patient);
+            return appointmentService.FindPatientAppointment(patient);
         }
         public List<Appointment> FindAllAppointments()
         {

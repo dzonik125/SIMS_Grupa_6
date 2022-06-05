@@ -13,7 +13,6 @@ namespace SIMS.SecretaryView
     public partial class AddEmergencyExaminationPage : Page
     {
         public List<Patient> patients;
-        // public List<Specialization> specializations;
         public List<string> specs;
         public PatientController pc = new PatientController();
         public List<Doctor> doctors;
@@ -36,9 +35,6 @@ namespace SIMS.SecretaryView
 
             Specialization.ItemsSource = Conversion.GetSpecializationType();
             Specialization.SelectedIndex = 0;
-
-            // specialization = (Specialization)Specialization.SelectedItem;
-            //  appointments = ac.getAppointmentBySpecialization((Specialization)Specialization.SelectedIndex);
 
             PatientBox.ItemsSource = patients;
 
@@ -88,33 +84,6 @@ namespace SIMS.SecretaryView
                 patient = (Patient)PatientBox.SelectedItem;
                 TimeBox.Items.Add(first.startTime);
             }
-            
-            //  System.Diagnostics.Trace.WriteLine(help);
-            // int id = -1;
-
-            //List<DateTime> datess = new List<DateTime>();
-
-
-            /*foreach (Doctor doc in dc.GetAllDoctors())
-            {
-
-                // List<Appointment> apps = ac.getFutureAppointmentsForDoctor(doc.id);
-
-
-                if (Conversion.SpecializationToString(doc.Specialization).Equals(help))
-                {
-                    id = doc.id;
-                    foreach (DateTime dt in ac.getTenNextFreeAppointmentsForDoctorToday(doc.id))
-                    {
-
-                        //   Boolean b = ac.IsExist(doc.appointments[0].id);
-                        datess.Add(dt);
-                        //TimeBox.Items.Add(dt.ToString() + "," + doc.name + " " + doc.surname);
-                    }
-
-                }
-            }*/
-
         }
     }
 }

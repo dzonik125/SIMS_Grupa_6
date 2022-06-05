@@ -66,7 +66,7 @@ namespace SIMS.DoctorView
                 dateRange.type = RoomType.examination;
             dateRange.specializationType = Conversion.StringToSpecialization(SpecializationBox.Text);
 
-            List<Appointment> appo = aps.findFreeTermsForReferral(dateRange, selectedPatient);
+            List<Appointment> appo = aps.FindFreeTermsForReferral(dateRange, selectedPatient);
             Time.ItemsSource = appo;
         }
     }

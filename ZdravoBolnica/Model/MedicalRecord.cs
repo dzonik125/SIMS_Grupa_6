@@ -12,7 +12,7 @@ namespace Model
 {
     public class MedicalRecord : Serializable
     {
-        public int cardNum;
+        public string cardNum;
         public BloodType bloodType;
         public int id;
         public List<Allergies> allergies = new List<Allergies>();
@@ -29,16 +29,6 @@ namespace Model
 
         public List<ExaminationReport> reports;
 
-
-
-        public MedicalRecord(int cardNum, BloodType bt)
-        {
-            this.cardNum = cardNum;
-            this.bloodType = bt;
-        }
-
-
-
         public MedicalRecord()
         {
 
@@ -46,7 +36,7 @@ namespace Model
 
         public void FromCSV(string[] values)
         {
-            cardNum = Convert.ToInt32(values[0]);
+            cardNum = values[0];
             bloodType = Conversion.StringToBloodType(values[1]);
             id = Convert.ToInt32(values[2]);
 

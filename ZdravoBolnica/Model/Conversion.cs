@@ -17,8 +17,8 @@ namespace SIMS.Model
                 RoomType.ward => "Bolesnička soba",
                 RoomType.storage => "Magacin",
                 RoomType.laboratory => "laboratorija",
+                RoomType.meetingRoom => "Sala za sastanke",
                 RoomType.waitingRoom => "Cekaonica",
-
                 _ => "",
             };
         }
@@ -171,6 +171,7 @@ namespace SIMS.Model
                 "Cekaonica" => RoomType.waitingRoom,
                 "Laboratorija" => RoomType.laboratory,
                 "Magacin" => RoomType.storage,
+                "Sala za sastanke" => RoomType.meetingRoom,
                 "Bolesnička soba" => RoomType.ward,
                 _ => RoomType.ward,
 

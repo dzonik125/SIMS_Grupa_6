@@ -2,7 +2,6 @@
 using Model;
 using SIMS.Controller;
 using SIMS.Model;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -144,7 +143,7 @@ namespace SIMS.SecretaryView
             if (selectedPatient.guest)
             {
 
-                mrr.cardNum = Int32.Parse(brojK.Text);
+                mrr.cardNum = brojK.Text;
                 mrr.bloodType = Conversion.StringToBloodType(bloodType.Text);
 
                 mrr.medications = medications.ToList<Medication>();
@@ -159,7 +158,7 @@ namespace SIMS.SecretaryView
             else
             {
 
-                mr.cardNum = Int32.Parse(brojK.Text);
+                mr.cardNum = brojK.Text;
 
                 mr.bloodType = Conversion.StringToBloodType(bloodType.Text);
                 // mr.allergies = al.ToList<Allergies>();

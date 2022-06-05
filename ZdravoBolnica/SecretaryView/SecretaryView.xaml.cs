@@ -1,18 +1,45 @@
 ﻿using SIMS.Controller;
-using System.Threading;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using static SIMS.TranslationSoruce;
 
 namespace SIMS.SecretaryView
 {
-    /// <summary>
-    /// Interaction logic for SecretaryView.xaml
-    /// </summary>
-    public partial class SecretaryView : Window
+    public partial class SecretaryView : Window, INotifyPropertyChanged
     {
         private static SecretaryView instance = new SecretaryView();
-        private Timer timer;
         private OrderEquipmentController oec = new OrderEquipmentController();
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+        private string CurrentLanguage { get; set; }
+        private string CurrentTheme { get; set; }
+        private string currentTitle;
+
+        public string CurrentTitle
+        {
+            get
+            {
+                return currentTitle;
+            }
+            set
+            {
+                if (value != currentTitle)
+                {
+                    currentTitle = value;
+                    OnPropertyChanged("CurrentTitle");
+                }
+            }
+        }
+
 
         public static SecretaryView Instance
         {
@@ -34,42 +61,18 @@ namespace SIMS.SecretaryView
         public SecretaryView()
         {
             InitializeComponent();
-            SetContent(new HomePage());
-            //  timer = new Timer(new TimerCallback(oec.CreateOrder), null, 1000, 60000);
+            SetContent(new CreateAppointmentPage());
+            CurrentTitle = TranslationSource.Instance["Clinic"];
+            CurrentLanguage = "en-US";
+            CurrentTheme = "Light";
         }
 
-        //      private void addPatient_Click(object sender, RoutedEventArgs e)
-        //     {
-        //          SecretaryUI sui = SecretaryUI.Instance;
-        //         sui.Show();
-        //       this.Close();
 
-
-        //     }
-
-        //   private void scheduleAppointment_Click(object sender, RoutedEventArgs e)
-        //     {
-        //     CreateAppointment ca = new CreateAppointment();
-        //       ca.Show();
-        //       this.Close();
-
-        //   }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void HomePage_Click(object sender, RoutedEventArgs e)
-        {
-            HomePage hp = HomePage.Instance;
-            Page.Content = hp;
-        }
+        /* private void HomePage_Click(object sender, RoutedEventArgs e)
+         {
+             HomePage hp = HomePage.Instance;
+             Page.Content = hp;
+         }*/
 
         private void Register_Click(object sender, RoutedEventArgs e)
         {
@@ -96,6 +99,25 @@ namespace SIMS.SecretaryView
         private void VacationPeriod_Click(object sender, RoutedEventArgs e)
         {
             SetContent(new VacationPeriodPage());
+        }
+
+        private void Meeting_Click(object sender, RoutedEventArgs e)
+        {
+            SetContent(new MeetingPage());
+        }
+
+        private void Language_Click(object sender, RoutedEventArgs e)
+        {
+            App app = (App)Application.Current;
+            if (CurrentLanguage.Equals("en-US"))
+            {
+                CurrentLanguage = "sr-LATN";
+            }
+            else
+            {
+                CurrentLanguage = "en-US";
+            }
+            app.ChangeLanguage(CurrentLanguage);
         }
     }
 }

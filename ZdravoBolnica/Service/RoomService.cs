@@ -173,7 +173,7 @@ namespace Service
             {
                 if (Conversion.RoomTypeToString(r.roomType).Equals(Conversion.RoomTypeToString(storage)))
                 {
-                    idRoom =  r.id;
+                    idRoom = r.id;
                 }
             }
             return idRoom;
@@ -242,7 +242,7 @@ namespace Service
             {
                 if (r.id == id)
                 {
-                   roomType = Conversion.RoomTypeToString(r.roomType);
+                    roomType = Conversion.RoomTypeToString(r.roomType);
                 }
             }
             return roomType;
@@ -282,7 +282,7 @@ namespace Service
         {
             bool roomIsBusy = false;
             AppointmentService appointmentService = new AppointmentService();
-            foreach (Appointment a in appointmentService.getAppointmentsByRoomId(r.id))
+            foreach (Appointment a in appointmentService.GetAppointmentsByRoomId(r.id))
             {
                 if (dateRange.checkForIntersection(a.startTime, a.duration))
                     roomIsBusy = true;

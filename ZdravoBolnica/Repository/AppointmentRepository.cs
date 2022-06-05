@@ -17,14 +17,13 @@ namespace Repository
         private String filename = @".\..\..\..\Data\appointments.txt";
         private Serializer<Appointment> appointmentSerializer = new Serializer<Appointment>();
         
-        private List<Appointment> appointments = new();
         private List<Appointment> patientAppointments = new();
         public Appointment FindById(int id)
         {
-            foreach (Appointment a in FindAll())
+            foreach (Appointment appointment in FindAll())
             {
-                if (a.id == id)
-                    return a;
+                if (appointment.id == id)
+                    return appointment;
             }
             return null;
         }
@@ -40,30 +39,22 @@ namespace Repository
 
         public List<Appointment> FindByRoomId(int rid)
         {
-            List<Appointment> appointments = new();
             List<Appointment> roomAppointments = new();
-            appointments = FindAll();
-            foreach (Appointment a in appointments)
+            foreach (Appointment appointment in FindAll())
             {
-                if (a.Room.id == rid)
-                {
-                    roomAppointments.Add(a);
-                }
+                if (appointment.Room.id == rid)
+                    roomAppointments.Add(appointment);
             }
             return roomAppointments;
         }
 
-        public List<Appointment> FindByDoctorId(int did)
+        public List<Appointment> FindByDoctorId(int doctorId)
         {
-            List<Appointment> appointments = new();
             List<Appointment> doctorAppointments = new();
-            appointments = FindAll();
-            foreach (Appointment a in appointments)
+            foreach (Appointment appointment in FindAll())
             {
-                if (a.Doctor.id == did)
-                {
-                    doctorAppointments.Add(a);
-                }
+                if (appointment.Doctor.id == doctorId)
+                    doctorAppointments.Add(appointment);
             }
             return doctorAppointments;
         }
@@ -86,11 +77,11 @@ namespace Repository
         public void DeleteById(int id)
         {
             List<Appointment> appointments = FindAll();
-            foreach (Appointment a in appointments)
+            foreach (Appointment appointment in appointments)
             {
-                if (a.id == id)
+                if (appointment.id == id)
                 {
-                    appointments.Remove(a);
+                    appointments.Remove(appointment);
                     break;
                 }
             }
@@ -111,7 +102,6 @@ namespace Repository
             {
                 entity.id = 1;
             }
-
             appointments.Add(entity);
             appointmentSerializer.toCSV(filename, appointments);
         }

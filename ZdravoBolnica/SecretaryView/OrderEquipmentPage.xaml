@@ -5,12 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SIMS.SecretaryView"
       mc:Ignorable="d" 
-      d:DesignHeight="720" d:DesignWidth="1000"
+      d:DesignHeight="400" d:DesignWidth="800"
+      MaxHeight="400"
+      MaxWidth="800"
       Title="OrderEquipmentPage">
 
-    <Grid Height="800" Width="400">
-        <Label Content="Naručivanje dinamičke opreme" FontSize="30" HorizontalAlignment="Left" Margin="278,52,0,748"/>
-        <StackPanel Width="400" Height="800" Orientation="Vertical" Margin="288,10,-288,-10">
+    <Grid>
+        <Label Content="Naručivanje dinamičke opreme" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Margin="180,-81,0,0"/>
+        <StackPanel Width="400" Height="800" Orientation="Vertical" Margin="-80,10,480,-410">
             <Grid Width="400" Margin="10,10" Height="70">
                 <Label Content="Naziv:" FontSize="20" VerticalAlignment="Top" Height="40" Margin="145,0,185,0" />
                 <TextBox Width="100" Height="20" Name="Name" VerticalAlignment="Top" Margin="150,40,150,0" />
@@ -26,22 +28,22 @@
                         <DataGridTextColumn Header="Kolicina" Width="*" Binding="{Binding quantity}"  DataGridColumn.CanUserResize="False"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button Content="Dodaj" x:Name="add" Width="50" Height="20" Margin="290,15,60,101" Click="Add_Click"/>
-                <Button Content="Izbaci" x:Name="add_Copy" Width="50" Height="20" Margin="290,38,60,78" Click="Remove_Click"/>
+                <Button Content="+" x:Name="add" Width="20" Height="20" Margin="290,15,60,101" Click="Add_Click"/>
+                <Button Content="-" x:Name="add_Copy" Width="20" Height="20" Margin="290,38,60,78" Click="Remove_Click"/>
             </Grid>
-            <Grid>
-                <DataGrid x:Name="magacinTable" HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="310" ItemsSource="{Binding Path=order}" CanUserAddRows="False" AutoGenerateColumns="False" Margin="-258,-221,0,0">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding item}"  DataGridColumn.CanUserResize="False"/>
-                        <DataGridTextColumn Header="Kolicina" Width="*" Binding="{Binding quantity}"  DataGridColumn.CanUserResize="False"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
-            <Grid Width="400" Height="54" HorizontalAlignment="Center">
-                <Button x:Name="ordering" Content="Poruči" Width="50" Height="20" Margin="150,17,200,17" Click="Order_Click"/>
-                <Button x:Name="cancel" Content="Odustani" Height="20" Margin="233,17,108,17"/>
-            </Grid>
-
         </StackPanel>
+        <Grid Margin="10,0,0,0">
+            <Label Content="Magacin" HorizontalAlignment="Left" Margin="558,70,0,0" VerticalAlignment="Top" FontSize="30"/>
+            <DataGrid x:Name="magacinTable" HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="310" ItemsSource="{Binding Path=order}" CanUserAddRows="False" AutoGenerateColumns="False" Margin="470,135,0,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding item}"  DataGridColumn.CanUserResize="False"/>
+                    <DataGridTextColumn Header="Kolicina" Width="*" Binding="{Binding quantity}"  DataGridColumn.CanUserResize="False"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Margin="100,346,0,0">
+            <Button x:Name="ordering" Content="Poruči" Width="50" Height="20" Margin="150,17,200,17" Click="Order_Click"/>
+            <Button x:Name="cancel" Content="Odustani" Height="20" Margin="233,17,108,17"/>
+        </Grid>
     </Grid>
 </Page>
