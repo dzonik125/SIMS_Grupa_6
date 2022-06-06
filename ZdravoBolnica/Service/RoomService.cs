@@ -248,35 +248,20 @@ namespace Service
             return roomType;
         }
 
-        public Appointment getAppointmentWithRoom(Appointment appointment, DateRange dateRange)
+        public bool freeRoomExistsForAppointment(Appointment appointment, DateRange dateRange)
         {
-            foreach (Room r in getRoomsByType(dateRange.type))
+            bool freeRoomExists = false;
+            foreach (Room r in getRoomsByType(dateRange.roomType))
             {
                 if (!checkIfRoomIsBusy(r, dateRange))
                 {
                     appointment.Room = r;
-                    return appointment;
+                    freeRoomExists = true;
                 }
             }
-            return null;
+            return freeRoomExists;
         }
 
-
-        /* public void findRoomForAppointment(Appointment appointment, DateRange dateRange, List<Appointment> returnAppointmets)
-         {
-             Appointment a = new Appointment();
-             List<Room> rooms = FindAll();
-             foreach (Room r in rooms)
-             {
-                 if (!checkIfRoomIsBusy(r, dateRange))
-                 {
-                     appointment.Room = r;
-                     return appointment;
-                 }
-             }
-             return null;
-         }
- */
 
         public bool checkIfRoomIsBusy(Room r, DateRange dateRange)
         {

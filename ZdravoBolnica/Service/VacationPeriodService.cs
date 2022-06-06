@@ -14,6 +14,7 @@ namespace SIMS.Service
         public VacationPeriodRepository vacationPeriodRepository = new VacationPeriodRepository();
         public AppointmentService appointmentService = new AppointmentService();
         public DoctorService doctorService = new DoctorService();
+        
         public void Create(VacationPeriod entity)
         {
             vacationPeriodRepository.Create(entity);
@@ -103,9 +104,7 @@ namespace SIMS.Service
                 foreach (VacationPeriod v in vacationPeriods)
                 {
                     if (v.doctor.id == d.id)
-                    {
                         v.doctor = d;
-                    }
                 }
             }
         }

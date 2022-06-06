@@ -61,9 +61,9 @@ namespace SIMS.DoctorView
             dateRange.endTime = (DateTime)EndTime.SelectedDate;
             dateRange.duration = double.Parse(Duration.Text);
             if ((bool)Surgery.IsChecked)
-                dateRange.type = RoomType.surgery;
+                dateRange.roomType = RoomType.surgery;
             else
-                dateRange.type = RoomType.examination;
+                dateRange.roomType = RoomType.examination;
             dateRange.specializationType = Conversion.StringToSpecialization(SpecializationBox.Text);
 
             List<Appointment> appo = aps.FindFreeTermsForReferral(dateRange, selectedPatient);

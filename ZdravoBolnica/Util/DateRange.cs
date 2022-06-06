@@ -12,15 +12,9 @@ namespace SIMS.Util
         public DateTime endTime { get; set; }
 
         public double duration { get; set; }
-        public RoomType type { get; set; }
+        public RoomType roomType { get; set; }
         public Specialization specializationType { get; set; }
 
-        public bool checkIfBetween(DateTime first, DateTime second)
-        {
-            if (startTime > first && startTime < second)
-                return true;
-            return false;
-        }
 
         public void step()
         {
@@ -33,11 +27,12 @@ namespace SIMS.Util
 
         public bool checkForIntersection(DateTime startTimeAppoinment, double appointmentDuration)
         {
+            bool hasIntersection = false;
             if (!((startTimeAppoinment.AddMinutes(appointmentDuration) <= startTime && startTimeAppoinment <= startTime ||
                 (startTime.AddMinutes(duration) <= startTimeAppoinment && startTime <= startTimeAppoinment))))
-                return true;
-            else
-                return false;
+                hasIntersection = true;
+
+            return hasIntersection;
         }      
   
     }

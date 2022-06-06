@@ -52,9 +52,7 @@ namespace Service
                 foreach (Appointment a in appointments)
                 {
                     if (a.Room.id == r.id)
-                    {
                         a.Room = r;
-                    }
                 }
             }
 
@@ -67,9 +65,7 @@ namespace Service
                 foreach (Appointment a in appointments)
                 {
                     if (a.Doctor.id == d.id)
-                    {
                         a.Doctor = d;
-                    }
                 }
             }
         }
@@ -81,10 +77,7 @@ namespace Service
                 foreach (Appointment a in appointments)
                 {
                     if (a.patient.id == p.id)
-                    {
                         a.patient = p;
-                    }
-
                 }
             }
         }
@@ -94,7 +87,8 @@ namespace Service
             List<Appointment> roomAppointments = GetAppointmentsByRoomId(roomDestination.id);
             foreach (Appointment a in roomAppointments)
             {
-                if (!((a.startTime.AddMinutes(a.duration) < transferDate && a.startTime < transferDate || (transferDate.AddMinutes(duration) < a.startTime && transferDate < a.startTime))))
+                if (!((a.startTime.AddMinutes(a.duration) < transferDate && a.startTime < transferDate 
+                    || (transferDate.AddMinutes(duration) < a.startTime && transferDate < a.startTime))))
                 {
                     return true;
                 }
@@ -258,7 +252,7 @@ namespace Service
 
             dateRange.endTime = DateTime.Now.AddHours(1);
             dateRange.specializationType = spec;
-            dateRange.type = RoomType.examination;
+            dateRange.roomType = RoomType.examination;
             dateRange.duration = 30;
             List<Appointment> freeAppointments = FindFreeTermsForReferral(dateRange, p);
             if (freeAppointments.Count > 0)
@@ -302,17 +296,15 @@ namespace Service
             dateRange.duration = 30;
             dateRange.specializationType = spec;
 
-            dateRange.type = RoomType.examination;
+            dateRange.roomType = RoomType.examination;
 
             List<Appointment> appointments = FindFreeTermsForReferral(dateRange, p);
             return appointments[0];
         }
         public List<Appointment> FindFreeTermsForReferral(DateRange dateRange, Patient patient)
         {
-            List<Appointment> returnAppointments = new();
             List<Appointment> patientAppointments = GetAllAppointmentsForPatient(patient.id);
             return FindFreeTerms(patientAppointments, dateRange);
-
         }
 
         public List<Appointment> FindFreeTerms(List<Appointment> patientAppointments, DateRange dateRange)
@@ -320,45 +312,37 @@ namespace Service
             List<Appointment> potentialAppointments = new();
             while (dateRange.startTime < dateRange.endTime)
             {
-                Appointment app = FindPotentialAppointment(patientAppointments, dateRange);
-                if (app != null)
-                    potentialAppointments.Add(app);
+                if (!overlapsWithPatientAppointments(patientAppointments, dateRange))
+                {
+                    Appointment potentialAppointment = new();
+                    if (checkForRoomAndDoctorForAppointment(potentialAppointment, dateRange))
+                        potentialAppointments.Add(potentialAppointment);
+                }
                 dateRange.step();
             }
             return potentialAppointments;
         }
 
 
-        public Appointment FindPotentialAppointment(List<Appointment> patientAppointments, DateRange dateRange)
+        public bool overlapsWithPatientAppointments(List<Appointment> patientAppointments, DateRange dateRange)
         {
-            Appointment potentialAppointment = new();
+            bool overlapExists = false;
             foreach (Appointment a in patientAppointments)
             {
                 if (dateRange.checkForIntersection(a.startTime, a.duration))
-                {
-                    continue;
-                }
-                else
-                {
-                    if (checkIfRoomAndDoctorAreFree(potentialAppointment, dateRange))
-                    {
-                        potentialAppointment.startTime = dateRange.startTime;
-                        return potentialAppointment;
-                    }
-                }
+                    overlapExists = true;
             }
-            return null;
+            return overlapExists;
         }
 
-
-        private bool checkIfRoomAndDoctorAreFree(Appointment potentialAppointment, DateRange dateRange)
+        private bool checkForRoomAndDoctorForAppointment(Appointment potentialAppointment, DateRange dateRange)
         {
             RoomService roomService = new RoomService();
-            DoctorService doctorService = new DoctorService();
-            if (roomService.getAppointmentWithRoom(potentialAppointment, dateRange) == null
-                || doctorService.GetAppointmentWithDoctor(potentialAppointment, dateRange) == null)
-                return false;
-            return true;
+            potentialAppointment.startTime = dateRange.startTime;
+            bool foundRoomAndDoctorForAppointment = false;
+            if (roomService.freeRoomExistsForAppointment(potentialAppointment, dateRange) && doctorService.freeDoctorExistsForAppointment(potentialAppointment, dateRange))
+                foundRoomAndDoctorForAppointment = true;
+            return foundRoomAndDoctorForAppointment;
         }
 
 
@@ -635,18 +619,11 @@ namespace Service
                 if (a.patient.id == id)
                 {
                     if (a.startTime >= DateTime.Now)
-                    {
-
                         futureAppointments.Add(a);
-
-                    }
-
                 }
 
             }
-
             return futureAppointments;
-
         }
 
         public List<Appointment> GetAppointmentsByDoctorId(int doctorId)
