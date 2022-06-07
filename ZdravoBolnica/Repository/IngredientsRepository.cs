@@ -6,12 +6,12 @@ using System.Collections.Generic;
 
 namespace SIMS.Repository
 {
-    public class IngredientsRepository : IRepository<Ingredients, int>
+    public class IngredientsRepository : IRepository<Ingredient, int>
     {
-        private Serializer<Ingredients> ingrediantsSerializer = new Serializer<Ingredients>();
+        private Serializer<Ingredient> ingrediantsSerializer = new Serializer<Ingredient>();
         private String filename = @".\..\..\..\Data\ingredients.txt";
 
-        public void Create(Ingredients entity)
+        public void Create(Ingredient entity)
         {
             throw new NotImplementedException();
         }
@@ -26,15 +26,15 @@ namespace SIMS.Repository
             throw new NotImplementedException();
         }
 
-        public List<Ingredients> FindAll()
+        public List<Ingredient> FindAll()
         {
             return ingrediantsSerializer.fromCSV(filename);
         }
 
-        public Ingredients FindByName(string key)
+        public Ingredient FindByName(string key)
         {
-            List<Ingredients> ingredients = FindAll();
-            foreach (Ingredients i in ingredients)
+            List<Ingredient> ingredients = FindAll();
+            foreach (Ingredient i in ingredients)
             {
                 if (i.name.Equals(key))
                 {
@@ -44,10 +44,10 @@ namespace SIMS.Repository
             return null;
         }
 
-        public Ingredients FindById(int key)
+        public Ingredient FindById(int key)
         {
-            List<Ingredients> ingredients = FindAll();
-            foreach (Ingredients i in ingredients)
+            List<Ingredient> ingredients = FindAll();
+            foreach (Ingredient i in ingredients)
             {
                 if (i.id.Equals(key))
                 {
@@ -58,7 +58,7 @@ namespace SIMS.Repository
         }
 
 
-        public void Update(Ingredients entity)
+        public void Update(Ingredient entity)
         {
             throw new NotImplementedException();
         }

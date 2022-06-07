@@ -26,7 +26,7 @@ namespace SIMS.ManagerView
     {
         public Medication newMedication = new Medication();
         private MedicationController _medicationController = new MedicationController();
-        public BindingList<Ingredients> ingredients = new BindingList<Ingredients>();
+        public BindingList<Ingredient> ingredients = new BindingList<Ingredient>();
         public IngredientsController _ingriedientsController = new IngredientsController();
         public BindingList<Medication> medsReplacement = new BindingList<Medication>();
        
@@ -39,7 +39,7 @@ namespace SIMS.ManagerView
             this.DataContext = this;
             ingredientsTable.ItemsSource = ingredients;
             replacementTable.ItemsSource = medsReplacement;
-            List<Ingredients> ing = new List<Ingredients>();
+            List<Ingredient> ing = new List<Ingredient>();
             List<Medication> meds = new List<Medication>();
             meds = _medicationController.FindAll();
             ing = _ingriedientsController.FindAll();
@@ -62,7 +62,7 @@ namespace SIMS.ManagerView
             newMedication.name = name.Text;
             newMedication.status = MedicationStatusType.waiting;
             newMedication.Amount = int.Parse(quantity.Text);
-            newMedication.components = ingredients.ToList<Ingredients>();
+            newMedication.components = ingredients.ToList<Ingredient>();
             newMedication.medicationReplacementIds = medicationIds;
             newMedication.comment = "";
 
@@ -75,7 +75,7 @@ namespace SIMS.ManagerView
         }
         private void AddIngredients_Click(object sender, RoutedEventArgs e)
         {
-            ingredients.Add((Ingredients)IngredientsCombo.SelectedItem);
+            ingredients.Add((Ingredient)IngredientsCombo.SelectedItem);
         }
 
         private void AddReplacement_Click(object sender, RoutedEventArgs e)

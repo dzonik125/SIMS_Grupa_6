@@ -31,7 +31,7 @@
 
         </DataGrid>
         <Button Content="Zakazi" HorizontalAlignment="Left" Margin="86,450,0,0" Name="Schedule" VerticalAlignment="Top" Width="100" Height="38" Click="Schedule_Click"/>
-        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="202,450,0,0" Name="Edit" VerticalAlignment="Top" Width="100" Height="38" Click="Edit_Click"/>
+        <Button Content="Detalji" HorizontalAlignment="Left" Margin="202,450,0,0" Name="Edit" VerticalAlignment="Top" Width="100" Height="38" Click="Edit_Click"/>
         <Button Content="Izbrisi" HorizontalAlignment="Left" Margin="645,450,0,0" Name="Delete" VerticalAlignment="Top" Width="100" Height="38" Click="Delete_Click"/>
     </Grid>
 </Page>

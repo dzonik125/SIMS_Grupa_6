@@ -30,10 +30,7 @@ namespace Controller
         {
             appointmentService.DeleteAppointmentById(id);
         }
-        public List<DateTime> GetTenNextFreeAppointmentsForDoctor(int id)
-        {
-            return appointmentService.GetTenNextFreeAppointmentsForDoctor(id);
-        }
+       
         public Appointment GetFirstFreeAppointmentInOneHour(Scheduler scheduler, Patient patient)
         {
             return appointmentService.GetFirstFreeAppointmentInOneHour(scheduler, patient);
@@ -87,14 +84,7 @@ namespace Controller
         {
             appointmentService.BindPatientsWithAppointments(patients, appointments);
         }
-        public String GetFirstFreeAppointment(DateTime? start, DateTime? finish)
-        {
-            return appointmentService.GetFirstFreeAppointment(start, finish);
-        }
-        public List<String> GetFirstFiveFreeAppointmentsForDate(DateTime? start, DateTime? end)
-        {
-            return appointmentService.GetFirstFiveFreeApointmentsForDate(start, end);
-        }
+        
         public Appointment FindPatientAppointment(Patient patient)
         {
             return appointmentService.FindPatientAppointment(patient);
@@ -103,10 +93,6 @@ namespace Controller
         {
             return appointmentService.GetAllApointments();
         }
-        public List<DateTime> GetTenNextAppointmentsForDoctorForDate(DateTime? start, DateTime? end, int id)
-        {
-            return appointmentService.GetTenNextAppointmentsForDoctorForDate(start, end, id);
-        }
-
+       
     }
 }

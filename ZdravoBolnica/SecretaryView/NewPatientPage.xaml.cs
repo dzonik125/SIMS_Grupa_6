@@ -288,8 +288,8 @@ namespace SIMS.SecretaryView
         public List<Prescription> prescriptions = new List<Prescription>();
 
 
-        public BindingList<Ingredients> ingr = new BindingList<Ingredients>();
-        public List<Ingredients> ingredients = new List<Ingredients>();
+        public BindingList<Ingredient> ingr = new BindingList<Ingredient>();
+        public List<Ingredient> ingredients = new List<Ingredient>();
 
         public BindingList<Medication> medications = new BindingList<Medication>();
         public List<Medication> meds = new List<Medication>();
@@ -349,10 +349,10 @@ namespace SIMS.SecretaryView
                 mr.cardNum = textBoxBrojK.Text;
                 mr.bloodType = Conversion.StringToBloodType(bloodType.Text);
 
-                mr.medications = medications.ToList<Medication>();
+                mr.medicationAllergies = medications.ToList<Medication>();
 
 
-                mr.ingredients = ingr.ToList<Ingredients>();
+                mr.ingredientAllergies = ingr.ToList<Ingredient>();
 
                 mrc.AddMedicalRecord(mr);
 
@@ -379,13 +379,13 @@ namespace SIMS.SecretaryView
 
         private void addIngredient_Click(object sender, RoutedEventArgs e)
         {
-            ingr.Add((Ingredients)ingredientsBox.SelectedItem);
+            ingr.Add((Ingredient)ingredientsBox.SelectedItem);
 
         }
 
         private void removeIngredient_Click(object sender, RoutedEventArgs e)
         {
-            ingr.Remove((Ingredients)ingredients_table.SelectedItem);
+            ingr.Remove((Ingredient)ingredients_table.SelectedItem);
         }
 
         private void addMedicine_Click(object sender, RoutedEventArgs e)

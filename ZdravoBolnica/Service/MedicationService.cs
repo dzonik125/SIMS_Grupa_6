@@ -55,6 +55,25 @@ namespace SIMS.Service
             return medications;
         }
 
+        //public List<Ingredient>  
+
+        public bool IsAllergicToIngredientOfMedication(List<Ingredient> patientAllergies, Medication medication) 
+        {
+            bool allergicToIngredient = false;
+            foreach(Ingredient allergie in patientAllergies)
+            {
+                foreach(Ingredient medIngredient in medication.components)
+                {
+                    if(allergie.name.Equals(medIngredient.name))
+                    {
+                        allergicToIngredient = true;
+                        break;
+                    }
+                }
+            }
+            return allergicToIngredient;
+        }
+
         public List<Medication> RemoveMedicineFromList(List<Medication> medications, string name)
         {
             foreach (Medication m in medications)

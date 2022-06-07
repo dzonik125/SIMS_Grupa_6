@@ -3,7 +3,7 @@ using System;
 
 namespace SIMS.Model
 {
-    public class Ingredients : Serializable
+    public class Ingredient : Serializable
     {
         public int id;
         public string name { get; set; }
