@@ -1,0 +1,4 @@
+Ocenite profesionalnost našeg osoblja|2,5,1,3
+Ocenite higijenu naše ustanove|3,5,4,2
+Ocenite kvalitet hrane u našoj ustanovi|2,5,1,3
+Ocenite organizaciju naše ustanove|2,5,1,3

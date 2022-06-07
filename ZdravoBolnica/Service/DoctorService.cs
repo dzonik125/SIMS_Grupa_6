@@ -72,5 +72,10 @@ namespace Service
         }
 
         public Repository.DoctorRepository doctorRepository = new Repository.DoctorRepository();
+
+        public List<Doctor> FindAll()
+        {
+            return doctorRepository.FindAll();
+        }
     }
 }
