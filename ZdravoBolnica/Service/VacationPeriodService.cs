@@ -97,9 +97,9 @@ namespace SIMS.Service
             return vacationPeriodRepository.FindById(id);
         }
 
-        public bool Update(VacationPeriod vp)
+        public bool Update(VacationPeriod vacationPeriod)
         {
-            vacationPeriodRepository.Update(vp);
+            vacationPeriodRepository.Update(vacationPeriod);
             return true;
         }
 

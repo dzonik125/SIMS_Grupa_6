@@ -10,41 +10,40 @@ namespace Service
 {
     public class PatientService
     {
-        private PatientRepository pr = new PatientRepository();
+        private PatientRepository patientRepository = new PatientRepository();
         public Patient FindPatientById(int id)
         {
-            return pr.FindById(id);
+            return patientRepository.FindById(id);
         }
 
         public List<Patient> FindAllPatients()
         {
-            return pr.FindAll();
+            return patientRepository.FindAll();
         }
 
         public bool DeletePatientById(int id)
         {
-            pr.DeleteById(id);
+            patientRepository.DeleteById(id);
             return true;
         }
 
-        public bool AddPatient(Patient p)
+        public bool AddPatient(Patient patient)
         {
-            pr.Create(p);
+            patientRepository.Create(patient);
             return true;
         }
 
-        public bool AddGuestPatient(Patient p)
+        public bool AddGuestPatient(Patient patient)
         {
-            pr.Create(p);
+            patientRepository.Create(patient);
             return true;
         }
 
-        public bool UpdatePatient(Patient p)
+        public bool UpdatePatient(Patient patient)
         {
-            pr.Update(p);
+            patientRepository.Update(patient);
             return true;
         }
 
-        public Repository.PatientRepository patientRepository;
     }
 }
