@@ -57,7 +57,7 @@ namespace SIMS.ManagerView.ViewModel
             FinishCommand = new RelayCommand(param => Execute(), param => CanExecute());
         }
 
-        private bool CanExecute()
+        public bool CanExecute()
         {
             if (String.IsNullOrEmpty(selectedType))
             {
@@ -67,7 +67,7 @@ namespace SIMS.ManagerView.ViewModel
             return true;
         }
 
-        private void Execute()
+        public void Execute()
         {
             Room room = new Room
             {

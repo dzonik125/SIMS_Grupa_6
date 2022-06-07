@@ -14,12 +14,11 @@ namespace Service
 {
     public class AppointmentService
     {
+
         public PatientService patientService = new PatientService();
-        public Scheduler dateRange = new Scheduler();
+        public DateRange dateRange = new DateRange();
         public Appointment newAppointment = new Appointment();
         public Appointment appointmentForUpdate = new Appointment();
-        public AppointmentRepository appointmentRepository = new AppointmentRepository();
-        public DoctorService doctorService = new DoctorService();
 
 
         public List<Appointment> GetAllApointments()
@@ -45,50 +44,56 @@ namespace Service
 
 
 
-        public void BindRoomsWithAppointments(List<Room> rooms, List<Appointment> appointments)
+        public void bindRoomsWithAppointments(List<Room> rooms, List<Appointment> appointments)
         {
             foreach (Room r in rooms)
             {
                 foreach (Appointment a in appointments)
                 {
-                    if (a.room.id == r.id)
-                        a.room = r;
+                    if (a.Room.id == r.id)
+                    {
+                        a.Room = r;
+                    }
                 }
             }
 
         }
 
-        public void BindDoctorsWithAppointments(List<Doctor> doctors, List<Appointment> appointments)
+        public void bindDoctorsWithAppointments(List<Doctor> doctors, List<Appointment> appointments)
         {
             foreach (Doctor d in doctors)
             {
                 foreach (Appointment a in appointments)
                 {
-                    if (a.doctor.id == d.id)
-                        a.doctor = d;
+                    if (a.Doctor.id == d.id)
+                    {
+                        a.Doctor = d;
+                    }
                 }
             }
         }
 
-        public void BindPatientsWithAppointments(List<Patient> patients, List<Appointment> appointments)
+        public void bindPatientsWithAppointments(List<Patient> patients, List<Appointment> appointments)
         {
             foreach (Patient p in patients)
             {
                 foreach (Appointment a in appointments)
                 {
                     if (a.patient.id == p.id)
+                    {
                         a.patient = p;
+                    }
+
                 }
             }
         }
 
-        public bool IsRoomOccupied(Room roomDestination, DateTime transferDate, int duration)
+        public bool isRoomOccupied(Room roomDestination, DateTime transferDate, int duration)
         {
-            List<Appointment> roomAppointments = GetAppointmentsByRoomId(roomDestination.id);
+            List<Appointment> roomAppointments = getAppointmentsByRoomId(roomDestination.id);
             foreach (Appointment a in roomAppointments)
             {
-                if (!((a.startTime.AddMinutes(a.duration) < transferDate && a.startTime < transferDate 
-                    || (transferDate.AddMinutes(duration) < a.startTime && transferDate < a.startTime))))
+                if (!((a.startTime.AddMinutes(a.duration) < transferDate && a.startTime < transferDate || (transferDate.AddMinutes(duration) < a.startTime && transferDate < a.startTime))))
                 {
                     return true;
                 }
@@ -96,167 +101,47 @@ namespace Service
             return false;
         }
 
-        public List<Appointment> GetFutureAppointmentsForDoctor(int id)
+
+
+        public List<Appointment> getFutureAppointmentsForDoctor(int id)
         {
+
             List<Appointment> potentialAppointments = GetAllApointments();
             List<Appointment> futureAppointments = new List<Appointment>();
             foreach (Appointment a in potentialAppointments)
             {
-                if (a.doctor.id == id)
+                if (a.Doctor.id == id)
                 {
                     if (a.startTime.AddMinutes(a.duration) >= DateTime.Now)
+                    {
+
                         futureAppointments.Add(a);
+
+                    }
                 }
             }
             return futureAppointments;
         }
 
 
-        public List<Appointment> GetAppointmentsForDoctors(List<Doctor> doctors)
+
+
+        public Boolean IsExist(int id)
         {
-            List<Appointment> returnAppointments = new();
-            foreach (Doctor doctor in doctors)
+            Appointment a = appointmentRepository.FindById(id);
+            if (a == null)
             {
-                List<Appointment> appointmentsForDoctor = GetAppointmentsByDoctorId(doctor.id);
-                returnAppointments.AddRange(appointmentsForDoctor);
+                return false;
             }
-            return returnAppointments;
+            return true;
         }
 
-        public Appointment GetFirstFreeAppointmentInOneHour(Specialization spec, Patient p)
-        {
-            dateRange.startTime = DateTime.Now.AddHours(0);
-
-            dateRange.endTime = DateTime.Now.AddHours(1);
-            dateRange.specializationType = spec;
-            dateRange.roomType = RoomType.examination;
-            dateRange.duration = 30;
-            List<Appointment> freeAppointments = FindFreeTermsForReferral(dateRange, p);
-            if (freeAppointments.Count > 0)
-                return freeAppointments[0];
-            
-            return null;
-        }
-
-        public Appointment GetFirstAppointmentForDoctor(List<Appointment> apps)
-        {
-
-            foreach (Appointment appointment in apps)
-            {
-                if ((appointment.startTime.CompareTo(DateTime.Now.AddHours(2)) < 0) && appointment.startTime > DateTime.Now)
-                    return appointment;
-            }
-            return null;
-        }
-
-        public void SaveBusyAppointment(Appointment a, Patient p, Specialization spec)
-        {
-
-            newAppointment = FindFreeAppointmentForPatient(p, spec);
-            newAppointment.patient = patientService.FindPatientById(a.patient.id);
-            newAppointment.duration = 30;
-            appointmentRepository.Create(newAppointment);
-
-            appointmentForUpdate = a;
-            appointmentForUpdate.patient = p;
-            appointmentRepository.Update(appointmentForUpdate);
-
-        }
-        //nalazi prvi slobodan app
-        public Appointment FindFreeAppointmentForPatient(Patient p, Specialization spec)
-        {
-            Scheduler scheduler = new Scheduler();
-            scheduler.startTime = DateTime.Now;
-            scheduler.endTime = DateTime.Now.AddDays(3);
-            scheduler.duration = 30;
-            scheduler.specializationType = spec;
-
-            scheduler.roomType = RoomType.examination;
-
-            List<Appointment> appointments = FindFreeTermsForReferral(scheduler, p);
-            return appointments[0];
-        }
-
-        public List<Appointment> FindFreeTermsForReferral(Scheduler scheduler, Patient patient)
-        {
-            List<Appointment> patientAppointments = GetAllAppointmentsForPatient(patient.id);
-            return FindFreeTerms(patientAppointments, scheduler);
-        }
-
-
-        public List<Appointment> FindFreeTerms(List<Appointment> patientAppointments, Scheduler scheduler)
-        {
-            List<Appointment> potentialAppointments = new();
-            while (scheduler.startTime < scheduler.endTime)
-            {
-                if (!overlapsWithPatientAppointments(patientAppointments, scheduler))
-                {
-                    Appointment potentialAppointment = new();
-                    if (checkForRoomAndDoctorForAppointment(potentialAppointment, scheduler))
-                        potentialAppointments.Add(potentialAppointment);
-                }
-                scheduler.step();
-            }
-            return potentialAppointments;
-        }
-
-
-        public bool overlapsWithPatientAppointments(List<Appointment> patientAppointments, Scheduler scheduler)
-        {
-            bool overlapExists = false;
-            foreach (Appointment a in patientAppointments)
-            {
-                if (scheduler.overlapsWithExistingTerm(a.startTime, a.duration))
-                    overlapExists = true;
-            }
-            return overlapExists;
-        }
-
-        private bool checkForRoomAndDoctorForAppointment(Appointment potentialAppointment, Scheduler scheduler)
-        {
-            RoomService roomService = new RoomService();
-            potentialAppointment.startTime = scheduler.startTime;
-            bool foundRoomAndDoctorForAppointment = false;
-
-            if (roomService.freeRoomExistsForAppointment(potentialAppointment, scheduler) 
-                && doctorService.freeDoctorExistsForAppointment(potentialAppointment, scheduler))
-                foundRoomAndDoctorForAppointment = true;
-            return foundRoomAndDoctorForAppointment;
-        }
-
-
-        public List<Appointment> GetAllAppointmentsForPatient(int id)
-        {
-            List<Appointment> patientAppointments = new List<Appointment>();
-            foreach (Appointment a in GetAllApointments())
-            {
-                if (a.patient.id == id)
-                    patientAppointments.Add(a);
-            }
-            return patientAppointments;
-        }
-
-        public List<Appointment> GetFutureAppointmentsForPatient(int id)
-        {
-            List<Appointment> potentialAppointments = GetAllApointments();
-            List<Appointment> futureAppointments = new List<Appointment>();
-            foreach (Appointment a in potentialAppointments)
-            {
-                if (a.patient.id == id)
-                {
-                    if (a.startTime >= DateTime.Now)
-                        futureAppointments.Add(a);
-                }
-
-            }
-            return futureAppointments;
-        }
 
         public List<DateTime> getTenNextFreeAppointmentsForDoctorToday(int id)
         {
             DateTime toCheck = DateTime.Now.AddMinutes(60 - DateTime.Now.Minute);
-            DateTime finish = DateTime.Today.AddHours(32).AddMinutes(30);
-            List<Appointment> apps = GetAppointmentsByDoctorId(id);
+            DateTime finish = DateTime.Today.AddHours(8).AddMinutes(30);
+            List<Appointment> apps = getAppointmentsByDoctorId(id);
             List<DateTime> toReturn = new List<DateTime>();
             int counter = 0;
             bool dontAdd = false;
@@ -314,11 +199,17 @@ namespace Service
             return toReturn;
         }
 
+
+
+
+
+
+
         public List<DateTime> getTenNextFreeAppointmentsForDoctor(int id)
         {
             DateTime toCheck = DateTime.Today.AddHours(32);
             DateTime finish = DateTime.Today.AddHours(32).AddMinutes(30);
-            List<Appointment> apps = GetAppointmentsByDoctorId(id);
+            List<Appointment> apps = getAppointmentsByDoctorId(id);
             List<DateTime> toReturn = new List<DateTime>();
             int counter = 0;
             bool dontAdd = false;
@@ -376,10 +267,142 @@ namespace Service
             return toReturn;
         }
 
+
+
+        public List<Appointment> getAppointmentsForDoctors(List<Doctor> doctors)
+        {
+            List<Appointment> returnAppointments = new();
+            foreach (Doctor d in doctors)
+            {
+                List<Appointment> appointmentsForDoctor = getAppointmentsByDoctorId(d.id);
+                returnAppointments.AddRange(appointmentsForDoctor);
+            }
+
+            return returnAppointments;
+        }
+
+        public Appointment getFirstFreeAppointmentInOneHour(Specialization spec, Patient p)
+        {
+            dateRange.startTime = DateTime.Now.AddHours(0);
+
+            dateRange.endTime = DateTime.Now.AddHours(1);
+
+            dateRange.specializationType = spec;
+            dateRange.type = RoomType.examination;
+            dateRange.duration = 30;
+            List<Appointment> freeAppointments = findFreeTermsForReferral(dateRange, p);
+            if (freeAppointments.Count > 0)
+
+                if (freeAppointments.Count > 0)
+                {
+                    return freeAppointments[0];
+                }
+            return null;
+        }
+
+        public Appointment getFirstAppointmentForDoctor(List<Appointment> apps)
+        {
+            foreach (Appointment appointment in apps)
+            {
+                if ((appointment.startTime.CompareTo(DateTime.Now.AddHours(2)) < 0) && appointment.startTime > DateTime.Now)
+                {
+                    return appointment;
+                }
+            }
+            return null;
+        }
+
+        public void SaveBusyAppointment(Appointment a, Patient p, Specialization spec)
+        {
+
+            newAppointment = findFreeAppointmentForPatient(p, spec);
+            newAppointment.patient = patientService.FindPatientById(a.patient.id);
+            newAppointment.duration = 30;
+            appointmentRepository.Create(newAppointment);
+
+            appointmentForUpdate = a;
+            appointmentForUpdate.patient = p;
+            appointmentRepository.Update(appointmentForUpdate);
+
+        }
+
+        //nalazi prvi slobodan app
+        public Appointment findFreeAppointmentForPatient(Patient p, Specialization spec)
+        {
+            DateRange dateRange = new DateRange();
+            dateRange.startTime = DateTime.Now;
+            dateRange.endTime = DateTime.Now.AddDays(3);
+            dateRange.duration = 30;
+            dateRange.specializationType = spec;
+
+            dateRange.type = RoomType.examination;
+
+            List<Appointment> appointments = findFreeTermsForReferral(dateRange, p);
+            return appointments[0];
+        }
+
+
+
+        public List<Appointment> findFreeTermsForReferral(DateRange dateRange, Patient patient)
+        {
+            List<Appointment> returnAppointments = new();
+            List<Appointment> patientAppointments = GetAllAppointmentsForPatient(patient.id);
+            return findFreeTerms(patientAppointments, dateRange);
+
+        }
+
+        public List<Appointment> findFreeTerms(List<Appointment> patientAppointments, DateRange dateRange)
+        {
+            List<Appointment> potentialAppointments = new();
+            while (dateRange.startTime < dateRange.endTime)
+            {
+                Appointment app = findPotentialAppointment(patientAppointments, dateRange);
+                if (app != null)
+                    potentialAppointments.Add(app);
+                dateRange.step();
+
+            }
+            return potentialAppointments;
+        }
+
+
+        public Appointment findPotentialAppointment(List<Appointment> patientAppointments, DateRange dateRange)
+        {
+            Appointment potentialAppointment = new();
+            foreach (Appointment a in patientAppointments)
+            {
+                if (dateRange.checkForIntersection(a.startTime, a.duration))
+                {
+                    continue;
+                }
+                else
+                {
+                    if (checkIfRoomAndDoctorAreFree(potentialAppointment, dateRange))
+                    {
+                        potentialAppointment.startTime = dateRange.startTime;
+                        return potentialAppointment;
+                    }
+                }
+            }
+            return null;
+        }
+
+
+        private bool checkIfRoomAndDoctorAreFree(Appointment potentialAppointment, DateRange dateRange)
+        {/*
+            RoomService roomService = new RoomService();
+            DoctorService doctorService = new DoctorService();
+            if (roomService.getAppointmentWithRoom(potentialAppointment, dateRange) == null
+                || doctorService.getAppointmentWithDoctor(potentialAppointment, dateRange) == null)
+                return false;*/
+            return true;
+        }
+
+
         public string getFirstFreeAppointment(DateTime? start, DateTime? end)
         {
             List<Appointment> apps = GetAllApointments();
-            List<Doctor> docs = doctorService.GetAllDoctors();
+            List<Doctor> docs = ds.GetAllDoctors();
             bool cont = true;
             DateTime startToUse = (DateTime)start;
             DateTime min = startToUse.AddHours(21);
@@ -392,7 +415,7 @@ namespace Service
                 startToUse = startToUse.AddHours(8);
                 finish = startToUse.AddMinutes(30);
 
-                List<Appointment> dapps = GetAppointmentsByDoctorId(d.id);
+                List<Appointment> dapps = getAppointmentsByDoctorId(d.id);
                 do
                 {
                     dontAdd = false;
@@ -460,11 +483,19 @@ namespace Service
 
         }
 
+        //  public List<DateTime> GetAppointmentBySpecialization(DateTime? start, DateTime? end, int id, Specialization s)
+        //  {
+
+        //     List<Doctor> docs = getDoctorBySpecialization(s);
+
+        //     return;
+        //  }
+
         public List<DateTime> getTenNextAppointmentsForDoctorForDate(DateTime? start, DateTime? end, int id)
         {
             DateTime toCheck = start.Value.AddHours(8);
             DateTime finish = toCheck.AddMinutes(30);
-            List<Appointment> apps = GetAppointmentsByDoctorId(id);
+            List<Appointment> apps = getAppointmentsByDoctorId(id);
             List<DateTime> toReturn = new List<DateTime>();
             int counter = 0;
             bool dontAdd = false;
@@ -536,7 +567,7 @@ namespace Service
         public List<String> getFirstFiveFreeApointmentsForDate(DateTime? start, DateTime? end)
         {
             List<Appointment> apps = GetAllApointments();
-            List<Doctor> docs = doctorService.GetAllDoctors();
+            List<Doctor> docs = ds.GetAllDoctors();
             bool cont = true;
             DateTime startToUse = (DateTime)start;
             startToUse = startToUse.AddHours(8);
@@ -549,7 +580,7 @@ namespace Service
                 startToUse = (DateTime)start;
                 startToUse = startToUse.AddHours(8);
                 finish = startToUse.AddMinutes(30);
-                List<Appointment> dapps = GetAppointmentsByDoctorId(d.id);
+                List<Appointment> dapps = getAppointmentsByDoctorId(d.id);
                 do
                 {
                     dontAdd = false;
@@ -629,32 +660,149 @@ namespace Service
             return toRet;
         }
 
-
-        public List<Appointment> GetAppointmentsByDoctorId(int doctorId)
+        public List<Appointment> GetAllAppointmentsForPatient(int id)
         {
-            return appointmentRepository.FindByDoctorId(doctorId);
-        }
-
-        public List<Appointment> GetAppointmentsByPatientId(int patientId)
-        {
-            return appointmentRepository.FindByPatientId(patientId);
-        }
-
-        public List<Appointment> GetAppointmentsByRoomId(int roomId)
-        {
-            return appointmentRepository.FindByRoomId(roomId);
-        }
-
-        public Appointment FindPatientAppointment(Patient p)
-        {
-            Appointment patientAppointment = new();
-            foreach (Appointment appointment in GetAppointmentsByPatientId(p.id))
+            List<Appointment> toRet = new List<Appointment>();
+            List<Appointment> apps = GetAllApointments();
+            foreach (Appointment a in apps)
             {
-                if (appointment.startTime <= DateTime.Now && appointment.startTime.AddMinutes(appointment.duration) >= DateTime.Now)
-                    patientAppointment = appointment;
+                if (a.patient.id == id)
+                {
+                    toRet.Add(a);
+                }
             }
-            return patientAppointment;
+
+            return toRet;
         }
 
+        public List<Appointment> getFutureAppointmentsForPatient(int id)
+        {
+            List<Appointment> potentialAppointments = GetAllApointments();
+            List<Appointment> futureAppointments = new List<Appointment>();
+            foreach (Appointment a in potentialAppointments)
+            {
+                if (a.patient.id == id)
+                {
+                    if (a.startTime >= DateTime.Now)
+                    {
+
+                        futureAppointments.Add(a);
+
+                    }
+
+                }
+
+            }
+
+            return futureAppointments;
+
+        }
+
+        public List<Appointment> getAppointmentsByDoctorId(int doctorID)
+        {
+            return appointmentRepository.FindByDoctorId(doctorID);
+        }
+
+        public List<Appointment> getAppointmentsByPatientId(int patientID)
+        {
+            return appointmentRepository.FindByPatientId(patientID);
+        }
+
+        public List<Appointment> getAppointmentsByRoomId(int roomID)
+        {
+            return appointmentRepository.FindByRoomId(roomID);
+        }
+
+        public List<Appointment> getAppointmentBySpecialization(Specialization s)
+        {
+            List<Appointment> appointmentList = new List<Appointment>();
+            List<Doctor> doctorList = new List<Doctor>();
+            doctorList = ds.GetAllDoctors();
+            foreach (Doctor d in doctorList)
+            {
+                if (d.specialization.Equals(s))
+                {
+                    appointmentList = getAppointmentsByDoctorId(d.id);
+                }
+            }
+            return appointmentList;
+        }
+
+
+        public List<Doctor> getDoctorBySpecialization(Specialization specialization)
+        {
+            List<Doctor> doctors = new();
+            List<Doctor> doctorSpec = new();
+            doctors = doctorRepository.FindAll();
+            foreach (Doctor d in doctors)
+            {
+                if (d.Specialization.Equals(specialization))
+                {
+                    doctorSpec.Add(d);
+                }
+            }
+            return doctorSpec;
+
+        }
+
+
+        public Appointment findPatientAppointment(Patient p)
+        {
+            List<Appointment> appointments = getAppointmentsByPatientId(p.id);
+            foreach (Appointment a in appointments)
+            {
+                if (a.startTime <= DateTime.Now && a.startTime.AddMinutes(a.duration) >= DateTime.Now)
+                {
+                    return a;
+                }
+            }
+            return null;
+        }
+
+        public bool IntersectionWithAppointments(int patientID, int doctorID, int roomID, DateTime date, int duration)
+        {
+            List<Appointment> doctorAppointments = getAppointmentsByDoctorId(doctorID);
+            List<Appointment> roomAppointments = getAppointmentsByRoomId(roomID);
+            List<Appointment> patientAppointments = getAppointmentsByPatientId(patientID);
+
+            foreach (Appointment a in doctorAppointments)
+            {
+                if (!((a.startTime.AddMinutes(a.duration) < date && a.startTime < date || (date.AddMinutes(duration) < a.startTime && date < a.startTime))))
+                {
+                    return true;
+                }
+            }
+            foreach (Appointment a in roomAppointments)
+            {
+                if (!((a.startTime.AddMinutes(a.duration) < date && a.startTime < date || (date.AddMinutes(duration) < a.startTime && date < a.startTime))))
+                {
+                    return true;
+                }
+            }
+            foreach (Appointment a in patientAppointments)
+            {
+                if (!((a.startTime.AddMinutes(a.duration) < date && a.startTime < date || (date.AddMinutes(duration) < a.startTime && date < a.startTime))))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+
+
+
+        public Appointment GetAppointmentByID(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public AppointmentRepository appointmentRepository = new AppointmentRepository();
+        public DoctorRepository doctorRepository = new DoctorRepository();
+        //public RoomService rs = new RoomService();
+        public DoctorService ds = new DoctorService();
+        //public DoctorService doctorService = new DoctorService();
     }
 }

@@ -27,10 +27,9 @@ namespace SIMS
 
         public EditEquipment()
         {
-            InitializeComponent();
         }
 
-        /*public EditEquipment(Equipment e)
+        public EditEquipment(Equipment e)
         {
             InitializeComponent();
             selectedEquipment = e;
@@ -45,9 +44,9 @@ namespace SIMS
             {
                 ComboType.SelectedIndex = 1;
             }
-        }*/
+        }
 
-        /*private void CloseEditEquipment_Click(object sender, RoutedEventArgs e)
+        private void CloseEditEquipment_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
 
@@ -62,6 +61,6 @@ namespace SIMS
             ManagerUI mui = ManagerUI.Instance;
             mui.refreshEquipmentTable();
             this.Close();
-        }*/
+        }
     }
 }

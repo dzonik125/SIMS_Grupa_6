@@ -53,16 +53,11 @@ namespace SIMS.Service
             {
                 foreach (ExaminationReport e in reports)
                 {
-                    CheckDoctorId(e, d);
+                    if (e.doctor.id == d.id)
+                    {
+                        e.doctor = d;
+                    }
                 }
-            }
-        }
-
-        private static void CheckDoctorId(ExaminationReport e, Doctor d)
-        {
-            if (e.doctor.id == d.id)
-            {
-                e.doctor = d;
             }
         }
 
@@ -72,18 +67,13 @@ namespace SIMS.Service
             {
                 foreach (ExaminationReport e in reports)
                 {
-                    CheckAppointmentId(e, a);
+                    if (e.appointment.id == a.id)
+                    {
+                        e.appointment = a;
+                    }
                 }
             }
 
-        }
-
-        private static void CheckAppointmentId(ExaminationReport e, Appointment a)
-        {
-            if (e.appointment.id == a.id)
-            {
-                e.appointment = a;
-            }
         }
     }
 }

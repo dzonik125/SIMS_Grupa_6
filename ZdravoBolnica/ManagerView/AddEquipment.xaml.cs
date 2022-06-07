@@ -37,7 +37,7 @@ namespace SIMS
             this.Close();
         }
 
-        /*private void AddEquip_Click(object sender, RoutedEventArgs e)
+        private void AddEquip_Click(object sender, RoutedEventArgs e)
         {
             equipment.quantity = Int32.Parse(Quantity.Text);
             equipment.item = Name.Text;
@@ -48,6 +48,6 @@ namespace SIMS
             mui.refreshEquipmentTable();
             this.Close();
 
-        }*/
+        }
     }
 }

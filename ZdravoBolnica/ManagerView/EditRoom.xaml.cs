@@ -26,10 +26,8 @@ namespace SIMS
 
         public Room selectedRoom;
         public RoomController rc = new RoomController();
-        public EditRoom()
+        public EditRoom(Room r)
         {
-            InitializeComponent();
-            /*
             selectedRoom = r;
             InitializeComponent();
             RoomNum.Text = r.roomNum.ToString();
@@ -53,14 +51,13 @@ namespace SIMS
                 TypeCombo.SelectedIndex = 4;
             }
             Floor.Text = r.floor.ToString();
-            */
 
 
 
 
         }
 
-        /*private void EditRoom_Click(object sender, RoutedEventArgs e)
+        private void EditRoom_Click(object sender, RoutedEventArgs e)
         {
 
             selectedRoom.roomNum = Int32.Parse(RoomNum.Text);
@@ -81,6 +78,6 @@ namespace SIMS
         private void EditRoomClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }*/
+        }
     }
 }

@@ -18,7 +18,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using SIMS.ManagerView.ViewModel;
 
 namespace SIMS
 {
@@ -194,12 +193,7 @@ namespace SIMS
                 return;
             }
 
-            var vm = new EditRoomViewModel(selectedRoom);
-            EditRoom er = new EditRoom()
-            {
-                DataContext = vm
-            };
-            vm.OnRequestClose += (s, e) => er.Close();
+            EditRoom er = new EditRoom(selectedRoom);
             er.ShowDialog();
         }
 
@@ -224,12 +218,7 @@ namespace SIMS
 
         private void AddEquipment_Click(object sender, RoutedEventArgs e)
         {
-            var vm = new AddEquipmentViewModel();
-            AddEquipment addEquipment = new AddEquipment()
-            {
-                DataContext = vm
-            };
-            vm.OnRequestClose += (s, e) => addEquipment.Close();
+            AddEquipment addEquipment = new AddEquipment();
             addEquipment.ShowDialog();
         }
 
@@ -241,12 +230,7 @@ namespace SIMS
                 MessageBox.Show("Izaberite opremu");
                 return;
             }
-            var vm = new EditEquipmentViewModel(selectedEquipment);
-            EditEquipment editEquipment = new EditEquipment()
-            {
-                DataContext = vm
-            };
-            vm.OnRequestClose += (s, e) => editEquipment.Close();
+            EditEquipment editEquipment = new EditEquipment(selectedEquipment);
             editEquipment.ShowDialog();
         }
 
