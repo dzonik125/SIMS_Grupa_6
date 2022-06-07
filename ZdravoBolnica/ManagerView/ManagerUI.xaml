@@ -330,8 +330,102 @@
                     </TabControl>
                 </Grid>
             </TabItem>
-            <TabItem Background="#191E29" BorderThickness="105" Foreground="White" Width="90" Header="     Zaposleni" Margin="19,0,-19,0">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem Background="#191E29" BorderThickness="105" Foreground="White" Width="90" Header="     Ankete" Margin="19,0,-19,0">
+                <Grid Background="#8BA19B">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="429*"/>
+                        <ColumnDefinition Width="365*"/>
+                    </Grid.ColumnDefinitions>
+                    <TabControl Background="#8BA19B" TabStripPlacement="Left" Grid.ColumnSpan="2">
+                        <TabItem Background="#006666"  Width="70" Foreground="White" Height="30" Header="Anketa o bolnici">
+                            <Grid Background="#8BA19B">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition Height="100"/>
+                                </Grid.RowDefinitions>
+                                <DataGrid x:Name="SurveyTable" Background="#879D8C" ItemsSource="{Binding Path = hospitalSurveyList}" Grid.Row="0"  Grid.RowSpan="3" Grid.ColumnSpan="7" AutoGenerateColumns="False"  SelectionChanged="DataGrid_SelectionChanged_1" Margin="78,30,10,12">
+                                    <DataGrid.Resources>
+                                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                            <Setter Property="Background" Value="#99B29F" />
+                                            <Setter Property="Foreground" Value="White"></Setter>
+                                        </Style>
+                                    </DataGrid.Resources>
+                                    <DataGrid.RowStyle>
+                                        <Style BasedOn="{StaticResource {x:Type DataGridRow}}" TargetType="{x:Type DataGridRow}">
+                                            <Setter Property="Background" Value="#879D8C"></Setter>
+                                            <Setter Property="Foreground" Value="White"></Setter>
+                                        </Style>
+                                    </DataGrid.RowStyle>
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Foreground="White"  Header="Pitanje" Binding="{Binding Question}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Foreground="white" Header="Prosecna ocena" Binding="{Binding AvarageGrade}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Foreground="white" Header="Broj jedinica" Binding="{Binding NumberOfOnes}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Foreground="white" Header="Broj dvojki" Binding="{Binding NumberOfTwos}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Foreground="white" Header="Broj trojki" Binding="{Binding NumberOfThrees}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Foreground="white" Header="Broj cetvorki" Binding="{Binding NumberOfFours}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Foreground="white" Header="Broj petica" Binding="{Binding NumberOfFives}" Width="*"></DataGridTextColumn>
+                                    </DataGrid.Columns>
+
+                                </DataGrid>
+
+                            </Grid>
+
+                        </TabItem>
+                        <TabItem Background="#006666"  Width="70" Foreground="White" Height="30" Header="Doktori">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                    <ColumnDefinition Width = "100" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition Height="100"/>
+                                </Grid.RowDefinitions>
+                                <DataGrid x:Name="DoctorTable" Background="#879D8C" ItemsSource="{Binding Path = doctorsList}" Grid.Row="0"  Grid.RowSpan="3" Grid.ColumnSpan="7" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged_1" Margin="10,30,78,34">
+                                    <DataGrid.Resources>
+                                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                            <Setter Property="Background" Value="#99B29F" />
+                                            <Setter Property="Foreground" Value="White"></Setter>
+                                        </Style>
+                                    </DataGrid.Resources>
+                                    <DataGrid.RowStyle>
+                                        <Style BasedOn="{StaticResource {x:Type DataGridRow}}" TargetType="{x:Type DataGridRow}">
+                                            <Setter Property="Background" Value="#879D8C"></Setter>
+                                            <Setter Property="Foreground" Value="White"></Setter>
+                                        </Style>
+                                    </DataGrid.RowStyle>
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Foreground="White"  Header="Ime" Binding="{Binding name}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Foreground="white" Header="Prezime" Binding="{Binding surname}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Foreground="white" Header="Specijalizacija" Binding="{Binding specialization}" Width="*"></DataGridTextColumn>
+                                    </DataGrid.Columns>
+
+                                </DataGrid>
+
+                                <Button Name="ShowDoctorSurvey" Content="Prikazi anketu" Grid.ColumnSpan="2" Grid.Column="6" Margin="10,0,90,58" Grid.Row="3" Click="ShowDoctorSurvey_Click"/>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
 
             </TabItem>
             <TabItem Background="#191E29"  BorderThickness="105" Foreground="White" Width="90" Header="      Grafikoni" Margin="20,0,-20,0">

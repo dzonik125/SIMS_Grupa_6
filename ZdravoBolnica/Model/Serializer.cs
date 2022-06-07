@@ -17,7 +17,6 @@ namespace Model
         public void toCSV(string fileName, List<T> objects)
         {
             using StreamWriter streamWriter = new StreamWriter(fileName);
-
             foreach (Serializable obj in objects)
             {
                 string line = string.Join(DELIMITER, obj.ToCSV());
@@ -28,7 +27,6 @@ namespace Model
         public List<T> fromCSV(string fileName)
         {
             List<T> objects = new List<T>();
-
             foreach (string line in File.ReadLines(fileName))
             {
                 string[] csvValues = line.Split(DELIMITER);
@@ -36,7 +34,6 @@ namespace Model
                 obj.FromCSV(csvValues);
                 objects.Add(obj);
             }
-
             return objects;
         }
     }

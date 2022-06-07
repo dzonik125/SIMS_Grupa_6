@@ -40,5 +40,10 @@ namespace Controller
         {
             return doctorService.GetDoctorById(id);
         }
+
+        public List<Doctor> FindAll()
+        {
+            return doctorService.FindAll();
+        }
     }
 }

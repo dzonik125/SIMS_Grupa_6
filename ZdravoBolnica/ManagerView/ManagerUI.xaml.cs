@@ -6,7 +6,9 @@ using SIMS.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,11 +20,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using SIMS.Annotations;
 using SIMS.ManagerView.ViewModel;
 
 namespace SIMS
 {
-       public partial class ManagerUI : Window
+       public partial class ManagerUI : INotifyPropertyChanged
     {
 
         private static ManagerUI instance = new ManagerUI();
@@ -32,6 +35,8 @@ namespace SIMS
         private AppointmentController ac = new AppointmentController();
         private TransferEquipmentController transferEquipmentController = new TransferEquipmentController();
         private MedicationController _medicationController = new MedicationController();
+        private HospitalSurveyController hsc = new HospitalSurveyController();
+        private DoctorController dc = new DoctorController();
         private static Timer timer;
         private Room roomSource;
 
@@ -68,8 +73,12 @@ namespace SIMS
             // Room r = roomsTable.SelectedItem as Room;
             //  transferDate = ac.FindDate(r);
 
+            hospitalSurveyList = new ObservableCollection<HospitalSurvey>();
             refreshMedicationTable();
             CombroFilter.ItemsSource = Conversion.GetEquipmentTypes();
+            refreshHospitalSurveyTable();
+            doctorsList = new ObservableCollection<Doctor>();
+            refreshDoctorTable();
 
 
         }
@@ -80,7 +89,7 @@ namespace SIMS
                 return instance;
             }
         }
-
+        public ObservableCollection<Doctor> doctorsList { get; set; }
         public ObservableCollection<Medication> medicationList { get; set; }
 
         public ObservableCollection<Room> list
@@ -88,6 +97,7 @@ namespace SIMS
             get;
             set;
         }
+        public ObservableCollection<HospitalSurvey> hospitalSurveyList { get; set; }
         public static ObservableCollection<Equipment> equipList
         {
             get;
@@ -124,6 +134,24 @@ namespace SIMS
             foreach(Room r in rooms)
             {
                 list.Add(r);
+            }
+        }
+        public void refreshDoctorTable()
+        {
+            doctorsList.Clear();
+            List<Doctor> doctors = new List<Doctor>();
+            doctors = dc.FindAll();
+            foreach(Doctor d in doctors)
+            {
+                doctorsList.Add(d);
+            }
+        }
+        public void refreshHospitalSurveyTable()
+        {
+            hospitalSurveyList.Clear();
+            foreach (HospitalSurvey hs in hsc.FindAll())
+            {
+                hospitalSurveyList.Add(hs);
             }
         }
 
@@ -463,6 +491,28 @@ namespace SIMS
         private void CombroFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void ShowDoctorSurvey_Click(object sender, RoutedEventArgs e)
+        {
+            Doctor selectedDoctor = DoctorTable.SelectedItem as Doctor;
+            if (selectedDoctor == null)
+            {
+                MessageBox.Show("Morate izbrati doktora");
+                return;
+            }
+
+            DoctorSurveyDialog doctorSurvey = new DoctorSurveyDialog(selectedDoctor);
+            doctorSurvey.ShowDialog();
+
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

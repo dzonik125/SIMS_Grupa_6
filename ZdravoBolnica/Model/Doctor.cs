@@ -17,7 +17,7 @@ namespace Model
 
         public List<VacationPeriod> vacationPeriods { get; set; }
         
-        public Specialization specialization;
+        public Specialization specialization { get; set; }
 
         public string[] ToCSV()
         {

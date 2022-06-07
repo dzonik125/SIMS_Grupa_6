@@ -1,0 +1,10 @@
+1| Ocenite profesionalnost lekara|5,2,1,3
+1|Ocenite ljubaznost lekara|4,2,4,2
+1|Ocenite komunikaciju sa lekarom|5,2,1,3
+1|Ocenite kooperativnost lekara|5,2,1,3
+1|Da li ste zadovoljni pregledom|5,2,1,3
+2| Ocenite profesionalnost lekara|5,2,1,3
+2|Ocenite ljubaznost lekara|4,2,4,2
+2|Ocenite komunikaciju sa lekarom|5,2,1,3
+2|Ocenite kooperativnost lekara|5,2,1,3
+2|Da li ste zadovoljni pregledom|5,2,1,3
