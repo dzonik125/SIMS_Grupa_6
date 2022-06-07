@@ -27,7 +27,7 @@ namespace SIMS.SecretaryView
         private Appointment first;
         private Patient patient;
         private String spec;
-        private DateRange dr = new DateRange();
+        private Scheduler dr = new Scheduler();
         private Appointment busyAppointment = new Appointment();
         public AddEmergencyExaminationPage(AppointmentType type)
         {
@@ -48,7 +48,7 @@ namespace SIMS.SecretaryView
 
         private void Schedule_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            
+
             String spec = Specialization.Text;
             if (app != null)
             {
@@ -80,7 +80,7 @@ namespace SIMS.SecretaryView
             dr.roomType = RoomType.examination;
             dr.duration = 30;
             app = ac.GetFirstFreeAppointmentInOneHour(dr, (Patient)PatientBox.SelectedItem);
-            if (app.Room != null)
+            if (app.room != null)
             {
                 TimeBox.Items.Add(app.startTime);
                 app.patient = (Patient)PatientBox.SelectedItem;

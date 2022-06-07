@@ -4,10 +4,9 @@
 // Purpose: Definition of Class AppointmentController
 
 using Model;
+using SIMS.Util;
 using System;
 using System.Collections.Generic;
-using SIMS.Model;
-using SIMS.Util;
 
 
 namespace Controller
@@ -35,9 +34,9 @@ namespace Controller
         {
             return appointmentService.GetTenNextFreeAppointmentsForDoctor(id);
         }
-        public Appointment GetFirstFreeAppointmentInOneHour(DateRange dateRange, Patient patient)
+        public Appointment GetFirstFreeAppointmentInOneHour(Scheduler scheduler, Patient patient)
         {
-            return appointmentService.GetFirstFreeAppointmentInOneHour(dateRange, patient);
+            return appointmentService.GetFirstFreeAppointmentInOneHour(scheduler, patient);
         }
         public List<Appointment> GetFutureAppointmentsForDoctor(int id)
         {
