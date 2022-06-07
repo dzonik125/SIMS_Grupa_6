@@ -1,22 +1,12 @@
-﻿using Model;
+﻿using Controller;
+using Model;
 using SIMS.Controller;
+using SIMS.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using SIMS.Model;
-using Controller;
 
 namespace SIMS.DoctorView
 {
@@ -42,7 +32,7 @@ namespace SIMS.DoctorView
         private PatientMedicalRecord()
         {
 
-            
+
             InitializeComponent();
             this.DataContext = this;
             prescriptions = new ObservableCollection<Prescription>();
@@ -52,14 +42,14 @@ namespace SIMS.DoctorView
             refreshPrescriptions();
             refreshExaminationReports();
             MedicalRecord medicalRecord = medicalRecordController.FindMedicalRecordById(PatientsView.Instance.selectedPatient.medicalRecord.id);
-            List<Allergies> allergiesList = medicalRecord.allergies;
-            foreach(Allergies a in allergiesList)
+            List<Ingredients> ingredientsList = medicalRecord.ingredients;
+            foreach (Ingredients i in ingredientsList)
             {
-                allergies.Add(a.name);
+                allergies.Add(i.name);
             }
             List<Medication> medications = medicalRecord.medications;
-          
-            foreach(Medication m  in medications)
+
+            foreach (Medication m in medications)
             {
                 if (m == null)
                     break;
@@ -71,10 +61,11 @@ namespace SIMS.DoctorView
         {
             get
             {
-                if(instance == null)
+                if (instance == null)
                 {
                     return new PatientMedicalRecord();
-                }else
+                }
+                else
                     return instance;
             }
         }
@@ -99,7 +90,7 @@ namespace SIMS.DoctorView
             instance = null;
             this.Visibility = Visibility.Hidden;
             e.Cancel = true;
-          
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -116,7 +107,7 @@ namespace SIMS.DoctorView
             prescriptions.Clear();
             List<Prescription> prescs = new();
             prescs = prc.findPrescriptionsByMRecordId(patient.medicalRecord.id);
-            List <Doctor> doctors = doctorController.GetAllDoctors();
+            List<Doctor> doctors = doctorController.GetAllDoctors();
             List<Medication> medications = medicationController.FindAll();
             prc.bindPrescriptionsWithDoctors(prescs, doctors);
             prc.bindPrescriptionsWithMedications(prescs, medications);
@@ -131,7 +122,7 @@ namespace SIMS.DoctorView
             examinationReports.Clear();
             List<ExaminationReport> exReports = new();
             exReports = erc.findReportsByMRecordId(patient.medicalRecord.id);
-            List <Doctor> doctors = doctorController.GetAllDoctors();
+            List<Doctor> doctors = doctorController.GetAllDoctors();
             erc.bindReporswithDoctors(exReports, doctors);
             List<Room> rooms = roomController.FindAll();
             List<Appointment> appointments = appointmentController.GetAllAppointments();
@@ -176,8 +167,8 @@ namespace SIMS.DoctorView
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-           
-            
+
+
             Appointment a = appointmentController.FindPatientAppointment(patient);
             if (a == null)
             {
@@ -188,7 +179,7 @@ namespace SIMS.DoctorView
                 RecordExamination re = new RecordExamination(a);
                 re.ShowDialog();
             }
-            
+
         }
     }
 

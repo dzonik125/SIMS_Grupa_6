@@ -11,7 +11,7 @@
       MaxWidth="800">
 
     <Grid>
-        <Label Content="Pregled sastanaka" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,395"/>
+        <Label Content="Pregled sastanaka" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-60,0,440"/>
         <DataGrid x:Name="meeting_table" ItemsSource="{Binding Path = meetings}" Margin="30,284,460,25" IsReadOnly="True" MaxHeight="200" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Tema" Width="*" Binding="{Binding topic}" DataGridColumn.CanUserResize="False"/>

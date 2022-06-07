@@ -12,9 +12,9 @@
     
 
     <Grid>
+        <Label Content="Pregled zakazanih termina" FontSize="30" HorizontalAlignment="Center" Margin="0,-60,0,440"/>
         <StackPanel>
-            <Label Content="Pregled zakazanih termina" FontSize="30" HorizontalAlignment="Center"/>
-            <DataGrid x:Name="dataGridAppointments" ItemsSource="{Binding Path = Apps}" Margin="20,20" IsReadOnly="True" MaxHeight="200" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False">
+            <DataGrid x:Name="dataGridAppointments" ItemsSource="{Binding Path = Apps}" Margin="20,20" IsReadOnly="True" MaxHeight="250" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False">
                <DataGrid.Columns>
                     <DataGridTextColumn Header="Termin" Width="*" Binding="{Binding AppointmentTypeString}" DataGridColumn.CanUserResize="False"/>
                     <DataGridTextColumn Header="Lekar" Width="*" Binding="{Binding Doctor.FullName}" DataGridColumn.CanUserResize="False"/>

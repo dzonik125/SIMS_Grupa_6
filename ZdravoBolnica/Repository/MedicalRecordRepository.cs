@@ -72,7 +72,7 @@ namespace Repository
                 {
                     mr.cardNum = entity.cardNum;
                     mr.bloodType = entity.bloodType;
-                    mr.allergies = entity.allergies;
+                    mr.ingredients = entity.ingredients;
                     mr.medications = entity.medications;
                 }
             }

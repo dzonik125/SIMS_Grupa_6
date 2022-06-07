@@ -6,17 +6,22 @@
       xmlns:local="clr-namespace:SIMS.SecretaryView"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      MaxHeight="450"
+      MaxWidth="800"
       Title="NewGuestPatientPage">
 
-    <Grid Height="450" Width="800" Margin="0,-48,0,48">
-        <Label Content="Ime:" HorizontalAlignment="Left" Margin="340,104,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="Prezime:" HorizontalAlignment="Left" Margin="340,170,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="JMBG:" HorizontalAlignment="Left" Margin="339,240,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <TextBox x:Name="Name" HorizontalAlignment="Center" Margin="0,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20"/>
-        <TextBox    x:Name="Surname" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" FontSize="20"/>
-        <TextBox x:Name="Jmbg" HorizontalAlignment="Center" Margin="0,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20"/>
-        <Button Background="LightGreen" Content="Dodaj" HorizontalAlignment="Left" Margin="287,370,0,0" VerticalAlignment="Top" Click="AddGuest_Click" Height="35" Width="71" FontSize="16"/>
-        <Button Background="Firebrick" Content="Poništi" HorizontalAlignment="Left" Margin="429,370,0,0" VerticalAlignment="Top" Click="Reject_Click" Height="35" Width="71" FontSize="16"/>
+    <Grid>
+        <Label Content="Napravi gostujući nalog" HorizontalAlignment="Center" Margin="0,-60,0,440" VerticalAlignment="Top" FontSize="30"/>
+        <Grid Margin="0,-67,0,66">
+            <Label Content="Ime:" HorizontalAlignment="Left" Margin="340,104,0,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label Content="Prezime:" HorizontalAlignment="Left" Margin="340,170,0,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label Content="JMBG:" HorizontalAlignment="Left" Margin="339,240,0,0" VerticalAlignment="Top" FontSize="20"/>
+            <TextBox x:Name="Name" HorizontalAlignment="Center" Margin="0,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20"/>
+            <TextBox    x:Name="Surname" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" FontSize="20"/>
+            <TextBox x:Name="Jmbg" HorizontalAlignment="Center" Margin="0,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20"/>
+        </Grid>
+        <Button Background="LightGreen" Content="Dodaj" HorizontalAlignment="Left" Margin="287,334,0,0" VerticalAlignment="Top" Click="AddGuest_Click" Height="35" Width="71" FontSize="16"/>
+        <Button Background="Firebrick" Content="Poništi" HorizontalAlignment="Left" Margin="429,334,0,0" VerticalAlignment="Top" Click="Reject_Click" Height="35" Width="71" FontSize="16"/>
 
     </Grid>
 </Page>

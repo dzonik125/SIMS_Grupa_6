@@ -15,7 +15,7 @@ namespace Model
         public string cardNum;
         public BloodType bloodType;
         public int id;
-        public List<Allergies> allergies = new List<Allergies>();
+        public List<Ingredients> ingredients = new List<Ingredients>();
         public List<Prescription> prescriptions = new List<Prescription>();
         public List<Medication> medications = new List<Medication>();
         public List<String> hronicalDeseasses;
@@ -24,7 +24,7 @@ namespace Model
         public string medids = "";
 
 
-        public AllergiesRepository ar = new AllergiesRepository();
+        public IngredientsRepository ir = new IngredientsRepository();
         private MedicationRepository mr = new MedicationRepository();
 
         public List<ExaminationReport> reports;
@@ -51,7 +51,7 @@ namespace Model
                 }
                 foreach (int i in ids)
                 {
-                    allergies.Add(ar.FindById(i));
+                    ingredients.Add(ir.FindById2(i));
                 }
             }
 
@@ -70,18 +70,14 @@ namespace Model
                     medications.Add(mr.FindById(i));
                 }
             }
-
-
-
-            //hronicalDeseasses = values[3];
         }
 
         public string[] ToCSV()
         {
 
-            foreach (Allergies a in allergies)
+            foreach (Ingredients ing in ingredients)
             {
-                ids = ids + a.id + ",";
+                ids = ids + ing.id + ",";
             }
             if (ids != "")
             {
