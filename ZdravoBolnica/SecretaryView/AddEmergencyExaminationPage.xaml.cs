@@ -54,8 +54,8 @@ namespace SIMS.SecretaryView
             {
                 ac.SaveAppointment(app);
             }
-            else
-                ac.SaveBusyAppointment(first, Conversion.StringToSpecialization(spec));
+            /*else
+                ac.SaveBusyAppointment(first, Conversion.StringToSpecialization(spec));*/
         }
 
         private void Close_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -79,7 +79,7 @@ namespace SIMS.SecretaryView
             dr.specializationType = Conversion.StringToSpecialization(spec);
             dr.roomType = RoomType.examination;
             dr.duration = 30;
-            app = ac.GetFirstFreeAppointmentInOneHour(dr, (Patient)PatientBox.SelectedItem);
+            //app = ac.GetFirstFreeAppointmentInOneHour(dr, (Patient)PatientBox.SelectedItem);
             if (app.room != null)
             {
                 TimeBox.Items.Add(app.startTime);
