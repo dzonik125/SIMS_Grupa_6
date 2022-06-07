@@ -6,6 +6,8 @@
 using Model;
 using System;
 using System.Collections.Generic;
+using SIMS.Model;
+using SIMS.Util;
 
 
 namespace Controller
@@ -31,15 +33,11 @@ namespace Controller
         }
         public List<DateTime> GetTenNextFreeAppointmentsForDoctor(int id)
         {
-            return appointmentService.getTenNextFreeAppointmentsForDoctor(id);
+            return appointmentService.GetTenNextFreeAppointmentsForDoctor(id);
         }
-        public List<DateTime> GetTenNextFreeAppointmentsForDoctorToday(int id)
+        public Appointment GetFirstFreeAppointmentInOneHour(DateRange dateRange, Patient patient)
         {
-            return appointmentService.getTenNextFreeAppointmentsForDoctorToday(id);
-        }
-        public Appointment GetFirstFreeAppointmentInOneHour(Specialization specialization, Patient patient)
-        {
-            return appointmentService.GetFirstFreeAppointmentInOneHour(specialization, patient);
+            return appointmentService.GetFirstFreeAppointmentInOneHour(dateRange, patient);
         }
         public List<Appointment> GetFutureAppointmentsForDoctor(int id)
         {
@@ -53,9 +51,14 @@ namespace Controller
         {
             return appointmentService.GetFirstAppointmentForDoctor(appointments);
         }
-        public void SaveBusyAppointment(Appointment appointment, Patient patient, Specialization specialization)
+        public void SaveBusyAppointment(Appointment appointment, Specialization specialization)
         {
-            appointmentService.SaveBusyAppointment(appointment, patient, specialization);
+            appointmentService.SaveBusyAppointment(appointment, specialization);
+        }
+
+        public Appointment FindFreeAppointmentForPatient(Patient patient, Specialization specialization)
+        {
+            return appointmentService.FindFreeAppointmentForPatient(patient, specialization);
         }
         public List<Appointment> GetFutureAppointmentsForPatient(int id)
         {
@@ -87,11 +90,11 @@ namespace Controller
         }
         public String GetFirstFreeAppointment(DateTime? start, DateTime? finish)
         {
-            return appointmentService.getFirstFreeAppointment(start, finish);
+            return appointmentService.GetFirstFreeAppointment(start, finish);
         }
         public List<String> GetFirstFiveFreeAppointmentsForDate(DateTime? start, DateTime? end)
         {
-            return appointmentService.getFirstFiveFreeApointmentsForDate(start, end);
+            return appointmentService.GetFirstFiveFreeApointmentsForDate(start, end);
         }
         public Appointment FindPatientAppointment(Patient patient)
         {
@@ -103,7 +106,7 @@ namespace Controller
         }
         public List<DateTime> GetTenNextAppointmentsForDoctorForDate(DateTime? start, DateTime? end, int id)
         {
-            return appointmentService.getTenNextAppointmentsForDoctorForDate(start, end, id);
+            return appointmentService.GetTenNextAppointmentsForDoctorForDate(start, end, id);
         }
 
     }
