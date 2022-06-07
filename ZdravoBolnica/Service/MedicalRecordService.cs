@@ -39,14 +39,15 @@ namespace Service
 
         public bool checkIfPatientisAllergic(Medication medication, MedicalRecord medicalRecord)
         {
+            bool isPatientAllergic = false;
             foreach (Medication med in medicalRecord.medications)
             {
                 if (med.name.Equals(medication.name))
                 {
-                    return true;
+                    isPatientAllergic = true;
                 }
             }
-            return false;
+            return isPatientAllergic;
         }
     }
 }
