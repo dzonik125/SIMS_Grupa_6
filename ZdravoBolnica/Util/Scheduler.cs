@@ -25,6 +25,7 @@ namespace SIMS.Util
             }
         }
 
+
         public bool overlapsWithExistingTerm(DateTime startTimeAppoinment, double appointmentDuration)
         {
             bool overlaps = false;
@@ -32,6 +33,7 @@ namespace SIMS.Util
                 (startTime.AddMinutes(duration) <= startTimeAppoinment && startTime <= startTimeAppoinment))))
                 overlaps = true;
             return overlaps;
+
         }      
   
     }

@@ -1,9 +1,11 @@
 ﻿using Controller;
 using Model;
 using SIMS.Model;
+using SIMS.Util;
 using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
+
 
 namespace SIMS.SecretaryView
 {
@@ -25,7 +27,8 @@ namespace SIMS.SecretaryView
         private Appointment first;
         private Patient patient;
         private String spec;
-
+        private Scheduler dr = new Scheduler();
+        private Appointment busyAppointment = new Appointment();
         public AddEmergencyExaminationPage(AppointmentType type)
         {
             appointmentType = type;
@@ -45,13 +48,14 @@ namespace SIMS.SecretaryView
 
         private void Schedule_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+
             String spec = Specialization.Text;
             if (app != null)
             {
                 ac.SaveAppointment(app);
             }
             else
-                ac.SaveBusyAppointment(first, patient, Conversion.StringToSpecialization(spec));
+                ac.SaveBusyAppointment(first, Conversion.StringToSpecialization(spec));
         }
 
         private void Close_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -70,9 +74,13 @@ namespace SIMS.SecretaryView
             String spec = Specialization.Text;
 
             app = new Appointment();
-
-            app = ac.GetFirstFreeAppointmentInOneHour(Conversion.StringToSpecialization(spec), (Patient)PatientBox.SelectedItem);
-            if (app != null)
+            dr.startTime = DateTime.Now.AddHours(0);
+            dr.endTime = DateTime.Now.AddHours(1);
+            dr.specializationType = Conversion.StringToSpecialization(spec);
+            dr.roomType = RoomType.examination;
+            dr.duration = 30;
+            app = ac.GetFirstFreeAppointmentInOneHour(dr, (Patient)PatientBox.SelectedItem);
+            if (app.room != null)
             {
                 TimeBox.Items.Add(app.startTime);
                 app.patient = (Patient)PatientBox.SelectedItem;
@@ -81,7 +89,7 @@ namespace SIMS.SecretaryView
             else
             {
                 first = ac.GetFirstAppointmentForDoctor(ac.GetAppointmentsForDoctors(dc.FindBySpecialization(Conversion.StringToSpecialization(spec))));
-                patient = (Patient)PatientBox.SelectedItem;
+                first.patient = (Patient)PatientBox.SelectedItem;
                 TimeBox.Items.Add(first.startTime);
             }
         }

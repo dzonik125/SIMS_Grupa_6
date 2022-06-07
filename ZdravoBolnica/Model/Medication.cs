@@ -67,7 +67,7 @@ namespace SIMS.Model
                 }
                 foreach(string s in componentsN)
                 {
-                    components.Add(ir.FindById(s));
+                    components.Add(ir.FindByName(s));
                 }
             }
             comment = values[6];
