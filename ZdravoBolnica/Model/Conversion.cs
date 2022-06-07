@@ -67,6 +67,19 @@ namespace SIMS.Model
             };
         }
 
+        public static Gender StringToGender(string tip)
+        {
+            return tip switch
+            {
+                "Musko" => Gender.male,
+                "Zensko" => Gender.female,
+                _ => Gender.male,
+            };
+        }
+
+
+
+
         public static string VacationPeriodTypeToString(VacationPeriodType tip)
         {
             return tip switch

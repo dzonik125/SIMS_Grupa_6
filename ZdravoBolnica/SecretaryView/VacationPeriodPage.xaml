@@ -13,7 +13,12 @@
     <Grid>
         <StackPanel>
             <Label Content="Pregled zahteva za slobodne dane" FontSize="30" HorizontalAlignment="Center"/>
-            <DataGrid x:Name="vacationPeriodTable" ItemsSource="{Binding list}" Margin="20,20" IsReadOnly="True" MaxHeight="200" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False">
+            <DataGrid x:Name="vacationPeriodTable" ItemsSource="{Binding list}" Margin="20,20" IsReadOnly="True" MaxHeight="200" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False" Height="195">
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridCell}">
+                        <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick"/>
+                    </Style>
+                </DataGrid.Resources>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Doktor" Width="*" Binding="{Binding doctor.FullName}" CanUserResize="False"/>
                     <DataGridTextColumn Header="Vreme pocetka" Width="*" Binding="{Binding StartTime}"  CanUserResize="False"/>
@@ -23,11 +28,15 @@
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-        <Grid>
-            <StackPanel Orientation="Horizontal" Margin="0,297,0,80">
-                <Button Background="LightGreen" Content="Detalji" Margin="10,10" VerticalAlignment="Center" Width="100" Height="38" Click="Details_Click"/>
-            </StackPanel>
+        <Grid Margin="100,265,185,10">
+            <Label x:Name="lalal" Content="Status:" HorizontalAlignment="Left" Margin="160,35,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <ComboBox x:Name="statusBox" HorizontalAlignment="Left" Margin="132,72,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="statusBox_SelectionChanged"/>
+            <Label x:Name="comment" Content="Obrazloženje odbijanja:" HorizontalAlignment="Left" Margin="312,33,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="commentVacationPeriod" Content="Obrazloženje zahteva:" HorizontalAlignment="Left" Margin="312,33,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <TextBox x:Name="rejectCommentBox" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Margin="332,69,0,0" Text="" VerticalAlignment="Top" Width="123" Height="70"/>
+            <TextBox x:Name="commentBox" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Margin="332,69,0,0" Text="" VerticalAlignment="Top" Width="123" Height="70"/>
+            <Button Content="Potvrdi" HorizontalAlignment="Left" Margin="160,148,0,0" VerticalAlignment="Top" Click="Accept_Click"/>
+            <Button Content="Odustani" HorizontalAlignment="Left" Margin="261,148,0,0" VerticalAlignment="Top" Click="Reject_Click"/>
         </Grid>
-        
     </Grid>
 </Page>

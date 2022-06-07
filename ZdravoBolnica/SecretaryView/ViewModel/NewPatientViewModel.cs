@@ -1,29 +1,16 @@
-﻿using Controller;
-using Model;
-using SIMS.Controller;
+﻿using Model;
+using SIMS.Core;
 using SIMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
 
-namespace SIMS.SecretaryView
+namespace SIMS.SecretaryView.ViewModel
 {
-    /// <summary>
-    /// Interaction logic for NewPatientPage.xaml
-    /// </summary>
-    public partial class NewPatientPage : Page, INotifyPropertyChanged
+    public class NewPatientViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
+        public event EventHandler OnRequestClose;
+        public RelayCommand FinishCommand { get; set; }
 
         private string ime;
         private string preime;
@@ -39,6 +26,8 @@ namespace SIMS.SecretaryView
         private string brojKartona;
         private string lbo;
         private string datum;
+        private Gender gender;
+
 
         public string Ime
         {
@@ -258,144 +247,104 @@ namespace SIMS.SecretaryView
         }
 
 
-
-
-
-
-
-
-
-
-
-        public Patient patient = new Patient();
-        public MedicalRecord mr;
-        public Adress adress;
-        public BloodType bloodT;
-        public MedicalRecord medicalRecord = new MedicalRecord();
-        public Gender gender;
-        public Prescription pr;
-
-
-
-        private PatientController pc = new PatientController();
-        private AdressController ac = new AdressController();
-        private MedicalRecordController mrc = new MedicalRecordController();
-        public AllergiesController alc = new AllergiesController();
-        public PrescriptionController prc = new PrescriptionController();
-        public MedicationController mc = new MedicationController();
-
-        public List<Prescription> prescriptions = new List<Prescription>();
-
-
-        public BindingList<Allergies> al = new BindingList<Allergies>();
-        public List<Allergies> allergs = new List<Allergies>();
-
-        public BindingList<Medication> medications = new BindingList<Medication>();
-        public List<Medication> meds = new List<Medication>();
-
-        public NewPatientPage()
+        public Gender Pol
         {
-            InitializeComponent();
-
-            // allergenTable.ItemsSource = al;
-            medAllergs_table.ItemsSource = medications;
-
-
-            bloodType.ItemsSource = Conversion.GetBloodType();
-
-            allergs = alc.FindAll();
-            meds = mc.FindAll();
-
-            // AllergsBox.ItemsSource = allergs;
-            MedAllergsBox.ItemsSource = meds;
-
-            DataContext = this;
-        }
-
-        private void AddPatient_Click(object sender, RoutedEventArgs e)
-        {
-            adress = new Adress();
-            mr = new MedicalRecord();
-            // pr = new Prescription();
-
-            patient.name = textBoxIme.Text;
-            patient.surname = textBoxPrezime.Text;
-            patient.lbo = textBoxLbo.Text;
-            patient.email = textBoxEmail.Text;
-            patient.birthdate = textBoxDatumRodjenja.Text;
-            patient.password = textBoxSifra.Text;
-            patient.username = textBoxKorisnickoIme.Text;
-            patient.phone = textBoxBrojTelefona.Text;
-            patient.jmbg = textBoxJmbg.Text;
-
-            if ((bool)MaleRadioButton.IsChecked)
+            get
             {
-                patient.gender = Gender.male;
+                return gender;
             }
-            else patient.gender = Gender.female;
-
-            adress.number = textBoxBroj.Text;
-            adress.street = textBoxUlica.Text;
-            adress.city = textBoxGrad.Text;
-            adress.country = textBoxDrzava.Text;
-
-            if (textBoxBrojK.Text.Equals(""))
+            set
             {
-                MessageBox.Show("Unesite broj kartona");
-            }
-            else
-            {
-                mr.cardNum = textBoxBrojK.Text;
-                mr.bloodType = Conversion.StringToBloodType(bloodType.Text);
-
-                mr.medications = medications.ToList<Medication>();
-
-
-                //  mr.allergies = al.ToList<Allergies>();
-
-                mrc.AddMedicalRecord(mr);
-
-                patient.address = adress;
-                patient.guest = false;
-
-                mr = mrc.FindAll()[mrc.FindAll().Count - 1];
-                patient.medicalRecord = mr;
-
-                ac.AddAdress(adress);
-                pc.AddPatient(patient);
-
-                SecretaryView.Instance.SetContent(new RegistrationPatient());
-
-                RegistrationPatient rgi = new RegistrationPatient();
-                SecretaryView.Instance.SetContent(new RegistrationPatient());
+                if (value != gender)
+                {
+                    gender = value;
+                    OnPropertyChanged("Pol");
+                }
             }
         }
 
-        private void CloseNew_Click(object sender, RoutedEventArgs e)
+        private List<string> BloodTypes { get; set; }
+        private string selectedType;
+
+        public string SelectedType
         {
-            SecretaryView.Instance.SetContent(new RegistrationPatient());
+            get => selectedType;
+            set
+            {
+                selectedType = value;
+                OnPropertyChanged(nameof(SelectedType));
+            }
         }
 
-        private void addAllergen_Click(object sender, RoutedEventArgs e)
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChange(string propertyname)
         {
-            //  al.Add((Allergies)AllergsBox.SelectedItem);
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
+            }
+        }
+
+
+        public NewPatientViewModel()
+        {
+            BloodTypes = Conversion.GetBloodType();
+            FinishCommand = new RelayCommand(param => Execute(), param => CanExecute());
+        }
+
+        public bool CanExecute()
+        {
+            if (String.IsNullOrEmpty(selectedType))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public void Execute()
+        {
+            // Adress adress = new Adress();
+            // MedicalRecord medicalRecord = new MedicalRecord();
+            Patient patient = new Patient()
+            {
+                name = Ime,
+                surname = Prezime,
+                lbo = Lbo,
+                email = Email,
+                birthdate = Datum,
+                password = Lozinka,
+                username = KorisnickoIme,
+                phone = Kontakt,
+                jmbg = Jmbg,
+                gender = Pol,
+
+                // roomNum = Int32.Parse(RoomNum),
+                //  floor = Int32.Parse(Floor),
+                //  roomType = Conversion.StringToRoomType(SelectedType),
+                //  empty = true
+            };
+            Adress adress = new Adress()
+            {
+                number = Broj,
+                street = Ulica,
+                city = Grad,
+                country = Drzava
+            };
+            MedicalRecord medicalRecord = new MedicalRecord()
+            {
+                cardNum = BrojKartona,
+                bloodType = Conversion.StringToBloodType(SelectedType),
+                //  medications =
+            };
+            //  rc.AddRoom(room);
+            //  ManagerUI mui = ManagerUI.Instance;
+            //  mui.refresh();
+            OnRequestClose?.Invoke(this, EventArgs.Empty);
 
         }
 
-        private void removeAllergen_Click(object sender, RoutedEventArgs e)
-        {
-            // al.Remove((Allergies)allergenTable.SelectedItem);
-        }
-
-        private void addMedicine_Click(object sender, RoutedEventArgs e)
-        {
-            medications.Add((Medication)MedAllergsBox.SelectedItem);
-        }
-
-        private void removeMedicine_Click(object sender, RoutedEventArgs e)
-        {
-            medications.Remove((Medication)medAllergs_table.SelectedItem);
-        }
 
     }
 }
