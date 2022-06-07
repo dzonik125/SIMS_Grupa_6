@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Repository
 {
-   public interface Repository<T,ID>
+   public interface IRepository<T,ID>
    {
       List<T> FindAll();
       

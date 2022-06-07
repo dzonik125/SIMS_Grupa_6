@@ -36,13 +36,13 @@ namespace SIMS.Service
         public Appointment SetAppointmentAttributes(Room room, MergeRooms mergeRooms)
         {
             Appointment appointment = new Appointment();
-            appointment.Room = room;
-            appointment.Doctor = SetDoctorForRenovation();
+            appointment.room = room;
+            appointment.doctor = SetDoctorForRenovation();
             appointment.patient = SetPatientForRenovation();
             appointment.startTime = mergeRooms.startDate;
             appointment.duration = CalculateAppointmentDuration(mergeRooms.startDate, mergeRooms.endDate);
             appointment.timesEdited = 0;
-            appointment.Type = AppointmentType.renovation;
+            appointment.type = AppointmentType.renovation;
             return appointment;
         }
 

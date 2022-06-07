@@ -73,13 +73,13 @@ namespace SIMS
                                 "Molimo Vas odaberite drugi!");
                 return;
             }
-            app.Doctor = new Doctor();
-            app.Doctor.id = GetSelectedDoctor().id;
+            app.doctor = new Doctor();
+            app.doctor.id = GetSelectedDoctor().id;
             app.startTime = DateTime.Parse(DatePicker.Text + " " + TextBox.Text);
-            app.Room = new Room();
-            app.Room.id = rc.findFreeRoom(app.startTime).id;
+            app.room = new Room();
+            app.room.id = rc.findFreeRoom(app.startTime).id;
             app.duration = 30;
-            app.Type = AppointmentType.examination;
+            app.type = AppointmentType.examination;
             app.patient = new Patient();
             app.patient = new PatientController().FindAllPatients()[0];
             ac.SaveAppointment(app);

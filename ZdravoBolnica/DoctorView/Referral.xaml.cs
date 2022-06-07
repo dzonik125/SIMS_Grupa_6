@@ -34,14 +34,14 @@ namespace SIMS.DoctorView
             Appointment a = new Appointment();
             Appointment temp = (Time.SelectedItem as Appointment);
             a.startTime = temp.startTime;
-            a.Room = temp.Room;
-            a.Doctor = dc.FindBySpecialization(Conversion.StringToSpecialization(SpecializationBox.Text))[0];
+            a.room = temp.room;
+            a.doctor = dc.FindBySpecialization(Conversion.StringToSpecialization(SpecializationBox.Text))[0];
             a.duration = int.Parse(Duration.Text);
             a.patient = selectedPatient;
             if ((bool)Surgery.IsChecked)
-                a.Type = AppointmentType.surgery;
+                a.type = AppointmentType.surgery;
             else
-                a.Type = AppointmentType.examination;
+                a.type = AppointmentType.examination;
             apc.SaveAppointment(a);
             Appointments.Instance.Refresh();
             this.Close();
@@ -55,7 +55,7 @@ namespace SIMS.DoctorView
 
         private void EndTime_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            DateRange dateRange = new();
+            Scheduler dateRange = new();
             dateRange.startTime = (DateTime)StartTime.SelectedDate;
             dateRange.startTime = dateRange.startTime.AddHours(8);
             dateRange.endTime = (DateTime)EndTime.SelectedDate;

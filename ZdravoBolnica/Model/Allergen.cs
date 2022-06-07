@@ -2,18 +2,18 @@
 
 namespace SIMS.Model
 {
-    public class Allergies : Serializable
+    public class Allergen : Serializable
     {
         public int id { get; set; }
         public string name { get; set; }
 
-        public Allergies(int id, string name)
+        public Allergen(int id, string name)
         {
             this.id = id;
             this.name = name;
         }
 
-        public Allergies()
+        public Allergen()
         {
         }
 

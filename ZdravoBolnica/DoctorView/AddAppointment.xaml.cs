@@ -37,16 +37,16 @@ namespace SIMS.DoctorView
             Appointment a = new Appointment();
             a.patient = new Patient();
             a.patient.id = getSelectedPatient().id;
-            a.Room = new Room();
-            a.Room.id = getSelectedRoom().id;
-            a.Type = appointmentType;
+            a.room = new Room();
+            a.room.id = getSelectedRoom().id;
+            a.type = appointmentType;
             String dateAndTime = DatePicker.Text + " " + Time.Text;
             DateTime timeStamp = DateTime.Parse(dateAndTime);
             a.startTime = timeStamp;
             a.duration = int.Parse(Duration.Text);
             Appointments appointments = Appointments.Instance;
-            a.Doctor = new Doctor();
-            a.Doctor.id = appointments.doctorUser.id;
+            a.doctor = new Doctor();
+            a.doctor.id = appointments.doctorUser.id;
             /*if (ac.IntersectionWithAppointments(a.patient.id, a.Doctor.id, a.Room.id, a.startTime, a.duration))
             {
                 MessageBox.Show("ne.");

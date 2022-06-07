@@ -248,14 +248,14 @@ namespace Service
             return roomType;
         }
 
-        public bool freeRoomExistsForAppointment(Appointment appointment, DateRange dateRange)
+        public bool freeRoomExistsForAppointment(Appointment appointment, Scheduler dateRange)
         {
             bool freeRoomExists = false;
             foreach (Room r in getRoomsByType(dateRange.roomType))
             {
                 if (!checkIfRoomIsBusy(r, dateRange))
                 {
-                    appointment.Room = r;
+                    appointment.room = r;
                     freeRoomExists = true;
                 }
             }
@@ -263,19 +263,19 @@ namespace Service
         }
 
 
-        public bool checkIfRoomIsBusy(Room r, DateRange dateRange)
+        public bool checkIfRoomIsBusy(Room r, Scheduler dateRange)
         {
             bool roomIsBusy = false;
             AppointmentService appointmentService = new AppointmentService();
             foreach (Appointment a in appointmentService.GetAppointmentsByRoomId(r.id))
             {
-                if (dateRange.checkForIntersection(a.startTime, a.duration))
+                if (dateRange.overlapsWithExistingTerm(a.startTime, a.duration))
                     roomIsBusy = true;
             }
             return roomIsBusy;
         }
 
-        public Repository.RoomsCRUD roomsCRUD = new Repository.RoomsCRUD();
+        public Repository.RoomRepository roomsCRUD = new Repository.RoomRepository();
 
 
     }

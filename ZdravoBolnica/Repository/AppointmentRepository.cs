@@ -8,11 +8,11 @@ using System;
 using System.Collections.Generic;
 using Model;
 using SIMS;
-
+using SIMS.Repository;
 
 namespace Repository
 {
-    public class AppointmentRepository : Repository<Appointment, int>
+    public class AppointmentRepository : IRepository<Appointment, int>, IAppointmentRepository
     {
         private String filename = @".\..\..\..\Data\appointments.txt";
         private Serializer<Appointment> appointmentSerializer = new Serializer<Appointment>();
@@ -20,12 +20,18 @@ namespace Repository
         private List<Appointment> patientAppointments = new();
         public Appointment FindById(int id)
         {
+            Appointment returnAppointment = new();
             foreach (Appointment appointment in FindAll())
             {
                 if (appointment.id == id)
-                    return appointment;
+                {
+                    returnAppointment = appointment;
+                    break;
+                }
+                else
+                    returnAppointment = null;
             }
-            return null;
+            return returnAppointment;
         }
         public List<Appointment> FindByPatientId(int patientId)
         {
@@ -42,7 +48,7 @@ namespace Repository
             List<Appointment> roomAppointments = new();
             foreach (Appointment appointment in FindAll())
             {
-                if (appointment.Room.id == rid)
+                if (appointment.room.id == rid)
                     roomAppointments.Add(appointment);
             }
             return roomAppointments;
@@ -53,7 +59,7 @@ namespace Repository
             List<Appointment> doctorAppointments = new();
             foreach (Appointment appointment in FindAll())
             {
-                if (appointment.Doctor.id == doctorId)
+                if (appointment.doctor.id == doctorId)
                     doctorAppointments.Add(appointment);
             }
             return doctorAppointments;
@@ -62,16 +68,6 @@ namespace Repository
         public List<Appointment> FindAll()
         {
             return appointmentSerializer.fromCSV(filename);
-        }
-
-        public Appointment FindById(string key)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteAll()
-        {
-            throw new NotImplementedException();
         }
 
         public void DeleteById(int id)
@@ -90,12 +86,10 @@ namespace Repository
 
         public void Create(Appointment entity)
         {
-            _ = new List<Appointment>();
             List<Appointment> appointments = appointmentSerializer.fromCSV(filename);
-            int num = appointments.Count;
-            if (num > 0)
+            if (appointments.Count > 0)
             {
-                entity.id = appointments[num - 1].id;
+                entity.id = appointments[appointments.Count - 1].id;
                 entity.id++;
             }
             else
@@ -123,6 +117,15 @@ namespace Repository
                 }
             }
             appointmentSerializer.toCSV(filename, appointments);
+        }
+        public Appointment FindById(string key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteAll()
+        {
+            throw new NotImplementedException();
         }
 
     }

@@ -33,9 +33,9 @@ namespace SIMS.Controller
             return vacationPeriodService.FindAll();
         }
 
-        public bool checkIfDoctorHasAppoinmentsInPeriod(Doctor doctor, DateRange dateRange)
+        public bool checkIfDoctorHasAppoinmentsInPeriod(Doctor doctor, Scheduler dateRange)
         {
-            return vacationPeriodService.checkIfDoctorHasAppoinmentsInPeriod(doctor, dateRange);
+            return vacationPeriodService.VacationOverlapsWithAppointments(doctor, dateRange);
         }
 
         public List<VacationPeriod> findAllByDoctorId(int id)
@@ -43,13 +43,13 @@ namespace SIMS.Controller
             return vacationPeriodService.findAllByDoctorId(id);
         }
 
-        public bool checkIfDoctorIsAlreadyOnVacation(Doctor doctor, DateRange dateRange)
+        public bool checkIfDoctorIsAlreadyOnVacation(Doctor doctor, Scheduler dateRange)
         {
             return vacationPeriodService.checkIfDoctorIsAlreadyOnVacation(doctor, dateRange);
         }
 
 
-        public bool checkForDoctorsOnVacation(Doctor doctor, DateRange dateRange)
+        public bool checkForDoctorsOnVacation(Doctor doctor, Scheduler dateRange)
         {
             return vacationPeriodService.checkForDoctorsOnVacation(doctor, dateRange);
         }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SIMS.Repository
 {
-    class RoomEquipmentRepository : Repository<RoomEquipment, int>
+    class RoomEquipmentRepository : IRepository<RoomEquipment, int>
 
     {
         private String filename = @".\..\..\..\Data\room_equipment.txt";
@@ -33,19 +33,16 @@ namespace SIMS.Repository
 
         public int GetQuantityByRoomId(int id, int roomId)
         {
-            List<RoomEquipment> roomInventory = new List<RoomEquipment>();
-            roomInventory = FindAll();
-            foreach (RoomEquipment re in roomInventory)
+            int quantity = 0;
+            foreach (RoomEquipment re in FindAll())
             {
                 if ((re.equipmentId == id) && (re.roomId == roomId))
                 {
-                    return re.quantity;
+                    quantity =  re.quantity;
                 }
             
             }
-            return 0;
-
-
+            return quantity;
         }
 
         public void Create(RoomEquipment entity)
@@ -94,17 +91,16 @@ namespace SIMS.Repository
 
         public bool Exists(RoomEquipment entity)
         {
-            List<RoomEquipment> roomInventory = new List<RoomEquipment>();
-            roomInventory = FindAll();
-            foreach(RoomEquipment re in roomInventory)
+            bool exists = false;
+            foreach(RoomEquipment re in FindAll())
             {
                 if (re.equipmentId == entity.equipmentId && re.roomId == entity.roomId)
                 {
-                    return true;
+                    exists = true;
                 }
             
             }
-            return false;
+            return exists;
         }
 
         public void DeleteEntity(RoomEquipment entity)

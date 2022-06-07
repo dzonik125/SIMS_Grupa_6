@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Repository
 {
-    public class DoctorRepository : Repository<Doctor, int>
+    public class DoctorRepository : IRepository<Doctor, int>
     {
         private String filename = @".\..\..\..\Data\doctors.txt";
         private Serializer<Doctor> doctorSerializer = new Serializer<Doctor>();
@@ -39,30 +39,21 @@ namespace Repository
 
         public Doctor FindById(int key)
         {
-            List<Doctor> doctors = FindAll();
-            foreach (Doctor d in doctors)
+            Doctor returnDoctor = new();
+            foreach (Doctor d in FindAll())
             {
                 if (d.id == key)
                 {
-                    return d;
+                    returnDoctor = d;
+                    break;
+                }
+                else
+                {
+                    returnDoctor = null;
                 }
             }
-            return null;
+            return returnDoctor;
         }
-
-        /*  public List<string> GetSpecializationString()
-          {
-              List<String> retVal = new List<String>();
-
-              foreach (Doctor d in base.GetAll())
-              {
-                  DoctorDTO doctorDTO = new DoctorDTO(d);
-                  if (!retVal.Contains(doctorDTO.SpecializationString))
-                      retVal.Add(doctorDTO.SpecializationString);
-              }
-
-              return retVal;
-          }*/
 
         public void Update(Doctor entity)
         {
@@ -71,9 +62,8 @@ namespace Repository
 
         public List<Doctor> findBySpecialization(Specialization specialization)
         {
-            List<Doctor> doctors = FindAll();
             List<Doctor> returnDoctors = new List<Doctor>();
-            foreach (Doctor d in doctors)
+            foreach (Doctor d in FindAll())
             {
                 if (d.specialization == specialization)
                     returnDoctors.Add(d);

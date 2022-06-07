@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Repository
 {
-    public class PatientRepository : Repository<Patient, int>
+    public class PatientRepository : IRepository<Patient, int>
     {
         private String filename = @".\..\..\..\Data\patients.txt";
         private Serializer<Patient> patientSerializer = new Serializer<Patient>();
@@ -17,10 +17,9 @@ namespace Repository
         {
             List<Patient> patients = new List<Patient>();
             patients = patientSerializer.fromCSV(filename);
-            int num = patients.Count;
-            if (num > 0)
+            if (patients.Count > 0)
             {
-                entity.id = patients[num - 1].id;
+                entity.id = patients[patients.Count - 1].id;
                 entity.id++;
             }
             else
@@ -29,7 +28,6 @@ namespace Repository
             }
             patients.Add(entity);
             patientSerializer.toCSV(filename, patients);
-
         }
 
         public void DeleteAll()
@@ -53,22 +51,25 @@ namespace Repository
 
         public List<Patient> FindAll()
         {
-
             return patientSerializer.fromCSV(filename);
-            System.Diagnostics.Trace.WriteLine("ovde");
         }
 
         public Patient FindById(int key)
         {
-            List<Patient> patients = FindAll();
-            foreach (Patient p in patients)
+            Patient returnPatient = new();
+            foreach (Patient p in FindAll())
             {
                 if (p.id == key)
                 {
-                    return p;
+                    returnPatient = p;
+                    break;
+                }
+                else
+                {
+                    returnPatient = null;
                 }
             }
-            return null;
+            return returnPatient;
         }
 
 
@@ -79,19 +80,12 @@ namespace Repository
             {
                 if (p.id.Equals(entity.id))
                 {
-                    p.name = entity.name;
-                    p.surname = entity.surname;
-                    p.email = entity.email;
-                    p.phone = entity.phone;
-                    p.birthdate = entity.birthdate;
-                    p.jmbg = entity.jmbg;
-                    p.lbo = entity.lbo;
-                    p.username = entity.username;
-                    p.password = entity.password;
-                    p.gender = entity.gender;
-                    p.medicalRecord = entity.medicalRecord;
-                    p.guest = entity.guest;
-                    break;
+                    int index = patients.IndexOf(p);
+                    if (index != -1)
+                    {
+                        patients[index] = entity;
+                        break;
+                    }
                 }
             }
             patientSerializer.toCSV(filename, patients);

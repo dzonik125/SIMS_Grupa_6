@@ -35,8 +35,7 @@ namespace SIMS.Model
                     return "Na cekanju";
             }
         }
-        private MedicationRepository mr = new MedicationRepository();
-        private IngredientsRepository ir = new IngredientsRepository();
+        
 
         public void FromCSV(string[] values)
         {
@@ -110,6 +109,10 @@ namespace SIMS.Model
 
             };
             return csvValues;
+
+
         }
+        private MedicationRepository mr = new MedicationRepository();
+        private IngredientsRepository ir = new IngredientsRepository();
     }
 }

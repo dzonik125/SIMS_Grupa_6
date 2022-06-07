@@ -6,18 +6,16 @@ using System.Collections.Generic;
 
 namespace SIMS.Repository
 {
-    public class MeetingRepository : Repository<Meeting, int>
+    public class MeetingRepository : IRepository<Meeting, int>
     {
         private String filename = @".\..\..\..\Data\meetings.txt";
         private Serializer<Meeting> meetingSerializer = new Serializer<Meeting>();
         public void Create(Meeting entity)
         {
-            _ = new List<Meeting>();
             List<Meeting> meetings = meetingSerializer.fromCSV(filename);
-            int num = meetings.Count;
-            if (num > 0)
+            if (meetings.Count > 0)
             {
-                entity.id = meetings[num - 1].id;
+                entity.id = meetings[meetings.Count - 1].id;
                 entity.id++;
             }
             else
@@ -55,12 +53,21 @@ namespace SIMS.Repository
 
         public Meeting FindById(int key)
         {
+            Meeting returnMeeting = new();
             foreach (Meeting meeting in FindAll())
             {
                 if (meeting.id == key)
-                    return meeting;
+                {
+                    returnMeeting = meeting;
+                    break;
+                }
+                else
+                {
+                    returnMeeting = null; 
+                }
+
             }
-            return null;
+            return returnMeeting;
         }
 
         public void Update(Meeting entity)

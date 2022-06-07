@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace SIMS.Repository
 {
-    public class IngredientsRepository : Repository<Ingredients, int>
+    public class IngredientsRepository : IRepository<Ingredients, int>
     {
         private Serializer<Ingredients> ingrediantsSerializer = new Serializer<Ingredients>();
         private String filename = @".\..\..\..\Data\ingredients.txt";
@@ -56,6 +56,7 @@ namespace SIMS.Repository
             }
             return null;
         }
+
 
         public void Update(Ingredients entity)
         {

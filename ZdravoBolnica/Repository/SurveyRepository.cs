@@ -9,7 +9,7 @@ using SIMS.Model;
 
 namespace SIMS.Repository
 {
-    class SurveyRepository : Repository<Survey, int>
+    class SurveyRepository : IRepository<Survey, int>
     {
         private String filename = @".\..\..\..\Data\surveys.txt";
         private Serializer<Survey> surveySerializer = new Serializer<Survey>();
@@ -21,16 +21,20 @@ namespace SIMS.Repository
 
         public Survey FindById(int key)
         {
-            List<Survey> survs = FindAll();
-            foreach (Survey s in survs)
+            Survey returnSurvey = new();
+            foreach (Survey s in FindAll())
             {
                 if (s.id == key)
                 {
-                    return s;
+                    returnSurvey = s;
+                    break;
+                }
+                else
+                {
+                    returnSurvey = null;
                 }
             }
-
-            return null;
+            return returnSurvey;
         }
 
         public void DeleteAll()
@@ -57,10 +61,9 @@ namespace SIMS.Repository
         public void Create(Survey entity)
         {
             List<Survey> survs = FindAll();
-            int num = survs.Count;
-            if (num > 0)
+            if (survs.Count > 0)
             {
-                entity.id = survs[num - 1].id;
+                entity.id = survs[survs.Count - 1].id;
                 entity.id++;
             }
             else

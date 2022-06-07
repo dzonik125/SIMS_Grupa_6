@@ -7,7 +7,7 @@ namespace SIMS.Controller
     public class AllergiesController
     {
         // public AllergiesService as = AllergiesService();
-        public List<Allergies> FindAll()
+        public List<Allergen> FindAll()
         {
 
             AllergiesService als = new AllergiesService();

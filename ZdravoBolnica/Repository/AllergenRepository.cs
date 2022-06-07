@@ -5,14 +5,48 @@ using System.Collections.Generic;
 
 namespace SIMS.Repository
 {
-    public class AllergiesRepository
+    public class AllergenRepository
     {
         private String filename = @".\..\..\..\Data\allergies.txt";
-        private Serializer<Allergies> allergiesSerializer = new Serializer<Allergies>();
+        private Serializer<Allergen> allergiesSerializer = new Serializer<Allergen>();
 
-        public List<Allergies> FindAll()
+        public List<Allergen> FindAll()
         {
             return allergiesSerializer.fromCSV(filename);
+        }
+
+        public void DeleteById(int id)
+        {
+            List<Allergen> allergies = FindAll();
+            foreach (Allergen a in allergies)
+            {
+                if (a.id.Equals(id))
+                {
+                    allergies.Remove(a);
+                    break;
+                }
+            }
+            allergiesSerializer.toCSV(filename, allergies);
+        }
+        public Allergen FindById(int key)
+        {
+            Allergen returnAllergen = new();
+            foreach (Allergen a in FindAll())
+            {
+                if (a.id.Equals(key))
+                {
+                    returnAllergen = a;
+                    break;
+                }
+                else
+                    returnAllergen = null;
+            }
+            return returnAllergen;
+        }
+
+        public void Update(RoomEquipment entity)
+        {
+            throw new NotImplementedException();
         }
 
         public void Create(RoomEquipment entity)
@@ -25,36 +59,6 @@ namespace SIMS.Repository
             throw new NotImplementedException();
         }
 
-        public void DeleteById(int id)
-        {
-            List<Allergies> allergies = FindAll();
-            foreach (Allergies a in allergies)
-            {
-                if (a.id.Equals(id))
-                {
-                    allergies.Remove(a);
-                    break;
-                }
-            }
-            allergiesSerializer.toCSV(filename, allergies);
-        }
-        public Allergies FindById(int key)
-        {
-            List<Allergies> allergies = FindAll();
-            foreach (Allergies a in allergies)
-            {
-                if (a.id.Equals(key))
-                {
-                    return a;
-                }
-            }
-            return null;
-        }
-
-        public void Update(RoomEquipment entity)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
 

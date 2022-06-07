@@ -17,6 +17,11 @@ namespace Service
     public class AppointmentService
     {
         public PatientService patientService = new PatientService();
+
+        public Scheduler dateRange = new Scheduler();
+        public Appointment newAppointment = new Appointment();
+        public Appointment appointmentForUpdate = new Appointment();
+
         public AppointmentRepository appointmentRepository = new AppointmentRepository();
         public DoctorService doctorService = new DoctorService();
 
@@ -47,11 +52,10 @@ namespace Service
             {
                 foreach (Appointment a in appointments)
                 {
-                    if (a.Room.id == room.id)
-                        a.Room = room;
+                    if (a.room.id == r.id)
+                        a.room = r;
                 }
             }
-
         }
 
         public void BindDoctorsWithAppointments(List<Doctor> doctors, List<Appointment> appointments)
@@ -60,8 +64,8 @@ namespace Service
             {
                 foreach (Appointment appointment in appointments)
                 {
-                    if (appointment.Doctor.id == doctor.id)
-                        appointment.Doctor = doctor;
+                    if (a.doctor.id == d.id)
+                        a.doctor = d;
                 }
             }
         }
@@ -97,7 +101,7 @@ namespace Service
             List<Appointment> futureAppointments = new List<Appointment>();
             foreach (Appointment appointment in GetAllApointments())
             {
-                if (appointment.Doctor.id == id)
+                if (a.doctor.id == id)
                 {
                     if (appointment.startTime.AddMinutes(appointment.duration) >= DateTime.Now)
                         futureAppointments.Add(appointment);
@@ -167,7 +171,7 @@ namespace Service
 
             return toReturn;
         }
-
+      
         public List<Appointment> GetAppointmentsForDoctors(List<Doctor> doctors)
         {
             List<Appointment> returnAppointments = new();
@@ -531,32 +535,6 @@ namespace Service
             return toRet;
         }
 
-        public List<Appointment> GetAllAppointmentsForPatient(int id)
-        {
-            List<Appointment> toRet = new List<Appointment>();
-            foreach (Appointment a in GetAllApointments())
-            {
-                if (a.patient.id == id)
-                    toRet.Add(a);
-            }
-            return toRet;
-        }
-
-        public List<Appointment> GetFutureAppointmentsForPatient(int id)
-        {
-            List<Appointment> potentialAppointments = GetAllApointments();
-            List<Appointment> futureAppointments = new List<Appointment>();
-            foreach (Appointment a in potentialAppointments)
-            {
-                if (a.patient.id == id)
-                {
-                    if (a.startTime >= DateTime.Now)
-                        futureAppointments.Add(a);
-                }
-
-            }
-            return futureAppointments;
-        }
 
         public List<Appointment> GetAppointmentsByDoctorId(int doctorId)
         {
@@ -575,12 +553,13 @@ namespace Service
 
         public Appointment FindPatientAppointment(Patient patient)
         {
-            foreach (Appointment appointment in GetAppointmentsByPatientId(patient.id))
+            Appointment patientAppointment = new();
+            foreach (Appointment appointment in GetAppointmentsByPatientId(p.id))
             {
                 if (appointment.startTime <= DateTime.Now && appointment.startTime.AddMinutes(appointment.duration) >= DateTime.Now)
-                    return appointment;
+                    patientAppointment = appointment;
             }
-            return null;
+            return patientAppointment;
         }
 
     }

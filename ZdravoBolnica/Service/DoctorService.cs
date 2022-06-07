@@ -18,16 +18,6 @@ namespace Service
         {
             return doctorRepository.FindAll();
         }
-        
-        public void UpdateDoctor(Doctor d)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteDoctor(Doctor d)
-        {
-            throw new NotImplementedException();
-        }
 
         public void SaveDoctor(Doctor d)
         {
@@ -43,14 +33,14 @@ namespace Service
             return doctorRepository.findBySpecialization(spec);
         }
 
-        public bool freeDoctorExistsForAppointment(Appointment appointment, DateRange dateRange)
+        public bool freeDoctorExistsForAppointment(Appointment appointment, Scheduler dateRange)
         {
             bool freeDoctorExists = false; 
             foreach (Doctor doctor in FindBySpecialization(dateRange.specializationType))
             {
                 if (!checkIfDoctorIsBusy(doctor, dateRange))
                 {
-                    appointment.Doctor = doctor;
+                    appointment.doctor = doctor;
                     freeDoctorExists = true;
                 }
             }
@@ -58,19 +48,29 @@ namespace Service
         }
 
 
-        public bool checkIfDoctorIsBusy(Doctor d, DateRange dateRange)
+        public bool checkIfDoctorIsBusy(Doctor d, Scheduler dateRange)
         {
             bool doctorIsBusy = false;
             AppointmentRepository appointmentRepository = new AppointmentRepository();
             List<Appointment> appointments = appointmentRepository.FindByDoctorId(d.id);
             foreach (Appointment a in appointments)
             {
-                if (dateRange.checkForIntersection(a.startTime, a.duration))
+                if (dateRange.overlapsWithExistingTerm(a.startTime, a.duration))
                     doctorIsBusy = true;
             }
             return doctorIsBusy;
         }
-        
+
+        public void UpdateDoctor(Doctor d)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteDoctor(Doctor d)
+        {
+            throw new NotImplementedException();
+        }
+
         public Repository.DoctorRepository doctorRepository = new Repository.DoctorRepository();
     }
 }

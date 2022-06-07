@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Repository
 {
-    public class MedicalRecordRepository : Repository<MedicalRecord, int>
+    public class MedicalRecordRepository : IRepository<MedicalRecord, int>
     {
         private Serializer<MedicalRecord> medicalRecordSerializer = new();
         private String filename = @".\..\..\..\Data\medicalrecords.txt";
@@ -17,13 +17,10 @@ namespace Repository
         public void Create(MedicalRecord entity)
         {
             List<MedicalRecord> medicalRecords = new List<MedicalRecord>();
-
             medicalRecords = medicalRecordSerializer.fromCSV(filename);
-            int num = medicalRecords.Count;
-
-            if (num > 0)
+            if (medicalRecords.Count > 0)
             {
-                entity.id = medicalRecords[num - 1].id;
+                entity.id = medicalRecords[medicalRecords.Count - 1].id;
                 entity.id++;
             }
             else
@@ -51,29 +48,36 @@ namespace Repository
 
         public MedicalRecord FindById(int key)
         {
-            List<MedicalRecord> medicalRecords = FindAll();
-            foreach (MedicalRecord mr in medicalRecords)
+            MedicalRecord returnMRecord = new();
+            foreach (MedicalRecord mr in FindAll())
             {
                 if (key == mr.id)
                 {
-                    return mr;
+                    returnMRecord = mr;
+                    break;
+                }
+                else
+                {
+                    returnMRecord = null;
                 }
             }
 
-            return null;
+            return returnMRecord;
         }
 
         public void Update(MedicalRecord entity)
         {
             List<MedicalRecord> medicalRecords = FindAll();
-            foreach (MedicalRecord mr in medicalRecords)
+            foreach (MedicalRecord mr in FindAll())
             {
                 if (mr.id == entity.id)
                 {
-                    mr.cardNum = entity.cardNum;
-                    mr.bloodType = entity.bloodType;
-                    mr.ingredients = entity.ingredients;
-                    mr.medications = entity.medications;
+                    int index = medicalRecords.IndexOf(mr);
+                    if (index != -1)
+                    {
+                        medicalRecords[index] = entity;
+                        break;
+                    }
                 }
             }
             medicalRecordSerializer.toCSV(filename, medicalRecords);

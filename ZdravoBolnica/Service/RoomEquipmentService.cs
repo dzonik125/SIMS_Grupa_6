@@ -10,7 +10,7 @@ namespace SIMS.Service
     public class RoomEquipmentService
     {
         private RoomEquipmentRepository rer = new RoomEquipmentRepository();
-        private RoomsCRUD rr = new RoomsCRUD();
+        private RoomRepository rr = new RoomRepository();
         private RoomService _roomService = new RoomService();
         public void setRoomEquipment(int id, List<Equipment> equipmentlist)
         {
@@ -56,9 +56,9 @@ namespace SIMS.Service
             List<Equipment> roomInventory = new List<Equipment>();
             foreach (Equipment e in allInventory)
             {
-                if (e.RoomNum != null)
+                if (e.roomNum != null)
                 {
-                    foreach (int rn in e.RoomNum)
+                    foreach (int rn in e.roomNum)
                     {
                         if (rn == roomId)
                         {
@@ -75,12 +75,12 @@ namespace SIMS.Service
         {
             foreach (Equipment e in allInventory)
             {
-                e.RoomNum = new List<int>();
+                e.roomNum = new List<int>();
                 foreach (RoomEquipment re in FindAll())
                 {
                     if (e.id == re.equipmentId)
                     {
-                        e.RoomNum.Add(re.roomId);
+                        e.roomNum.Add(re.roomId);
                         e.quantity = getQuantityByRoomId(e.id, roomId);
                     }
                 }

@@ -6,15 +6,15 @@ namespace SIMS.Service
 {
     public class AllergiesService
     {
-        public List<Allergies> FindAll()
+        public List<Allergen> FindAll()
         {
-            AllergiesRepository ar = new AllergiesRepository();
+            AllergenRepository ar = new AllergenRepository();
             return ar.FindAll();
         }
 
         public void DeleteById(int id)
         {
-            AllergiesRepository ar = new AllergiesRepository();
+            AllergenRepository ar = new AllergenRepository();
             ar.DeleteById(id);
         }
     }

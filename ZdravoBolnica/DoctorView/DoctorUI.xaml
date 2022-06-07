@@ -25,7 +25,7 @@
                 <DataGridTextColumn Header="Status" Width="*"  Binding="{Binding AppointmentDate}" DataGridColumn.CanUserResize="False"/>
                 <DataGridTextColumn Header="Početak" Width="*" Binding="{Binding AppointmentTime}"  DataGridColumn.CanUserResize="False"/>
                 <DataGridTextColumn Header="Trajanje" Width="*" Binding="{Binding duration}"  DataGridColumn.CanUserResize="False"/>
-                <DataGridTextColumn Header="Prostorija" Width="*" Binding="{Binding Room.roomNum}" DataGridColumn.CanUserResize="False"/>
+                <DataGridTextColumn Header="Prostorija" Width="*" Binding="{Binding room.roomNum}" DataGridColumn.CanUserResize="False"/>
 
             </DataGrid.Columns>
 

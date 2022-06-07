@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SIMS.Repository
 {
-    public class ExaminationReportRepository : Repository<ExaminationReport, int>
+    public class ExaminationReportRepository : IRepository<ExaminationReport, int>
     {
         private String filename = @".\..\..\..\Data\examinationReports.txt";
         private Serializer<ExaminationReport> reportSerializer = new Serializer<ExaminationReport>();

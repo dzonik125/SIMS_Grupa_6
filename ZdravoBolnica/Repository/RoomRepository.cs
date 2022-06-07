@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Repository
 {
-    public class RoomsCRUD : Repository<Room, int>
+    public class RoomRepository : IRepository<Room, int>
     {
 
         private String filename = @".\..\..\..\Data\rooms.txt";
@@ -18,10 +18,9 @@ namespace Repository
         {
             List<Room> rooms = new List<Room>();
             rooms = roomSerializer.fromCSV(filename);
-            int num = rooms.Count;
-            if (num > 0)
+            if (rooms.Count > 0)
             {
-                entity.id = rooms[num - 1].id;
+                entity.id = rooms[rooms.Count - 1].id;
                 entity.id++;
             }
             else
@@ -60,28 +59,22 @@ namespace Repository
             return roomSerializer.fromCSV(filename);
         }
 
-        public Room FindByAppointment(Appointment a)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Room> FindByEquipment(Equipment e)
-        {
-            throw new NotImplementedException();
-        }
 
         public Room FindById(int key)
         {
-            List<Room> rooms = FindAll();
-            foreach (Room r in rooms)
+            Room returnRoom = new();
+            foreach (Room r in FindAll())
             {
                 if (key == r.id)
                 {
-                    return r;
+                    returnRoom = r;
+                    break;
                 }
+                else
+                    returnRoom = null;
             }
 
-            return null;
+            return returnRoom;
         }
 
         public void Update(Room r)
@@ -128,15 +121,25 @@ namespace Repository
                 }
 
             }
-
+            bool foundRoomByFloor = false;
             foreach (Room r in roomsByFloor)
             {
                 if (r.roomNum == roomNum)
                 {
-                    return true;
+                    foundRoomByFloor = true;
                 }
             }
-            return false;
+            return foundRoomByFloor;
+        }
+
+        public Room FindByAppointment(Appointment a)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Room> FindByEquipment(Equipment e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

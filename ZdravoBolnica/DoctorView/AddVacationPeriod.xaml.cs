@@ -26,7 +26,7 @@ namespace SIMS.DoctorView
                 MessageBox.Show("Popunite sva polja!");
                 return;
             }
-            DateRange dateRange = new DateRange();
+            Scheduler dateRange = new Scheduler();
             dateRange.startTime = (DateTime)StartTime.SelectedDate;
             dateRange.endTime = (DateTime)EndTime.SelectedDate;
             TimeSpan ts = dateRange.endTime - dateRange.startTime;

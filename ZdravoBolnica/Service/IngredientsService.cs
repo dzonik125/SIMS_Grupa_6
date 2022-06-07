@@ -10,10 +10,10 @@ namespace SIMS.Service
 {
     public class IngredientsService
     {
-        public IngredientsRepository _ingredientsRepository = new IngredientsRepository();
+        public IngredientsRepository ingredientsRepository = new IngredientsRepository();
         public List<Ingredients> FindAll()
         {
-            return _ingredientsRepository.FindAll();
+            return ingredientsRepository.FindAll();
         }
     }
 }

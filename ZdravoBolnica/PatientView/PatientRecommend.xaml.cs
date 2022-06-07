@@ -201,12 +201,12 @@ namespace SIMS.PatientView
                         index = d.id;
                     }
                 }
-                app.Doctor = new Doctor();
-                app.Doctor.id = index;
-                app.Room = new Room();
-                app.Room.id = rc.findFreeRoom(app.startTime).id;
+                app.doctor = new Doctor();
+                app.doctor.id = index;
+                app.room = new Room();
+                app.room.id = rc.findFreeRoom(app.startTime).id;
                 app.duration = 30;
-                app.Type = AppointmentType.examination;
+                app.type = AppointmentType.examination;
                 app.patient = new PatientController().FindAllPatients()[0];
                 ac.SaveAppointment(app);
                 PatientWindow pw = PatientWindow.Instance;
@@ -227,12 +227,12 @@ namespace SIMS.PatientView
                         index = d.id;
                     }
                 }
-                app.Doctor = new Doctor();
-                app.Doctor.id = index;
-                app.Room = new Room();
-                app.Room.id = rc.findFreeRoom(app.startTime).id;
+                app.doctor = new Doctor();
+                app.doctor.id = index;
+                app.room = new Room();
+                app.room.id = rc.findFreeRoom(app.startTime).id;
                 app.duration = 30;
-                app.Type = AppointmentType.examination;
+                app.type = AppointmentType.examination;
                 app.patient = new Patient();
                 ac.SaveAppointment(app);
                 PatientWindow pw = PatientWindow.Instance;
