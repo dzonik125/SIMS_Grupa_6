@@ -6,11 +6,9 @@ namespace SIMS.Util
 {
     public class Scheduler
     {
-        public DateTime startTime;
 
-       
+        public DateTime startTime;     
         public DateTime endTime { get; set; }
-
         public double duration { get; set; }
         public RoomType roomType { get; set; }
         public Specialization specializationType { get; set; }

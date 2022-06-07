@@ -31,7 +31,6 @@ namespace Controller
          throw new NotImplementedException();
       }
       
-      public Service.PatientAppointmentService patientAppointmentService;
    
    }
 }

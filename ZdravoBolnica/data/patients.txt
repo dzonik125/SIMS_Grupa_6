@@ -9,3 +9,4 @@
 9|Petar|Maric||||8|||213812312831||True|0|0
 10|Jovan|Lukic||||9|||429823824887||True|0|0
 11|Lazar|Lukic|email@gm.com|pass999|usernme|10|064392313|23613127631|1243612414|12.3.2000.|False|1|6
+12|Zdravko|Sulija||||11||12324|14235||False|1|7

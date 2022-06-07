@@ -13,7 +13,6 @@ namespace SIMS.Service
         private EquipmentTransferRepository etr = new EquipmentTransferRepository();
         private OrderEquipmentRepository oer = new OrderEquipmentRepository();
         private RoomService rs = new RoomService();
-        private EquipmentService es = new EquipmentService();
         private RoomEquipmentService res = new RoomEquipmentService();
         public void MoveInventory()
         {

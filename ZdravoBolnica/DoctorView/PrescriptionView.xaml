@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIMS.DoctorView"
         mc:Ignorable="d"
-        Title="PrescriptionView" Height="342" Width="330">
+        Title="PrescriptionView" Height="450" Width="330" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -38,7 +38,7 @@
                     <RowDefinition Height="100"/>
                     <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
-                <ComboBox Name="DrugComboBox" DisplayMemberPath="name" Grid.Row="0" Margin="0,17,40,12"/>
+                <ComboBox Name="DrugComboBox" DisplayMemberPath="name" Grid.Row="0" Margin="0,17,40,12" SelectionChanged="DrugComboBox_SelectionChanged"/>
                 <DatePicker Name="StartTime" Grid.Row="1" Margin="0,17,40,12"/>
                 <DatePicker Name="EndTime" Grid.Row="2" Margin="0,17,40,12"/>
                 <TextBox Name="Frequency" Grid.Row="3" Margin="0,17,40,12"/>

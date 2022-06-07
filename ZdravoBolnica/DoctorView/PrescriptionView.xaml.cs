@@ -89,5 +89,10 @@ namespace SIMS.DoctorView
             this.Close();
 
         }
+
+        private void DrugComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -175,13 +175,13 @@ namespace SIMS.PatientView
                 return;
             }
 
-            List<DateTime> dates = ac.GetTenNextFreeAppointmentsForDoctor(id);
+            //List<DateTime> dates = ac.GetTenNextFreeAppointmentsForDoctor(id);
             
 
-            foreach (DateTime dt in dates)
+            /*foreach (DateTime dt in dates)
             {
                 cb2.Items.Add(dt.ToString());
-            }
+            }*/
 
         }
 
@@ -364,13 +364,13 @@ namespace SIMS.PatientView
             if (dp1.SelectedDate != null)
             {
 
-                List<String> toTry = ac.GetFirstFiveFreeAppointmentsForDate(start, finish);
+                /*List<String> toTry = ac.GetFirstFiveFreeAppointmentsForDate(start, finish);
                 for (int i = 0; i < toTry.Count; i++)
                 {
                     cb3.Items.Add(toTry.ElementAt(i).Split(' ')[0] + " " + toTry.ElementAt(i).Split(' ')[1] + " " +
                                   toTry.ElementAt(i).Split(' ')[2] + " " +
                                   dc.GetDoctorById(Int32.Parse(toTry.ElementAt(i).Split(' ')[3])).FullName);
-                }
+                }*/
 
                 //tb1.Text = ac.getFirstFreeAppointment(start, finish).Split("=")[0];
             }
@@ -398,13 +398,13 @@ namespace SIMS.PatientView
             start = dp1.SelectedDate;
             if (dp2.SelectedDate != null)
             {
-                List<String> toTry = ac.GetFirstFiveFreeAppointmentsForDate(start, finish);
-                for (int i = 0; i < toTry.Count; i++)
+                //List<String> toTry = ac.GetFirstFiveFreeAppointmentsForDate(start, finish);
+                /*for (int i = 0; i < toTry.Count; i++)
                 {
                     cb3.Items.Add(toTry.ElementAt(i).Split(' ')[0] + " " + toTry.ElementAt(i).Split(' ')[1] + " " +
                                   toTry.ElementAt(i).Split(' ')[2] + " " +
                                   dc.GetDoctorById(Int32.Parse(toTry.ElementAt(i).Split(' ')[3])).FullName);
-                }
+                }*/
                 //tb1.Text = ac.getFirstFreeAppointment(start, finish).Split("=")[0];
             }
         }
@@ -438,11 +438,11 @@ namespace SIMS.PatientView
                     }
                 }
 
-                ac.GetTenNextAppointmentsForDoctorForDate(start, finish, id);
+                /*ac.GetTenNextAppointmentsForDoctorForDate(start, finish, id);
                 for (int i = 0; i < ac.GetTenNextAppointmentsForDoctorForDate(start, finish, id).Count; i++)
                 {
                     cb5.Items.Add(ac.GetTenNextAppointmentsForDoctorForDate(start, finish, id).ElementAt(i));
-                }
+                }*/
             }
 
         }
@@ -475,11 +475,11 @@ namespace SIMS.PatientView
                     }
                 }
 
-                ac.GetTenNextAppointmentsForDoctorForDate(start, finish, id);
+                /*ac.GetTenNextAppointmentsForDoctorForDate(start, finish, id);
                 for (int i = 0; i < ac.GetTenNextAppointmentsForDoctorForDate(start, finish, id).Count; i++)
                 {
                     cb5.Items.Add(ac.GetTenNextAppointmentsForDoctorForDate(start, finish, id).ElementAt(i));
-                }
+                }*/
             }
         }
 
@@ -498,11 +498,11 @@ namespace SIMS.PatientView
                     }
                 }
 
-                ac.GetTenNextAppointmentsForDoctorForDate(start, finish, id);
+                /*ac.GetTenNextAppointmentsForDoctorForDate(start, finish, id);
                 for (int i = 0; i < ac.GetTenNextAppointmentsForDoctorForDate(start, finish, id).Count; i++)
                 {
                     cb5.Items.Add(ac.GetTenNextAppointmentsForDoctorForDate(start, finish, id).ElementAt(i));
-                }
+                }*/
             }
         }
     }

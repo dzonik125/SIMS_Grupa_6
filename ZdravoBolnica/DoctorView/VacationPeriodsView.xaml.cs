@@ -65,7 +65,9 @@ namespace SIMS.DoctorView
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-
+            VacationPeriod vacationPeriod = dataGridAppointments.SelectedItem as VacationPeriod;
+            VacationPeriodDetails vacationPeriodDetails = new VacationPeriodDetails(vacationPeriod);
+            vacationPeriodDetails.ShowDialog();
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)

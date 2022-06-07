@@ -6,6 +6,7 @@
 using Model;
 using Repository;
 using SIMS.Model;
+using SIMS.Service;
 using System.Collections.Generic;
 
 namespace Service
@@ -19,11 +20,9 @@ namespace Service
             return medicalRecordRepository.FindById(id);
         }
 
-        public bool AddMedicalRecord(MedicalRecord mr)
+        public void AddMedicalRecord(MedicalRecord mr)
         {
-            MedicalRecordRepository mrr = new MedicalRecordRepository();
-            mrr.Create(mr);
-            return true;
+            medicalRecordRepository.Create(mr);
         }
 
         public List<MedicalRecord> findAll()
@@ -31,16 +30,23 @@ namespace Service
             return medicalRecordRepository.FindAll();
         }
 
-        public bool UpdateMedicalRecord(MedicalRecord mr)
+        public void UpdateMedicalRecord(MedicalRecord mr)
         {
             medicalRecordRepository.Update(mr);
-            return true;
         }
 
         public bool checkIfPatientisAllergic(Medication medication, MedicalRecord medicalRecord)
         {
+            MedicationService medicationService = new MedicationService();
+            bool isAllergicToMedication = checkIfPatientIsAllergicToMedication(medication, medicalRecord);
+            bool isAllergicToIngredient = medicationService.IsAllergicToIngredientOfMedication(medicalRecord.ingredientAllergies, medication);
+            return isAllergicToIngredient || isAllergicToMedication;
+        }
+
+        private bool checkIfPatientIsAllergicToMedication(Medication medication, MedicalRecord medicalRecord)
+        {
             bool isPatientAllergic = false;
-            foreach (Medication med in medicalRecord.medications)
+            foreach (Medication med in medicalRecord.medicationAllergies)
             {
                 if (med.name.Equals(medication.name))
                 {

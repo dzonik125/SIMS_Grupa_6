@@ -12,7 +12,7 @@ namespace SIMS.Controller
     public class IngredientsController
     {
         public IngredientsService _ingredientsService = new IngredientsService();
-        public List<Ingredients> FindAll()
+        public List<Ingredient> FindAll()
         {
             return _ingredientsService.FindAll();
         }

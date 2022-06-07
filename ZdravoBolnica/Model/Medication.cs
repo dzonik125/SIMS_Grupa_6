@@ -13,7 +13,7 @@ namespace SIMS.Model
         public int id { get; set; }
         public string name { get; set; }
         public List<int> medicationReplacementIds = new List<int>();
-        public List<Ingredients> components = new List<Ingredients>();
+        public List<Ingredient> components = new List<Ingredient>();
         public MedicationStatusType status { get; set; }
         public int Amount { get; set; }
 
@@ -84,7 +84,7 @@ namespace SIMS.Model
             {
                 ids = ids.Remove(ids.Length - 1, 1);
             }
-            foreach (Ingredients i in components)
+            foreach (Ingredient i in components)
             {
                 componentsName = componentsName + i.name + ",";
             }
