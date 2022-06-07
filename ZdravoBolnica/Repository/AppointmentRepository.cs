@@ -90,12 +90,10 @@ namespace Repository
 
         public void Create(Appointment entity)
         {
-            _ = new List<Appointment>();
             List<Appointment> appointments = appointmentSerializer.fromCSV(filename);
-            int num = appointments.Count;
-            if (num > 0)
+            if (appointments.Count > 0)
             {
-                entity.id = appointments[num - 1].id;
+                entity.id = appointments[appointments.Count - 1].id;
                 entity.id++;
             }
             else

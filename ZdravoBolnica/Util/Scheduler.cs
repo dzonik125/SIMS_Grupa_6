@@ -4,7 +4,7 @@ using System;
 
 namespace SIMS.Util
 {
-    public class DateRange
+    public class Scheduler
     {
         public DateTime startTime;
 
@@ -25,14 +25,14 @@ namespace SIMS.Util
             }
         }
 
-        public bool checkForIntersection(DateTime startTimeAppoinment, double appointmentDuration)
+        public bool overlapsWithExistingTerm(DateTime startTimeAppoinment, double appointmentDuration)
         {
-            bool hasIntersection = false;
+            bool overlaps = false;
             if (!((startTimeAppoinment.AddMinutes(appointmentDuration) <= startTime && startTimeAppoinment <= startTime ||
                 (startTime.AddMinutes(duration) <= startTimeAppoinment && startTime <= startTimeAppoinment))))
-                hasIntersection = true;
+                overlaps = true;
 
-            return hasIntersection;
+            return overlaps;
         }      
   
     }
