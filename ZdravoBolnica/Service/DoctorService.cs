@@ -19,26 +19,26 @@ namespace Service
             return doctorRepository.FindAll();
         }
 
-        public void SaveDoctor(Doctor d)
+        public void SaveDoctor(Doctor doctor)
         {
-            doctorRepository.Create(d);
+            doctorRepository.Create(doctor);
         }
 
         public Doctor GetDoctorById(int id)
         {
             return doctorRepository.FindById(id);
         }
-        public List<Doctor> FindBySpecialization(Specialization spec)
+        public List<Doctor> FindBySpecialization(Specialization specialization)
         {
-            return doctorRepository.findBySpecialization(spec);
+            return doctorRepository.findBySpecialization(specialization);
         }
 
-        public bool freeDoctorExistsForAppointment(Appointment appointment, Scheduler dateRange)
+        public bool freeDoctorExistsForAppointment(Appointment appointment, Scheduler scheduler)
         {
             bool freeDoctorExists = false; 
-            foreach (Doctor doctor in FindBySpecialization(dateRange.specializationType))
+            foreach (Doctor doctor in FindBySpecialization(scheduler.specializationType))
             {
-                if (!checkIfDoctorIsBusy(doctor, dateRange))
+                if (!checkIfDoctorIsBusy(doctor, scheduler))
                 {
                     appointment.doctor = doctor;
                     freeDoctorExists = true;
@@ -48,14 +48,14 @@ namespace Service
         }
 
 
-        public bool checkIfDoctorIsBusy(Doctor d, Scheduler dateRange)
+        public bool checkIfDoctorIsBusy(Doctor doctor, Scheduler scheduler)
         {
             bool doctorIsBusy = false;
             AppointmentRepository appointmentRepository = new AppointmentRepository();
-            List<Appointment> appointments = appointmentRepository.FindByDoctorId(d.id);
-            foreach (Appointment a in appointments)
+            List<Appointment> appointments = appointmentRepository.FindByDoctorId(doctor.id);
+            foreach (Appointment appointment in appointments)
             {
-                if (dateRange.overlapsWithExistingTerm(a.startTime, a.duration))
+                if (scheduler.overlapsWithExistingTerm(appointment.startTime, appointment.duration))
                     doctorIsBusy = true;
             }
             return doctorIsBusy;
