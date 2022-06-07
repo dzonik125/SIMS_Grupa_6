@@ -3,62 +3,64 @@
 // Created: Thursday, April 7, 2022 10:47:04
 // Purpose: Definition of Class AppointmentRepository
 
+using Model;
 using System;
 using System.Collections.Generic;
 using Model;
+using SIMS;
+using SIMS.Repository;
 
 namespace Repository
 {
-    public class AppointmentRepository : Repository<Appointment, string>
+    public class AppointmentRepository : IRepository<Appointment, int>, IAppointmentRepository
     {
         private String filename = @".\..\..\..\Data\appointments.txt";
         private Serializer<Appointment> appointmentSerializer = new Serializer<Appointment>();
-        public Appointment FindAppointmentById(string id)
+        
+        private List<Appointment> patientAppointments = new();
+        public Appointment FindById(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public List<Appointment> FindByPatientId(string pid)
-        {
-            List<Appointment> appointments = new();
-            List<Appointment> patientAppointments = new();
-            appointments = FindAll();
-            foreach (Appointment a in appointments)
+            Appointment returnAppointment = new();
+            foreach (Appointment appointment in FindAll())
             {
-                if (a.patientID.Equals(pid))
+                if (appointment.id == id)
                 {
-                    patientAppointments.Add(a);
+                    returnAppointment = appointment;
+                    break;
                 }
+                else
+                    returnAppointment = null;
+            }
+            return returnAppointment;
+        }
+        public List<Appointment> FindByPatientId(int patientId)
+        {
+            foreach (Appointment appointment in FindAll())
+            {
+                if (appointment.patient.id == patientId)
+                    patientAppointments.Add(appointment);
             }
             return patientAppointments;
         }
 
-        public List<Appointment> FindByRoomId(string rid)
+        public List<Appointment> FindByRoomId(int rid)
         {
-            List<Appointment> appointments = new();
             List<Appointment> roomAppointments = new();
-            appointments = FindAll();
-            foreach (Appointment a in appointments)
+            foreach (Appointment appointment in FindAll())
             {
-                if (a.roomID.Equals(rid))
-                {
-                    roomAppointments.Add(a);
-                }
+                if (appointment.room.id == rid)
+                    roomAppointments.Add(appointment);
             }
             return roomAppointments;
         }
 
-        public List<Appointment> FindByDoctorId(string did)
+        public List<Appointment> FindByDoctorId(int doctorId)
         {
-            List<Appointment> appointments = new();
             List<Appointment> doctorAppointments = new();
-            appointments = FindAll();
-            foreach (Appointment a in appointments)
+            foreach (Appointment appointment in FindAll())
             {
-                if (a.doctorID.Equals(did))
-                {
-                    doctorAppointments.Add(a);
-                }
+                if (appointment.doctor.id == doctorId)
+                    doctorAppointments.Add(appointment);
             }
             return doctorAppointments;
         }
@@ -68,24 +70,14 @@ namespace Repository
             return appointmentSerializer.fromCSV(filename);
         }
 
-        public Appointment FindById(string key)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteById(string id)
+        public void DeleteById(int id)
         {
             List<Appointment> appointments = FindAll();
-            foreach (Appointment a in appointments)
+            foreach (Appointment appointment in appointments)
             {
-                if (a.id.Equals(id))
+                if (appointment.id == id)
                 {
-                    appointments.Remove(a);
+                    appointments.Remove(appointment);
                     break;
                 }
             }
@@ -94,8 +86,16 @@ namespace Repository
 
         public void Create(Appointment entity)
         {
-            _ = new List<Appointment>();
             List<Appointment> appointments = appointmentSerializer.fromCSV(filename);
+            if (appointments.Count > 0)
+            {
+                entity.id = appointments[appointments.Count - 1].id;
+                entity.id++;
+            }
+            else
+            {
+                entity.id = 1;
+            }
             appointments.Add(entity);
             appointmentSerializer.toCSV(filename, appointments);
         }
@@ -105,17 +105,27 @@ namespace Repository
             List<Appointment> appointments = FindAll();
             foreach (Appointment a in appointments)
             {
-                if (a.id.Equals(entity.id))
+                if (a.id == entity.id)
                 {
                     int index = appointments.IndexOf(a);
                     if (index != -1)
                     {
                         appointments[index] = entity;
+                        appointments[index].TimesEdited++;
                         break;
                     }
                 }
             }
             appointmentSerializer.toCSV(filename, appointments);
+        }
+        public Appointment FindById(string key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteAll()
+        {
+            throw new NotImplementedException();
         }
 
     }

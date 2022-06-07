@@ -1,0 +1,161 @@
+﻿<Window x:Class="SIMS.DoctorView.PatientMedicalRecord"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIMS.DoctorView"
+        mc:Ignorable="d"
+        Title="Patient Medical Record" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+
+        <TabControl Grid.Row="0" Margin="50,30,50,0">
+            <TabItem Header="Informacije">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Label Content="Petar Petrovic" Name="Name" FontSize="25" FontWeight="Bold" Margin="244,0,244,0"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Content="Pol:" FontSize="15"/>
+                            <Label Grid.Row="0" Content="M" Name="Gender" FontSize="15" Margin="30,0,250,0"/>
+                            <Label Grid.Row="1" Content="JMBG:"  FontSize="15"/>
+                            <Label Grid.Row="1" Content="12345667788" Name="JMBG" FontSize="15" Margin="50,0,15,0"/>
+                            <Label Grid.Row="2" Content="LBO:" FontSize="15"/>
+                            <Label Grid.Row="2" Content="13124325" Name="LBO" FontSize="15" Margin="35,0,0,0"/>
+                            <Label Grid.Row="3" Content="Datum rodjenja:"  FontSize="15"/>
+                            <Label Grid.Row="3" Content="12.12.2000" Name="Birth" FontSize="15" Margin="110,0,0,0"/>
+                            <Label Grid.Row="4" Content="Telefon:" FontSize="15"/>
+                            <Label Grid.Row="4" Content="060000000" Name="Phone" FontSize="15" Margin="55,0,0,0"/>
+                            <Label Grid.Row="5" Content="Email:" FontSize="15"/>
+                            <Label Grid.Row="5" Content="13124325" Name="Email" FontSize="15" Margin="45,0,0,0"/>
+                            <Label Grid.Row="6" Content="Hospitalizacija:" FontSize="15"/>
+                            <Label Grid.Row="6" Content="4" FontSize="15" Name="Hospitalization" Margin="105,0,0,0"/>
+                            <Label Grid.Row="7" Content="Krvna Grupa:"  FontSize="15"/>
+                            <Label Grid.Row="7" Content="A+" FontSize="15" Name="BloodType" Margin="95,0,0,0"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="100"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                        
+                            <Label Grid.Row="0" Content="Alergije:" FontSize="15"/>
+                            <DataGrid Grid.Row="1" Margin="0,0,86,0" ItemsSource="{Binding Path = allergies}" AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Naziv" Binding="{Binding}" Width="*"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Button Grid.Row="2" Content="Napisi recept" Margin="0,10,244,10" Click="Button_Click"/>
+                        </Grid>
+
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Pregledi">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="75"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Grid.Row="1" Margin="45,0,45,0" Name="ExaminationsTable" AutoGenerateColumns="False" SelectionMode="Single" ItemsSource="{Binding Path=examinationReports}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Lekar" Width="*" Binding="{Binding doctor.FullName}"/>
+                            <DataGridTextColumn Header="Sala" Width="*" Binding="{Binding appointment.Room.roomNum}"/>
+                            <DataGridTextColumn Header="Datum" Width="*" Binding="{Binding reportDate}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Grid Grid.Row="2" Margin="45,0,0,0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="160"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Content="Detalji" Grid.Column="0" Margin="10,20,10,20" Click="ExaminationDetails" />
+                        <Button Content="Dodaj" Grid.Column="1" Margin="10,20,10,20" Click="Button_Click_2" />
+                        <Button Content="Izmeni" Grid.Column="2" Margin="10,20,10,20" Click="Button_Click_1"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Operacije">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="75"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Grid.Row="1" Margin="45,0,45,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Lekar" Width="*"/>
+                            <DataGridTextColumn Header="Sala" Width="*"/>
+                            <DataGridTextColumn Header="Datum" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Grid Grid.Row="2" Margin="45,0,0,0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="160"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Content="Detalji" Grid.Column="0" Margin="10,20,10,20" />
+                        <Button Content="Dodaj" Grid.Column="1" Margin="10,20,10,20" />
+                        <Button Content="Izmeni" Grid.Column="2" Margin="10,20,10,20"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Terapije">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="75"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Grid.Row="1" Margin="45,0,45,0" Name="PrescriptionsTable" AutoGenerateColumns="False" SelectionMode="Single" ItemsSource="{Binding Path=prescriptions}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Lekar" Width="*" Binding="{Binding doctor.FullName}"/>
+                            <DataGridTextColumn Header="Naziv Terapije" Binding="{Binding medication.name}" Width="*"/>
+                            <DataGridTextColumn Header="Datum" Width="*" Binding="{Binding prescriptionDate}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Grid Grid.Row="2" Margin="45,0,0,0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="160"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Content="Detalji" Grid.Column="0" Margin="10,20,10,20" Click="Detalji_Click" />
+                        <Button Content="Dodaj" Grid.Column="1" Margin="10,20,10,20" Click="Add_Click" />
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

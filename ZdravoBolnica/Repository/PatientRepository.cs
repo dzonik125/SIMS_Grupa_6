@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Repository
 {
-    public class PatientRepository : Repository<Patient, string>
+    public class PatientRepository : IRepository<Patient, int>
     {
         private String filename = @".\..\..\..\Data\patients.txt";
         private Serializer<Patient> patientSerializer = new Serializer<Patient>();
@@ -17,9 +17,17 @@ namespace Repository
         {
             List<Patient> patients = new List<Patient>();
             patients = patientSerializer.fromCSV(filename);
+            if (patients.Count > 0)
+            {
+                entity.id = patients[patients.Count - 1].id;
+                entity.id++;
+            }
+            else
+            {
+                entity.id = 1;
+            }
             patients.Add(entity);
             patientSerializer.toCSV(filename, patients);
-
         }
 
         public void DeleteAll()
@@ -27,12 +35,12 @@ namespace Repository
             throw new NotImplementedException();
         }
 
-        public void DeleteById(string id)
+        public void DeleteById(int id)
         {
             List<Patient> patients = FindAll();
-            foreach(Patient p in patients)
+            foreach (Patient p in patients)
             {
-                if (id.Equals(p.id))
+                if (id == p.id)
                 {
                     patients.Remove(p);
                     break;
@@ -43,34 +51,41 @@ namespace Repository
 
         public List<Patient> FindAll()
         {
-            
             return patientSerializer.fromCSV(filename);
-            System.Diagnostics.Trace.WriteLine("ovde");
         }
 
-        public Patient FindById(string key)
+        public Patient FindById(int key)
         {
-            throw new NotImplementedException();
+            Patient returnPatient = new();
+            foreach (Patient p in FindAll())
+            {
+                if (p.id == key)
+                {
+                    returnPatient = p;
+                    break;
+                }
+                else
+                {
+                    returnPatient = null;
+                }
+            }
+            return returnPatient;
         }
+
 
         public void Update(Patient entity)
         {
             List<Patient> patients = FindAll();
-            foreach(Patient p in patients)
+            foreach (Patient p in patients)
             {
                 if (p.id.Equals(entity.id))
                 {
-                    p.name = entity.name;
-                    System.Diagnostics.Trace.WriteLine(p.name);
-                    p.surname = entity.surname;
-                    p.email = entity.email;
-                    p.phone = entity.phone;
-                    p.birthdate = entity.birthdate;
-                    p.jmbg = entity.jmbg;
-                    p.lbo = entity.lbo;
-                    p.username = entity.username;
-                    p.password = entity.password;
-                    break;
+                    int index = patients.IndexOf(p);
+                    if (index != -1)
+                    {
+                        patients[index] = entity;
+                        break;
+                    }
                 }
             }
             patientSerializer.toCSV(filename, patients);

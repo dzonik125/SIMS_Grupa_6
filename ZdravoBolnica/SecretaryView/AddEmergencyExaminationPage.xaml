@@ -1,0 +1,38 @@
+﻿<Page x:Class="SIMS.SecretaryView.AddEmergencyExaminationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SIMS.SecretaryView"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddEmergencyExaminationPage"
+      MaxHeight="450"
+      MaxWidth="800">
+
+    <Grid>
+        <Label Content="Zakazivanje hitnog pregleda" FontSize="30" HorizontalAlignment="Center" Margin="0,-60,0,440"/>
+        <Grid>
+            <StackPanel Width="400" Orientation="Vertical" Margin="200,61,200,-47">
+                <Grid Width="400" FlowDirection="LeftToRight" HorizontalAlignment="Center">
+                    <Label Content="Pacijent:" HorizontalAlignment="Left" Margin="128,7,0,30" FontSize="17" Height="33" Width="73"/>
+                    <ComboBox DisplayMemberPath="FullName" x:Name="PatientBox" Margin="134,38,143,2" Height="29"/>
+                    <Button Content="+" HorizontalAlignment="Left" Width="20" Height="29" Margin="276,38,0,2" Click="AddGuest_Click" />
+                </Grid>
+                <Grid Width="400" FlowDirection="LeftToRight" HorizontalAlignment="Center">
+                    <Label Content="Specijalizacija:" HorizontalAlignment="Left" Margin="128,7,0,0" VerticalAlignment="Top" FontSize="17" Height="32" Width="114"/>
+                    <ComboBox DropDownClosed="Specialization_DropDownClosed" x:Name="Specialization" HorizontalAlignment="Left" Margin="135,38,0,0" VerticalAlignment="Top" Width="123" Height="29"/>
+                </Grid>
+                <Grid  Width="400" FlowDirection="LeftToRight" HorizontalAlignment="Center">
+                    <Label Content="Vreme:" HorizontalAlignment="Left" Margin="132,9,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="72"/>
+                    <ComboBox  HorizontalAlignment="Left" x:Name="TimeBox" Margin="135,38,0,0" VerticalAlignment="Top"  Width="123" Height="29" />
+                </Grid>
+                <Grid Width="400"  FlowDirection="LeftToRight"/>
+                <Grid Margin="50,100,0,0" Width="400" FlowDirection="LeftToRight">
+                    <Button Background="LightGreen" Content="Zakazi" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="40" Width="80" Margin="34,0,0,0" Click="Schedule_Click" FontSize="16"/>
+                    <Button Content="Zatvori" Height="40" Width="80" FontSize="16" Click="Close_Click" Margin="174,10,146,10"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

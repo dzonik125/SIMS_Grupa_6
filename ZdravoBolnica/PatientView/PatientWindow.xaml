@@ -1,0 +1,39 @@
+﻿<Window x:Class="SIMS.PatientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIMS"
+        mc:Ignorable="d"
+        Title="PatientWindow" Height="450" Width="800">
+	<Grid>
+		<Button Content="Zakazi" HorizontalAlignment="Left" Margin="46,318,0,0" VerticalAlignment="Top" Height="66" Width="132" Click="Button_Click"/>
+		<DataGrid x:Name="patientMadeAppointmentsTable" ItemsSource="{Binding list}" 
+					Grid.Row="0" Margin="77,23,103,122" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False">
+			<DataGrid.RenderTransform>
+				<TransformGroup>
+					<ScaleTransform/>
+					<SkewTransform/>
+					<RotateTransform Angle="0.353"/>
+					<TranslateTransform/>
+				</TransformGroup>
+			</DataGrid.RenderTransform>
+
+			<DataGrid.Columns>
+
+
+				<DataGridTextColumn Header="Ime Lekara" Width="*" Binding="{Binding Doctor.FullName}" DataGridColumn.CanUserResize="False"/>
+				<DataGridTextColumn Header="Datum" Width="*" Binding="{Binding startTime}"  DataGridColumn.CanUserResize="False"/>
+				<DataGridTextColumn Header="Soba" Width="*" Binding="{Binding Room.roomNum}"  DataGridColumn.CanUserResize="False"/>
+
+			</DataGrid.Columns>
+		</DataGrid>
+		<Button Name="edit" Content="Izmeni" HorizontalAlignment="Left" Margin="352,318,0,0" VerticalAlignment="Top" Height="66" Width="132" Click="Button_Click2"/>
+		<Button Name="delete" Content="Obrisi" HorizontalAlignment="Left" Margin="622,318,0,0" VerticalAlignment="Top" Height="66" Width="132" Click="Button_Click_3" />
+		<Button Content="VRATI" HorizontalAlignment="Left" Margin="714,39,0,0" VerticalAlignment="Top" Height="32" Width="64" Click="Button_Click_1"/>
+		<Button Content="notifikacije" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Click="Button_Click_2"/>
+		<Button Click="ButtonBase_OnClick" Content="HCI" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top"/>
+		<Button Content="Ankete" HorizontalAlignment="Left" Margin="704,119,0,0" VerticalAlignment="Top" Height="36" Width="73" Click="Button_Click_4"/>
+	</Grid>
+
+</Window>

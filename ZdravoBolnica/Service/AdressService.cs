@@ -1,19 +1,15 @@
-﻿using System;
-using Repository;
+﻿using Model;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Model;
 
 namespace Service
 {
     public class AdressService
     {
 
-       
 
-        public Adress FindAdressById(string id)
+
+        public Adress FindAdressById(int id)
         {
             return adressRepository.FindById(id);
         }
@@ -24,9 +20,9 @@ namespace Service
             return true;
         }
 
-        public bool DeleteAdressById(string id)
+        public bool DeleteAdressById(int id)
         {
-            
+
             return true;
         }
 

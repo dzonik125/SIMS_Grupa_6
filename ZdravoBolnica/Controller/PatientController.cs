@@ -2,18 +2,15 @@
 using Service;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SIMS
 {
- public  class PatientController
+    public class PatientController
     {
         private PatientService ps = new PatientService();
-        public Patient FindPatientById(string id)
+        public Patient FindPatientById(int id)
         {
-            throw new NotImplementedException();
+            return ps.FindPatientById(id);
         }
 
         public List<Patient> FindAllPatients()
@@ -21,7 +18,7 @@ namespace SIMS
             return ps.FindAllPatients();
         }
 
-        public bool DeletePatientById(string id)
+        public bool DeletePatientById(int id)
         {
             ps.DeletePatientById(id);
             return true;
@@ -32,15 +29,20 @@ namespace SIMS
             ps.AddPatient(p);
             return true;
         }
+        public bool AddGuestPatient(Patient p)
+        {
+            ps.AddGuestPatient(p);
+            return true;
+        }
 
         public bool UpdatePatient(Patient p)
         {
-            
+
             ps.UpdatePatient(p);
             return true;
         }
 
-        public Service.PatientService patientService;
+      //  public Service.PatientService patientService;
 
     }
 

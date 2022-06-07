@@ -1,0 +1,33 @@
+﻿<Window x:Class="SIMS.PatientView.SurveyFrom"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIMS.PatientView"
+        mc:Ignorable="d"
+        Title="SurveyFrom" Height="450" Width="800">
+	<Grid>
+		<Label Content="1. Ocenite profesionalnost lekara" HorizontalAlignment="Left" Margin="43,32,0,0" VerticalAlignment="Top"/>
+		<ComboBox Name="q1" HorizontalAlignment="Left" Margin="68,64,0,0" VerticalAlignment="Top" Width="120"/>
+		<Label Content="2. Ocenite ljubaznost lekara" HorizontalAlignment="Left" Margin="43,102,0,0" VerticalAlignment="Top"/>
+		<ComboBox Name="q2" HorizontalAlignment="Left" Margin="68,136,0,0" VerticalAlignment="Top" Width="120"/>
+		<Label Content="3. Ocenite kvalitet pregleda" HorizontalAlignment="Left" Margin="43,172,0,0" VerticalAlignment="Top"/>
+		<ComboBox Name="q3" HorizontalAlignment="Left" Margin="68,0,0,0" VerticalAlignment="Center" Width="120"/>
+		<Label Content="4. Koliko ste zadovoljni uslugom od 1-5?" HorizontalAlignment="Left" Margin="43,242,0,0" VerticalAlignment="Top"/>
+		<ComboBox Name="q4" HorizontalAlignment="Left" Margin="68,276,0,0" VerticalAlignment="Top" Width="120"/>
+		<Label  Content="5. Kolika je verovatnoca od 1-5 da cete nas preporuciti porodici ili prijateljima?" HorizontalAlignment="Left" Margin="43,312,0,0" VerticalAlignment="Top"/>
+		<ComboBox Name="q5" HorizontalAlignment="Left" Margin="68,346,0,0" VerticalAlignment="Top" Width="120"/>
+		<Label Content="6. Koliko prijatno ste se osecali prilikom pregleda?" HorizontalAlignment="Left" Margin="463,32,0,0" VerticalAlignment="Top"/>
+		<ComboBox Name="q6" HorizontalAlignment="Left" Margin="488,64,0,0" VerticalAlignment="Top" Width="120"/>
+		<Label Content="7. Kolika je verovatnoca da cete ponovo doci kod nas?" HorizontalAlignment="Left" Margin="463,112,0,0" VerticalAlignment="Top"/>
+		<ComboBox Name="q7" HorizontalAlignment="Left" Margin="488,154,0,0" VerticalAlignment="Top" Width="120"/>
+		<Label Content="8. Ocenite brzinu usluge" HorizontalAlignment="Left" Margin="463,192,0,0" VerticalAlignment="Top"/>
+		<ComboBox Name="q8" HorizontalAlignment="Left" Margin="488,224,0,0" VerticalAlignment="Top" Width="120"/>
+		<Label Content="9. Ocenite higijenu bolnice" HorizontalAlignment="Left" Margin="463,252,0,0" VerticalAlignment="Top"/>
+		<ComboBox Name="q9" HorizontalAlignment="Left" Margin="488,284,0,0" VerticalAlignment="Top" Width="120"/>
+		<Label Content="10. Ocenite skupocu usluge" HorizontalAlignment="Left" Margin="463,312,0,0" VerticalAlignment="Top"/>
+		<ComboBox Name="q10" HorizontalAlignment="Left" Margin="488,344,0,0" VerticalAlignment="Top" Width="120"/>
+		<Button Content="Potvrdi" Click="ButtonBase_OnClick" HorizontalAlignment="Left" Margin="324,398,0,0" VerticalAlignment="Top"/>
+
+	</Grid>
+</Window>

@@ -4,74 +4,95 @@
 // Purpose: Definition of Class AppointmentController
 
 using Model;
+using SIMS.Util;
 using System;
 using System.Collections.Generic;
-using SIMS;
 
 
 namespace Controller
 {
-   public class AppointmentController
-   {
-      public List<Appointment> GetAllApointments()
-      {
-
+    public class AppointmentController
+    {
+        private readonly Service.AppointmentService appointmentService = new Service.AppointmentService();
+        public List<Appointment> GetAllAppointmentsForPatient(int id)
+        {
+            return appointmentService.GetAllAppointmentsForPatient(id);
+        }
+        public List<Appointment> GetAllAppointments()
+        {
             return appointmentService.GetAllApointments();
-      }
-      
-      public void UpdateAppointment(Appointment a)
-      {
+        }
+        public void UpdateAppointment(Appointment a)
+        {
             appointmentService.UpdateAppointment(a);
-      }
-      
-      public void DeleteAppointmentById(string id)
-      {
+        }
+        public void DeleteAppointmentById(int id)
+        {
             appointmentService.DeleteAppointmentById(id);
-      }
-      
-      public List<Appointment> getFutureAppointmentsForDoctor(string id)
+        }
+       
+        public Appointment GetFirstFreeAppointmentInOneHour(Scheduler scheduler, Patient patient)
         {
-            return appointmentService.getFutureAppointmentsForDoctor(id);
+            return appointmentService.GetFirstFreeAppointmentInOneHour(scheduler, patient);
+        }
+        public List<Appointment> GetFutureAppointmentsForDoctor(int id)
+        {
+            return appointmentService.GetFutureAppointmentsForDoctor(id);
+        }
+        public List<Appointment> GetAppointmentsForDoctors(List<Doctor> doctors)
+        {
+            return appointmentService.GetAppointmentsForDoctors(doctors);
+        }
+        public Appointment GetFirstAppointmentForDoctor(List<Appointment> appointments)
+        {
+            return appointmentService.GetFirstAppointmentForDoctor(appointments);
+        }
+        public void SaveBusyAppointment(Appointment appointment, Specialization specialization)
+        {
+            appointmentService.SaveBusyAppointment(appointment, specialization);
         }
 
-      public List<Appointment> getFutureAppointmentsForPatient(string id)
-      {
-          return appointmentService.getFutureAppointmentsForPatient(id);
-      }
-
-      public void SaveAppointment(Appointment a)
-      {
-            appointmentService.SaveAppointment(a);
-      }
-      
-      public bool IntersectionWithAppointments(string patientID, string doctorID, string roomID, DateTime date, int duration)
+        public Appointment FindFreeAppointmentForPatient(Patient patient, Specialization specialization)
         {
-            return appointmentService.IntersectionWithAppointments(patientID, doctorID, roomID, date, duration);
+            return appointmentService.FindFreeAppointmentForPatient(patient, specialization);
         }
-
-      public Appointment GetAppointmentByID(int id)
-      {
-         throw new NotImplementedException();
-      }
-
-      public void bindRoomsWithAppointments(List<Room> rooms, List<Appointment> appointments) 
+        public List<Appointment> GetFutureAppointmentsForPatient(int id)
         {
-            appointmentService.bindRoomsWithAppointments(rooms, appointments);
+            return appointmentService.GetFutureAppointmentsForPatient(id);
         }
-
-        public void bindDoctorsWithAppointments(List<Doctor> doctors, List<Appointment> appointments)
+        public void SaveAppointment(Appointment appointment)
         {
-            appointmentService.bindDoctorsWithAppointments(doctors, appointments);
+            appointmentService.SaveAppointment(appointment);
         }
-
-        public void bindPatientsWithAppointments(List<Patient> patients, List<Appointment> appointments)
+        public Appointment GetAppointmentById(int id)
         {
-            appointmentService.bindPatientsWithAppointments(patients, appointments);
+            throw new NotImplementedException();
         }
-
-
+        public void BindRoomsWithAppointments(List<Room> rooms, List<Appointment> appointments)
+        {
+            appointmentService.BindRoomsWithAppointments(rooms, appointments);
+        }
+        public void BindDoctorsWithAppointments(List<Doctor> doctors, List<Appointment> appointments)
+        {
+            appointmentService.BindDoctorsWithAppointments(doctors, appointments);
+        }
+        public bool IsRoomOccupied(Room roomDestination, DateTime transferDate, int duration)
+        {
+            return appointmentService.IsRoomOccupied(roomDestination, transferDate, duration);
+        }
+        public void BindPatientsWithAppointments(List<Patient> patients, List<Appointment> appointments)
+        {
+            appointmentService.BindPatientsWithAppointments(patients, appointments);
+        }
         
-        public Service.AppointmentService appointmentService = new Service.AppointmentService();
-        
-   }
+        public Appointment FindPatientAppointment(Patient patient)
+        {
+            return appointmentService.FindPatientAppointment(patient);
+        }
+        public List<Appointment> FindAllAppointments()
+        {
+            return appointmentService.GetAllApointments();
+        }
+       
+    }
 }

@@ -1,0 +1,27 @@
+﻿<Page x:Class="SIMS.SecretaryView.NewGuestPatientPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SIMS.SecretaryView"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      MaxHeight="450"
+      MaxWidth="800"
+      Title="NewGuestPatientPage">
+
+    <Grid>
+        <Label Content="Napravi gostujući nalog" HorizontalAlignment="Center" Margin="0,-60,0,440" VerticalAlignment="Top" FontSize="30"/>
+        <Grid Margin="0,-67,0,66">
+            <Label Content="Ime:" HorizontalAlignment="Left" Margin="340,104,0,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label Content="Prezime:" HorizontalAlignment="Left" Margin="340,170,0,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label Content="JMBG:" HorizontalAlignment="Left" Margin="339,240,0,0" VerticalAlignment="Top" FontSize="20"/>
+            <TextBox x:Name="Name" HorizontalAlignment="Center" Margin="0,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20"/>
+            <TextBox    x:Name="Surname" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" FontSize="20"/>
+            <TextBox x:Name="Jmbg" HorizontalAlignment="Center" Margin="0,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20"/>
+        </Grid>
+        <Button Background="LightGreen" Content="Dodaj" HorizontalAlignment="Left" Margin="287,334,0,0" VerticalAlignment="Top" Click="AddGuest_Click" Height="35" Width="71" FontSize="16"/>
+        <Button Background="Firebrick" Content="Poništi" HorizontalAlignment="Left" Margin="429,334,0,0" VerticalAlignment="Top" Click="Reject_Click" Height="35" Width="71" FontSize="16"/>
+
+    </Grid>
+</Page>

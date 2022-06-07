@@ -5,21 +5,19 @@
 
 using SIMS.Model;
 using System;
+using System.Collections.Generic;
 
 namespace Model
 {
-   public class Doctor : Account, Serializable
-   {
-      public Double grade;
-      
-      public System.Collections.Generic.List<Appointment> appointments { get; set; }
-      
-      /// <summary>
-      /// Property for collection of Appointment
-      /// </summary>
-      /// <pdGenerated>Default opposite class collection property</pdGenerated>
-      
-   
+    public class Doctor : Account, Serializable
+    {
+        public Double grade;
+
+        public List<Appointment> appointments { get; set; }
+
+        public List<VacationPeriod> vacationPeriods { get; set; }
+        
+        public Specialization specialization;
 
         public string[] ToCSV()
         {
@@ -29,32 +27,31 @@ namespace Model
                 name,
                 surname,
                 Conversion.SpecializationToString(specialization),
+                password,
+                username,
             };
             return csvValues;
         }
 
         public void FromCSV(string[] values)
         {
-            id = values[0];
+            id = int.Parse(values[0]);
             name = values[1];
             surname = values[2];
             specialization = Conversion.StringToSpecialization(values[3]);
+            password = values[4];
+            username = values[5];
         }
 
-        public Specialization specialization;
-      
-      /// <summary>
-      /// Property for Specialization
-      /// </summary>
-      /// <pdGenerated>Default opposite class property</pdGenerated>
-      public Specialization Specialization
-      {
-         get
-         {
-            return specialization;
-         }
-     
-      }
-   
-   }
+        
+        public Specialization Specialization
+        {
+            get
+            {
+                return specialization;
+            }
+
+        }
+
+    }
 }

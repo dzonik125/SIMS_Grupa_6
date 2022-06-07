@@ -56,7 +56,7 @@ namespace SIMS.DoctorView
             RoomBox.ItemsSource = rooms;
             foreach (Room r in rooms)
             {
-                if (r.id.Equals(appointment.Room.id))
+                if (r.id.Equals(appointment.room.id))
                 {
                     break;
                 }
@@ -83,14 +83,14 @@ namespace SIMS.DoctorView
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             
-            appointment.patientID = getSelectedPatient().id;
-            appointment.roomID = getSelectedRoom().id;
+            appointment.patient.id = getSelectedPatient().id;
+            appointment.room.id = getSelectedRoom().id;
             String dateAndTime = DatePicker.Text + " " + Time.Text;
             DateTime timeStamp = DateTime.Parse(dateAndTime);
             appointment.startTime = timeStamp;
             appointment.duration = int.Parse(Duration.Text);
             Appointments appointments = Appointments.Instance;
-            appointment.doctorID = appointments.doctorUser.id;
+            appointment.doctor.id = appointments.doctorUser.id;
             
             appointmentController.UpdateAppointment(appointment);
             this.Close();

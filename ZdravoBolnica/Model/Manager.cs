@@ -3,23 +3,33 @@
 // Created: Thursday, April 7, 2022 10:12:57
 // Purpose: Definition of Class Manager
 
-using System;
-
 namespace Model
 {
-   public class Manager : Account, Serializable
-   {
-      public System.Collections.Generic.List<Room> room;
-      
-      
+    public class Manager : Account, Serializable
+    {
+        public System.Collections.Generic.List<Room> room { get; set; }
+
+
         public string[] ToCSV()
         {
-            throw new NotImplementedException();
+            string[] csvValues =
+            {
+                id.ToString(),
+                name,
+                surname,
+                password,
+                username,
+            };
+            return csvValues;
         }
 
         public void FromCSV(string[] values)
         {
-            throw new NotImplementedException();
+            id = int.Parse(values[0]);
+            name = values[1];
+            surname = values[2];
+            password = values[3];
+            username = values[4];
         }
     }
 }

@@ -4,10 +4,75 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>LOGO.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="images\aaa.png" />
+    <None Remove="images\icon png.png" />
+    <None Remove="images\LOGO.png" />
+    <None Remove="images\NicePng_note-png_4357930.png" />
+    <None Remove="images\NicePng_order-icon-png_2992961.png" />
+    <None Remove="images\pngegg.png" />
+    <None Remove="images\pngfind.com-language-icon-png-5572694.png" />
+    <None Remove="images\pngfind.com-night-png-759829.png" />
+    <None Remove="images\PngItem_2005182.png" />
+    <None Remove="images\register.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\NicePng_note-png_4357930.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\LOGO.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\aaa.png" />
+    <Resource Include="images\NicePng_order-icon-png_2992961.png" />
+    <Resource Include="images\pngfind.com-language-icon-png-5572694.png" />
+    <Resource Include="images\pngfind.com-night-png-759829.png" />
+    <Resource Include="images\PngItem_2005182.png" />
+    <Resource Include="images\register.png" />
+    <None Remove="Fonts\GothamMedium.ttf" />
+    <None Remove="HCI\calendar-cursor.png" />
+    <None Remove="HCI\LOGO.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\icon png.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\pngegg.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="HCI\calendar-cursor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="HCI\LOGO.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="data\" />
   </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="System.Resources.ResourceManager" Version="4.3.0" />
+    <PackageReference Include="System.Threading.Timer" Version="4.3.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Resource Include="Fonts\GothamMedium.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
 
 </Project>

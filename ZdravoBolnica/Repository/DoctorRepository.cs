@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Repository
 {
-    public class DoctorRepository : Repository<Doctor, string>
+    public class DoctorRepository : IRepository<Doctor, int>
     {
         private String filename = @".\..\..\..\Data\doctors.txt";
         private Serializer<Doctor> doctorSerializer = new Serializer<Doctor>();
@@ -31,35 +31,44 @@ namespace Repository
             throw new NotImplementedException();
         }
 
-        public void DeleteById(string id)
-        {
-            throw new NotImplementedException();
-        }
 
         public List<Doctor> FindAll()
         {
             return doctorSerializer.fromCSV(filename);
         }
 
-
-
-        public Doctor FindById(string key)
+        public Doctor FindById(int key)
         {
-            List<Doctor> doctors = FindAll();
-            foreach (Doctor d in doctors)
+            Doctor returnDoctor = new();
+            foreach (Doctor d in FindAll())
             {
-                if (d.id.Equals(key))
+                if (d.id == key)
                 {
-                    return d;
+                    returnDoctor = d;
                     break;
                 }
+                else
+                {
+                    returnDoctor = null;
+                }
             }
-            return null;
+            return returnDoctor;
         }
 
         public void Update(Doctor entity)
         {
             throw new NotImplementedException();
+        }
+
+        public List<Doctor> findBySpecialization(Specialization specialization)
+        {
+            List<Doctor> returnDoctors = new List<Doctor>();
+            foreach (Doctor d in FindAll())
+            {
+                if (d.specialization == specialization)
+                    returnDoctors.Add(d);
+            }
+            return returnDoctors;
         }
     }
 }

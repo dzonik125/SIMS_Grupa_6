@@ -9,11 +9,26 @@ using System.Collections.Generic;
 
 namespace Repository
 {
-    public class MedicalRecordRepository : Repository<MedicalRecord, int>
+    public class MedicalRecordRepository : IRepository<MedicalRecord, int>
     {
+        private Serializer<MedicalRecord> medicalRecordSerializer = new();
+        private String filename = @".\..\..\..\Data\medicalrecords.txt";
+        public PatientRepository pr = new PatientRepository();
         public void Create(MedicalRecord entity)
         {
-            throw new NotImplementedException();
+            List<MedicalRecord> medicalRecords = new List<MedicalRecord>();
+            medicalRecords = medicalRecordSerializer.fromCSV(filename);
+            if (medicalRecords.Count > 0)
+            {
+                entity.id = medicalRecords[medicalRecords.Count - 1].id;
+                entity.id++;
+            }
+            else
+            {
+                entity.id = 1;
+            }
+            medicalRecords.Add(entity);
+            medicalRecordSerializer.toCSV(filename, medicalRecords);
         }
 
         public void DeleteAll()
@@ -28,17 +43,44 @@ namespace Repository
 
         public List<MedicalRecord> FindAll()
         {
-            throw new NotImplementedException();
+            return medicalRecordSerializer.fromCSV(filename);
         }
 
         public MedicalRecord FindById(int key)
         {
-            throw new NotImplementedException();
+            MedicalRecord returnMRecord = new();
+            foreach (MedicalRecord mr in FindAll())
+            {
+                if (key == mr.id)
+                {
+                    returnMRecord = mr;
+                    break;
+                }
+                else
+                {
+                    returnMRecord = null;
+                }
+            }
+
+            return returnMRecord;
         }
 
         public void Update(MedicalRecord entity)
         {
-            throw new NotImplementedException();
+            List<MedicalRecord> medicalRecords = FindAll();
+            foreach (MedicalRecord mr in FindAll())
+            {
+                if (mr.id == entity.id)
+                {
+                    int index = medicalRecords.IndexOf(mr);
+                    if (index != -1)
+                    {
+                        medicalRecords[index] = entity;
+                        break;
+                    }
+                }
+            }
+            medicalRecordSerializer.toCSV(filename, medicalRecords);
         }
     }
 }

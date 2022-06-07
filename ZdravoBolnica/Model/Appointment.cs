@@ -3,105 +3,104 @@
 // Created: Thursday, April 7, 2022 10:12:45
 // Purpose: Definition of Class Appointment
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-
 using SIMS.Model;
+using System;
+using System.ComponentModel;
 
 namespace Model
 {
-    public class Appointment : Serializable, INotifyPropertyChanged
+    public class Appointment : Serializable
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string s) {
-
-            if (PropertyChanged != null) {
-                PropertyChanged(this, new PropertyChangedEventArgs(s));
-            }
-        }
+        
         public DateTime startTime { get; set; }
         public int duration { get; set; }
-        public string id { get; set; }
+        public int id { get; set; }
+        public Doctor doctor { get; set; }
 
+        public Room room { get; set; }
 
-        public String AppointmentDate { get { return startTime.ToString("dd.MM.yyyy."); } }
+        public Patient patient { get; set; }
 
-        public String AppointmentTime { get { return startTime.ToString("HH:mm"); } }
+        public AppointmentType type { get; set; }
 
-        public string patientID { get; set; }
-        public string doctorID
-        {
-            get; set;
-        }
-        public string roomID { get; set; }
         
 
+        public int timesEdited = 0;
 
-        public AppointmentType Type { get; set; }
+        public int TimesEdited
+        {
+            get => timesEdited;
+            set => timesEdited = value;
+        }
+
+
 
         public String AppointmentTypeString
         {
             get
             {
-                if (Type == AppointmentType.examination)
+                if (type == AppointmentType.examination)
                     return "Pregled";
-                else
+                else if (type == AppointmentType.surgery)
+                {
                     return "Operacija";
+                }
+                else
+                    return "";
             }
         }
-        
 
         public String GetDoctorName()
         {
-            return Doctor.FullName;
+            return doctor.FullName;
         }
 
-        public string Duration { get; set; }
-             
-      
-      public Doctor Doctor
-      {
-            get;
-            set;
-      }
-     
-      
-   
-      public Room Room { get; set; }
-      
-      public Patient patient { get; set;}
-    
+        public String AppointmentDate { get { return startTime.ToString("dd.MM.yyyy."); } }
+
+        public String AppointmentTime { get { return startTime.ToString("HH:mm"); } }
+
+        public String GetAppoitmentTime()
+        {
+            return startTime.ToString("HH:mm");
+        }
+
+        public DateTime GetEndTime()
+        {
+            return startTime.AddMinutes(duration);
+        }
 
         public string[] ToCSV()
         {
             string[] csvValues =
             {
-                id,
-                patientID,
-                doctorID,
-                roomID,
+                id.ToString(),
+                patient.id.ToString(),
+                doctor.id.ToString(),
+                room.id.ToString(),
                 startTime.ToString(),
                 duration.ToString(),
-                Conversion.AppointmentTypeToString(Type),
-
+                Conversion.AppointmentTypeToString(type),
+                timesEdited.ToString(),
             };
             return csvValues;
         }
 
         public void FromCSV(string[] values)
         {
-            id = values[0];
-            patientID = values[1];
-            doctorID = values[2];
-            roomID = values[3];
+            id = int.Parse(values[0]);
+            patient = new Patient();
+            patient.id = int.Parse(values[1]);
+            doctor = new Doctor();
+            doctor.id = int.Parse(values[2]);
+            room = new Room();
+            room.id = int.Parse(values[3]);
             startTime = DateTime.Parse(values[4]);
             duration = int.Parse(values[5]);
-            Type = Conversion.StringToAppointmentType(values[6]);
+            type = Conversion.StringToAppointmentType(values[6]);
+            timesEdited = int.Parse(values[7]);
         }
 
-        
+
 
     }
 }

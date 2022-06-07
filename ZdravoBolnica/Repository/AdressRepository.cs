@@ -1,33 +1,28 @@
-﻿using Repository;
+﻿using Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Model;
 namespace Repository
 {
-    public class AdressRepository : Repository<Adress, string>
+    public class AdressRepository : IRepository<Adress, int>
     {
         private Serializer<Adress> adressSerializer = new();
         private String filename = @".\..\..\..\Data\adress.txt";
         public void Create(Adress entity)
         {
-            List<Adress> adress = new List<Adress>();
-            adress = adressSerializer.fromCSV(filename);
-            adress.Add(entity);
-            adressSerializer.toCSV(filename, adress);
+            List<Adress> adresses = new List<Adress>();
+            adresses = adressSerializer.fromCSV(filename);
+            if (adresses.Count > 0)
+            {
+                entity.id = adresses[adresses.Count - 1].id;
+                entity.id++;
+            }
+            else
+            {
+                entity.id = 1;
+            }
+            adresses.Add(entity);
+            adressSerializer.toCSV(filename, adresses);
 
-        }
-
-        public void DeleteAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteById(string id)
-        {
-            
         }
 
 
@@ -36,38 +31,54 @@ namespace Repository
             return adressSerializer.fromCSV(filename);
         }
 
-       
-   
 
-        public Adress FindById(string key)
+
+
+        public Adress FindById(int key)
         {
-            List<Adress> adresses = FindAll();
-            foreach(Adress a in adresses)
+            Adress returnAddress = new();
+            foreach (Adress a in FindAll())
             {
                 if (a.id.Equals(key))
                 {
-                    return a;
+                    returnAddress = a;
                     break;
                 }
+                else
+                {
+                    returnAddress = null;
+                }
             }
-            return null;
+            return returnAddress;
         }
+
 
         public void Update(Adress entity)
         {
             List<Adress> adresses = FindAll();
-            foreach(Adress a in adresses)
+            foreach (Adress a in adresses)
             {
                 if (a.id.Equals(entity.id))
                 {
-                    a.number = entity.number;
-                    a.street = entity.street;
-                    a.city = entity.city;
-                    a.country = entity.country;
-                    break;
+                    int index = adresses.IndexOf(a);
+                    if (index != -1)
+                    {
+                        adresses[index] = entity;
+                        break;
+                    }
                 }
             }
             adressSerializer.toCSV(filename, adresses);
+        }
+
+        public void DeleteAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteById(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

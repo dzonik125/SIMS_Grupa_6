@@ -3,17 +3,8 @@ using Model;
 using SIMS.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SIMS.DoctorView
 {
@@ -32,7 +23,7 @@ namespace SIMS.DoctorView
         public AddAppointment(AppointmentType type)
         {
             appointmentType = type;
-            RoomType roomType = type == AppointmentType.examination? RoomType.examination: RoomType.surgery;
+            RoomType roomType = type == AppointmentType.examination ? RoomType.examination : RoomType.surgery;
             InitializeComponent();
             patients = pc.FindAllPatients();
             rooms = rc.getRoomsByType(roomType);
@@ -44,25 +35,29 @@ namespace SIMS.DoctorView
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Appointment a = new Appointment();
-            a.patientID = getSelectedPatient().id;
-            a.roomID = getSelectedRoom().id;
-            a.Type = appointmentType;
-            a.id = DateTime.Now.ToString("yyMMddHHmmssff");
+            a.patient = new Patient();
+            a.patient.id = getSelectedPatient().id;
+            a.room = new Room();
+            a.room.id = getSelectedRoom().id;
+            a.type = appointmentType;
             String dateAndTime = DatePicker.Text + " " + Time.Text;
             DateTime timeStamp = DateTime.Parse(dateAndTime);
             a.startTime = timeStamp;
             a.duration = int.Parse(Duration.Text);
             Appointments appointments = Appointments.Instance;
-            a.doctorID = appointments.doctorUser.id;
-            if (ac.IntersectionWithAppointments(a.patientID, a.doctorID, a.roomID, a.startTime, a.duration)) {
+            a.doctor = new Doctor();
+            a.doctor.id = appointments.doctorUser.id;
+            /*if (ac.IntersectionWithAppointments(a.patient.id, a.Doctor.id, a.Room.id, a.startTime, a.duration))
+            {
                 MessageBox.Show("ne.");
                 return;
             }
-            else {
-                ac.SaveAppointment(a);
-                this.Close();
-                appointments.Refresh();
-            }
+            else
+            */   
+            ac.SaveAppointment(a);
+            this.Close();
+            appointments.Refresh();
+            
 
         }
 
