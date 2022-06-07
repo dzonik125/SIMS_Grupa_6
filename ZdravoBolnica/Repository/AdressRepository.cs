@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 namespace Repository
 {
-    public class AdressRepository : Repository<Adress, int>
+    public class AdressRepository : IRepository<Adress, int>
     {
         private Serializer<Adress> adressSerializer = new();
         private String filename = @".\..\..\..\Data\adress.txt";
@@ -11,10 +11,9 @@ namespace Repository
         {
             List<Adress> adresses = new List<Adress>();
             adresses = adressSerializer.fromCSV(filename);
-            int num = adresses.Count;
-            if (num > 0)
+            if (adresses.Count > 0)
             {
-                entity.id = adresses[num - 1].id;
+                entity.id = adresses[adresses.Count - 1].id;
                 entity.id++;
             }
             else
@@ -23,16 +22,6 @@ namespace Repository
             }
             adresses.Add(entity);
             adressSerializer.toCSV(filename, adresses);
-
-        }
-
-        public void DeleteAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteById(int id)
-        {
 
         }
 
@@ -47,17 +36,22 @@ namespace Repository
 
         public Adress FindById(int key)
         {
-            List<Adress> adresses = FindAll();
-            foreach (Adress a in adresses)
+            Adress returnAddress = new();
+            foreach (Adress a in FindAll())
             {
                 if (a.id.Equals(key))
                 {
-                    return a;
+                    returnAddress = a;
                     break;
                 }
+                else
+                {
+                    returnAddress = null;
+                }
             }
-            return null;
+            return returnAddress;
         }
+
 
         public void Update(Adress entity)
         {
@@ -66,14 +60,25 @@ namespace Repository
             {
                 if (a.id.Equals(entity.id))
                 {
-                    a.number = entity.number;
-                    a.street = entity.street;
-                    a.city = entity.city;
-                    a.country = entity.country;
-                    break;
+                    int index = adresses.IndexOf(a);
+                    if (index != -1)
+                    {
+                        adresses[index] = entity;
+                        break;
+                    }
                 }
             }
             adressSerializer.toCSV(filename, adresses);
+        }
+
+        public void DeleteAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteById(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SIMS.Repository
 {
-    public class SecretaryRepository : Repository<Secretary, int>
+    public class SecretaryRepository : IRepository<Secretary, int>
     {
 
         private String filename = @".\..\..\..\Data\secretary.txt";
@@ -33,15 +33,20 @@ namespace SIMS.Repository
 
         public Secretary FindById(int key)
         {
-            List<Secretary> secretaries = FindAll();
-            foreach (Secretary secretary in secretaries)
+            Secretary returnSecretary = new();
+            foreach (Secretary secretary in FindAll())
             {
                 if (secretary.id == key)
                 {
-                    return secretary;
+                    returnSecretary = secretary;
+                    break;
+                }
+                else
+                {
+                    returnSecretary = null;
                 }
             }
-            return null;
+            return returnSecretary;
         }
 
         public void Update(Secretary entity)

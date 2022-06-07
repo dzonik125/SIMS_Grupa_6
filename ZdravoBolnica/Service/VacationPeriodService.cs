@@ -53,7 +53,7 @@ namespace SIMS.Service
 
         public bool checkForDoctorsOnVacation(Doctor doctor, Scheduler scheduler)
         {
-            List<VacationPeriod> vacationPeriods = findAllByDoctorSpecialization(doctor.specialization);
+            List<VacationPeriod> vacationPeriods = findAllButRejectedByDoctorSpecialization(doctor.specialization);
             int numOfDoctorsOnVacation = 0;
             foreach (VacationPeriod v in vacationPeriods)
             {
@@ -64,19 +64,19 @@ namespace SIMS.Service
             return numOfDoctorsOnVacation > 1;
         }
 
-        private List<VacationPeriod> findAllByDoctorSpecialization(Specialization specialization)
+        private List<VacationPeriod> findAllButRejectedByDoctorSpecialization(Specialization specialization)
         {
             List<VacationPeriod> vacationPeriods = FindAll();
-            List<VacationPeriod> returnPeriods = new List<VacationPeriod>();
+            List<VacationPeriod> vacationPeriodsBySpecialization = new List<VacationPeriod>();
             bindDoctorsWithVacationPeriods(vacationPeriods);
             foreach (VacationPeriod v in vacationPeriods)
             {
                 if ((v.doctor.specialization == specialization) && v.status != VacationPeriodStatusType.rejected)
                 {
-                    returnPeriods.Add(v);
+                    vacationPeriodsBySpecialization.Add(v);
                 }
             }
-            return returnPeriods;
+            return vacationPeriodsBySpecialization;
         }
 
         public void bindDoctorsWithVacationPeriods(List<VacationPeriod> vacationPeriods)

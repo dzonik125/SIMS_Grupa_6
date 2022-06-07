@@ -53,7 +53,7 @@ namespace SIMS.SecretaryView
             DoctorBox.ItemsSource = doctors;
             foreach (Doctor d in doctors)
             {
-                if (d.id.Equals(appointment.Doctor.id))
+                if (d.id.Equals(appointment.doctor.id))
                 {
                     break;
                 }
@@ -69,7 +69,7 @@ namespace SIMS.SecretaryView
             RoomBox.ItemsSource = rooms;
             foreach (Room r in rooms)
             {
-                if (r.id.Equals(appointment.Room.id))
+                if (r.id.Equals(appointment.room.id))
                 {
                     break;
                 }
@@ -120,9 +120,9 @@ namespace SIMS.SecretaryView
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            appointment.Doctor.id = getSelectedDoctor().id;
+            appointment.doctor.id = getSelectedDoctor().id;
             appointment.patient.id = getSelectedPatient().id;
-            appointment.Room.id = getSelectedRoom().id;
+            appointment.room.id = getSelectedRoom().id;
             String dateAndTime = DatePicker.Text + " " + Time.Text;
             DateTime timeStamp = DateTime.Parse(dateAndTime);
             appointment.startTime = timeStamp;
@@ -169,12 +169,12 @@ namespace SIMS.SecretaryView
             {
                 if (a.GetEndTime() > appointment.startTime && a.startTime < appointment.GetEndTime() && !a.id.Equals(appointment.id))
                 {
-                    if (a.Doctor.id.Equals(appointment.Doctor.id))
+                    if (a.doctor.id.Equals(appointment.doctor.id))
                     {
                         MessageBox.Show("Doktor je zauzet u ovom terminu!");
                         return false;
                     }
-                    else if (a.Room.id.Equals(appointment.Room.id))
+                    else if (a.room.id.Equals(appointment.room.id))
                     {
                         MessageBox.Show("Soba je zauzeta u ovom terminu!");
                         return false;

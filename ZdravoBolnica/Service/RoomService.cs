@@ -255,7 +255,7 @@ namespace Service
             {
                 if (!checkIfRoomIsBusy(r, dateRange))
                 {
-                    appointment.Room = r;
+                    appointment.room = r;
                     freeRoomExists = true;
                 }
             }
@@ -275,7 +275,7 @@ namespace Service
             return roomIsBusy;
         }
 
-        public Repository.RoomsCRUD roomsCRUD = new Repository.RoomsCRUD();
+        public Repository.RoomRepository roomsCRUD = new Repository.RoomRepository();
 
 
     }

@@ -31,7 +31,6 @@ namespace SIMS.Util
             if (!((startTimeAppoinment.AddMinutes(appointmentDuration) <= startTime && startTimeAppoinment <= startTime ||
                 (startTime.AddMinutes(duration) <= startTimeAppoinment && startTime <= startTimeAppoinment))))
                 overlaps = true;
-
             return overlaps;
         }      
   

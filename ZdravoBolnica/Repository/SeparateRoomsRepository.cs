@@ -9,17 +9,17 @@ using System.Threading.Tasks;
 
 namespace SIMS.Repository
 {
-    public class SeparateRoomsRepository : Repository<SeparateRooms, int>
+    public class SeparateRoomsRepository : IRepository<SeparateRooms, int>
     {
         private String filename = @".\..\..\..\Data\separateRooms.txt";
-        private Serializer<SeparateRooms> _separateRoomSerializer = new Serializer<SeparateRooms>();
+        private Serializer<SeparateRooms> separateRoomSerializer = new Serializer<SeparateRooms>();
         public void Create(SeparateRooms entity)
         {
             List<SeparateRooms> separateRoomsList = new List<SeparateRooms>();
             separateRoomsList = FindAll();
 
             separateRoomsList.Add(entity);
-            _separateRoomSerializer.toCSV(filename, separateRoomsList);
+            separateRoomSerializer.toCSV(filename, separateRoomsList);
         }
 
         public void DeleteAll()
@@ -34,7 +34,7 @@ namespace SIMS.Repository
 
         public List<SeparateRooms> FindAll()
         {
-            return _separateRoomSerializer.fromCSV(filename);
+            return separateRoomSerializer.fromCSV(filename);
         }
 
         public SeparateRooms FindById(int key)

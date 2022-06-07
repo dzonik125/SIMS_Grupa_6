@@ -9,7 +9,7 @@ using SIMS.Model;
 
 namespace SIMS.Repository
 {
-    public class PrescriptionRepository : Repository<Prescription, int>
+    public class PrescriptionRepository : IRepository<Prescription, int>
     {
         private String filename = @".\..\..\..\Data\prescriptions.txt";
         private Serializer<Prescription> prescriptionSerializer = new Serializer<Prescription>();
@@ -17,10 +17,9 @@ namespace SIMS.Repository
         {
             List<Prescription> prescriptions = new List<Prescription>();
             prescriptions = prescriptionSerializer.fromCSV(filename);
-            int num = prescriptions.Count;
-            if (num > 0)
+            if (prescriptions.Count > 0)
             {
-                entity.id = prescriptions[num - 1].id;
+                entity.id = prescriptions[prescriptions.Count - 1].id;
                 entity.id++;
             }
             else
@@ -58,15 +57,15 @@ namespace SIMS.Repository
 
         public List<Prescription> findPrescriptionsbyMRecordId(int id)
         {
-            List<Prescription> temp = new List<Prescription>();
-            temp = prescriptionSerializer.fromCSV(filename);
-            List<Prescription> prescriptions = new List<Prescription>();
-            foreach(Prescription p in temp)
+            List<Prescription> allPrescriptions = new List<Prescription>();
+            allPrescriptions = prescriptionSerializer.fromCSV(filename);
+            List<Prescription> prescriptionsByMRecordId = new List<Prescription>();
+            foreach(Prescription p in allPrescriptions)
             {
                 if (p.medicalRecord.id == id)
-                    prescriptions.Add(p);
+                    prescriptionsByMRecordId.Add(p);
             }
-            return prescriptions;
+            return prescriptionsByMRecordId;
         }
     }
 }

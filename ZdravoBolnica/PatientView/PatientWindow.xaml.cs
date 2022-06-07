@@ -56,10 +56,10 @@ namespace SIMS
             List<Appointment> apps = ac.GetFutureAppointmentsForPatient(1);
             foreach (Appointment a in apps)
             {
-                Doctor d = dc.GetDoctorById(a.Doctor.id);
-                a.Doctor = d;
-                Room r = rc.FindRoomById(a.Room.id);
-                a.Room = r;
+                Doctor d = dc.GetDoctorById(a.doctor.id);
+                a.doctor = d;
+                Room r = rc.FindRoomById(a.room.id);
+                a.room = r;
                 list.Add(a);
             }
             refresh();

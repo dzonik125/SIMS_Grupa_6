@@ -13,9 +13,11 @@ namespace Model
     {
         public Double grade;
 
-        public System.Collections.Generic.List<Appointment> appointments { get; set; }
+        public List<Appointment> appointments { get; set; }
 
         public List<VacationPeriod> vacationPeriods { get; set; }
+        
+        public Specialization specialization;
 
         public string[] ToCSV()
         {
@@ -41,7 +43,7 @@ namespace Model
             username = values[5];
         }
 
-        public Specialization specialization;
+        
         public Specialization Specialization
         {
             get
