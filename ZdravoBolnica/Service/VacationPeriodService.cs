@@ -14,36 +14,18 @@ namespace SIMS.Service
         public VacationPeriodRepository vacationPeriodRepository = new VacationPeriodRepository();
         public AppointmentService appointmentService = new AppointmentService();
         public DoctorService doctorService = new DoctorService();
-        
-        public void Create(VacationPeriod entity)
-        {
-            vacationPeriodRepository.Create(entity);
-        }
+       
 
-        public void DeleteAll()
+        public bool VacationOverlapsWithAppointments(Doctor doctor, Scheduler scheduler)
         {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<VacationPeriod> FindAll()
-        {
-            return vacationPeriodRepository.FindAll();
-        }
-
-        public bool checkIfDoctorHasAppoinmentsInPeriod(Doctor doctor, DateRange dateRange)
-        {
+            bool vacationOverlapsWithAppointments = false;
             List<Appointment> appointments = appointmentService.GetAppointmentsByDoctorId(doctor.id);
             foreach (Appointment a in appointments)
             {
-                if (dateRange.checkForIntersection(a.startTime, a.duration))
-                    return true;
+                if (scheduler.overlapsWithExistingTerm(a.startTime, a.duration))
+                    vacationOverlapsWithAppointments = true;
             }
-            return false;
+            return vacationOverlapsWithAppointments;
         }
 
 
@@ -53,29 +35,30 @@ namespace SIMS.Service
             return vacationPeriodRepository.findAllByDoctorId(id);
         }
 
-        public bool checkIfDoctorIsAlreadyOnVacation(Doctor doctor, DateRange dateRange)
+        public bool checkIfDoctorIsAlreadyOnVacation(Doctor doctor, Scheduler scheduler)
         {
+            bool doctorIsAlreadyOnVacation = false;
             List<VacationPeriod> docVacationPeriods = findAllByDoctorId(doctor.id);
             foreach (VacationPeriod v in docVacationPeriods)
             {
                 TimeSpan vacationDuration = v.EndTime - v.StartTime;
-                if (dateRange.checkForIntersection(v.StartTime, vacationDuration.TotalMinutes))
+                if (scheduler.overlapsWithExistingTerm(v.StartTime, vacationDuration.TotalMinutes))
                 {
-                    return true;
+                    doctorIsAlreadyOnVacation = true;
                 }
             }
-            return false;
+            return doctorIsAlreadyOnVacation;
         }
 
 
-        public bool checkForDoctorsOnVacation(Doctor doctor, DateRange dateRange)
+        public bool checkForDoctorsOnVacation(Doctor doctor, Scheduler scheduler)
         {
             List<VacationPeriod> vacationPeriods = findAllByDoctorSpecialization(doctor.specialization);
             int numOfDoctorsOnVacation = 0;
             foreach (VacationPeriod v in vacationPeriods)
             {
                 TimeSpan vacationPeriodDuration = v.EndTime - v.StartTime;
-                if (dateRange.checkForIntersection(v.StartTime, vacationPeriodDuration.TotalMinutes))
+                if (scheduler.overlapsWithExistingTerm(v.StartTime, vacationPeriodDuration.TotalMinutes))
                     numOfDoctorsOnVacation += 1;
             }
             return numOfDoctorsOnVacation > 1;
@@ -118,6 +101,17 @@ namespace SIMS.Service
         {
             vacationPeriodRepository.Update(vp);
             return true;
+        }
+
+
+        public void Create(VacationPeriod entity)
+        {
+            vacationPeriodRepository.Create(entity);
+        }
+
+        public List<VacationPeriod> FindAll()
+        {
+            return vacationPeriodRepository.FindAll();
         }
     }
 }
