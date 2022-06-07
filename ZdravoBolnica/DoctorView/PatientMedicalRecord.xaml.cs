@@ -42,12 +42,12 @@ namespace SIMS.DoctorView
             refreshPrescriptions();
             refreshExaminationReports();
             MedicalRecord medicalRecord = medicalRecordController.FindMedicalRecordById(PatientsView.Instance.selectedPatient.medicalRecord.id);
-            List<Ingredients> ingredientsList = medicalRecord.ingredients;
-            foreach (Ingredients i in ingredientsList)
+            List<Ingredient> ingredientsList = medicalRecord.ingredientAllergies;
+            foreach (Ingredient i in ingredientsList)
             {
                 allergies.Add(i.name);
             }
-            List<Medication> medications = medicalRecord.medications;
+            List<Medication> medications = medicalRecord.medicationAllergies;
 
             foreach (Medication m in medications)
             {

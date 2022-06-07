@@ -11,7 +11,7 @@ namespace SIMS.Service
     public class IngredientsService
     {
         public IngredientsRepository ingredientsRepository = new IngredientsRepository();
-        public List<Ingredients> FindAll()
+        public List<Ingredient> FindAll()
         {
             return ingredientsRepository.FindAll();
         }

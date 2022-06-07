@@ -108,7 +108,7 @@ namespace SIMS.SecretaryView
                 //      al.Add(all);
                 //   }
 
-                foreach (Medication med in mr.medications)
+                foreach (Medication med in mr.medicationAllergies)
                 {
                     medications.Add(med);
                 }
@@ -146,7 +146,7 @@ namespace SIMS.SecretaryView
                 mrr.cardNum = brojK.Text;
                 mrr.bloodType = Conversion.StringToBloodType(bloodType.Text);
 
-                mrr.medications = medications.ToList<Medication>();
+                mrr.medicationAllergies = medications.ToList<Medication>();
                 // mrr.allergies = al.ToList<Allergies>();
 
                 mrc.AddMedicalRecord(mrr);
@@ -162,7 +162,7 @@ namespace SIMS.SecretaryView
 
                 mr.bloodType = Conversion.StringToBloodType(bloodType.Text);
                 // mr.allergies = al.ToList<Allergies>();
-                mr.medications = medications.ToList<Medication>();
+                mr.medicationAllergies = medications.ToList<Medication>();
             }
 
             selectedPatient.name = Name.Text;

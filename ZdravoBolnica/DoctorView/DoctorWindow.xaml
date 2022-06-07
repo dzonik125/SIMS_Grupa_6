@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIMS.DoctorView"
         mc:Ignorable="d"
-        Title="DoctorWindow" Height="626" Width="1065">
+        Title="DoctorWindow" Height="626" Width="1065" WindowStartupLocation="CenterScreen">
 
 
     <Grid>

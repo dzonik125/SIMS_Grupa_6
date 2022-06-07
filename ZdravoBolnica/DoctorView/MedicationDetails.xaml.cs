@@ -24,7 +24,7 @@ namespace SIMS.DoctorView
     {
         public Medication selectedMed;
         private MedicationController medicationController = new MedicationController();
-        public BindingList<Ingredients> ingredients = new BindingList<Ingredients>();
+        public BindingList<Ingredient> ingredients = new BindingList<Ingredient>();
         public BindingList<Medication> medsReplacement = new BindingList<Medication>();
         public MedicationDetails(Medication m)
         {
@@ -36,7 +36,7 @@ namespace SIMS.DoctorView
             Replacements.ItemsSource = medsReplacement;
             MedName.Content = m.name;
             Comment.Text = m.comment;
-            foreach (Ingredients i in m.components)
+            foreach (Ingredient i in m.components)
             {
                 ingredients.Add(i);
             }

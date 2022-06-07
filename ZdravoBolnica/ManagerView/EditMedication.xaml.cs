@@ -24,7 +24,7 @@ namespace SIMS.ManagerView
     {
         private Medication selectedMedication;
         private MedicationController _medicationController = new MedicationController();
-        public BindingList<Ingredients> ingredients = new BindingList<Ingredients>();
+        public BindingList<Ingredient> ingredients = new BindingList<Ingredient>();
         public IngredientsController _ingriedientsController = new IngredientsController();
         public BindingList<Medication> medsReplacement = new BindingList<Medication>();
 
@@ -34,7 +34,7 @@ namespace SIMS.ManagerView
             this.DataContext = this;
             ingredientsTable.ItemsSource = ingredients;
             replacementTable.ItemsSource = medsReplacement;
-            List<Ingredients> ing = new List<Ingredients>();
+            List<Ingredient> ing = new List<Ingredient>();
             List<Medication> meds = new List<Medication>();
             meds = _medicationController.FindAllWithoutThisOne(m.name);
             ing = _ingriedientsController.FindAll();
@@ -57,7 +57,7 @@ namespace SIMS.ManagerView
             {
                 statusCombo.SelectedIndex = 2;
             }
-           foreach(Ingredients i in m.components)
+           foreach(Ingredient i in m.components)
             {
                 ingredients.Add(i);
             }
@@ -79,7 +79,7 @@ namespace SIMS.ManagerView
             selectedMedication.name = name.Text;
             selectedMedication.status = Conversion.StringToMedicationStatusType(statusCombo.Text);
             selectedMedication.Amount = int.Parse(quantity.Text);
-            selectedMedication.components = ingredients.ToList<Ingredients>();
+            selectedMedication.components = ingredients.ToList<Ingredient>();
             selectedMedication.medicationReplacementIds = medicationIds;
             selectedMedication.comment = "";
 
@@ -102,7 +102,7 @@ namespace SIMS.ManagerView
 
         private void AddIngredients_Click(object sender, RoutedEventArgs e)
         {
-            ingredients.Add((Ingredients)IngredientsCombo.SelectedItem);
+            ingredients.Add((Ingredient)IngredientsCombo.SelectedItem);
         }
     }
 }
