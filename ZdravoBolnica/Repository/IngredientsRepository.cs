@@ -3,9 +3,6 @@ using Repository;
 using SIMS.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SIMS.Repository
 {
@@ -37,15 +34,30 @@ namespace SIMS.Repository
         public Ingredients FindById(string key)
         {
             List<Ingredients> ingredients = FindAll();
-            foreach(Ingredients i in ingredients)
+            foreach (Ingredients i in ingredients)
             {
-                if(i.name.Equals(key))
+                if (i.name.Equals(key))
                 {
                     return i;
                 }
             }
             return null;
         }
+
+        public Ingredients FindById2(int key)
+        {
+            List<Ingredients> ingredients = FindAll();
+            foreach (Ingredients i in ingredients)
+            {
+                if (i.id.Equals(key))
+                {
+                    return i;
+                }
+            }
+            return null;
+        }
+
+
 
         public void Update(Ingredients entity)
         {

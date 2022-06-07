@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="images\aaa.png" />
+    <None Remove="images\icon png.png" />
     <None Remove="images\LOGO.png" />
     <None Remove="images\NicePng_note-png_4357930.png" />
     <None Remove="images\NicePng_order-icon-png_2992961.png" />
@@ -37,6 +38,10 @@
     <None Remove="Fonts\GothamMedium.ttf" />
     <None Remove="HCI\calendar-cursor.png" />
     <None Remove="HCI\LOGO.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\icon png.png" />
   </ItemGroup>
 
   <ItemGroup>

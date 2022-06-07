@@ -10,9 +10,10 @@
       MaxHeight="450"
       MaxWidth="800">
     <Grid>
+        <Label Content="Pregled registrovanih pacijentata" FontSize="30" Margin="0,-60,0,440" HorizontalAlignment="Center"/>
         <StackPanel>
-            <Label Content="Pregled registrovanih pacijentata" FontSize="30" HorizontalAlignment="Center"/>
-            <DataGrid x:Name="patientTable" ItemsSource="{Binding list}" Margin="20,20" IsReadOnly="True" MaxHeight="200" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False">
+            
+            <DataGrid x:Name="patientTable" ItemsSource="{Binding list}" Margin="20,20" IsReadOnly="True" MaxHeight="250" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id" Width="*" Binding="{Binding id}" CanUserResize="False"/>
                     <DataGridTextColumn Header="Ime" Width="*" Binding="{Binding name}"  CanUserResize="False"/>

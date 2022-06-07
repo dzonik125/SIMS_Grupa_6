@@ -283,12 +283,13 @@ namespace SIMS.SecretaryView
         public AllergiesController alc = new AllergiesController();
         public PrescriptionController prc = new PrescriptionController();
         public MedicationController mc = new MedicationController();
+        public IngredientsController ic = new IngredientsController();
 
         public List<Prescription> prescriptions = new List<Prescription>();
 
 
-        public BindingList<Allergies> al = new BindingList<Allergies>();
-        public List<Allergies> allergs = new List<Allergies>();
+        public BindingList<Ingredients> ingr = new BindingList<Ingredients>();
+        public List<Ingredients> ingredients = new List<Ingredients>();
 
         public BindingList<Medication> medications = new BindingList<Medication>();
         public List<Medication> meds = new List<Medication>();
@@ -297,16 +298,16 @@ namespace SIMS.SecretaryView
         {
             InitializeComponent();
 
-            // allergenTable.ItemsSource = al;
+            ingredients_table.ItemsSource = ingr;
             medAllergs_table.ItemsSource = medications;
 
 
             bloodType.ItemsSource = Conversion.GetBloodType();
 
-            allergs = alc.FindAll();
+            ingredients = ic.FindAll();
             meds = mc.FindAll();
 
-            // AllergsBox.ItemsSource = allergs;
+            ingredientsBox.ItemsSource = ingredients;
             MedAllergsBox.ItemsSource = meds;
 
             DataContext = this;
@@ -351,7 +352,7 @@ namespace SIMS.SecretaryView
                 mr.medications = medications.ToList<Medication>();
 
 
-                //  mr.allergies = al.ToList<Allergies>();
+                mr.ingredients = ingr.ToList<Ingredients>();
 
                 mrc.AddMedicalRecord(mr);
 
@@ -376,15 +377,15 @@ namespace SIMS.SecretaryView
             SecretaryView.Instance.SetContent(new RegistrationPatient());
         }
 
-        private void addAllergen_Click(object sender, RoutedEventArgs e)
+        private void addIngredient_Click(object sender, RoutedEventArgs e)
         {
-            //  al.Add((Allergies)AllergsBox.SelectedItem);
+            ingr.Add((Ingredients)ingredientsBox.SelectedItem);
 
         }
 
-        private void removeAllergen_Click(object sender, RoutedEventArgs e)
+        private void removeIngredient_Click(object sender, RoutedEventArgs e)
         {
-            // al.Remove((Allergies)allergenTable.SelectedItem);
+            ingr.Remove((Ingredients)ingredients_table.SelectedItem);
         }
 
         private void addMedicine_Click(object sender, RoutedEventArgs e)

@@ -11,8 +11,9 @@
       MaxWidth="800">
 
     <Grid>
+        <Label Content="Pregled zahteva za slobodne dane" FontSize="30" HorizontalAlignment="Center" Margin="0,-60,0,440"/>
         <StackPanel>
-            <Label Content="Pregled zahteva za slobodne dane" FontSize="30" HorizontalAlignment="Center"/>
+            
             <DataGrid x:Name="vacationPeriodTable" ItemsSource="{Binding list}" Margin="20,20" IsReadOnly="True" MaxHeight="200" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Doktor" Width="*" Binding="{Binding doctor.FullName}" CanUserResize="False"/>

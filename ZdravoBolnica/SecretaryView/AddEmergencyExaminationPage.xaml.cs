@@ -56,7 +56,7 @@ namespace SIMS.SecretaryView
 
         private void Close_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            SecretaryView.Instance.SetContent(new CreateAppointmentPage());
         }
 
         private void AddGuest_Click(object sender, System.Windows.RoutedEventArgs e)
