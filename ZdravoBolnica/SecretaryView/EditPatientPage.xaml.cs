@@ -26,7 +26,7 @@ namespace SIMS.SecretaryView
 
         public BloodType bt;
 
-        public BindingList<Allergies> al = new BindingList<Allergies>();
+        public BindingList<Allergen> al = new BindingList<Allergen>();
         public AllergiesController alc = new AllergiesController();
 
         public BindingList<Medication> medications = new BindingList<Medication>();
@@ -59,7 +59,7 @@ namespace SIMS.SecretaryView
             }
             else FemaleRadioButton.IsChecked = true;
 
-            List<Allergies> allergs = alc.FindAll();
+            List<Allergen> allergs = alc.FindAll();
             List<Medication> meds = medsc.FindAll();
 
             if (!p.guest)

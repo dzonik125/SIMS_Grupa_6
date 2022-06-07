@@ -54,7 +54,7 @@ namespace SIMS.SecretaryView
 
             foreach (Appointment a in appointments)
             {
-                if (a.Room == null || a.patient == null || a.Doctor == null)
+                if (a.room == null || a.patient == null || a.doctor == null)
                     continue;
                 Apps.Add(a);
             }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SIMS.Repository
 {
-    class EquipmentRepository : Repository<Equipment, int>
+    class EquipmentRepository : IRepository<Equipment, int>
     {
         private String filename = @".\..\..\..\Data\equipment.txt";
         private Serializer<Equipment> equipmentSerializer = new Serializer<Equipment>();
@@ -13,11 +13,10 @@ namespace SIMS.Repository
         {
             List<Equipment> inventory = new List<Equipment>();
             inventory = equipmentSerializer.fromCSV(filename);
-            int num = inventory.Count;
-            if (num > 0)
+            if (inventory.Count > 0)
             {
 
-                entity.id = inventory[num - 1].id;
+                entity.id = inventory[inventory.Count - 1].id;
                 entity.id++;
 
             }
@@ -28,7 +27,6 @@ namespace SIMS.Repository
 
             inventory.Add(entity);
             equipmentSerializer.toCSV(filename, inventory);
-
         }
 
         public void DeleteAll()
@@ -60,15 +58,20 @@ namespace SIMS.Repository
 
         public Equipment FindById(int key)
         {
-            List<Equipment> equipments = FindAll();
-            foreach (Equipment e in equipments)
+            Equipment returnEquipment = new();
+            foreach (Equipment e in FindAll())
             {
                 if (e.id.Equals(key))
                 {
-                    return e;
+                    returnEquipment = e;
+                    break;
+                }
+                else
+                {
+                    returnEquipment = null;
                 }
             }
-            return null;
+            return returnEquipment;
         }
 
         public void Update(Equipment entity)

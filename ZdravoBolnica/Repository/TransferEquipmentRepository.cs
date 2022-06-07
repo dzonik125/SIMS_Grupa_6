@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
-    class EquipmentTransferRepository : Repository<EquipmentTransfer, int>
+    class EquipmentTransferRepository : IRepository<EquipmentTransfer, int>
     {
 
         private String filename = @".\..\..\..\Data\transferinventory.txt";

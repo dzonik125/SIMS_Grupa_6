@@ -17,12 +17,12 @@
             <DataGrid x:Name="dataGridAppointments" ItemsSource="{Binding Path = Apps}" Margin="20,20" IsReadOnly="True" MaxHeight="250" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False">
                <DataGrid.Columns>
                     <DataGridTextColumn Header="Termin" Width="*" Binding="{Binding AppointmentTypeString}" DataGridColumn.CanUserResize="False"/>
-                    <DataGridTextColumn Header="Lekar" Width="*" Binding="{Binding Doctor.FullName}" DataGridColumn.CanUserResize="False"/>
+                    <DataGridTextColumn Header="Lekar" Width="*" Binding="{Binding doctor.FullName}" DataGridColumn.CanUserResize="False"/>
                     <DataGridTextColumn Header="Pacijent" Width="*" Binding="{Binding patient.FullName}" DataGridColumn.CanUserResize="False"/>
                     <DataGridTextColumn Header="Datum" Width="*"  Binding="{Binding AppointmentDate}" DataGridColumn.CanUserResize="False"/>
                     <DataGridTextColumn Header="Početak" Width="*" Binding="{Binding AppointmentTime}"  DataGridColumn.CanUserResize="False"/>
                     <DataGridTextColumn Header="Trajanje" Width="*" Binding="{Binding duration}"  DataGridColumn.CanUserResize="False"/>
-                    <DataGridTextColumn Header="Prostorija" Width="*" Binding="{Binding Room.roomNum}" DataGridColumn.CanUserResize="False"/>
+                    <DataGridTextColumn Header="Prostorija" Width="*" Binding="{Binding room.roomNum}" DataGridColumn.CanUserResize="False"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

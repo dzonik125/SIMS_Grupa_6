@@ -23,8 +23,6 @@ namespace SIMS.Service
                 {
                     InvokeTimer(et);
                 }
-
-
             }
         }
 

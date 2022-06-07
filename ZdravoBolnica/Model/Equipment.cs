@@ -12,22 +12,11 @@ namespace Model
     public class Equipment : Serializable
     {
 
-
-
         public int id { get; set; }
         public string item { get; set; }
         public int quantity { get; set; }
         public EquipmentType type { get; set; }
-        public List<int> RoomNum { get; set; }
-
-       /* public Equipment(int v1, string v2, int v3, EquipmentType potrosna)
-        {
-            this.id = v1;
-            this.item = v2;
-            this.quantity = v3;
-            this.type = potrosna;
-        }
-*/
+        public List<int> roomNum { get; set; }
 
 
         public void FromCSV(string[] values)

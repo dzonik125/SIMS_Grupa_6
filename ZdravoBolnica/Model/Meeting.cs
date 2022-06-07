@@ -8,9 +8,7 @@ namespace SIMS.Model
 {
     public class Meeting : Serializable
     {
-        public DoctorRepository doctorRepository = new DoctorRepository();
-        public SecretaryRepository secretaryRepository = new SecretaryRepository();
-        public ManagerRepository managerRepository = new ManagerRepository();
+        
         public int id { get; set; }
         public DateTime startTime { get; set; }
         public int duration { get; set; }
@@ -141,5 +139,8 @@ namespace SIMS.Model
             };
             return csvValues;
         }
+        public DoctorRepository doctorRepository = new DoctorRepository();
+        public SecretaryRepository secretaryRepository = new SecretaryRepository();
+        public ManagerRepository managerRepository = new ManagerRepository();
     }
 }

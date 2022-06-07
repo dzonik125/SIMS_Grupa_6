@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace SIMS.Repository
 {
-    public class VacationPeriodRepository : Repository<VacationPeriod, int>
+    public class VacationPeriodRepository : IRepository<VacationPeriod, int>
     {
         private String filename = @".\..\..\..\Data\vacationPeriods.txt";
         private Serializer<VacationPeriod> vacationPeriodSerilizer = new Serializer<VacationPeriod>();
@@ -53,15 +53,18 @@ namespace SIMS.Repository
 
         public VacationPeriod FindById(int key)
         {
-            List<VacationPeriod> vacationPeriods = FindAll();
-            foreach (VacationPeriod vacationPeirod in vacationPeriods)
+            VacationPeriod returnVacationPeriod = new();
+            foreach (VacationPeriod vacationPeirod in FindAll())
             {
                 if (vacationPeirod.id == key)
                 {
-                    return vacationPeirod;
+                    returnVacationPeriod = vacationPeirod;
+                    break;
                 }
+                else
+                    returnVacationPeriod = null;
             }
-            return null;
+            return returnVacationPeriod;
         }
 
         public void Update(VacationPeriod entity)
@@ -71,14 +74,12 @@ namespace SIMS.Repository
             {
                 if (vacationPeriod.id.Equals(entity.id))
                 {
-                    vacationPeriod.StartTime = entity.StartTime;
-                    vacationPeriod.EndTime = entity.EndTime;
-                    vacationPeriod.comment = entity.comment;
-                    vacationPeriod.rejectComment = entity.rejectComment;
-                    vacationPeriod.doctor = entity.doctor;
-                    vacationPeriod.status = entity.status;
-                    vacationPeriod.type = entity.type;
-                    break;
+                    int index = vacationPeriods.IndexOf(vacationPeriod);
+                    if (index != -1)
+                    {
+                        vacationPeriods[index] = entity;
+                        break;
+                    }
                 }
             }
             vacationPeriodSerilizer.toCSV(filename, vacationPeriods);

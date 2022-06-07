@@ -58,7 +58,7 @@ namespace SIMS.DoctorView
 
             foreach (Appointment a in appointments)
             {
-                if (a.Room == null || a.patient == null)
+                if (a.room == null || a.patient == null)
                     continue;
                 Apps.Add(a);
             }

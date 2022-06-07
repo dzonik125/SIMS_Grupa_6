@@ -40,7 +40,7 @@ namespace Service
             {
                 if (!checkIfDoctorIsBusy(doctor, dateRange))
                 {
-                    appointment.Doctor = doctor;
+                    appointment.doctor = doctor;
                     freeDoctorExists = true;
                 }
             }

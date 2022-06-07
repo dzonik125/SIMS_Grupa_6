@@ -12,11 +12,10 @@ namespace SIMS.Repository
         {
             List<Equipment> inventory = new List<Equipment>();
             inventory = equipmentSerializer.fromCSV(filename);
-            int num = inventory.Count;
-            if (num > 0)
+            if (inventory.Count > 0)
             {
 
-                entity.id = inventory[num - 1].id;
+                entity.id = inventory[inventory.Count - 1].id;
                 entity.id++;
 
             }
@@ -27,12 +26,6 @@ namespace SIMS.Repository
 
             inventory.Add(entity);
             equipmentSerializer.toCSV(filename, inventory);
-
-        }
-
-        public void DeleteAll()
-        {
-            throw new NotImplementedException();
         }
 
         public void DeleteById(int id)
@@ -59,15 +52,20 @@ namespace SIMS.Repository
 
         public Equipment FindById(int key)
         {
-            List<Equipment> equipments = FindAll();
-            foreach (Equipment e in equipments)
+            Equipment returnEquipment = new();
+            foreach (Equipment e in FindAll())
             {
                 if (e.id.Equals(key))
                 {
-                    return e;
+                    returnEquipment = e;
+                    break;
+                }
+                else
+                {
+                    returnEquipment = null;
                 }
             }
-            return null;
+            return returnEquipment;
         }
 
         public void Update(Equipment entity)
@@ -83,6 +81,10 @@ namespace SIMS.Repository
                 }
             }
             equipmentSerializer.toCSV(filename, inventory);
+        }
+        public void DeleteAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

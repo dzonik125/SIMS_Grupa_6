@@ -7,7 +7,7 @@ namespace Model
 {
     public class Manager : Account, Serializable
     {
-        public System.Collections.Generic.List<Room> room;
+        public System.Collections.Generic.List<Room> room { get; set; }
 
 
         public string[] ToCSV()

@@ -37,18 +37,18 @@ namespace SIMS.ManagerView
             room.roomNum = int.Parse(RoomNum.Text);
             room.floor = int.Parse(Floor.Text);
             room.id = rc.FindRoomId(room.floor, room.roomNum);
-            appointment.Room = room;
+            appointment.room = room;
             Doctor doctor = new Doctor();
             doctor.id = 0;
             Patient patient = new Patient();
             patient.id = 0;
             appointment.startTime = DateTime.Parse(StartTime.Text);
             DateTime endDate = DateTime.Parse(EndTime.Text);
-            appointment.Doctor = doctor;
+            appointment.doctor = doctor;
             appointment.patient = patient;
             appointment.timesEdited = 0;
             appointment.duration = ((endDate - appointment.startTime).Days)*24*60;
-            appointment.Type = AppointmentType.renovation;
+            appointment.type = AppointmentType.renovation;
             appointment.timesEdited = 0;
             if (ac.IsRoomOccupied(room, appointment.startTime, appointment.duration))
             {

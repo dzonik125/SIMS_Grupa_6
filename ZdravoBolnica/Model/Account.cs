@@ -9,8 +9,6 @@ namespace Model
     {
         public string username;
         public string password;
-        // public bool guest;
-
         public AccountType accountType;
 
     }

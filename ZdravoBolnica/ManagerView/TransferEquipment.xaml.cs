@@ -79,22 +79,22 @@ namespace SIMS
                   MessageBox.Show("Soba u koju premestate opremu nije slobodna u ovo vreme");
                   return;
               }*/
-            appointemntRoomSource.Room = roomSource;
+            appointemntRoomSource.room = roomSource;
             appointemntRoomSource.startTime = transferDate;
             appointemntRoomSource.duration = duration;
-            appointmentRoomDestination.Room = roomDestination;
+            appointmentRoomDestination.room = roomDestination;
             appointmentRoomDestination.startTime = transferDate;
             appointmentRoomDestination.duration = duration;
             Doctor doctor = new Doctor();
             Patient patient = new Patient();
             doctor.id = 0;
             patient.id = 0;
-            appointemntRoomSource.Doctor = doctor;
+            appointemntRoomSource.doctor = doctor;
             appointemntRoomSource.patient = patient;
-            appointmentRoomDestination.Doctor = doctor;
+            appointmentRoomDestination.doctor = doctor;
             appointmentRoomDestination.patient = patient;
-            appointemntRoomSource.Type = AppointmentType.transfer;
-            appointmentRoomDestination.Type = AppointmentType.transfer;
+            appointemntRoomSource.type = AppointmentType.transfer;
+            appointmentRoomDestination.type = AppointmentType.transfer;
             appointmentRoomDestination.timesEdited = 0;
             appointemntRoomSource.timesEdited = 0;
             if (!Conversion.EquipmentTypeToString(equipment.type).Equals("potrosna"))

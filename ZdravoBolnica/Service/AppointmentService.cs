@@ -51,8 +51,8 @@ namespace Service
             {
                 foreach (Appointment a in appointments)
                 {
-                    if (a.Room.id == r.id)
-                        a.Room = r;
+                    if (a.room.id == r.id)
+                        a.room = r;
                 }
             }
 
@@ -64,8 +64,8 @@ namespace Service
             {
                 foreach (Appointment a in appointments)
                 {
-                    if (a.Doctor.id == d.id)
-                        a.Doctor = d;
+                    if (a.doctor.id == d.id)
+                        a.doctor = d;
                 }
             }
         }
@@ -102,7 +102,7 @@ namespace Service
             List<Appointment> futureAppointments = new List<Appointment>();
             foreach (Appointment a in potentialAppointments)
             {
-                if (a.Doctor.id == id)
+                if (a.doctor.id == id)
                 {
                     if (a.startTime.AddMinutes(a.duration) >= DateTime.Now)
                         futureAppointments.Add(a);
@@ -218,7 +218,8 @@ namespace Service
             potentialAppointment.startTime = scheduler.startTime;
             bool foundRoomAndDoctorForAppointment = false;
 
-            if (roomService.freeRoomExistsForAppointment(potentialAppointment, scheduler) && doctorService.freeDoctorExistsForAppointment(potentialAppointment, scheduler))
+            if (roomService.freeRoomExistsForAppointment(potentialAppointment, scheduler) 
+                && doctorService.freeDoctorExistsForAppointment(potentialAppointment, scheduler))
                 foundRoomAndDoctorForAppointment = true;
             return foundRoomAndDoctorForAppointment;
         }
@@ -226,13 +227,13 @@ namespace Service
 
         public List<Appointment> GetAllAppointmentsForPatient(int id)
         {
-            List<Appointment> toRet = new List<Appointment>();
+            List<Appointment> patientAppointments = new List<Appointment>();
             foreach (Appointment a in GetAllApointments())
             {
                 if (a.patient.id == id)
-                    toRet.Add(a);
+                    patientAppointments.Add(a);
             }
-            return toRet;
+            return patientAppointments;
         }
 
         public List<Appointment> GetFutureAppointmentsForPatient(int id)
@@ -646,12 +647,13 @@ namespace Service
 
         public Appointment FindPatientAppointment(Patient p)
         {
+            Appointment patientAppointment = new();
             foreach (Appointment appointment in GetAppointmentsByPatientId(p.id))
             {
                 if (appointment.startTime <= DateTime.Now && appointment.startTime.AddMinutes(appointment.duration) >= DateTime.Now)
-                    return appointment;
+                    patientAppointment = appointment;
             }
-            return null;
+            return patientAppointment;
         }
 
     }

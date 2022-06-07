@@ -9,51 +9,21 @@ using System.ComponentModel;
 
 namespace Model
 {
-    public class Appointment : Serializable, INotifyPropertyChanged
+    public class Appointment : Serializable
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string s)
-        {
-
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(s));
-            }
-        }
+        
         public DateTime startTime { get; set; }
         public int duration { get; set; }
         public int id { get; set; }
-        public Doctor Doctor { get; set; }
+        public Doctor doctor { get; set; }
 
-        public Room Room { get; set; }
+        public Room room { get; set; }
 
         public Patient patient { get; set; }
 
-        public AppointmentType Type { get; set; }
+        public AppointmentType type { get; set; }
 
-        /*public static explicit operator Appointment(object v)
-        {
-            throw new NotImplementedException();
-        }*/
-
-
-        /* public Appointment(DateTime st, AppointmentType type, Doctor doctor, Patient patient, Room room)
-         {
-             startTime = startTime;
-             duration = duration;
-             Type = type;
-             Doctor = doctor;
-             patient = patient;
-             Room = room;
-             id = id;
-         }*/
-
-
-
-
-
-
+        
 
         public int timesEdited = 0;
 
@@ -63,6 +33,27 @@ namespace Model
             set => timesEdited = value;
         }
 
+
+
+        public String AppointmentTypeString
+        {
+            get
+            {
+                if (type == AppointmentType.examination)
+                    return "Pregled";
+                else if (type == AppointmentType.surgery)
+                {
+                    return "Operacija";
+                }
+                else
+                    return "";
+            }
+        }
+
+        public String GetDoctorName()
+        {
+            return doctor.FullName;
+        }
 
         public String AppointmentDate { get { return startTime.ToString("dd.MM.yyyy."); } }
 
@@ -78,39 +69,17 @@ namespace Model
             return startTime.AddMinutes(duration);
         }
 
-
-
-        public String AppointmentTypeString
-        {
-            get
-            {
-                if (Type == AppointmentType.examination)
-                    return "Pregled";
-                else if (Type == AppointmentType.surgery)
-                {
-                    return "Operacija";
-                }
-                else
-                    return "";
-            }
-        }
-
-        public String GetDoctorName()
-        {
-            return Doctor.FullName;
-        }
-
         public string[] ToCSV()
         {
             string[] csvValues =
             {
                 id.ToString(),
                 patient.id.ToString(),
-                Doctor.id.ToString(),
-                Room.id.ToString(),
+                doctor.id.ToString(),
+                room.id.ToString(),
                 startTime.ToString(),
                 duration.ToString(),
-                Conversion.AppointmentTypeToString(Type),
+                Conversion.AppointmentTypeToString(type),
                 timesEdited.ToString(),
             };
             return csvValues;
@@ -121,13 +90,13 @@ namespace Model
             id = int.Parse(values[0]);
             patient = new Patient();
             patient.id = int.Parse(values[1]);
-            Doctor = new Doctor();
-            Doctor.id = int.Parse(values[2]);
-            Room = new Room();
-            Room.id = int.Parse(values[3]);
+            doctor = new Doctor();
+            doctor.id = int.Parse(values[2]);
+            room = new Room();
+            room.id = int.Parse(values[3]);
             startTime = DateTime.Parse(values[4]);
             duration = int.Parse(values[5]);
-            Type = Conversion.StringToAppointmentType(values[6]);
+            type = Conversion.StringToAppointmentType(values[6]);
             timesEdited = int.Parse(values[7]);
         }
 
