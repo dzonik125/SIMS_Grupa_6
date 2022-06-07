@@ -8,9 +8,9 @@ namespace SIMS
     public class PatientController
     {
         private PatientService ps = new PatientService();
-        public Patient FindPatientById(string id)
+        public Patient FindPatientById(int id)
         {
-            throw new NotImplementedException();
+            return ps.FindPatientById(id);
         }
 
         public List<Patient> FindAllPatients()

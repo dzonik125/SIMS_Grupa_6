@@ -51,7 +51,7 @@ namespace Model
                 }
                 foreach (int i in ids)
                 {
-                    ingredients.Add(ir.FindById2(i));
+                    ingredients.Add(ir.FindById(i));
                 }
             }
 
