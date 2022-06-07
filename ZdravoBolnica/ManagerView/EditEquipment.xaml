@@ -24,13 +24,16 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Row="1" Grid.Column="1" Margin="10,0,10,62">Naziv</Label>
-        <TextBox Name="Name" Grid.Row="1" Grid.Column="2" Margin="0,0,0,62"></TextBox>
+        <TextBox Name="Item" Grid.Row="1" Grid.Column="2" Text = "{Binding Item}" Margin="0,0,0,62"></TextBox>
         <Label Grid.Row="2" Grid.Column="1" Margin="10,0,10,62">Kolicina</Label>
-        <TextBox Name="Quantity" Grid.Row="2" Grid.Column="2" Margin="0,0,0,62"></TextBox>
+        <TextBox Name="Quantity" Grid.Row="2" Grid.Column="2" Text = "{Binding Quantity}" Margin="0,0,0,62"></TextBox>
         <Label  Grid.Row="3" Grid.Column="1" Margin="10,0,10,62">Tip</Label>
-        <ComboBox Name="ComboType" Grid.Row="3" Grid.Column="2" Margin="0,0,0,62"></ComboBox>
-        <Button  Name="EditEquip" Content="Izmeni" Grid.Column="2" Grid.Row="3" Margin="39,82,61,91" Grid.RowSpan="2" Grid.ColumnSpan="2" Click="EditEquip_Click"></Button>
+        <ComboBox Name="TypeCombo" Grid.Row="3" Grid.Column="2" ItemsSource="{Binding Path=EquipmentTypes}" SelectedValue = "{Binding Path = SelectedType}" Margin="0,0,0,62"></ComboBox>
+        <Button  Name="EditEquip" Content="Dodaj" Grid.Column="1" Grid.Row="3" Margin="91,82,9,91" Grid.RowSpan="2" Grid.ColumnSpan="2" Command="{Binding FinishCommand}"></Button>
+        <Button  Name="DiscardEquip" Content="Odustani" Grid.Column="3" Grid.Row="3" Margin="91,82,9,91" Grid.RowSpan="2" Grid.ColumnSpan="2" Command="{Binding DiscardCommand}"></Button>
+        <!--
         <Button x:Name="CloseEditEquipment" Content="Odustani" Grid.Column="3" Grid.Row="3" Margin="92,82,8,91" Grid.RowSpan="2" Click="CloseEditEquipment_Click" Grid.ColumnSpan="2"/>
+        -->
 
 
 

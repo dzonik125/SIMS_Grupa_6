@@ -6,15 +6,15 @@ using Controller;
 using Model;
 using SIMS.Core;
 using SIMS.Model;
-
 namespace SIMS.ManagerView.ViewModel
 {
-    public class NewRoomViewModel : ViewModelBase
+    public class EditRoomViewModel : ViewModelBase
     {
         public event EventHandler OnRequestClose;
         private RoomController rc = new RoomController();
         private string roomNum;
         public RelayCommand FinishCommand { get; set; }
+        private Room selectedRoom;
 
         public string RoomNum
         {
@@ -34,13 +34,10 @@ namespace SIMS.ManagerView.ViewModel
             set
             {
                 floor = value;
-                OnPropertyChanged(nameof(Floor));
-
+                OnPropertyChanged(nameof(floor));
             }
         }
-
         public List<string> RoomTypes { get; set; }
-
         private string selectedType;
 
         public string SelectedType
@@ -49,16 +46,19 @@ namespace SIMS.ManagerView.ViewModel
             set
             {
                 selectedType = value;
-                OnPropertyChanged(nameof(SelectedType));
+                OnPropertyChanged(nameof(selectedType));
             }
         }
 
-        public NewRoomViewModel()
+        public EditRoomViewModel(Room selectedRoom)
         {
             RoomTypes = Conversion.GetRoomTypes();
+            SelectedType = Conversion.RoomTypeToString(selectedRoom.roomType);
+            Floor = selectedRoom.floor.ToString();
+            RoomNum = selectedRoom.roomNum.ToString();
+            this.selectedRoom = selectedRoom;
             FinishCommand = new RelayCommand(param => Execute(), param => CanExecute());
         }
-
         private bool CanExecute()
         {
             if (String.IsNullOrEmpty(selectedType))
@@ -71,13 +71,12 @@ namespace SIMS.ManagerView.ViewModel
 
         private void Execute()
         {
-            Room room = new Room
-            {
-                roomNum = Int32.Parse(RoomNum),
-                floor = Int32.Parse(Floor),
-                roomType = Conversion.StringToRoomType(SelectedType)
-            };
-            rc.AddRoom(room);
+            
+            //rc.UpdateRoom(room);
+            selectedRoom.floor = Int32.Parse(Floor);
+            selectedRoom.roomNum = Int32.Parse(RoomNum);
+            selectedRoom.roomType = Conversion.StringToRoomType(selectedType);
+            rc.UpdateRoom(selectedRoom);
             ManagerUI mui = ManagerUI.Instance;
             mui.refresh();
             OnRequestClose?.Invoke(this, EventArgs.Empty);
@@ -86,5 +85,5 @@ namespace SIMS.ManagerView.ViewModel
 
     }
 
-
+    
 }

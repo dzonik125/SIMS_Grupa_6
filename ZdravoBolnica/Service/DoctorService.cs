@@ -49,38 +49,30 @@ namespace Service
 
         public Appointment getAppointmentWithDoctor(Appointment appointment, DateRange dateRange)
         {
-
-            List<Doctor> doctors = findBySpecialization(dateRange.specializationType);
-            foreach (Doctor d in doctors)
+            Appointment app = null;
+            foreach (Doctor d in findBySpecialization(dateRange.specializationType))
             {
                 if (!checkIfDoctorIsBusy(d, dateRange))
                 {
                     appointment.Doctor = d;
-                    return appointment;
+                    app = appointment;
                 }
             }
-            return null;
+            return app;
         }
 
 
         public bool checkIfDoctorIsBusy(Doctor d, DateRange dateRange)
         {
             AppointmentRepository appointmentRepository = new AppointmentRepository();
-            List<Appointment> appointments = appointmentRepository.FindByDoctorId(d.id);
-            foreach (Appointment a in appointments)
+            bool isDoctorBusy = false;
+            foreach (Appointment a in appointmentRepository.FindByDoctorId(d.id))
             {
                 if (dateRange.checkForIntersection(a.startTime, a.duration))
-                    return true;
+                    isDoctorBusy = true;
             }
-            return false;
+            return isDoctorBusy;
         }
-
-
-        // public List<string> GetSpecializationString()
-        // {
-        //     return doctorRepository.GetSpecializationString();
-        // }
-
         public Repository.DoctorRepository doctorRepository = new Repository.DoctorRepository();
     }
 }

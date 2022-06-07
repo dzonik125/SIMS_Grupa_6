@@ -1,0 +1,3 @@
+1|1|1|False|Magacin
+2|3|1|False|Bolesnička soba
+3|3|1|False|Operaciona sala

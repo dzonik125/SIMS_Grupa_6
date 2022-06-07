@@ -272,13 +272,17 @@ namespace Service
         public List<Appointment> getAppointmentsForDoctors(List<Doctor> doctors)
         {
             List<Appointment> returnAppointments = new();
+            GetDoctorApp(doctors, returnAppointments);
+            return returnAppointments;
+        }
+
+        private void GetDoctorApp(List<Doctor> doctors, List<Appointment> returnAppointments)
+        {
             foreach (Doctor d in doctors)
             {
                 List<Appointment> appointmentsForDoctor = getAppointmentsByDoctorId(d.id);
                 returnAppointments.AddRange(appointmentsForDoctor);
             }
-
-            return returnAppointments;
         }
 
         public Appointment getFirstFreeAppointmentInOneHour(Specialization spec, Patient p)
