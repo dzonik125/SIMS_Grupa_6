@@ -54,9 +54,8 @@
         <Label Content="Broj:"  HorizontalAlignment="Left" Margin="439,294,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="43"/>
         <TextBox HorizontalAlignment="Left" x:Name="StreetNum" Margin="442,327,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="18" Height="26"/>
 
-        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="643,565,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.171,0.842" FontSize="20" Height="45" Width="90" Click="Edit_Click"  />
-
-        <Button Content="Odustani" HorizontalAlignment="Left" Margin="808,565,0,0" VerticalAlignment="Top" FontSize="20" Height="45" Width="92" Click="Close_Click" />
+        <Button Style="{StaticResource RoundButtonTemplate}" Background="LightGreen" Content="Izmeni" HorizontalAlignment="Left" Margin="646,514,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.171,0.842" Click="Edit_Click" />
+        <Button Style="{StaticResource RoundButtonTemplate}" Background="Firebrick" Content="Odustani" HorizontalAlignment="Left" Margin="804,514,0,0" VerticalAlignment="Top" Click="Close_Click"/>
 
         <ComboBox x:Name="bloodType" IsReadOnly="True" HorizontalAlignment="Left" Margin="716,200,0,0" VerticalAlignment="Top" Width="120" Height="28"/>
         <Label Content="Broj kartona:" HorizontalAlignment="Left" Margin="713,100,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.591,-4.698" FontSize="17" Height="33" Width="105"/>

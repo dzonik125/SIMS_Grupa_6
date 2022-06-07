@@ -10,10 +10,11 @@
       MaxHeight="450"
       MaxWidth="800">
 
-    <Grid>
+    <Grid Margin="0,0,0,-70">
+        <Label Content="Pregled zahteva za slobodne dane" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Margin="180,-81,0,0"/>
         <StackPanel>
-            <Label Content="Pregled zahteva za slobodne dane" FontSize="30" HorizontalAlignment="Center"/>
-            <DataGrid x:Name="vacationPeriodTable" ItemsSource="{Binding list}" Margin="20,20" IsReadOnly="True" MaxHeight="200" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False" Height="195">
+
+            <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="vacationPeriodTable" ItemsSource="{Binding list}" Margin="20,20" IsReadOnly="True" MaxHeight="200" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False" Height="195">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridCell}">
                         <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick"/>
@@ -28,15 +29,15 @@
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-        <Grid Margin="100,265,185,10">
-            <Label x:Name="lalal" Content="Status:" HorizontalAlignment="Left" Margin="160,35,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <ComboBox x:Name="statusBox" HorizontalAlignment="Left" Margin="132,72,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="statusBox_SelectionChanged"/>
-            <Label x:Name="comment" Content="Obrazloženje odbijanja:" HorizontalAlignment="Left" Margin="312,33,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label x:Name="commentVacationPeriod" Content="Obrazloženje zahteva:" HorizontalAlignment="Left" Margin="312,33,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <TextBox x:Name="rejectCommentBox" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Margin="332,69,0,0" Text="" VerticalAlignment="Top" Width="123" Height="70"/>
-            <TextBox x:Name="commentBox" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Margin="332,69,0,0" Text="" VerticalAlignment="Top" Width="123" Height="70"/>
-            <Button Content="Potvrdi" HorizontalAlignment="Left" Margin="160,148,0,0" VerticalAlignment="Top" Click="Accept_Click"/>
-            <Button Content="Odustani" HorizontalAlignment="Left" Margin="261,148,0,0" VerticalAlignment="Top" Click="Reject_Click"/>
+        <Grid Margin="140,265,145,10">
+            <Label x:Name="statusLabel" Content="Status:" HorizontalAlignment="Left" Margin="59,19,0,0" VerticalAlignment="Top" FontSize="20" RenderTransformOrigin="-1.954,-0.16"/>
+            <ComboBox x:Name="statusBox" FontSize="18" HorizontalAlignment="Left" Margin="7,53,0,0" VerticalAlignment="Top" Width="175" SelectionChanged="statusBox_SelectionChanged" Height="34"/>
+            <Label x:Name="comment" Content="Obrazloženje odbijanja:" HorizontalAlignment="Left" Margin="235,20,0,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label x:Name="commentVacationPeriod" Content="Obrazloženje zahteva:" HorizontalAlignment="Left" Margin="235,20,0,0" VerticalAlignment="Top" FontSize="20"/>
+            <TextBox x:Name="rejectCommentBox" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Margin="233,57,0,0" Text="" VerticalAlignment="Top" Width="229" Height="70"/>
+            <TextBox x:Name="commentBox" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Margin="233,56,0,0" Text="" VerticalAlignment="Top" Width="229" Height="70"/>
+            <Button Style="{StaticResource RoundButtonTemplate}" Background="LightGreen" x:Name="accept" Content="Potvrdi" HorizontalAlignment="Left" Margin="116,175,0,0" VerticalAlignment="Top" Click="Accept_Click"/>
+            <Button Style="{StaticResource RoundButtonTemplate}" Background="Firebrick" x:Name="reject" Content="Odustani" HorizontalAlignment="Left" Margin="261,174,0,0" VerticalAlignment="Top" Click="Reject_Click"/>
         </Grid>
     </Grid>
 </Page>

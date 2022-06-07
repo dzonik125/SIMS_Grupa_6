@@ -19,6 +19,16 @@ namespace SIMS.SecretaryView
         public VacationPeriodPage()
         {
             InitializeComponent();
+
+            comment.Visibility = Visibility.Collapsed;
+            rejectCommentBox.Visibility = Visibility.Collapsed;
+            commentBox.Visibility = Visibility.Collapsed;
+            commentVacationPeriod.Visibility = Visibility.Collapsed;
+            statusLabel.Visibility = Visibility.Collapsed;
+            statusBox.Visibility = Visibility.Collapsed;
+            accept.Visibility = Visibility.Collapsed;
+            reject.Visibility = Visibility.Collapsed;
+
             vacationPeriodTable.ItemsSource = list;
             vacationPeriods = vacationPeriodService.FindAll();
             vacationPeriodService.bindDoctorsWithVacationPeriods(vacationPeriods);
@@ -34,10 +44,17 @@ namespace SIMS.SecretaryView
 
             if (statusBox.SelectedItem.Equals("Odbijeno"))
             {
+                rejectCommentBox.IsReadOnly = false;
                 comment.Visibility = Visibility.Visible;
                 rejectCommentBox.Visibility = Visibility.Visible;
-                commentBox.Visibility = Visibility.Collapsed;
+
                 commentVacationPeriod.Visibility = Visibility.Collapsed;
+                commentBox.Visibility = Visibility.Collapsed;
+
+                statusLabel.Visibility = Visibility.Visible;
+                statusBox.Visibility = Visibility.Visible;
+                accept.Visibility = Visibility.Visible;
+                reject.Visibility = Visibility.Visible;
             }
             else if (statusBox.SelectedItem.Equals("Odobreno"))
             {
@@ -45,6 +62,10 @@ namespace SIMS.SecretaryView
                 rejectCommentBox.Visibility = Visibility.Collapsed;
                 commentVacationPeriod.Visibility = Visibility.Collapsed;
                 commentBox.Visibility = Visibility.Collapsed;
+                statusLabel.Visibility = Visibility.Visible;
+                statusBox.Visibility = Visibility.Visible;
+                accept.Visibility = Visibility.Visible;
+                reject.Visibility = Visibility.Visible;
             }
             else
             {
@@ -52,6 +73,10 @@ namespace SIMS.SecretaryView
                 rejectCommentBox.Visibility = Visibility.Collapsed;
                 commentVacationPeriod.Visibility = Visibility.Visible;
                 commentBox.Visibility = Visibility.Visible;
+                statusLabel.Visibility = Visibility.Visible;
+                statusBox.Visibility = Visibility.Visible;
+                accept.Visibility = Visibility.Visible;
+                reject.Visibility = Visibility.Visible;
             }
         }
 
@@ -62,19 +87,32 @@ namespace SIMS.SecretaryView
 
             if (Conversion.VacationPeriodStatusTypeToString(selectedVacationPeriod.status).Equals("Odbijeno"))
             {
+                rejectCommentBox.IsReadOnly = true;
                 vp = vacationPeriodService.FindById(selectedVacationPeriod.id);
                 rejectCommentBox.Text = vp.rejectComment;
                 statusBox.SelectedIndex = 2;
+                comment.Visibility = Visibility.Visible;
+                rejectCommentBox.Visibility = Visibility.Visible;
+                commentBox.Visibility = Visibility.Collapsed;
+                commentVacationPeriod.Visibility = Visibility.Collapsed;
+                statusLabel.Visibility = Visibility.Collapsed;
+                statusBox.Visibility = Visibility.Collapsed;
+                accept.Visibility = Visibility.Collapsed;
+                reject.Visibility = Visibility.Collapsed;
                 statusBox.IsEditable = false;
                 statusBox.IsHitTestVisible = false;
                 statusBox.Focusable = false;
             }
             else if (Conversion.VacationPeriodStatusTypeToString(selectedVacationPeriod.status).Equals("Na cekanju"))
             {
+
                 statusBox.ItemsSource = Conversion.GetVacationPeriodStatusType();
                 vp = vacationPeriodService.FindById(selectedVacationPeriod.id);
                 commentBox.Text = vp.comment;
-
+                commentBox.IsReadOnly = true;
+                // statusBox.IsEditable = true;
+                statusBox.IsHitTestVisible = true;
+                statusBox.Focusable = true;
                 if (vp.status.ToString().Equals("accepted"))
                 {
                     statusBox.SelectedIndex = 0;
@@ -84,7 +122,10 @@ namespace SIMS.SecretaryView
                     statusBox.SelectedIndex = 1;
                 }
             }
-            else { }
+            else
+            {
+                SecretaryView.Instance.SetContent(new VacationPeriodPage());
+            }
         }
 
         private void Accept_Click(object sender, RoutedEventArgs e)
@@ -93,6 +134,7 @@ namespace SIMS.SecretaryView
             vp.rejectComment = rejectCommentBox.Text;
 
             vacationPeriodService.Update(vp);
+            SecretaryView.Instance.SetContent(new VacationPeriodPage());
 
 
         }

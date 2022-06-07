@@ -11,18 +11,18 @@
       MaxWidth="800">
 
     <Grid>
-        <Label Content="Pregled sastanaka" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,395"/>
-        <DataGrid x:Name="meeting_table" ItemsSource="{Binding Path = meetings}" Margin="30,284,460,25" IsReadOnly="True" MaxHeight="200" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False">
+        <Label Content="Pregled sastanaka" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-81,0,0"/>
+        <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="meeting_table" ItemsSource="{Binding Path = meetings}" Margin="30,246,460,63" IsReadOnly="True" MaxHeight="200" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Tema" Width="*" Binding="{Binding topic}" DataGridColumn.CanUserResize="False"/>
                 <DataGridTextColumn Header="Datum" Width="*"  Binding="{Binding MeetingDate}" DataGridColumn.CanUserResize="False"/>
                 <DataGridTextColumn Header="Početak" Width="*" Binding="{Binding MeetingTime}"  DataGridColumn.CanUserResize="False"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Margin="-28,-60,660,171">
-            <ComboBox x:Name="doctorCombo" DisplayMemberPath="FullName" HorizontalAlignment="Left" Margin="0,156,0,0" VerticalAlignment="Top" Width="120"/>
-            <Label Content="Doktor:" HorizontalAlignment="Left" Margin="35,130,0,0" VerticalAlignment="Top"/>
-            <DataGrid x:Name="doctors_table" HorizontalAlignment="Left" Height="120" Margin="0,197,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding doctors}" CanUserAddRows="False" AutoGenerateColumns="False">
+        <Grid Margin="-28,-98,660,209">
+            <ComboBox x:Name="doctorCombo" DisplayMemberPath="FullName" HorizontalAlignment="Left" Margin="0,156,0,0" VerticalAlignment="Top" Width="120" Height="31"/>
+            <Label FontSize="20" Content="Doktor:" HorizontalAlignment="Left" Margin="0,120,0,0" VerticalAlignment="Top"/>
+            <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="doctors_table" HorizontalAlignment="Left" Height="120" Margin="0,197,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding doctors}" CanUserAddRows="False" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Doktori" Width="*" Binding="{Binding FullName}"  CanUserResize="False"/>
                 </DataGrid.Columns>
@@ -30,10 +30,10 @@
             <Button Content="+" x:Name="addDoctor" HorizontalAlignment="Left" Margin="137,156,0,0" VerticalAlignment="Top" Width="22" Height="22" Click="addDoctor_Click"/>
             <Button Content="-" x:Name="removeDoctor" HorizontalAlignment="Left" Margin="136,203,0,0" VerticalAlignment="Top" Width="22" Height="22" Click="removeDoctor_Click"/>
         </Grid>
-        <Grid Margin="155,-60,415,171">
-            <ComboBox x:Name="managerCombo"  DisplayMemberPath="FullName" HorizontalAlignment="Left" Margin="20,156,0,0" VerticalAlignment="Top" Width="120"/>
-            <Label Content="Upravnik:" HorizontalAlignment="Left" Margin="50,130,0,0" VerticalAlignment="Top"/>
-            <DataGrid x:Name="managers_table" HorizontalAlignment="Left" Height="120" Margin="20,197,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding secretaries}" CanUserAddRows="False" AutoGenerateColumns="False">
+        <Grid Margin="155,-98,415,209">
+            <ComboBox x:Name="managerCombo"  DisplayMemberPath="FullName" HorizontalAlignment="Left" Margin="20,156,0,0" VerticalAlignment="Top" Width="120" Height="31"/>
+            <Label FontSize="20" Content="Upravnik:" HorizontalAlignment="Left" Margin="22,119,0,0" VerticalAlignment="Top"/>
+            <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="managers_table" HorizontalAlignment="Left" Height="120" Margin="20,197,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding secretaries}" CanUserAddRows="False" AutoGenerateColumns="False">
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Upravnici" Width="*" Binding="{Binding FullName}"  CanUserResize="False"/>
@@ -42,10 +42,10 @@
             <Button Content="+" x:Name="addManager" HorizontalAlignment="Left" Margin="165,156,0,0" VerticalAlignment="Top" Width="22" Height="22" Click="addManager_Click"/>
             <Button Content="-" x:Name="removeManager" HorizontalAlignment="Left" Margin="165,197,0,0" VerticalAlignment="Top" Width="22" Height="22" Click="removeManager_Click"/>
         </Grid>
-        <Grid Margin="365,-60,215,171">
-            <ComboBox x:Name="secretaryCombo"  DisplayMemberPath="FullName" HorizontalAlignment="Left" Margin="18,156,0,0" VerticalAlignment="Top" Width="120"/>
-            <Label Content="Sekretar:" HorizontalAlignment="Left" Margin="54,130,0,0" VerticalAlignment="Top"/>
-            <DataGrid x:Name="secretary_table" HorizontalAlignment="Left" Height="120" Margin="16,197,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding managers}" CanUserAddRows="False" AutoGenerateColumns="False">
+        <Grid Margin="365,-98,215,209">
+            <ComboBox x:Name="secretaryCombo"  DisplayMemberPath="FullName" HorizontalAlignment="Left" Margin="18,156,0,0" VerticalAlignment="Top" Width="120" Height="31"/>
+            <Label FontSize="20" Content="Sekretar:" HorizontalAlignment="Left" Margin="20,118,0,0" VerticalAlignment="Top"/>
+            <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="secretary_table" HorizontalAlignment="Left" Height="120" Margin="16,197,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding managers}" CanUserAddRows="False" AutoGenerateColumns="False">
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Sekretari" Width="*" Binding="{Binding FullName}"  CanUserResize="False"/>
@@ -54,17 +54,17 @@
             <Button Content="+" x:Name="addSecretary" HorizontalAlignment="Left" Margin="164,156,0,0" VerticalAlignment="Top" Width="22" Height="22" Click="addSecretary_Click"/>
             <Button Content="-" x:Name="removeSecretary" HorizontalAlignment="Left" Margin="163,197,0,0" VerticalAlignment="Top" Width="22" Height="22" Click="removeSecretary_Click"/>
         </Grid>
-        <Label Content="Tema sastanka:" HorizontalAlignment="Left" Margin="641,84,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Topic" HorizontalAlignment="Left" Margin="641,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Prostorija:" HorizontalAlignment="Left" Margin="654,150,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="roomCombo" DisplayMemberPath="roomNum" HorizontalAlignment="Left" Margin="641,181,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Datum:" HorizontalAlignment="Left" Margin="668,0,0,0" VerticalAlignment="Center"/>
-        <DatePicker x:Name="DatePicker" HorizontalAlignment="Left" Margin="650,243,0,0" VerticalAlignment="Top"/>
-        <Label Content="Vreme:" HorizontalAlignment="Left" Margin="670,284,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Time" HorizontalAlignment="Left" Margin="641,315,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Zakaži" HorizontalAlignment="Left" Margin="641,382,0,0" VerticalAlignment="Top" Click="Schedule_Click"/>
-        <Button Content="Otkaži" HorizontalAlignment="Left" Margin="363,297,0,0" VerticalAlignment="Top" Click="Cancel_Click"/>
-        <Button Content="Detalji" HorizontalAlignment="Left" Margin="361,331,0,0" VerticalAlignment="Top" Click="Details_Click"/>
+        <Label FontSize="20" Content="Tema sastanka:" HorizontalAlignment="Left" Margin="634,30,0,0" VerticalAlignment="Top"/>
+        <TextBox FontSize="18" x:Name="Topic" HorizontalAlignment="Left" Margin="641,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label FontSize="20" Content="Prostorija:" HorizontalAlignment="Left" Margin="634,94,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="roomCombo" DisplayMemberPath="roomNum" HorizontalAlignment="Left" Margin="641,132,0,0" VerticalAlignment="Top" Width="120" Height="31"/>
+        <Label FontSize="20" Content="Datum:" HorizontalAlignment="Left" Margin="636,160,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="DatePicker" HorizontalAlignment="Left" Margin="641,200,0,0" VerticalAlignment="Top" Height="26" Width="120"/>
+        <Label FontSize="20" Content="Vreme:" HorizontalAlignment="Left" Margin="637,220,0,0" VerticalAlignment="Top"/>
+        <TextBox FontSize="18" x:Name="Time" HorizontalAlignment="Left" Margin="641,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Style="{StaticResource RoundButtonTemplate}" Background="LightGreen" Content="Zakaži" HorizontalAlignment="Left" Margin="641,346,0,0" VerticalAlignment="Top" Click="Schedule_Click"/>
+        <Button Style="{StaticResource RoundButtonTemplate}" Background="Firebrick" Content="Otkaži" HorizontalAlignment="Left" Margin="495,346,0,0" VerticalAlignment="Top" Click="Cancel_Click"/>
+        <Button Style="{StaticResource RoundButtonTemplate}" Background="LightBlue" Content="Detalji" Width="80" Height="40" HorizontalAlignment="Left" Margin="365,246,0,0" VerticalAlignment="Top" Click="Details_Click"/>
 
     </Grid>
 </Page>

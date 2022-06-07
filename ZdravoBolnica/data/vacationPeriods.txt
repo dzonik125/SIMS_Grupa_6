@@ -1,3 +1,6 @@
 1|1|18-May-22 12:00:00 AM|21-May-22 12:00:00 AM|Odbijeno||ovo je razlog odbijanja termina|Regularno
 2|1|22-May-22 12:00:00 AM|05-May-22 12:00:00 AM|Odbijeno|||Hitno
-3|4|03-Jun-22 12:00:00 AM|17-Jun-22 12:00:00 AM|Na cekanju|zahtevam slobodne dane||Hitno
+3|4|03-Jun-22 12:00:00 AM|17-Jun-22 12:00:00 AM|Odobreno|zahtevam slobodne dane||Hitno
+4|4|22-Jun-22 12:00:00 AM|08-Jul-22 12:00:00 AM|Odbijeno|hocu slobodan dan jaaaa|ovo je odbijeno|Hitno
+5|4|11-Jul-22 12:00:00 AM|30-Jul-22 12:00:00 AM|Odobreno|komentar|ovo je odbijeno|Regularno
+6|4|16-Aug-22 12:00:00 AM|15-Sep-22 12:00:00 AM|Na cekanju|kommm||Regularno

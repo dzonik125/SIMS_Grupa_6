@@ -5,36 +5,36 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SIMS.SecretaryView"
       mc:Ignorable="d" 
-      d:DesignHeight="400" d:DesignWidth="800"
-      MaxHeight="400"
+      d:DesignHeight="450" d:DesignWidth="800"
+      MaxHeight="450"
       MaxWidth="800"
       Title="OrderEquipmentPage">
 
     <Grid>
         <Label Content="Naručivanje dinamičke opreme" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Margin="180,-81,0,0"/>
-        <StackPanel Width="400" Height="800" Orientation="Vertical" Margin="-80,10,480,-410">
+        <StackPanel Orientation="Vertical" Margin="-80,10,480,-410">
             <Grid Width="400" Margin="10,10" Height="70">
                 <Label Content="Naziv:" FontSize="20" VerticalAlignment="Top" Height="40" Margin="145,0,185,0" />
-                <TextBox Width="100" Height="20" Name="Name" VerticalAlignment="Top" Margin="150,40,150,0" />
+                <TextBox FontSize="18" Height="26" Name="Name" VerticalAlignment="Top" Margin="150,40,125,0" />
             </Grid>
             <Grid Width="400" Height="70" HorizontalAlignment="Left" Margin="10,10" >
                 <Label Content="Kolicina:" FontSize="20" HorizontalAlignment="Left" Margin="145,1,0,28"/>
-                <TextBox Width="100" Height="20" x:Name="Quantity" VerticalAlignment="Top" Margin="150,40,150,0"/>
+                <TextBox FontSize="18" Height="26" x:Name="Quantity" VerticalAlignment="Top" Margin="150,40,125,0"/>
             </Grid>
             <Grid>
-                <DataGrid x:Name="equipmentTable" HorizontalAlignment="Left" Height="126" VerticalAlignment="Top" Width="122" ItemsSource="{Binding Path=eq}" CanUserAddRows="False" AutoGenerateColumns="False" Margin="150,10,0,0">
+                <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="equipmentTable" HorizontalAlignment="Left" Height="126" VerticalAlignment="Top" Width="150" ItemsSource="{Binding Path=eq}" CanUserAddRows="False" AutoGenerateColumns="False" Margin="155,10,0,0">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding item}"  DataGridColumn.CanUserResize="False"/>
                         <DataGridTextColumn Header="Kolicina" Width="*" Binding="{Binding quantity}"  DataGridColumn.CanUserResize="False"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button Content="+" x:Name="add" Width="20" Height="20" Margin="290,15,60,101" Click="Add_Click"/>
-                <Button Content="-" x:Name="add_Copy" Width="20" Height="20" Margin="290,38,60,78" Click="Remove_Click"/>
+                <Button Content="+" x:Name="add" Width="20" Height="20" Margin="340,10,40,106" Click="Add_Click"/>
+                <Button Content="-" x:Name="add_Copy" Width="20" Height="20" Margin="340,35,40,81" Click="Remove_Click"/>
             </Grid>
         </StackPanel>
         <Grid Margin="10,0,0,0">
-            <Label Content="Magacin" HorizontalAlignment="Left" Margin="558,70,0,0" VerticalAlignment="Top" FontSize="30"/>
-            <DataGrid x:Name="magacinTable" HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="310" ItemsSource="{Binding Path=order}" CanUserAddRows="False" AutoGenerateColumns="False" Margin="470,135,0,0">
+            <Label Content="Magacin" HorizontalAlignment="Left" Margin="521,35,0,0" VerticalAlignment="Top" FontSize="30"/>
+            <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="magacinTable" HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="395" ItemsSource="{Binding Path=order}" CanUserAddRows="False" AutoGenerateColumns="False" Margin="385,100,0,0">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding item}"  DataGridColumn.CanUserResize="False"/>
                     <DataGridTextColumn Header="Kolicina" Width="*" Binding="{Binding quantity}"  DataGridColumn.CanUserResize="False"/>
@@ -42,8 +42,8 @@
             </DataGrid>
         </Grid>
         <Grid HorizontalAlignment="Left" Margin="100,346,0,0">
-            <Button x:Name="ordering" Content="Poruči" Width="50" Height="20" Margin="150,17,200,17" Click="Order_Click"/>
-            <Button x:Name="cancel" Content="Odustani" Height="20" Margin="233,17,108,17"/>
+            <Button Style="{StaticResource RoundButtonTemplate}" Background="LightGreen" x:Name="ordering" Content="Poruči" Margin="105,22,245,22" Click="Order_Click"/>
+            <Button Style="{StaticResource RoundButtonTemplate}" Background="Firebrick" x:Name="cancel" Content="Odustani" Margin="314,22,36,22"/>
         </Grid>
     </Grid>
 </Page>
