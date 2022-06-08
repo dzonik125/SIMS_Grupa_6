@@ -124,6 +124,27 @@ namespace Service
         }
 
 
+        public List<Appointment> getPastAppointmentsForDoctor(int id)
+        {
+
+            List<Appointment> potentialAppointments = GetAllApointments();
+            List<Appointment> futureAppointments = new List<Appointment>();
+            foreach (Appointment a in potentialAppointments)
+            {
+                if (a.Doctor.id == id)
+                {
+                    if (a.startTime.AddMinutes(a.duration) < DateTime.Now)
+                    {
+
+                        futureAppointments.Add(a);
+
+                    }
+                }
+            }
+            return futureAppointments;
+        }
+
+
 
 
         public Boolean IsExist(int id)

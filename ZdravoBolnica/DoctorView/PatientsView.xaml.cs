@@ -1,20 +1,12 @@
 ﻿using Controller;
 using Model;
+using SIMS.Filers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SIMS.DoctorView
 {
@@ -104,6 +96,27 @@ namespace SIMS.DoctorView
             selectedPatient = PatientsDataGrid.SelectedItem as Patient;
             Referral referral = new Referral(selectedPatient);
             referral.ShowDialog();
+        }
+
+        private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            SearchBox.Text = "";
+        }
+
+        private void SearchBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            String searchText = SearchBox.Text;
+
+            if (searchText == "")
+                SearchBox.Text = "Pretrazi...";
+
+        }
+
+        private void SearchBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            PatientsFilter filter = new PatientsFilter();
+            filter.SetKeywordsFromInput(SearchBox.Text);
+            PatientsDataGrid.ItemsSource = filter.ApplyFilters(patients);
         }
     }
 }

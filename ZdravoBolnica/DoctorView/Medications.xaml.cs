@@ -1,4 +1,5 @@
 ﻿using SIMS.Controller;
+using SIMS.Filters;
 using SIMS.Model;
 using System;
 using System.Collections.Generic;
@@ -64,6 +65,29 @@ namespace SIMS.DoctorView
                 medications.Add(m);
             }
 
+
+
+        }
+
+        private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            SearchBox.Text = "";
+        }
+
+        private void SearchBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            String searchText = SearchBox.Text;
+
+            if (searchText == "")
+                SearchBox.Text = "Pretrazi...";
+
+        }
+
+        private void SearchBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            MedicationsFilter filter = new MedicationsFilter();
+            filter.SetKeywordsFromInput(SearchBox.Text);
+            dataGridMedications.ItemsSource = filter.ApplyFilters(medications);
         }
     }
 }

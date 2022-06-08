@@ -5,23 +5,72 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIMS.DoctorView"
         mc:Ignorable="d"
-        Title="AddAppointment" Height="600" Width="600" WindowStartupLocation="CenterScreen">
+        Title="AddAppointment" Height="440" Width="370" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#224B66"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="#E2E2E2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#0078d7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid Margin="0,0,0,0">
-        <Label Content="Pacijent" HorizontalAlignment="Left" Margin="105,109,0,0" VerticalAlignment="Top" Width="111" FontSize="16"/>
-        <Label Content="Sala" HorizontalAlignment="Left" Margin="125,175,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label Content="Datum" HorizontalAlignment="Left" Margin="109,242,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label Content="Vreme:" HorizontalAlignment="Left" Margin="109,310,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label Content="Trajanje" HorizontalAlignment="Left" Margin="102,377,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <DatePicker HorizontalAlignment="Left" Name="DatePicker" Margin="243,242,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Name="Time" Margin="238,316,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Name="Duration" Margin="238,385,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Zakazi" HorizontalAlignment="Left" Margin="81,498,0,0" VerticalAlignment="Top" Height="47" Width="99" RenderTransformOrigin="0.5,0.5" Click="Button_Click" FontSize="16"/>
-        <Button Content="Zatvori" HorizontalAlignment="Left" Margin="373,498,0,0" VerticalAlignment="Top" Height="44" Width="111" FontSize="16" Click="Button_Click_1"/>
-        <ComboBox HorizontalAlignment="Center" Name="RoomBox" Margin="0,180,0,0" DisplayMemberPath="roomNum" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" DisplayMemberPath="FullName" Name="PatientBox" Margin="238,109,0,0" VerticalAlignment="Top" Width="120"/>
+        <Grid Background="#E2E2E2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="Pacijent:" Margin="35,10,10,10" />
+                <Label Grid.Row="2" Content="Trajanje:" Margin="35,10,10,10"/>
+                <Label Grid.Row="3" Content="Pocetni Datum:"  Margin="35,10,10,10"/>
+                <Label Grid.Row="1" Content="Sala:"  Margin="35,10,10,10"/>
+                <Label Grid.Row="4" Content="Krajnji Datum:"  Margin="35,10,10,10"/>
+                <Label Grid.Row="5" Content="Vreme:"  Margin="35,10,10,10"/>
+                <Button Grid.Row="6" Content="Zakazi" Margin="35,36,0,28" Click="Button_Click"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="100"/>
 
-
-
+                </Grid.RowDefinitions>
+                <ComboBox Name="PatientBox" Grid.Row="0" Margin="0,10,40,12" DisplayMemberPath="FullName"/>
+                <ComboBox Name="RoomBox" Grid.Row="1" Margin="0,10,40,12" DisplayMemberPath="roomNum"/>
+                <DatePicker Name="StartTime" Grid.Row="3" Margin="0,10,40,12"/>
+                <DatePicker Name="EndTime" Grid.Row="4" Margin="0,10,40,12" SelectedDateChanged="EndTime_SelectedDateChanged"/>
+                <ComboBox Name="Time" Grid.Row="5" Margin="0,10,40,12" DisplayMemberPath="startTime"/>
+                <TextBox Name="Duration" Grid.Row="2" Margin="0,10,40,12"/>
+                <Button Grid.Row="6" Name="Exit" Margin="85,36,40,28" Content="Izadji" Click="Exit_Click"  Background="#760000"/>
+            </Grid>
+        </Grid>
 
     </Grid>
 </Window>

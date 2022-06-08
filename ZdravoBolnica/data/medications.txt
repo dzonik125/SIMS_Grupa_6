@@ -1,2 +1,5 @@
 1|Bromazepam|Odobreno|10||sastojak 1,sastojak 2|asd
 2|Brufen|Odobreno|3|1|sastojak 1,sastojak 2|
+3|Acofil|Na cekanju|100|2|sastojak 2|
+4|Aciklovir|Na cekanju|11|3|sastojak 2|
+5|Prospan|Na cekanju|150|1|sastojak 1|

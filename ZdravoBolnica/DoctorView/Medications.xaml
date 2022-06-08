@@ -7,33 +7,34 @@
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="840"
       Title="Medications">
-    
+
     <Page.Resources>
-    <Style TargetType="Button">
-        <Setter Property="Background" Value="#224B66"/>
-        <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="Foreground" Value="#E2E2E2"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#0078d7"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#224B66"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="#E2E2E2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#0078d7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Page.Resources>
 
 
     <Grid>
+        <Label Content="Uvid u lekove" FontSize="30" FontWeight="Bold" HorizontalAlignment="Left" Margin="86,23,0,0" VerticalAlignment="Top" Width="233" Height="50"/>
         <DataGrid x:Name="dataGridMedications" ItemsSource="{Binding Path = medications}" 
-                    Grid.Row="0" Margin="86,84,94,122" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False">
+                    Grid.Row="0" Margin="86,84,94,122" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False" CanUserAddRows="False" AlternationCount="2"  AlternatingRowBackground="#84bcb4">
             <DataGrid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -53,6 +54,12 @@
 
         </DataGrid>
         <Button Content="Detalji" HorizontalAlignment="Left" Margin="86,450,0,0" VerticalAlignment="Top" Width="100" Height="38" Click="Button_Click"/>
-
+        <TextBox Name="SearchBox" Margin="585,48,90,0" Text="Pretrazi..." TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Width="165" Height="29" KeyUp="SearchBox_KeyUp"  GotFocus="SearchBox_GotFocus"  LostFocus="SearchBox_LostFocus">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
     </Grid>
 </Page>

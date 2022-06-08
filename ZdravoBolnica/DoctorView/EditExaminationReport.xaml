@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIMS.DoctorView"
         mc:Ignorable="d"
-        Title="EditExaminationReport" Height="570" Width="400" WindowStartupLocation="CenterScreen">
+        Title="EditExaminationReport" Height="540" Width="400" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <Style TargetType="Button">

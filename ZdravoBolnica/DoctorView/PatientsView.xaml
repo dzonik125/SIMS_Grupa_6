@@ -29,13 +29,32 @@
             </Style.Triggers>
         </Style>
     </Page.Resources>
-    
+
     <Grid>
-        
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="55"/>
+            <RowDefinition Height="70"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,200,0">
+            <Label Content="Pacijenti" Margin="42,21,400,1" FontSize="30" FontWeight="Bold"/>
+            <TextBox Name="SearchBox"  Text="Pretrazi..." VerticalContentAlignment="Center"  HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="443,35,0,6" RenderTransformOrigin="1.418,0.527" Width="157" KeyUp="SearchBox_KeyUp" GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </TextBox.Resources>
+                <TextBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBox.RenderTransform>
+            </TextBox>
+        </Grid>
 
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -48,7 +67,7 @@
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
 
-            <DataGrid Name="PatientsDataGrid" AutoGenerateColumns="False" SelectionMode="Single" Margin="47,0,0,0" Grid.Column="0" ItemsSource="{Binding Path=patients}">
+            <DataGrid Name="PatientsDataGrid"  AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False" AlternationCount="2"  AlternatingRowBackground="#84bcb4" Margin="47,0,0,0" Grid.Column="0" ItemsSource="{Binding Path=patients}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Ime" Binding="{Binding name}" Width="*"  DataGridColumn.CanUserResize="False"/>
                     <DataGridTextColumn Header="Prezime" Binding="{Binding surname}" Width="*"  DataGridColumn.CanUserResize="False"/>
@@ -71,7 +90,7 @@
                 <Button Grid.Row="2" Content="Napisi uput"  Margin="30,10,30,10" Name="ReferralButton" Click="Referral_Click"/>
                 <Button Grid.Row="3" Content="Napisi opravdanje"  Margin="30,10,30,10"/>
                 <Button Grid.Row="4" Background="#760000" Content="Banuj pacijenta"  Margin="30,10,30,10"/>
-                
+
 
             </Grid>
             <Grid Grid.Row="1" Margin="47,0,0,0">
@@ -85,6 +104,6 @@
                 <Button Grid.Column="2"  Content="Otpusti" Margin="10,20,10,20"/>
             </Grid>
         </Grid>
-        
+
     </Grid>
 </Page>

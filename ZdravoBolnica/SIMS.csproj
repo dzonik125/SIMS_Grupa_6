@@ -9,9 +9,13 @@
 
   <ItemGroup>
     <None Remove="images\aaa.png" />
+    <None Remove="images\exit.png" />
+    <None Remove="images\help.png" />
     <None Remove="images\LOGO.png" />
     <None Remove="images\NicePng_note-png_4357930.png" />
     <None Remove="images\NicePng_order-icon-png_2992961.png" />
+    <None Remove="images\notification.png" />
+    <None Remove="images\pndoctor2.png" />
     <None Remove="images\pngegg.png" />
     <None Remove="images\pngfind.com-language-icon-png-5572694.png" />
     <None Remove="images\pngfind.com-night-png-759829.png" />
@@ -20,6 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="images\exit.png" />
+    <Resource Include="images\help.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="images\NicePng_note-png_4357930.png" />
   </ItemGroup>
 
@@ -30,6 +38,12 @@
   <ItemGroup>
     <Resource Include="images\aaa.png" />
     <Resource Include="images\NicePng_order-icon-png_2992961.png" />
+    <Resource Include="images\notification.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\pndoctor2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="images\pngfind.com-language-icon-png-5572694.png" />
     <Resource Include="images\pngfind.com-night-png-759829.png" />
     <Resource Include="images\PngItem_2005182.png" />

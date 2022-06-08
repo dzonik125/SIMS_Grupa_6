@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIMS.DoctorView"
         mc:Ignorable="d"
-        Title="DoctorWindow" Height="626" Width="1065" WindowStartupLocation="CenterScreen">
+        Title="DoctorWindow" Height="645" Width="1065" WindowStartupLocation="CenterScreen">
 
 
     <Grid>
@@ -48,12 +48,13 @@
                             </Grid.RowDefinitions>
 
 
-                            <Button Content="Termini" Grid.Row="0" Background="#00796B" Click="Appointments_Click" />
-                            <Button Content="Pacijenti" Grid.Row="1" Background="#00796B" Click="Patients_Click"/>
-                            <Button Content="Istorija" Grid.Row="2" Background="#00796B"/>
-                            <Button Content="Lekovi" Grid.Row="3" Background="#00796B" Click="Button_Click"/>
-                            <Button Content="Slobodni dani" Grid.Row="4" Background="#00796B" Click="Button_Click_1"/>
-                            <Button Content="Profil" Grid.Row="5" Background="#00796B"/>
+                            <Button Content="Termini" Name="Terms" Grid.Row="0" Background="#00796B" Click="Appointments_Click" />
+                            <Button Content="Pacijenti" Name="Patients" Grid.Row="1" Background="#00796B" Click="Patients_Click"/>
+                            <Button Content="Istorija" Name="History" Grid.Row="2" Background="#00796B" Click="Button_Click_2"/>
+                            <Button Content="Lekovi" Name="Drugs" Grid.Row="3" Background="#00796B" Click="Button_Click"/>
+                            <Button Content="Slobodni dani" Name="DaysOff" Grid.Row="4" Background="#00796B" Click="Button_Click_1"/>
+                            <Button Content="Profil" Name="Profil" Grid.Row="5" Background="#00796B" Click="Profil_Click"/>
+                            <Button Content="Odjavi se" Name="LogOut" Grid.Row="6"  Background="#00796B"  Margin="0,122,0,0"/>
                         </Grid>
 
                     </Grid>
@@ -64,14 +65,21 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
+                        <RowDefinition Height="530"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0" Background="#224B66">
-
+                        <Image Source="/images/notification.png" Height="24" Margin="25,0,0,0" Visibility="Visible" HorizontalAlignment="Left" VerticalAlignment="Center" Cursor="Hand" ToolTip="Obaveštenja"/>
+                        <Image Source="/images/help.png" Height="24" Margin="80,0,0,0" Visibility="Visible" HorizontalAlignment="Left" VerticalAlignment="Center" Cursor="Hand" ToolTip="Pomoć"/>
+                        <Image Source="/images/exit.png" Height="24" Margin="0,0,25,0" Visibility="Visible" HorizontalAlignment="Right" VerticalAlignment="Center" Cursor="Hand" ToolTip="Pomoć"/>
                     </Grid>
                     <Grid Grid.Row="1" Background="#E2E2E2">
                         <Frame x:Name="Page" NavigationUIVisibility="Hidden"/>
+                    </Grid>
+
+                    <Grid Grid.Row="2" Background="#224B66">
+                        <Label Content="16:14 │ 25/03/2021" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#FFC9C9C9" FontSize="12" Margin="0,0,10,0" Name="dateAndTime" VerticalContentAlignment="Center"/>
                     </Grid>
 
                 </Grid>

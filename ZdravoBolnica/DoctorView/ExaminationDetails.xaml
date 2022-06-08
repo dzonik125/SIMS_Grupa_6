@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:SIMS.DoctorView"
         mc:Ignorable="d"
         Title="ExaminationDetails" Height="550" Width="400" WindowStartupLocation="CenterScreen">
-    <Grid>
+    
+    <Grid Background="#E2E2E2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="140"/>
             <ColumnDefinition Width="*"/>
@@ -40,7 +41,7 @@
             <TextBox Grid.Row="2" Margin="11,10,26,0" Name="Diagnosis" TextWrapping="Wrap" IsReadOnly="True" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
             <TextBox Grid.Row="3" Margin="11,10,26,0" Name="Anamnesis" TextWrapping="Wrap" IsReadOnly="True" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
             <TextBox Grid.Row="4" Margin="11,10,26,0" Name="Therapy" TextWrapping="Wrap" IsReadOnly="True" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
-            <Button Grid.Row="5" Content="Izadji" Margin="120,33,19,24" Click="Button_Click"/>
+            <Button Grid.Row="5" Content="Izadji" Margin="120,33,19,24" Foreground="#E2E2E2" Background="#760000"  Click="Button_Click"/>
         </Grid>
     </Grid>
 </Window>

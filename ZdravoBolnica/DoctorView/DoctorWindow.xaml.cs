@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace SIMS.DoctorView
 {
@@ -29,7 +30,8 @@ namespace SIMS.DoctorView
         private DoctorController doctorController = new DoctorController();
         private MedicationController medicationController = new MedicationController();
         public Doctor doctorUser = new Doctor();
-
+        public  SolidColorBrush sellectedTab = new SolidColorBrush(Color.FromRgb(190,230, 253));
+        SolidColorBrush general = new SolidColorBrush(Color.FromRgb(0, 121, 107));
         public static DoctorWindow Instance
         {
             get
@@ -43,28 +45,49 @@ namespace SIMS.DoctorView
         private DoctorWindow()
         {
 
-            /*Medication med = new();
-            med.name = "Brufen";
-            Medication med1 = new();
-            med1.name = "Bromazepam";
-            medicationController.Create(med);
-            medicationController.Create(med1);*/
+
             
             InitializeComponent();
-            //HomePage homePage = new HomePage();
-            //Page.Content = homePage;
+            this.DataContext = this;
+            SetStatusBarClock();
+        
+        }
+
+        private void resetButtons()
+        {
+            Terms.Background = general;
+            Patients.Background = general;
+            Drugs.Background = general;
+            History.Background = general;
+            Profil.Background = general;
+            DaysOff.Background = general;
+        }
+
+        private void SetStatusBarClock()
+        {
+            //Tred za prikazivanje sata i datuma
+            this.dateAndTime.Content = DateTime.Now.ToString("HH:mm │ dd.MM.yyyy.");
+
+            DispatcherTimer timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
+            {
+                this.dateAndTime.Content = DateTime.Now.ToString("HH:mm │ dd.MM.yyyy.");
+            }, this.Dispatcher);
         }
 
         private void Appointments_Click(object sender, RoutedEventArgs e)
         {
             Appointments appointments = Appointments.Instance;
             Page.Content = appointments;
+            resetButtons();
+            Terms.Background = sellectedTab;
         }
 
         private void Patients_Click(object sender, RoutedEventArgs e)
         {
             PatientsView pw = PatientsView.Instance;
             Page.Content = pw;
+            resetButtons();
+            Patients.Background = sellectedTab;
 
         }
 
@@ -72,12 +95,32 @@ namespace SIMS.DoctorView
         {
             Medications medications = Medications.Instance;
             Page.Content = medications;
+            resetButtons();
+            Drugs.Background = sellectedTab;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             VacationPeriodsView vacationPeriodsView = VacationPeriodsView.Instance;
             Page.Content = vacationPeriodsView;
+            resetButtons();
+            DaysOff.Background = sellectedTab;
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            TermHistory appointmentHistory = new TermHistory();
+            Page.Content = appointmentHistory;
+            resetButtons();
+            History.Background = sellectedTab;
+        }
+
+        private void Profil_Click(object sender, RoutedEventArgs e)
+        {
+            Profile profile = new Profile();
+            Page.Content = profile;
+            resetButtons();
+            Profil.Background = sellectedTab;
         }
     }
 }
