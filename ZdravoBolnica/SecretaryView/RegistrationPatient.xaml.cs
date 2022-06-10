@@ -1,7 +1,5 @@
 ﻿using Model;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace SIMS.SecretaryView
@@ -11,7 +9,20 @@ namespace SIMS.SecretaryView
     /// </summary>
     public partial class RegistrationPatient : Page
     {
-        private PatientController pc = new PatientController();
+
+
+        public RegistrationPatient()
+        {
+            InitializeComponent();
+        }
+        private static RegistrationPatient _instance;
+        private ObservableCollection<Patient> _appointments;
+
+
+
+
+
+        /*  private PatientController pc = new PatientController();
         private static RegistrationPatient instance = new RegistrationPatient();
 
         public static RegistrationPatient Instance
@@ -75,16 +86,6 @@ namespace SIMS.SecretaryView
             SecretaryView.Instance.SetContent(new NewGuestPatientPage(1));
         }
 
-        private void EditPatient_Click(object sender, RoutedEventArgs e)
-        {
-            Patient selectedPatient = patientTable.SelectedItem as Patient;
-            if (selectedPatient == null)
-            {
-                MessageBox.Show("Izabrati pacijenta za izmenu:");
-                return;
-            }
-            SecretaryView.Instance.SetContent(new EditPatientPage(selectedPatient));
-        }
 
         private void DeletePatient_Click(object sender, RoutedEventArgs e)
         {
@@ -102,5 +103,14 @@ namespace SIMS.SecretaryView
                 refresh();
             }
         }
+
+        private void DataGridCell_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Patient selectedPatient = patientTable.SelectedItem as Patient;
+            SecretaryView.Instance.SetContent(new EditPatientPage(selectedPatient));
+        }
+    }*/
+
+
     }
 }

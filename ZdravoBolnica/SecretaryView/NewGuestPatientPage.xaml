@@ -8,15 +8,25 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="NewGuestPatientPage">
 
-    <Grid Height="450" Width="800" Margin="0,-48,0,48">
-        <Label Content="Ime:" HorizontalAlignment="Left" Margin="340,104,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="Prezime:" HorizontalAlignment="Left" Margin="340,170,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="JMBG:" HorizontalAlignment="Left" Margin="339,240,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <TextBox x:Name="Name" HorizontalAlignment="Center" Margin="0,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20"/>
-        <TextBox    x:Name="Surname" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" FontSize="20"/>
-        <TextBox x:Name="Jmbg" HorizontalAlignment="Center" Margin="0,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20"/>
-        <Button Style="{StaticResource RoundButtonTemplate}" Background="LightGreen" Content="Dodaj" HorizontalAlignment="Left" Margin="239,370,0,0" VerticalAlignment="Top" Click="AddGuest_Click"/>
-        <Button Style="{StaticResource RoundButtonTemplate}" Background="Firebrick" Content="Poništi" HorizontalAlignment="Left" Margin="429,370,0,0" VerticalAlignment="Top" Click="Reject_Click" />
 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.ColumnSpan="3" Foreground="{DynamicResource TextColor}" Content="Registruj guest pacijenta" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Margin="10,0,0,0" Grid.Column="1"/>
+        <StackPanel Grid.Row="1">
+            <Label HorizontalContentAlignment="Left" Foreground="{DynamicResource TextColor}" Content="Ime:" FontSize="20" Width="115"/>
+            <TextBox x:Name="Name" TextWrapping="Wrap" Width="120" FontSize="20"/>
+            <Label HorizontalContentAlignment="Left" Foreground="{DynamicResource TextColor}" Content="Prezime:" Width="115" FontSize="20"/>
+            <TextBox x:Name="Surname" TextWrapping="Wrap" Width="120" FontSize="20"/>
+            <Label HorizontalContentAlignment="Left" Width="115" Foreground="{DynamicResource TextColor}" Content="JMBG:" FontSize="20"/>
+            <TextBox x:Name="Jmbg" TextWrapping="Wrap" Width="120" FontSize="20"/>
+        </StackPanel>
+        <DockPanel Grid.Row="2" FlowDirection="LeftToRight" HorizontalAlignment="Center">
+            <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Content="Dodaj" Margin="0,0,50,0" Click="AddGuest_Click" DockPanel.Dock="Left" Width="100"/>
+            <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource RedButton}" Content="Poništi" Click="Reject_Click" DockPanel.Dock="Right" Width="100" />
+        </DockPanel>
     </Grid>
 </Page>

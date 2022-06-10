@@ -207,6 +207,17 @@ namespace Service
 
         }
 
+        public List<Room> IsRoomAvailable()
+        {
+            List<Room> roomList = new List<Room>();
+            foreach (Appointment a in appointmentService.GetAllApointments())
+            {
+                roomList.Add(a.Room);
+            }
+
+            return roomList;
+        }
+
         public bool FindRoomByFloor(int roomNum, int floor)
         {
             if (roomsCRUD.FindRoomByFloor(roomNum, floor))

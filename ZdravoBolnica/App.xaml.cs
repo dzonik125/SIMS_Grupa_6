@@ -1,5 +1,5 @@
-﻿using System.Windows;
-using static SIMS.TranslationSoruce;
+﻿using System;
+using System.Windows;
 
 namespace SIMS
 {
@@ -8,6 +8,18 @@ namespace SIMS
     /// </summary>
     public partial class App : Application
     {
+        public ResourceDictionary ThemeDictionary
+        {
+            get { return Current.Resources.MergedDictionaries[0]; }
+        }
+
+
+        public void ChangeTheme(Uri uri)
+        {
+            ThemeDictionary.MergedDictionaries.Clear();
+            ThemeDictionary.MergedDictionaries.Add(new ResourceDictionary() { Source = uri });
+        }
+
         public void ChangeLanguage(string currLang)
         {
             if (currLang.Equals("en-US"))

@@ -13,11 +13,11 @@ namespace SIMS.SecretaryView.Validation
                 ValidationContext validationContext = new ValidationContext();
                 validationContext.SetStrategy(new NameValidationStrategy());
                 if (validationContext.Validate(text)) return new ValidationResult(true, null);
-                return new ValidationResult(false, "Loš format");
+                return new ValidationResult(false, TranslationSource.Instance["NameError"]);
             }
             catch
             {
-                return new ValidationResult(false, "Nepoznata greska");
+                return new ValidationResult(false, TranslationSource.Instance["UnknownError"]);
             }
         }
     }

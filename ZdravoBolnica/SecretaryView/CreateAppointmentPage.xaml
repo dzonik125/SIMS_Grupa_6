@@ -9,14 +9,19 @@
       Title="CreateAppointmentPage"
       MaxHeight="450"
       MaxWidth="800">
-    
+
 
     <Grid>
-        <Label Content="Pregled zakazanih termina" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Margin="180,-81,0,0"/>
+        <Label Foreground="{DynamicResource TextColor}" Content="Pregled zakazanih termina" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Top" Height="50" Margin="0,-80,0,0"/>
         <StackPanel>
 
             <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="dataGridAppointments" ItemsSource="{Binding Path = Apps}" Margin="20,20" IsReadOnly="True" MaxHeight="200" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False">
-               <DataGrid.Columns>
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridCell}">
+                        <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
                     <DataGridTextColumn Header="Termin" Width="*" Binding="{Binding AppointmentTypeString}" DataGridColumn.CanUserResize="False"/>
                     <DataGridTextColumn Header="Lekar" Width="*" Binding="{Binding Doctor.FullName}" DataGridColumn.CanUserResize="False"/>
                     <DataGridTextColumn Header="Pacijent" Width="*" Binding="{Binding patient.FullName}" DataGridColumn.CanUserResize="False"/>
@@ -28,17 +33,17 @@
             </DataGrid>
         </StackPanel>
         <Grid>
-            <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" Margin="0,297,0,65">
-                <Button Style="{StaticResource RoundButtonTemplate}" Background="LightGreen" Content="Zakazi pregled" Margin="10,10" VerticalAlignment="Top"  Click="Scehdule_Click"/>
-                <Button Style="{StaticResource RoundButtonTemplate}" Background="LightGreen" Content="Zakazi operaciju" HorizontalAlignment="Left" Margin="10,10" VerticalAlignment="Top" Click="ScheduleSurgery_Click"/>
+            <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" Margin="0,330,0,32">
+                <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Content="Zakazi pregled" Margin="10,10" VerticalAlignment="Top"  Click="Scehdule_Click"/>
+                <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Content="Zakazi operaciju" HorizontalAlignment="Left" Margin="10,10" VerticalAlignment="Top" Click="ScheduleSurgery_Click"/>
                 <Button Style="{StaticResource RoundButtonTemplate}" Background="Firebrick" Content="Hitan pregled" HorizontalAlignment="Left" Margin="10,10" VerticalAlignment="Top" Click="EmergencyExamination_Click"/>
             </StackPanel>
-                <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Margin="480,296,0,65">
-                <Button Style="{StaticResource RoundButtonTemplate}" Content="Izbrisi" HorizontalAlignment="Left" Margin="10,10" VerticalAlignment="Top" Click="DeleteApp_Click"/>
-                <Button Style="{StaticResource RoundButtonTemplate}" Background="Lightblue" Content="Izmeni" HorizontalAlignment="Left" Margin="10,10" VerticalAlignment="Top"  Click="EditApp_Click"/>
-                </StackPanel>
-            </Grid>
-        
-        
+            <StackPanel HorizontalAlignment="Right" FlowDirection="RightToLeft" Margin="0,327,0,34">
+                <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource DeleteButton}" Content="Izbrisi" HorizontalAlignment="Center" Margin="10,10" Click="DeleteApp_Click"/>
+            </StackPanel>
+            <Button Content="Button" HorizontalAlignment="Left" Margin="510,418,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        </Grid>
+
+
     </Grid>
 </Page>

@@ -11,7 +11,7 @@
       MaxWidth="800">
 
     <Grid Margin="0,0,0,-70">
-        <Label Content="Pregled zahteva za slobodne dane" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Margin="180,-81,0,0"/>
+        <Label Foreground="{DynamicResource TextColor}" Content="Pregled zahteva za slobodne dane" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Top" Height="50" Margin="0,-81,0,0"/>
         <StackPanel>
 
             <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="vacationPeriodTable" ItemsSource="{Binding list}" Margin="20,20" IsReadOnly="True" MaxHeight="200" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False" Height="195">
@@ -29,15 +29,18 @@
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-        <Grid Margin="140,265,145,10">
-            <Label x:Name="statusLabel" Content="Status:" HorizontalAlignment="Left" Margin="59,19,0,0" VerticalAlignment="Top" FontSize="20" RenderTransformOrigin="-1.954,-0.16"/>
-            <ComboBox x:Name="statusBox" FontSize="18" HorizontalAlignment="Left" Margin="7,53,0,0" VerticalAlignment="Top" Width="175" SelectionChanged="statusBox_SelectionChanged" Height="34"/>
-            <Label x:Name="comment" Content="Obrazloženje odbijanja:" HorizontalAlignment="Left" Margin="235,20,0,0" VerticalAlignment="Top" FontSize="20"/>
-            <Label x:Name="commentVacationPeriod" Content="Obrazloženje zahteva:" HorizontalAlignment="Left" Margin="235,20,0,0" VerticalAlignment="Top" FontSize="20"/>
-            <TextBox x:Name="rejectCommentBox" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Margin="233,57,0,0" Text="" VerticalAlignment="Top" Width="229" Height="70"/>
-            <TextBox x:Name="commentBox" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Margin="233,56,0,0" Text="" VerticalAlignment="Top" Width="229" Height="70"/>
-            <Button Style="{StaticResource RoundButtonTemplate}" Background="LightGreen" x:Name="accept" Content="Potvrdi" HorizontalAlignment="Left" Margin="116,175,0,0" VerticalAlignment="Top" Click="Accept_Click"/>
-            <Button Style="{StaticResource RoundButtonTemplate}" Background="Firebrick" x:Name="reject" Content="Odustani" HorizontalAlignment="Left" Margin="261,174,0,0" VerticalAlignment="Top" Click="Reject_Click"/>
+        <Grid Margin="20,214,20,200">
+            <Label Foreground="{DynamicResource TextColor}" x:Name="statusLabel" Content="Status:" HorizontalAlignment="Left" Margin="-4,6,0,0" VerticalAlignment="Top" FontSize="20" RenderTransformOrigin="-1.954,-0.16"/>
+            <ComboBox x:Name="statusBox" FontSize="18" HorizontalAlignment="Left" Margin="1,44,0,0" VerticalAlignment="Top" Width="175" SelectionChanged="statusBox_SelectionChanged" Height="34"/>
+            <Label Foreground="{DynamicResource TextColor}" x:Name="comment" Content="Obrazloženje odbijanja:" HorizontalAlignment="Left" Margin="530,6,0,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label Foreground="{DynamicResource TextColor}" x:Name="commentVacationPeriod" Content="Obrazloženje zahteva:" HorizontalAlignment="Left" Margin="530,6,0,0" VerticalAlignment="Top" FontSize="20"/>
+            <TextBox x:Name="rejectCommentBox" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Margin="530,45,0,0" Text="" VerticalAlignment="Top" Width="229" Height="70"/>
+            <TextBox x:Name="commentBox" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Margin="531,45,0,0" Text="" VerticalAlignment="Top" Width="229" Height="70"/>
         </Grid>
+        <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" Margin="252,360,252,70">
+            <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Margin="10,10" x:Name="accept" Content="Potvrdi" Click="Accept_Click"/>
+            <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource RedButton}" Margin="10,10" x:Name="reject" Content="Odustani" Click="Reject_Click"/>
+            
+        </StackPanel>
     </Grid>
 </Page>

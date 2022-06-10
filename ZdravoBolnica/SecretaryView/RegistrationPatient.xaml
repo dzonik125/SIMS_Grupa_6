@@ -10,10 +10,15 @@
       MaxHeight="450"
       MaxWidth="800">
     <Grid>
-        <Label Content="Pregled registrovanih pacijenata" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Margin="180,-81,0,0"/>
+        <Label Foreground="{DynamicResource TextColor}" Content="Pregled registrovanih pacijenata" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Margin="180,-81,0,0"/>
         <StackPanel>
-            
-            <DataGrid Style="{StaticResource SecretaryDataGrid}"  x:Name="patientTable" ItemsSource="{Binding list}" Margin="20,20" IsReadOnly="True" MaxHeight="200" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False">
+
+            <DataGrid Style="{StaticResource SecretaryDataGrid}"  x:Name="patientTable" ItemsSource="{Binding Path=Patients}" Margin="20,20" IsReadOnly="True" MaxHeight="200" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False">
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridCell}">
+                        <EventSetter Event="MouseDoubleClick"/>
+                    </Style>
+                </DataGrid.Resources>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id" Width="*" Binding="{Binding id}" CanUserResize="False"/>
                     <DataGridTextColumn Header="Ime" Width="*" Binding="{Binding name}"  CanUserResize="False"/>
@@ -25,14 +30,13 @@
         </StackPanel>
 
         <Grid>
-            <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" Margin="0,297,0,40">
-                <Button Style="{StaticResource RoundButtonTemplate}" Background="LightGreen" Content="Dodaj" VerticalAlignment="Bottom" Margin="20,20"  Click="AddPatient_Click"/>
-                <Button Style="{StaticResource RoundButtonTemplate}" Background="LightGreen" Content="Dodaj Guest" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,20" Click="NewGuestPatient_Click"/>
+            <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight"  Margin="0,330,0,32">
+                <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Content="Dodaj" VerticalAlignment="Top" Margin="10,10" Command="{Binding NewPatientCommand}"/>
+                <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Content="Dodaj Guest" VerticalAlignment="Top" Margin="10,10" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Margin="380,297,0,40">
-                <Button Style="{StaticResource RoundButtonTemplate}" Content="Izbriši" VerticalAlignment="Bottom" Margin="20,20"   Click="DeletePatient_Click"/>
-                <Button Style="{StaticResource RoundButtonTemplate}" Background="LightBlue" Content="Izmeni" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,20" Click="EditPatient_Click"/>
-                
+            <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Margin="0,327,0,34">
+                <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource DeleteButton}" Content="Izbriši" VerticalAlignment="Top" Margin="10,10" />
+
             </StackPanel>
         </Grid>
 

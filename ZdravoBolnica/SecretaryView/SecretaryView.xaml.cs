@@ -1,8 +1,8 @@
 ﻿using SIMS.Controller;
+using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using static SIMS.TranslationSoruce;
 
 namespace SIMS.SecretaryView
 {
@@ -41,6 +41,21 @@ namespace SIMS.SecretaryView
         }
 
 
+        private void ChangeTheme_Click(object sender, RoutedEventArgs e)
+        {
+            App app = (App)Application.Current;
+            if (CurrentTheme.Equals("Dark"))
+            {
+                app.ChangeTheme(new Uri("/Light.xaml", UriKind.Relative));
+                CurrentTheme = "Light";
+            }
+            else
+            {
+                app.ChangeTheme(new Uri("/Dark.xaml", UriKind.Relative));
+                CurrentTheme = "Dark";
+            }
+        }
+
         public static SecretaryView Instance
         {
             get
@@ -65,14 +80,10 @@ namespace SIMS.SecretaryView
             CurrentTitle = TranslationSource.Instance["Clinic"];
             CurrentLanguage = "en-US";
             CurrentTheme = "Light";
+            this.DataContext = this;
         }
 
 
-        /* private void HomePage_Click(object sender, RoutedEventArgs e)
-         {
-             HomePage hp = HomePage.Instance;
-             Page.Content = hp;
-         }*/
 
         private void Register_Click(object sender, RoutedEventArgs e)
         {
@@ -118,6 +129,11 @@ namespace SIMS.SecretaryView
                 CurrentLanguage = "en-US";
             }
             app.ChangeLanguage(CurrentLanguage);
+        }
+
+        private void Profile_Click(object sender, RoutedEventArgs e)
+        {
+            SetContent(new ProfilePage());
         }
     }
 }

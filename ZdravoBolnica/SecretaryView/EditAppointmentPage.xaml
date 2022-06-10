@@ -11,37 +11,37 @@
       Title="EditAppointmentPage">
 
     <Grid>
-        <Label Content="Izmena termina" FontSize="30" HorizontalAlignment="Center" Margin="0,-82,0,484"/>
+        <Label Foreground="{DynamicResource TextColor}" Content="Izmena termina" FontSize="30" HorizontalAlignment="Center" Margin="0,-82,0,484"/>
         <Grid>
             <StackPanel Width="400" Orientation="Vertical" Margin="200,0,200,-75">
                 <Grid Width="400" FlowDirection="LeftToRight" HorizontalAlignment="Center">
-                    <Label Content="Pacijent:" HorizontalAlignment="Left" Margin="128,7,0,30" FontSize="17" Height="33" Width="73"/>
+                    <Label Foreground="{DynamicResource TextColor}" Content="Pacijent:" HorizontalAlignment="Left" Margin="128,7,0,30" FontSize="17" Height="33" Width="73"/>
                     <ComboBox DisplayMemberPath="FullName" x:Name="PatientBox" Margin="134,38,143,2" Height="29"/>
                 </Grid>
                 <Grid Width="400" FlowDirection="LeftToRight" HorizontalAlignment="Center">
-                    <Label Content="Doktor:" HorizontalAlignment="Left" Margin="128,7,0,0" VerticalAlignment="Top" FontSize="17" Height="32" Width="74"/>
+                    <Label Foreground="{DynamicResource TextColor}" Content="Doktor:" HorizontalAlignment="Left" Margin="128,7,0,0" VerticalAlignment="Top" FontSize="17" Height="32" Width="74"/>
                     <ComboBox HorizontalAlignment="Left" DisplayMemberPath="FullName" x:Name="DoctorBox" Margin="134,38,0,0" VerticalAlignment="Top"  Width="123" Height="29"/>
                 </Grid>
                 <Grid Width="400"  FlowDirection="LeftToRight" HorizontalAlignment="Center">
-                    <Label Content="Sala:" HorizontalAlignment="Left" Margin="130,10,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="54"/>
+                    <Label Foreground="{DynamicResource TextColor}" Content="Sala:" HorizontalAlignment="Left" Margin="130,10,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="54"/>
                     <ComboBox HorizontalAlignment="Left" x:Name="RoomBox" Margin="134,38,0,0" DisplayMemberPath="roomNum" VerticalAlignment="Top"  Width="123" Height="29" />
                 </Grid>
                 <Grid Width="400"  FlowDirection="LeftToRight" HorizontalAlignment="Center">
-                    <Label Content="Datum:" HorizontalAlignment="Left" Margin="131,8,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="74"/>
+                    <Label Foreground="{DynamicResource TextColor}" Content="Datum:" HorizontalAlignment="Left" Margin="131,8,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="74"/>
                     <DatePicker HorizontalAlignment="Left" x:Name="DatePicker" Margin="134,38,0,0" VerticalAlignment="Top" Width="123"/>
                 </Grid>
                 <Grid Width="400"  FlowDirection="LeftToRight" HorizontalAlignment="Center">
-                    <Label Content="Vreme:" HorizontalAlignment="Left" Margin="132,9,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="72"/>
+                    <Label Foreground="{DynamicResource TextColor}" Content="Vreme:" HorizontalAlignment="Left" Margin="132,9,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="72"/>
                     <ComboBox HorizontalAlignment="Left" x:Name="Time" Margin="134,38,0,0" VerticalAlignment="Top"  Width="123" Height="29" />
                 </Grid>
                 <Grid Width="400"  FlowDirection="LeftToRight">
-                    <Label Content="Trajanje:" HorizontalAlignment="Left" Margin="129,8,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="73"/>
+                    <Label Foreground="{DynamicResource TextColor}" Content="Trajanje:" HorizontalAlignment="Left" Margin="129,8,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="73"/>
                     <ComboBox HorizontalAlignment="Left" x:Name="Duration" Margin="134,38,0,0" VerticalAlignment="Top"  Width="123" Height="29" />
                 </Grid>
                 <Grid Height="50"></Grid>
                 <Grid Width="400" FlowDirection="LeftToRight">
-                    <Button Style="{StaticResource RoundButtonTemplate}" Background="LightGreen" Content="Izmeni" HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="64,0,0,0" Click="Edit_Click" />
-                    <Button Style="{StaticResource RoundButtonTemplate}" Background="Firebrick" Content="Zatvori"  Click="Close_Click" Margin="219,10,60,10"/>
+                    <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Content="Izmeni" HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="64,0,0,0" Click="Edit_Click" />
+                    <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource RedButton}" Content="Zatvori"  Click="Close_Click" Margin="219,10,60,10"/>
                 </Grid>
             </StackPanel>
         </Grid>

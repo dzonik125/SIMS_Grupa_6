@@ -117,7 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="NameError" xml:space="preserve">
+    <value>Enter a valid name.</value>
+  </data>
   <data name="NameText" xml:space="preserve">
-    <value>Ime:</value>
+    <value>Name:</value>
   </data>
 </root>

@@ -11,39 +11,38 @@
       Title="OrderEquipmentPage">
 
     <Grid>
-        <Label Content="Naručivanje dinamičke opreme" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Margin="180,-81,0,0"/>
-        <StackPanel Orientation="Vertical" Margin="-80,10,480,-410">
-            <Grid Width="400" Margin="10,10" Height="70">
-                <Label Content="Naziv:" FontSize="20" VerticalAlignment="Top" Height="40" Margin="145,0,185,0" />
-                <TextBox FontSize="18" Height="26" Name="Name" VerticalAlignment="Top" Margin="150,40,125,0" />
-            </Grid>
-            <Grid Width="400" Height="70" HorizontalAlignment="Left" Margin="10,10" >
-                <Label Content="Kolicina:" FontSize="20" HorizontalAlignment="Left" Margin="145,1,0,28"/>
-                <TextBox FontSize="18" Height="26" x:Name="Quantity" VerticalAlignment="Top" Margin="150,40,125,0"/>
-            </Grid>
-            <Grid>
-                <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="equipmentTable" HorizontalAlignment="Left" Height="126" VerticalAlignment="Top" Width="150" ItemsSource="{Binding Path=eq}" CanUserAddRows="False" AutoGenerateColumns="False" Margin="155,10,0,0">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding item}"  DataGridColumn.CanUserResize="False"/>
-                        <DataGridTextColumn Header="Kolicina" Width="*" Binding="{Binding quantity}"  DataGridColumn.CanUserResize="False"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-                <Button Content="+" x:Name="add" Width="20" Height="20" Margin="340,10,40,106" Click="Add_Click"/>
-                <Button Content="-" x:Name="add_Copy" Width="20" Height="20" Margin="340,35,40,81" Click="Remove_Click"/>
-            </Grid>
-        </StackPanel>
-        <Grid Margin="10,0,0,0">
-            <Label Content="Magacin" HorizontalAlignment="Left" Margin="521,35,0,0" VerticalAlignment="Top" FontSize="30"/>
-            <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="magacinTable" HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="395" ItemsSource="{Binding Path=order}" CanUserAddRows="False" AutoGenerateColumns="False" Margin="385,100,0,0">
+        <Label Foreground="{DynamicResource TextColor}" Content="Naručivanje dinamičke opreme" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Margin="180,-81,0,0"/>
+        <Grid Width="400" HorizontalAlignment="Left" Margin="-50,40,0,340" Height="70">
+            <Label Foreground="{DynamicResource TextColor}" Content="Naziv:" FontSize="20" VerticalAlignment="Top" Height="40" Margin="139,0,191,0" />
+            <TextBox FontSize="18" Height="26" Name="Name" VerticalAlignment="Top" Margin="145,40,130,0" />
+        </Grid>
+        <Grid Width="400" Height="70" HorizontalAlignment="Left" Margin="-50,115,0,265">
+            <Label Foreground="{DynamicResource TextColor}" Content="Kolicina:" FontSize="20" HorizontalAlignment="Left" Margin="139,1,0,28"/>
+            <TextBox FontSize="18" Height="26" x:Name="Quantity" VerticalAlignment="Top" Margin="145,40,130,0"/>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Margin="-65,205,0,54" Width="415">
+            <Label Foreground="{DynamicResource TextColor}" Content="Lista za naručivanje:" FontSize="20" HorizontalAlignment="Left" Margin="154,13,0,137"/>
+            <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="equipmentTable" HorizontalAlignment="Left" Height="126" VerticalAlignment="Top" Width="150" ItemsSource="{Binding Path=eq}" CanUserAddRows="False" AutoGenerateColumns="False" Margin="159,54,0,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding item}"  DataGridColumn.CanUserResize="False"/>
+                    <DataGridTextColumn Header="Kolicina" Width="*" Binding="{Binding quantity}"  DataGridColumn.CanUserResize="False"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Content="Dodaj" x:Name="add" Height="30" Width="70" Margin="330,-50,15,211" Click="Add_Click"/>
+            <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource DeleteButton}" Content="Izbaci" x:Name="add_Copy" Width="70" Height="30" Margin="330,55,15,95" Click="Remove_Click"/>
+        </Grid>
+        <Grid Margin="390,0,5,110">
+            <Label Foreground="{DynamicResource TextColor}" Content="Magacin"  Margin="133,55,133,0" VerticalAlignment="Top" FontSize="30"/>
+            <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="magacinTable"  Height="200" VerticalAlignment="Top" Width="285" ItemsSource="{Binding Path=order}" CanUserAddRows="False" AutoGenerateColumns="False" Margin="60,125,60,0">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding item}"  DataGridColumn.CanUserResize="False"/>
                     <DataGridTextColumn Header="Kolicina" Width="*" Binding="{Binding quantity}"  DataGridColumn.CanUserResize="False"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
-        <Grid HorizontalAlignment="Left" Margin="100,346,0,0">
-            <Button Style="{StaticResource RoundButtonTemplate}" Background="LightGreen" x:Name="ordering" Content="Poruči" Margin="105,22,245,22" Click="Order_Click"/>
-            <Button Style="{StaticResource RoundButtonTemplate}" Background="Firebrick" x:Name="cancel" Content="Odustani" Margin="314,22,36,22"/>
+        <Grid HorizontalAlignment="Center" Margin="0,396,0,-50" Width="488">
+            <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" x:Name="ordering" Content="Poruči" Margin="85,22,270,22" Click="Order_Click"/>
+            <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource RedButton}" x:Name="cancel" Content="Odustani" Margin="280,22,88,22"/>
         </Grid>
     </Grid>
 </Page>

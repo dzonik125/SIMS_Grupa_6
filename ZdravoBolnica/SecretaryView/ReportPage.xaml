@@ -1,0 +1,35 @@
+﻿<Page x:Class="SIMS.SecretaryView.ViewModel.ReportPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SIMS.SecretaryView.ViewModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ReportPage"
+      MaxHeight="450"
+      MaxWidth="800">
+
+    <Grid>
+        <Label Foreground="{DynamicResource TextColor}" Content="Kreiraj izveštaj" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Top" Height="50" Margin="0,-80,0,0"/>
+        <StackPanel>
+
+            <DataGrid Style="{StaticResource SecretaryDataGrid}"  x:Name="patientTable" ItemsSource="{Binding list}" Margin="20,20" IsReadOnly="True" MaxHeight="200" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Width="*" Binding="{Binding id}" CanUserResize="False"/>
+                    <DataGridTextColumn Header="Broj sobe" Width="*" Binding="{Binding roomNum}"  CanUserResize="False"/>
+                    <DataGridTextColumn Header="Zauzeta" Width="*" Binding="{Binding startTime}"  CanUserResize="False"/>
+                    <DataGridTextColumn Header="Namena sobe" Width="*" Binding="{Binding RoomTypeToString}" CanUserResize="False"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+
+        <Grid>
+            <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight"  Margin="0,330,0,32">
+                <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Content="Kreiraj izveštaj" VerticalAlignment="Top" Margin="10,10" Click="CreateReport_Click"/>
+
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</Page>

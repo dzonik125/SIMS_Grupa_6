@@ -1,5 +1,6 @@
 ﻿using Controller;
 using Model;
+using Service;
 using SIMS.Model;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -78,23 +79,6 @@ namespace SIMS.SecretaryView
             SecretaryView.Instance.SetContent(new AddEmergencyExaminationPage(type));
         }
 
-        private void EmergencySurgery_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void EditApp_Click(object sender, RoutedEventArgs e)
-        {
-            Appointment selectedAppointment = dataGridAppointments.SelectedItem as Appointment;
-            if (selectedAppointment == null)
-            {
-                MessageBox.Show("Izabrati termin.");
-                return;
-            }
-
-            SecretaryView.Instance.SetContent(new EditAppointmentPage(selectedAppointment));
-
-        }
 
         private void DeleteApp_Click(object sender, RoutedEventArgs e)
         {
@@ -106,6 +90,19 @@ namespace SIMS.SecretaryView
             }
             appController.DeleteAppointmentById(selectedAppointment.id);
             Refresh();
+        }
+
+        private void DataGridCell_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Appointment selectedAppointment = dataGridAppointments.SelectedItem as Appointment;
+            SecretaryView.Instance.SetContent(new EditAppointmentPage(selectedAppointment));
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ReportSecretaryService rss = new ReportSecretaryService();
+            rss.GenerateReport();
         }
     }
 }

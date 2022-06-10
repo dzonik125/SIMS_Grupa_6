@@ -1,0 +1,108 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <SolidColorBrush x:Key="BackgroundColorPage" Color="White"/>
+    <SolidColorBrush x:Key="ForegroundColorMain" Color="White"/>
+    <SolidColorBrush x:Key="BackgroundColorMenu" Color="#FF4ED14E"/>
+    <SolidColorBrush x:Key="ForegroundColorMenuItem" Color="#03360f"/>
+    <SolidColorBrush x:Key="BackgroundColorMenuItem" Color="#FFDDE8DD"/>
+    <SolidColorBrush x:Key="BackgroundColorStatusBar" Color="#FF039003"/>
+
+    <SolidColorBrush x:Key="ForegroundColorPageText" Color="Black"/>
+    <SolidColorBrush x:Key="BorderColor" Color="Black"/>
+    <SolidColorBrush x:Key="ForegroundColorPageTitle" Color="#03360f"/>
+
+    <SolidColorBrush x:Key="BackgroundButtonBar" Color="#03360f"/>
+    <SolidColorBrush x:Key="BackgroundDataGrid" Color="White"/>
+    <SolidColorBrush x:Key="BorderBrushDataGrid" Color="#FF15F607"/>
+
+    <SolidColorBrush x:Key="NotificationBoxColor" Color="#FF106E15"/>
+    <SolidColorBrush x:Key="NotificationBorderColor" Color="White"/>
+
+    <SolidColorBrush x:Key="MouseOverButtonColor" Color="#FF49BA3D"/>
+
+    <SolidColorBrush x:Key="MessageBoxBackground" Color="#FFB4E8BA"/>
+    <SolidColorBrush x:Key="MessageBoxButtonBackground" Color="#FF4DCE5C"/>
+    <SolidColorBrush x:Key="MouseOverMessageBoxButton" Color="#FF16861B"/>
+
+    <!--Data grids-->
+    <Style TargetType="DataGrid" x:Key="DarkDataGrid">
+        <Setter Property="FontFamily" Value="Candara"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="CanUserResizeColumns" Value="False"/>
+        <Setter Property="CanUserResizeRows" Value="False"/>
+        <Setter Property="SelectionMode" Value="Single"/>
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+        <Setter Property="HeadersVisibility" Value="Column"/>
+
+        <Setter Property="BorderBrush" Value="#191e29"/>
+        <Setter Property="BorderThickness" Value="2"/>
+
+        <!--Podesiti za izmenu boja-->
+        <Setter Property="AlternationCount" Value="1"/>
+
+        <Setter Property="Background" Value="#3c4253"/>
+        <Setter Property="SelectionUnit" Value="FullRow"/>
+
+    </Style>
+
+    <Style TargetType="DataGridColumnHeader" x:Key="DataGridHeader">
+        <Setter Property="Background" Value="#FF3ADD36"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="DataGridRow" TargetType="{x:Type DataGridRow}">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+
+        <Style.Triggers>
+            <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                <Setter Property="Background" Value="#FF44733C"/>
+            </Trigger>
+            <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                <Setter Property="Background" Value="#FF428935"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="DataGridCell" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Padding" Value="5,0,0,0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                    <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
+
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="#FF183D10"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="BorderBrush" Value="#FF183D10"/>
+            </Trigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="true"/>
+                    <Condition Property="Selector.IsSelectionActive" Value="false"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="#FF183D10"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="BorderBrush" Value="#FF183D10"/>
+            </MultiTrigger>
+        </Style.Triggers>
+
+    </Style>
+
+</ResourceDictionary>

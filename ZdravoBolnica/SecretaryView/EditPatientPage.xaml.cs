@@ -36,20 +36,20 @@ namespace SIMS.SecretaryView
             selectedPatient = p;
             InitializeComponent();
 
-            Name.Text = p.name;
-            Surname.Text = p.surname;
-            PhoneNum.Text = p.phone;
-            Email.Text = p.email;
-            Username.Text = p.username;
+            textBoxIme.Text = p.name;
+            textBoxPrezime.Text = p.surname;
+            textBoxBrojTelefona.Text = p.phone;
+            textBoxEmail.Text = p.email;
+            textBoxKorisnickoIme.Text = p.username;
             Adress a = ac.FindAdressById(p.address.id);
-            Country.Text = a.country;
-            City.Text = a.city;
-            StreetNum.Text = a.number;
-            Street.Text = a.street;
-            Password.Text = p.password;
-            Lbo.Text = p.lbo;
-            Jmbg.Text = p.jmbg;
-            BirthDate.Text = p.birthdate;
+            textBoxDrzava.Text = a.country;
+            textBoxGrad.Text = a.city;
+            textBoxBroj.Text = a.number;
+            textBoxUlica.Text = a.street;
+            textBoxSifra.Text = p.password;
+            textBoxLbo.Text = p.lbo;
+            textBoxJmbg.Text = p.jmbg;
+            textBoxDatumRodjenja.Text = p.birthdate;
 
             bloodType.ItemsSource = Conversion.GetBloodType();
 
@@ -66,7 +66,7 @@ namespace SIMS.SecretaryView
             {
 
                 MedicalRecord mr = mrc.FindMedicalRecordById(p.medicalRecord.id);
-                brojK.Text = mr.cardNum.ToString();
+                textBoxBrojK.Text = mr.cardNum.ToString();
 
                 bloodType.ItemsSource = Conversion.GetBloodType();
 
@@ -116,7 +116,7 @@ namespace SIMS.SecretaryView
             }
             else
             {
-                brojK.Text = 0.ToString();
+                textBoxBrojK.Text = 0.ToString();
                 MaleRadioButton.IsChecked = false;
                 FemaleRadioButton.IsChecked = false;
 
@@ -133,17 +133,17 @@ namespace SIMS.SecretaryView
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
             Adress a = ac.FindAdressById(selectedPatient.address.id);
-            a.country = Country.Text;
-            a.city = City.Text;
-            a.number = StreetNum.Text;
-            a.street = Street.Text;
+            a.country = textBoxDrzava.Text;
+            a.city = textBoxGrad.Text;
+            a.number = textBoxBroj.Text;
+            a.street = textBoxUlica.Text;
 
             MedicalRecord mr = mrc.FindMedicalRecordById(selectedPatient.medicalRecord.id);
             MedicalRecord mrr = new MedicalRecord();
             if (selectedPatient.guest)
             {
 
-                mrr.cardNum = brojK.Text;
+                mrr.cardNum = textBoxBrojK.Text;
                 mrr.bloodType = Conversion.StringToBloodType(bloodType.Text);
 
                 mrr.medications = medications.ToList<Medication>();
@@ -158,23 +158,23 @@ namespace SIMS.SecretaryView
             else
             {
 
-                mr.cardNum = brojK.Text;
+                mr.cardNum = textBoxBrojK.Text;
 
                 mr.bloodType = Conversion.StringToBloodType(bloodType.Text);
                 // mr.allergies = al.ToList<Allergies>();
                 mr.medications = medications.ToList<Medication>();
             }
 
-            selectedPatient.name = Name.Text;
+            selectedPatient.name = textBoxIme.Text;
             System.Diagnostics.Trace.WriteLine(selectedPatient.name);
-            selectedPatient.surname = Surname.Text;
-            selectedPatient.lbo = Lbo.Text;
-            selectedPatient.email = Email.Text;
-            selectedPatient.birthdate = BirthDate.Text;
-            selectedPatient.password = Password.Text;
-            selectedPatient.username = Username.Text;
-            selectedPatient.phone = PhoneNum.Text;
-            selectedPatient.jmbg = Jmbg.Text;
+            selectedPatient.surname = textBoxPrezime.Text;
+            selectedPatient.lbo = textBoxLbo.Text;
+            selectedPatient.email = textBoxEmail.Text;
+            selectedPatient.birthdate = textBoxDatumRodjenja.Text;
+            selectedPatient.password = textBoxSifra.Text;
+            selectedPatient.username = textBoxKorisnickoIme.Text;
+            selectedPatient.phone = textBoxBrojTelefona.Text;
+            selectedPatient.jmbg = textBoxJmbg.Text;
 
             if ((bool)MaleRadioButton.IsChecked)
             {

@@ -17,6 +17,7 @@
     <None Remove="images\pngfind.com-night-png-759829.png" />
     <None Remove="images\PngItem_2005182.png" />
     <None Remove="images\register.png" />
+    <None Remove="SecretaryView\iconProfile.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -58,6 +59,7 @@
 
 
   <ItemGroup>
+    <PackageReference Include="Syncfusion.DocToPDFConverter.Wpf" Version="20.1.0.59" />
     <PackageReference Include="System.Resources.ResourceManager" Version="4.3.0" />
     <PackageReference Include="System.Threading.Timer" Version="4.3.0" />
   </ItemGroup>
@@ -67,6 +69,24 @@
     <Resource Include="Fonts\GothamMedium.ttf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="SecretaryView\iconProfile.png" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 

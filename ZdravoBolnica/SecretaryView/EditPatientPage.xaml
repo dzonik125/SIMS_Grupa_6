@@ -4,21 +4,387 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SIMS.SecretaryView"
+      xmlns:val="clr-namespace:SIMS.SecretaryView.Validation"
       mc:Ignorable="d" 
-      d:DesignHeight="720" d:DesignWidth="1000"
+      d:DesignHeight="450" d:DesignWidth="800"
       Title="EditPatientPage"
-      WindowWidth="720"
-      WindowHeight="1000">
+      WindowWidth="450"
+      WindowHeight="800">
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Ime:" HorizontalAlignment="Left" Margin="213,101,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="42"/>
-        <TextBox HorizontalAlignment="Left" x:Name ="Name" Margin="219,134,0,0" Text=""  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="18" Height="26"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <Label Foreground="{DynamicResource TextColor}" Content="Ime:" FontSize="17" Height="33" Width="42"/>
+            <TextBox x:Name ="textBoxIme" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
 
-        <Label Content="Prezime:"  HorizontalAlignment="Left" Margin="213,166,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="73"/>
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <Binding Path="Ime" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <val:NameValidationRule ValidationStep="ConvertedProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+            <Label Foreground="{DynamicResource TextColor}" Content="Prezime:" FontSize="17" Height="33" Width="73"/>
+            <TextBox x:Name ="textBoxPrezime" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <Binding Path="Prezime" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <val:NameValidationRule ValidationStep="ConvertedProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+            <Label Foreground="{DynamicResource TextColor}" Content="LBO:" FontSize="17" Height="33" Width="44"/>
+            <TextBox x:Name="textBoxLbo" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <Binding Path="Lbo" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <val:OnlyNumberValidationRule ValidationStep="ConvertedProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+            <Label Foreground="{DynamicResource TextColor}" Content="JMBG:" FontSize="17" Height="33" Width="56"/>
+            <TextBox x:Name="textBoxJmbg" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <Binding Path="Jmbg" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <val:OnlyNumberValidationRule ValidationStep="ConvertedProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+            <Label Foreground="{DynamicResource TextColor}" Content="Datum rodjenja:" FontSize="17" Height="34" Width="130"/>
+            <TextBox x:Name="textBoxDatumRodjenja" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <Binding Path="Datum" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <val:DateValidationRule ValidationStep="ConvertedProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+            <Label Foreground="{DynamicResource TextColor}" Content="Broj telefona:" FontSize="17" Height="33" Width="109"/>
+            <TextBox x:Name="textBoxBrojTelefona" Text="" TextWrapping="Wrap" Width="120" FontSize="18" Height="26"/>
+            <Label Foreground="{DynamicResource TextColor}" Content="Pol:" FontSize="20" Height="33" Width="41"/>
+            <RadioButton Content="Muško" Height="24" x:Name="MaleRadioButton" Width="75" FontSize="16"/>
+            <RadioButton Content="Žensko" Height="24" x:Name="FemaleRadioButton" Width="75" FontSize="16"/>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Margin="333,0,333,0">
+            <Label Foreground="{DynamicResource TextColor}" Content="Email:" FontSize="17" Height="32" Width="54"/>
+            <TextBox x:Name="textBoxEmail" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <Binding Path="Email" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <val:EmailValidationRule ValidationStep="ConvertedProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+            <Label Foreground="{DynamicResource TextColor}" Content="Username:" FontSize="17" Height="32" Width="89"/>
+            <TextBox x:Name="textBoxKorisnickoIme" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <Binding Path="KorisnickoIme" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <val:UsernameValidationRule ValidationStep="ConvertedProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+            <Label Foreground="{DynamicResource TextColor}" Content="Password:" FontSize="17" Height="33" Width="84"/>
+            <TextBox x:Name="textBoxSifra" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <Binding Path="Lozinka" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <val:PasswordValidationRule ValidationStep="ConvertedProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+            <Label Foreground="{DynamicResource TextColor}" Content="Drzava:" FontSize="17" Height="33" Width="65"/>
+            <TextBox x:Name="textBoxDrzava" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <Binding Path="Drzava" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <val:StateValidationRule ValidationStep="ConvertedProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+            <Label Foreground="{DynamicResource TextColor}" Content="Grad:" FontSize="17" Height="33" Width="50"/>
+            <TextBox x:Name="textBoxGrad" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <Binding Path="Grad" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <val:CityValidationRule ValidationStep="ConvertedProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+            <Label Foreground="{DynamicResource TextColor}" Content="Ulica:" FontSize="17" Height="33" Width="50"/>
+            <TextBox x:Name="textBoxUlica" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <Binding Path="Ulica" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <val:AddressValidationRule ValidationStep="ConvertedProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+            <Label Foreground="{DynamicResource TextColor}" Content="Broj:" FontSize="17" Height="33" Width="43"/>
+            <TextBox x:Name="textBoxBroj" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <Binding Path="Broj" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <val:OnlyNumberValidationRule ValidationStep="ConvertedProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="3" Grid.Row="1">
+            <Label Foreground="{DynamicResource TextColor}" Content="Broj kartona:" FontSize="17" Height="33" Width="105"/>
+            <TextBox x:Name="textBoxBrojK" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <Binding Path="BrojKartona" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <val:OnlyNumberValidationRule ValidationStep="ConvertedProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+            <Label Foreground="{DynamicResource TextColor}" Content="Krvna grupa:" FontSize="17" Height="33" Width="105"/>
+            <ComboBox x:Name="bloodType" IsReadOnly="True" Width="120" Height="28"/>
+            <Label Foreground="{DynamicResource TextColor}" Content="Lekovi:" Height="33" Width="131" FontSize="17"/>
+            <DockPanel Height="37" Width="220">
+                <ComboBox DisplayMemberPath="name" FlowDirection="LeftToRight" IsReadOnly="True" ItemsSource="{Binding medallergs}" Margin="50,0,5,0"  x:Name="MedAllergsBox" Width="120" Height="28" />
+                <Button Content="+" x:Name="addMedicine" Click="addMedicine_Click" DockPanel.Dock="Bottom" Margin="5,0" Height="22" Width="22"/>
+            </DockPanel>
+            <DockPanel Width="223">
+                <DataGrid FlowDirection="LeftToRight" Style="{StaticResource SecretaryDataGrid}" x:Name="medAllergs_table" Margin="52,0,0,0" Height="120" Width="120" ItemsSource="{Binding al}" CanUserAddRows="False" AutoGenerateColumns="False">
+                    <DataGrid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="0.353"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </DataGrid.RenderTransform>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Alergeni" Width="*" Binding="{Binding name}"  CanUserResize="False"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button Content="-" x:Name="removeMedicine" Margin="0,0,0,95" Width="22" Height="22" Click="removeMedicine_Click"/>
+            </DockPanel>
+        </StackPanel>
+
+        <DockPanel HorizontalAlignment="Center" FlowDirection="LeftToRight" Grid.Row="2" Grid.ColumnSpan="4">
+            <Button x:Name="Edit" Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Content="Izmeni" Margin="300,0,50,0" Click="Edit_Click" Width="100" />
+            <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource RedButton}" Content="Odustani" Click="Close_Click" Margin="0,0,300,0" Width="100"/>
+        </DockPanel>
+
+        <Label Grid.ColumnSpan="3" Foreground="{DynamicResource TextColor}" Content="Izmeni pacijenta" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30" Margin="10,0,0,0" Grid.Column="1"/>
+
+
+
+
+        <!--   <Label Content="Prezime:"  HorizontalAlignment="Left" Margin="213,166,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="73"/>
         <TextBox HorizontalAlignment="Left" x:Name ="Surname" Margin="218,199,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="18" Height="26"/>
 
         <Label Content="LBO:" HorizontalAlignment="Left" Margin="213,232,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="44"/>
@@ -83,7 +449,7 @@
                 <DataGridTextColumn Header="Alergeni" Width="*" Binding="{Binding name}"  CanUserResize="False"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Registruj novog pacijenta" HorizontalAlignment="Center" Margin="0,34,0,0" VerticalAlignment="Top" FontSize="30"/>
+        <Label Content="Registruj novog pacijenta" HorizontalAlignment="Center" Margin="0,34,0,0" VerticalAlignment="Top" FontSize="30"/> -->
 
     </Grid>
 </Page>
