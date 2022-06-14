@@ -54,14 +54,7 @@ namespace SIMS.SecretaryView.ViewModel
 
         public bool CanExecute()
         {
-            /* if (StartDate != null && EndDate != null && PatientData != null && RoomData != null)
-             {
-                 if (DateTime.Parse(StartDate) < DateTime.Parse(EndDate))
-                     return true;
-             }*/
-
             return true;
-
         }
 
         public void Execute()
@@ -69,6 +62,7 @@ namespace SIMS.SecretaryView.ViewModel
 
             Appointment appointment = new Appointment
             {
+
                 Type = AppointmentType.examination,
                 Room = RoomData,
                 patient = PatientData,

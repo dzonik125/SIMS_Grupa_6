@@ -68,6 +68,7 @@
 
   <ItemGroup>
     <PackageReference Include="Syncfusion.DocToPDFConverter.Wpf" Version="20.1.0.59" />
+    <PackageReference Include="Syncfusion.PdfViewer.WPF" Version="20.1.0.60" />
     <PackageReference Include="System.Resources.ResourceManager" Version="4.3.0" />
     <PackageReference Include="System.Threading.Timer" Version="4.3.0" />
   </ItemGroup>

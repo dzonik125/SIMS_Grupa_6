@@ -151,8 +151,10 @@ namespace SIMS.SecretaryView.ViewModel
                 quantity = Int32.Parse(Kolicina)
             };
 
+
             eq.Add(equipment);
             orderEquipment.equipments = eq.ToList<Equipment>();
+
         }
 
         private bool CanExecute()

@@ -334,7 +334,7 @@ namespace SIMS.SecretaryView
             adress.city = textBoxGrad.Text;
             adress.country = textBoxDrzava.Text;
 
-            if (textBoxBrojK.Text.Equals("") || textBoxIme.Text.Equals("") || textBoxPrezime.Text.Equals("") || textBoxLbo.Text.Equals(""))
+            if (textBoxBrojK.Text.Equals("") || textBoxIme.Text.Equals("") || textBoxPrezime.Text.Equals("") || textBoxLbo.Text.Equals("") || textBoxJmbg.Text.Equals("") || textBoxBrojTelefona.Text.Equals("") || textBoxGrad.Text.Equals("") || textBoxDrzava.Text.Equals("") || textBoxBroj.Text.Equals("") || textBoxUlica.Text.Equals("") || textBoxSifra.Text.Equals("") || textBoxKorisnickoIme.Text.Equals("") || textBoxEmail.Text.Equals(""))
             {
                 MessageBox.Show("Popunite sva polja pre registracije !");
             }

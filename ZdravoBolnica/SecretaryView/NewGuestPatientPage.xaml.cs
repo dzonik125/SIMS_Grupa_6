@@ -51,21 +51,27 @@ namespace SIMS.SecretaryView
             patient.address = adress;
             patient.guest = true;
 
-            ac.AddAdress(adress);
-            pc.AddPatient(patient);
-
-            if (lastPage == 1)
+            if (Name.Text.Equals("") || Surname.Text.Equals("") || Jmbg.Text.Equals(""))
             {
-                RegistrationPage rgi = new RegistrationPage();
-                SecretaryView.Instance.SetContent(new RegistrationPage());
+                MessageBox.Show("Popunite sva polja");
             }
             else
             {
-                AddEmergencyExaminationPage aeep = new AddEmergencyExaminationPage(Model.AppointmentType.examination);
-                SecretaryView.Instance.SetContent(new AddEmergencyExaminationPage(Model.AppointmentType.examination));
+                ac.AddAdress(adress);
+                pc.AddPatient(patient);
+
+                if (lastPage == 1)
+                {
+                    RegistrationPage rgi = new RegistrationPage();
+                    SecretaryView.Instance.SetContent(new RegistrationPage());
+                }
+                else
+                {
+                    AddEmergencyExaminationPage aeep = new AddEmergencyExaminationPage(Model.AppointmentType.examination);
+                    SecretaryView.Instance.SetContent(new AddEmergencyExaminationPage(Model.AppointmentType.examination));
+                }
+
             }
-
-
         }
 
         private void Reject_Click(object sender, RoutedEventArgs e)

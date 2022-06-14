@@ -1,4 +1,5 @@
 ﻿using Model;
+using SIMS.SecretaryView;
 using Syncfusion.Pdf;
 using Syncfusion.Pdf.Graphics;
 using Syncfusion.Pdf.Tables;
@@ -53,6 +54,8 @@ namespace Service
         public void SendMessage()
         {
             MessageBox.Show("Izveštaj je uspešno kreiran!");
+            Pdf pdf = new Pdf();
+            pdf.Show();
         }
 
         private void InitDataGrid()

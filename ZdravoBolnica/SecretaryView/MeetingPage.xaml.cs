@@ -96,28 +96,30 @@ namespace SIMS.SecretaryView
             meeting = new Meeting();
 
             meeting.topic = Topic.Text;
-            String dateAndTime = DatePicker.Text + " " + Time.Text;
-            DateTime timeStamp = DateTime.Parse(dateAndTime);
-            meeting.startTime = timeStamp;
-            meeting.duration = 60;
-            meeting.room = new Room();
-            meeting.room.id = getSelectedRoom().id;
+            if (Topic.Text.Equals("") || Time.Text.Equals("") || roomCombo.Text.Equals("") || DatePicker.Text.Equals(""))
+            {
+                MessageBox.Show("Popunite sva polja!");
+            }
+            else
+            {
+                String dateAndTime = DatePicker.Text + " " + Time.Text;
+                DateTime timeStamp = DateTime.Parse(dateAndTime);
+                meeting.startTime = timeStamp;
+                meeting.duration = 60;
+                meeting.room = new Room();
+                meeting.room.id = getSelectedRoom().id;
 
-            meetings.Add(meeting);
+                meetings.Add(meeting);
 
-            meeting.doctors = doctors.ToList<Doctor>();
-            meeting.managers = managers.ToList<Manager>();
-            meeting.secretaries = secretaries.ToList<Secretary>();
-
-
-
-            meetingController.AddMeeting(meeting);
+                meeting.doctors = doctors.ToList<Doctor>();
+                meeting.managers = managers.ToList<Manager>();
+                meeting.secretaries = secretaries.ToList<Secretary>();
 
 
-
-            SecretaryView.Instance.SetContent(new MeetingPage());
+                meetingController.AddMeeting(meeting);
+                SecretaryView.Instance.SetContent(new MeetingPage());
+            }
         }
-
 
 
         private void Cancel_Click(object sender, RoutedEventArgs e)

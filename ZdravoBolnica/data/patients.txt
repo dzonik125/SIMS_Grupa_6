@@ -7,3 +7,4 @@
 7|Jovan|Matic||||20|||4326723463||True|0|0
 8|Stefan|Lukic||||21|||2376227776||True|0|0
 9|Nikolina|Savic|ema@gm.com|pass000|nikolina|22|0643567789|23873625|213217812389|12.3.1995.|False|1|13
+11|Lazar|Mitrovic||||25|||3813312312||True|0|0
