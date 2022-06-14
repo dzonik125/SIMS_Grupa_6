@@ -52,6 +52,19 @@ namespace Service
             return roomsCRUD.FindAll();
         }
 
+        public bool IsRoomOccupied(Room roomDestination, DateTime transferDate, int duration)
+        {
+            List<Appointment> roomAppointments = appointmentService.GetAppointmentsByRoomId(roomDestination.id);
+            foreach (Appointment appointment in roomAppointments)
+            {
+                if (!((appointment.startTime.AddMinutes(appointment.duration) < transferDate && appointment.startTime < transferDate
+                    || (transferDate.AddMinutes(duration) < appointment.startTime && transferDate < appointment.startTime))))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
 
         public List<Room> getRoomsByType(RoomType type)

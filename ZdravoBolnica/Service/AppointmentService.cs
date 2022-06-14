@@ -8,7 +8,6 @@ using Repository;
 using SIMS.Util;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Service
 {
@@ -75,19 +74,7 @@ namespace Service
             }
         }
 
-        public bool IsRoomOccupied(Room roomDestination, DateTime transferDate, int duration)
-        {
-            List<Appointment> roomAppointments = GetAppointmentsByRoomId(roomDestination.id);
-            foreach (Appointment appointment in roomAppointments)
-            {
-                if (!((appointment.startTime.AddMinutes(appointment.duration) < transferDate && appointment.startTime < transferDate
-                    || (transferDate.AddMinutes(duration) < appointment.startTime && transferDate < appointment.startTime))))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+
 
         public List<Appointment> GetFutureAppointmentsForDoctor(int id)
         {

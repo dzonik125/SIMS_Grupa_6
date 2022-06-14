@@ -50,6 +50,10 @@ namespace Controller
         {
             throw new NotImplementedException();
         }
+        public bool IsRoomOccupied(Room roomDestination, DateTime transferDate, int duration)
+        {
+            return roomService.IsRoomOccupied(roomDestination, transferDate, duration);
+        }
 
         public bool StorageExist(Room room)
         {

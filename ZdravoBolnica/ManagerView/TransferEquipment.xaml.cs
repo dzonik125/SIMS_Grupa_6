@@ -3,18 +3,8 @@ using Model;
 using SIMS.Controller;
 using SIMS.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SIMS
 {
@@ -36,23 +26,23 @@ namespace SIMS
             InitializeComponent();
             equipment = selectedEquipment;
             roomSource = roomS;
-           
-        
+
+
 
         }
 
         private void TransferEqupment_Click(object sender, RoutedEventArgs e)
         {
-           
+
 
         }
 
-      
+
         private void TransferEquipmentToAnotherRoom_Click(object sender, RoutedEventArgs e)
         {
             Appointment appointemntRoomSource = new Appointment();
             Appointment appointmentRoomDestination = new Appointment();
-           
+
 
             roomDestination.floor = int.Parse(Floor.Text);
             roomDestination.roomNum = int.Parse(RoomNum.Text);
@@ -63,13 +53,13 @@ namespace SIMS
             String dateAndTime = DatePicker.Text + " " + Time.Text;
             DateTime transferDate = DateTime.Parse(dateAndTime);
             int duration = int.Parse(Duration.Text);
-            if (ac.IsRoomOccupied(roomDestination,transferDate,duration))
+            if (rc.IsRoomOccupied(roomDestination, transferDate, duration))
             {
                 MessageBox.Show("Soba u koju premestate opremu nije slobodna u ovo vreme");
                 return;
             }
 
-            if (ac.IsRoomOccupied(roomSource, transferDate, duration))
+            if (rc.IsRoomOccupied(roomSource, transferDate, duration))
             {
                 MessageBox.Show("Soba iz koje premestate opremu nije slobodna u ovo vreme");
                 return;
@@ -127,10 +117,10 @@ namespace SIMS
 
 
             ManagerUI mui = ManagerUI.Instance;
-            
+
             mui.refreshRoomInventoryTable(roomDestination);
             mui.refreshRoomInventoryTable(roomSource);
-            
+
             this.Close();
         }
     }

@@ -2,18 +2,7 @@
 using Model;
 using SIMS.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SIMS.ManagerView
 {
@@ -26,7 +15,7 @@ namespace SIMS.ManagerView
         private Appointment appointment = new Appointment();
         private RoomController rc = new RoomController();
         private AppointmentController ac = new AppointmentController();
-       
+
         public RoomRenovationWindow()
         {
             InitializeComponent();
@@ -47,10 +36,10 @@ namespace SIMS.ManagerView
             appointment.doctor = doctor;
             appointment.patient = patient;
             appointment.timesEdited = 0;
-            appointment.duration = ((endDate - appointment.startTime).Days)*24*60;
+            appointment.duration = ((endDate - appointment.startTime).Days) * 24 * 60;
             appointment.type = AppointmentType.renovation;
             appointment.timesEdited = 0;
-            if (ac.IsRoomOccupied(room, appointment.startTime, appointment.duration))
+            if (rc.IsRoomOccupied(room, appointment.startTime, appointment.duration))
             {
                 MessageBox.Show("Soba koju zelite da renovirate nije slobodna u ovo vreme");
                 return;

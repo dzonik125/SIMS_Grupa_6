@@ -30,7 +30,7 @@ namespace Controller
         {
             appointmentService.DeleteAppointmentById(id);
         }
-       
+
         public Appointment GetFirstFreeAppointmentInOneHour(Scheduler scheduler, Patient patient)
         {
             return appointmentService.GetFirstFreeAppointmentInOneHour(scheduler, patient);
@@ -76,15 +76,12 @@ namespace Controller
         {
             appointmentService.BindDoctorsWithAppointments(doctors, appointments);
         }
-        public bool IsRoomOccupied(Room roomDestination, DateTime transferDate, int duration)
-        {
-            return appointmentService.IsRoomOccupied(roomDestination, transferDate, duration);
-        }
+
         public void BindPatientsWithAppointments(List<Patient> patients, List<Appointment> appointments)
         {
             appointmentService.BindPatientsWithAppointments(patients, appointments);
         }
-        
+
         public Appointment FindPatientAppointment(Patient patient)
         {
             return appointmentService.FindPatientAppointment(patient);
@@ -93,6 +90,6 @@ namespace Controller
         {
             return appointmentService.GetAllApointments();
         }
-       
+
     }
 }
