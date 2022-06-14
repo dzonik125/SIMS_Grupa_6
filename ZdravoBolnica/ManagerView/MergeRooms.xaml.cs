@@ -3,18 +3,7 @@ using Model;
 using SIMS.Controller;
 using SIMS.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SIMS.ManagerView
 {
@@ -51,7 +40,7 @@ namespace SIMS.ManagerView
             DateTime endTimeRenovation = DateTime.Parse(endDate.Text);
             int duration = ((endTimeRenovation - startTimeRenovation).Days) * 24 * 60;
 
-            if(room1.id == 0 )
+            if (room1.id == 0)
             {
                 MessageBox.Show("Prva soba koju ste uneli ne postoji na ovom spratu: ");
                 return;
@@ -65,19 +54,19 @@ namespace SIMS.ManagerView
 
             }
 
-            if (_appointmentController.IsRoomOccupied(room1, startTimeRenovation, duration) || _appointmentController.IsRoomOccupied(room2,startTimeRenovation,duration))
-             {
+            if (_roomController.IsRoomOccupied(room1, startTimeRenovation, duration) || _roomController.IsRoomOccupied(room2, startTimeRenovation, duration))
+            {
 
                 MessageBox.Show("Soba je zauzeta u ovom periodu");
                 return;
-              }
-           
-             _mergeRoomsController.SaveRoomsMerging(room1, room2, Conversion.StringToRoomType(newPurpose.Text), startTimeRenovation, endTimeRenovation);
+            }
+
+            _mergeRoomsController.SaveRoomsMerging(room1, room2, Conversion.StringToRoomType(newPurpose.Text), startTimeRenovation, endTimeRenovation);
             ManagerUI mui = ManagerUI.Instance;
             mui.refresh();
-            
-           
-           
+
+
+
             this.Close();
 
 
