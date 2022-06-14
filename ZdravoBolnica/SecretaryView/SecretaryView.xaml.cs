@@ -64,10 +64,7 @@ namespace SIMS.SecretaryView
             }
         }
 
-        // public void SetLabel(string label)
-        //  {
-        //     MainLabel.Content = label;
-        // }
+
         public void SetContent(Page page)
         {
             Page.Content = page;
@@ -77,7 +74,7 @@ namespace SIMS.SecretaryView
         {
             InitializeComponent();
             SetContent(new CreateAppointmentPage());
-            CurrentTitle = TranslationSource.Instance["Clinic"];
+            //   CurrentTitle = TranslationSource.Instance["Clinic"];
             CurrentLanguage = "en-US";
             CurrentTheme = "Light";
             this.DataContext = this;
@@ -87,7 +84,7 @@ namespace SIMS.SecretaryView
 
         private void Register_Click(object sender, RoutedEventArgs e)
         {
-            SetContent(new RegistrationPatient());
+            SetContent(new RegistrationPage());
         }
 
         private void LogOut_Click(object sender, RoutedEventArgs e)
@@ -117,19 +114,7 @@ namespace SIMS.SecretaryView
             SetContent(new MeetingPage());
         }
 
-        private void Language_Click(object sender, RoutedEventArgs e)
-        {
-            App app = (App)Application.Current;
-            if (CurrentLanguage.Equals("en-US"))
-            {
-                CurrentLanguage = "sr-LATN";
-            }
-            else
-            {
-                CurrentLanguage = "en-US";
-            }
-            app.ChangeLanguage(CurrentLanguage);
-        }
+
 
         private void Profile_Click(object sender, RoutedEventArgs e)
         {

@@ -11,28 +11,28 @@
       Title="AddEmergencyExaminationPage">
 
     <Grid>
-        <Label Foreground="{DynamicResource TextColor}" Content="Zakazivanje hitnog pregleda" FontSize="30" HorizontalAlignment="Left" Margin="210,-26,0,423"/>
-        <Grid>
-            <StackPanel Width="400" Orientation="Vertical" Margin="200,70,200,-42">
-                <Grid Width="400" FlowDirection="LeftToRight" HorizontalAlignment="Center">
-                    <Label Foreground="{DynamicResource TextColor}" Content="Pacijent:" HorizontalAlignment="Left" Margin="128,7,0,30" FontSize="17" Height="33" Width="73"/>
-                    <ComboBox DisplayMemberPath="FullName" x:Name="PatientBox" Margin="134,38,143,2" Height="29"/>
-                    <Button Content="+" HorizontalAlignment="Left" Width="20" Height="29" Margin="276,38,0,2" Click="AddGuest_Click" />
-                </Grid>
-                <Grid Width="400" FlowDirection="LeftToRight" HorizontalAlignment="Center">
-                    <Label Foreground="{DynamicResource TextColor}" Content="Specijalizacija:" HorizontalAlignment="Left" Margin="128,7,0,0" VerticalAlignment="Top" FontSize="17" Height="32" Width="114"/>
-                    <ComboBox DropDownClosed="Specialization_DropDownClosed" x:Name="Specialization" HorizontalAlignment="Left" Margin="135,38,0,0" VerticalAlignment="Top" Width="123" Height="29"/>
-                </Grid>
-                <Grid  Width="400" FlowDirection="LeftToRight" HorizontalAlignment="Center">
-                    <Label Foreground="{DynamicResource TextColor}" Content="Vreme:" HorizontalAlignment="Left" Margin="132,9,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="72"/>
-                    <ComboBox  HorizontalAlignment="Left" x:Name="TimeBox" Margin="135,38,0,0" VerticalAlignment="Top"  Width="123" Height="29" />
-                </Grid>
-                <Grid Height="50"></Grid>
-                <Grid Width="400" FlowDirection="LeftToRight">
-                    <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Content="Zakazi" HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="48,0,0,0" Click="Schedule_Click" FontSize="16"/>
-                    <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource RedButton}" Content="Zatvori" Click="Close_Click" Margin="229,10,51,10"/>
-                </Grid>
-            </StackPanel>
-        </Grid>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Label  Foreground="{DynamicResource TextColor}" Content="Zakazivanje hitnog pregleda" FontSize="30" HorizontalAlignment="Center" Margin="0,-81,0,110"/>
+
+        <StackPanel Orientation="Vertical" Grid.Row="0">
+            <Label Content="Pacijent:" Width="115" Foreground="{DynamicResource TextColor}" FontSize="17"/>
+            <ComboBox DisplayMemberPath="FullName" x:Name="PatientBox" Width="121" Height="29" Margin="0,0,0,10"/>
+
+            <Label Content="Specijalizacija:" Width="115" Foreground="{DynamicResource TextColor}" FontSize="17" />
+            <ComboBox DropDownClosed="Specialization_DropDownClosed" x:Name="Specialization" Width="123" Height="29" Margin="0,0,0,10"/>
+            <Label Content="Vreme:" Width="115" Foreground="{DynamicResource TextColor}" FontSize="17" />
+            <ComboBox x:Name="TimeBox"  Width="123" Height="29" />
+        </StackPanel>
+        <Button Margin="0,33,291,208" Content="+" HorizontalAlignment="Right" Width="29" Height="29" Click="AddGuest_Click" Grid.Row="1" />
+
+        <DockPanel HorizontalAlignment="Center" Margin="0,337,0,1" Grid.RowSpan="2">
+            <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Content="Zakazi" HorizontalAlignment="Left"  VerticalAlignment="Center" Click="Schedule_Click" FontSize="16"/>
+            <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource RedButton}" Content="Zatvori" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Close_Click" Margin="20,0,0,0"/>
+        </DockPanel>
+
     </Grid>
 </Page>

@@ -24,11 +24,11 @@ namespace SIMS
         {
             if (currLang.Equals("en-US"))
             {
-                TranslationSource.Instance.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+                //      TranslationSource.Instance.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             }
             else
             {
-                TranslationSource.Instance.CurrentCulture = new System.Globalization.CultureInfo("sr-LATN");
+                //     TranslationSource.Instance.CurrentCulture = new System.Globalization.CultureInfo("sr-LATN");
             }
         }
 

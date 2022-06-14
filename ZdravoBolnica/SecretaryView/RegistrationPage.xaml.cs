@@ -1,31 +1,20 @@
 ﻿using Model;
-using System.Collections.ObjectModel;
+using SIMS.SecretaryView.ViewModel;
+using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace SIMS.SecretaryView
 {
     /// <summary>
-    /// Interaction logic for RegistrationPatient.xaml
+    /// Interaction logic for RegistrationPage.xaml
     /// </summary>
-    public partial class RegistrationPatient : Page
+    public partial class RegistrationPage : Page
     {
+        private PatientController pc = new PatientController();
+        private static RegistrationPage instance = new RegistrationPage();
 
-
-        public RegistrationPatient()
-        {
-            InitializeComponent();
-        }
-        private static RegistrationPatient _instance;
-        private ObservableCollection<Patient> _appointments;
-
-
-
-
-
-        /*  private PatientController pc = new PatientController();
-        private static RegistrationPatient instance = new RegistrationPatient();
-
-        public static RegistrationPatient Instance
+        public static RegistrationPage Instance
         {
             get
             {
@@ -33,48 +22,38 @@ namespace SIMS.SecretaryView
             }
         }
 
-        public ObservableCollection<Patient> list
-        {
-            get;
-            set;
-        }
+        /* public ObservableCollection<Patient> list
+         {
+             get;
+             set;
+         }*/
 
-        public RegistrationPatient()
+        public RegistrationPage()
         {
             InitializeComponent();
-            this.DataContext = this;
+            this.DataContext = new RegistrationPageViewModel();
 
-            list = new ObservableCollection<Patient>();
-            List<Patient> patients = new List<Patient>();
+            /*  list = new ObservableCollection<Patient>();
+              List<Patient> patients = new List<Patient>();
 
-            patients = pc.FindAllPatients();
-            foreach (Patient p in patients)
-            {
-                list.Add(p);
-            }
+              patients = pc.FindAllPatients();
+              foreach (Patient p in patients)
+              {
+                  list.Add(p);
+              }*/
         }
 
         public void refresh()
         {
-            list.Clear();
+            //  list.Clear();
             List<Patient> patients = new List<Patient>();
             patients = pc.FindAllPatients();
             foreach (Patient p in patients)
             {
-                list.Add(p);
+                //   list.Add(p);
             }
         }
 
-
-
-
-
-
-
-        private void Back_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void AddPatient_Click(object sender, RoutedEventArgs e)
         {
@@ -86,6 +65,16 @@ namespace SIMS.SecretaryView
             SecretaryView.Instance.SetContent(new NewGuestPatientPage(1));
         }
 
+        private void EditPatient_Click(object sender, RoutedEventArgs e)
+        {
+            Patient selectedPatient = patientTable.SelectedItem as Patient;
+            if (selectedPatient == null)
+            {
+                MessageBox.Show("Izabrati pacijenta za izmenu:");
+                return;
+            }
+            SecretaryView.Instance.SetContent(new EditPatientPage(selectedPatient));
+        }
 
         private void DeletePatient_Click(object sender, RoutedEventArgs e)
         {
@@ -108,9 +97,8 @@ namespace SIMS.SecretaryView
         {
             Patient selectedPatient = patientTable.SelectedItem as Patient;
             SecretaryView.Instance.SetContent(new EditPatientPage(selectedPatient));
+
+
         }
-    }*/
-
-
     }
 }

@@ -180,5 +180,32 @@ namespace SIMS.SecretaryView
             }
             roomCombo.SelectedIndex = index;
         }
+
+        private void DataGridCell_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            doctors.Clear();
+            managers.Clear();
+            secretaries.Clear();
+            Meeting selectedMeeting = meeting_table.SelectedItem as Meeting;
+
+            foreach (Doctor doctor in selectedMeeting.doctors)
+            {
+                doctors.Add(doctor);
+            }
+
+            foreach (Manager manager in selectedMeeting.managers)
+            {
+                managers.Add(manager);
+            }
+            foreach (Secretary secretary in selectedMeeting.secretaries)
+            {
+                secretaries.Add(secretary);
+            }
+
+            Topic.Text = selectedMeeting.topic;
+            InitRoom();
+            DatePicker.SelectedDate = selectedMeeting.startTime;
+            Time.Text = selectedMeeting.MeetingTime.ToString();
+        }
     }
 }

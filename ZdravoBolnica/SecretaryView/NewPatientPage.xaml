@@ -24,8 +24,8 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="0" Grid.Row="1">
-            <Label Content="eee" Width="115" Foreground="{DynamicResource TextColor}" FontSize="17" />
-            <TextBox x:Name ="textBoxIme" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+            <Label Content="Ime:" Width="115" Foreground="{DynamicResource TextColor}" FontSize="17" />
+            <TextBox x:Name ="textBoxIme" TextWrapping="Wrap" Width="120" FontSize="18" Height="26" Margin="0,0,0,5">
                 <Validation.ErrorTemplate>
                     <ControlTemplate>
                         <Grid>
@@ -49,7 +49,7 @@
                 </Binding>
             </TextBox>
             <Label Foreground="{DynamicResource TextColor}" Content="Prezime:" FontSize="17" HorizontalContentAlignment="Left" Width="115"/>
-            <TextBox x:Name ="textBoxPrezime" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+            <TextBox x:Name ="textBoxPrezime" TextWrapping="Wrap" Width="120" FontSize="18" Height="26" Margin="0,0,0,5">
                 <Validation.ErrorTemplate>
                     <ControlTemplate>
                         <Grid>
@@ -68,12 +68,12 @@
                 </Validation.ErrorTemplate>
                 <Binding Path="Prezime" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <val:NameValidationRule ValidationStep="ConvertedProposedValue"/>
+                        <val:SurnameValidationRule ValidationStep="ConvertedProposedValue"/>
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox>
             <Label Foreground="{DynamicResource TextColor}" Content="LBO:" FontSize="17" HorizontalContentAlignment="Left" Width="115"/>
-            <TextBox x:Name="textBoxLbo" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+            <TextBox x:Name="textBoxLbo" TextWrapping="Wrap" Width="120" FontSize="18" Height="26" Margin="0,0,0,5">
                 <Validation.ErrorTemplate>
                     <ControlTemplate>
                         <Grid>
@@ -97,7 +97,7 @@
                 </Binding>
             </TextBox>
             <Label Foreground="{DynamicResource TextColor}" Content="JMBG:" FontSize="17" HorizontalContentAlignment="Left" Width="115"/>
-            <TextBox x:Name="textBoxJmbg" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+            <TextBox x:Name="textBoxJmbg" TextWrapping="Wrap" Width="120" FontSize="18" Height="26" Margin="0,0,0,5">
                 <Validation.ErrorTemplate>
                     <ControlTemplate>
                         <Grid>
@@ -121,7 +121,7 @@
                 </Binding>
             </TextBox>
             <Label Foreground="{DynamicResource TextColor}" Content="Datum rodjenja:" FontSize="17" HorizontalContentAlignment="Left" Width="131"/>
-            <TextBox x:Name="textBoxDatumRodjenja" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+            <TextBox x:Name="textBoxDatumRodjenja" TextWrapping="Wrap" Width="120" FontSize="18" Height="26" Margin="0,0,0,5">
                 <Validation.ErrorTemplate>
                     <ControlTemplate>
                         <Grid>
@@ -145,16 +145,39 @@
                 </Binding>
             </TextBox>
             <Label Foreground="{DynamicResource TextColor}" Content="Broj telefona:" FontSize="17" HorizontalContentAlignment="Left" Width="115"/>
-            <TextBox x:Name="textBoxBrojTelefona" Text="" TextWrapping="Wrap" Width="120" FontSize="18" Height="26"/>
+            <TextBox x:Name="textBoxBrojTelefona" TextWrapping="Wrap" Width="120" FontSize="18" Height="26" Margin="0,0,0,5">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <Binding Path="Kontakt" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <val:OnlyNumberValidationRule ValidationStep="ConvertedProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+            
             <Label Foreground="{DynamicResource TextColor}" Content="Pol:" FontSize="20" HorizontalContentAlignment="Left" Width="115"/>
-            <RadioButton Content="Muško" Height="24" x:Name="MaleRadioButton" Width="75" FontSize="16"/>
-            <RadioButton Content="Žensko" Height="24" x:Name="FemaleRadioButton" Width="75" FontSize="16"/>
+            <RadioButton Foreground="{DynamicResource TextColor}" Content="Muško" Height="24" x:Name="MaleRadioButton" Width="75" FontSize="16"/>
+            <RadioButton Foreground="{DynamicResource TextColor}" Content="Žensko" Height="24" x:Name="FemaleRadioButton" Width="75" FontSize="16"/>
 
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Margin="333,0,333,0">
             <Label Foreground="{DynamicResource TextColor}" Content="Email:" FontSize="17" HorizontalContentAlignment="Left" Width="115"/>
-            <TextBox x:Name="textBoxEmail" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+            <TextBox x:Name="textBoxEmail" TextWrapping="Wrap" Width="120" FontSize="18" Height="26" Margin="0,0,0,5">
                 <Validation.ErrorTemplate>
                     <ControlTemplate>
                         <Grid>
@@ -178,7 +201,7 @@
                 </Binding>
             </TextBox>
             <Label Foreground="{DynamicResource TextColor}" Content="Username:" FontSize="17" HorizontalContentAlignment="Left" Width="115"/>
-            <TextBox x:Name="textBoxKorisnickoIme" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+            <TextBox x:Name="textBoxKorisnickoIme" TextWrapping="Wrap" Width="120" FontSize="18" Height="26" Margin="0,0,0,5">
                 <Validation.ErrorTemplate>
                     <ControlTemplate>
                         <Grid>
@@ -202,7 +225,7 @@
                 </Binding>
             </TextBox>
             <Label Foreground="{DynamicResource TextColor}" Content="Password:" FontSize="17" HorizontalContentAlignment="Left" Width="115"/>
-            <TextBox x:Name="textBoxSifra" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+            <TextBox x:Name="textBoxSifra" TextWrapping="Wrap" Width="120" FontSize="18" Height="26" Margin="0,0,0,5">
                 <Validation.ErrorTemplate>
                     <ControlTemplate>
                         <Grid>
@@ -226,7 +249,7 @@
                 </Binding>
             </TextBox>
             <Label Foreground="{DynamicResource TextColor}" Content="Drzava:" FontSize="17" HorizontalContentAlignment="Left" Width="115"/>
-            <TextBox x:Name="textBoxDrzava" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+            <TextBox x:Name="textBoxDrzava" TextWrapping="Wrap" Width="120" FontSize="18" Height="26" Margin="0,0,0,5">
                 <Validation.ErrorTemplate>
                     <ControlTemplate>
                         <Grid>
@@ -250,7 +273,7 @@
                 </Binding>
             </TextBox>
             <Label Foreground="{DynamicResource TextColor}" Content="Grad:" FontSize="17" HorizontalContentAlignment="Left" Width="115"/>
-            <TextBox x:Name="textBoxGrad" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+            <TextBox x:Name="textBoxGrad" TextWrapping="Wrap" Width="120" FontSize="18" Height="26" Margin="0,0,0,5">
                 <Validation.ErrorTemplate>
                     <ControlTemplate>
                         <Grid>
@@ -274,7 +297,7 @@
                 </Binding>
             </TextBox>
             <Label Foreground="{DynamicResource TextColor}" Content="Ulica:" FontSize="17" HorizontalContentAlignment="Left" Width="115"/>
-            <TextBox x:Name="textBoxUlica" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+            <TextBox x:Name="textBoxUlica" TextWrapping="Wrap" Width="120" FontSize="18" Height="26" Margin="0,0,0,5">
                 <Validation.ErrorTemplate>
                     <ControlTemplate>
                         <Grid>
@@ -326,7 +349,7 @@
 
         <StackPanel Grid.Column="3" Grid.Row="1">
             <Label Foreground="{DynamicResource TextColor}" Content="Broj kartona:" FontSize="17" HorizontalContentAlignment="Left" Width="115"/>
-            <TextBox x:Name="textBoxBrojK" TextWrapping="Wrap" Width="120" FontSize="18" Height="26">
+            <TextBox x:Name="textBoxBrojK" TextWrapping="Wrap" Width="120" FontSize="18" Height="26" Margin="0,0,0,5">
                 <Validation.ErrorTemplate>
                     <ControlTemplate>
                         <Grid>
@@ -350,10 +373,10 @@
                 </Binding>
             </TextBox>
             <Label Foreground="{DynamicResource TextColor}" Content="Krvna grupa:" FontSize="17" HorizontalContentAlignment="Left" Width="115"/>
-            <ComboBox x:Name="bloodType" IsReadOnly="True" Width="120" Height="28"/>
+            <ComboBox x:Name="bloodType" IsReadOnly="True" Width="120" Height="28" Margin="0,0,0,5"/>
             <Label Foreground="{DynamicResource TextColor}" Content="Lekovi:" FontSize="17" HorizontalContentAlignment="Left" Width="115"/>
             <DockPanel Height="37" Width="220">
-                <ComboBox DisplayMemberPath="name" FlowDirection="LeftToRight" IsReadOnly="True" ItemsSource="{Binding medallergs}" Margin="50,0,5,0"  x:Name="MedAllergsBox" Width="120" Height="28" />
+                <ComboBox DisplayMemberPath="name" FlowDirection="LeftToRight" IsReadOnly="True" ItemsSource="{Binding medallergs}" Margin="50,0,5,0"  x:Name="MedAllergsBox" Width="120" Height="28"/>
                 <Button Content="+" x:Name="addMedicine" Click="addMedicine_Click" DockPanel.Dock="Bottom" Margin="5,0" Height="22" Width="22"/>
             </DockPanel>
             <DockPanel Width="223">
@@ -371,7 +394,7 @@
                         <DataGridTextColumn Header="Alergeni" Width="*" Binding="{Binding name}"  CanUserResize="False"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button Content="-" x:Name="removeMedicine" Margin="0,0,0,95" Width="22" Height="22" Click="removeMedicine_Click"/>
+                <Button Content="-" x:Name="removeMedicine" Margin="3,0,0,95" Width="22" Height="22" Click="removeMedicine_Click"/>
             </DockPanel>
         </StackPanel>
 

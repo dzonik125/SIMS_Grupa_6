@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f5683bcb-8e25-4946-8a67-da4972a60146" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/SIMS.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SIMS.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SecretaryView/NewPatientPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SecretaryView/NewPatientPage.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SecretaryView/RegistrationPatient.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/SecretaryView/RegistrationPatient.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SecretaryView/RegistrationPatient.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SecretaryView/RegistrationPatient.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SecretaryView/ViewModel/RegistrationPageViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SecretaryView/ViewModel/RegistrationPageViewModel.cs" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="2AW7BlyDjZWRfCSO1qqrzrP3Z0q" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <created>1655113357113</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1655113357113</updated>
+      <workItem from="1655113367142" duration="13000" />
+    </task>
+    <servers />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>

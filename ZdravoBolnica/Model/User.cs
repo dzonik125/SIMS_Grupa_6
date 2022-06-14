@@ -26,5 +26,6 @@ namespace Model
 
         public String FullName { get => (name + " " + surname); }
 
+
     }
 }

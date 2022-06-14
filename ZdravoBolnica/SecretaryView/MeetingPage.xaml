@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SIMS.SecretaryView"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MeetingPage"
@@ -11,62 +12,107 @@
       MaxWidth="800">
 
     <Grid>
-        <Label Foreground="{DynamicResource TextColor}" Content="Pregled sastanaka" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-81,0,0"/>
-        <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="meeting_table" ItemsSource="{Binding Path = meetings}" Margin="30,246,460,63" IsReadOnly="True" MaxHeight="200" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Tema" Width="*" Binding="{Binding topic}" DataGridColumn.CanUserResize="False"/>
-                <DataGridTextColumn Header="Datum" Width="*"  Binding="{Binding MeetingDate}" DataGridColumn.CanUserResize="False"/>
-                <DataGridTextColumn Header="Početak" Width="*" Binding="{Binding MeetingTime}"  DataGridColumn.CanUserResize="False"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Grid Margin="-28,-98,660,209">
-            <ComboBox x:Name="doctorCombo" DisplayMemberPath="FullName" HorizontalAlignment="Left" Margin="0,156,0,0" VerticalAlignment="Top" Width="120" Height="31"/>
-            <Label Foreground="{DynamicResource TextColor}" FontSize="20" Content="Doktor:" HorizontalAlignment="Left" Margin="0,120,0,0" VerticalAlignment="Top"/>
-            <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="doctors_table" HorizontalAlignment="Left" Height="120" Margin="0,197,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding doctors}" CanUserAddRows="False" AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Doktori" Width="*" Binding="{Binding FullName}"  CanUserResize="False"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            <Button Content="+" x:Name="addDoctor" HorizontalAlignment="Left" Margin="137,156,0,0" VerticalAlignment="Top" Width="22" Height="22" Click="addDoctor_Click"/>
-            <Button Content="-" x:Name="removeDoctor" HorizontalAlignment="Left" Margin="136,203,0,0" VerticalAlignment="Top" Width="22" Height="22" Click="removeDoctor_Click"/>
-        </Grid>
-        <Grid Margin="155,-98,415,209">
-            <ComboBox x:Name="managerCombo"  DisplayMemberPath="FullName" HorizontalAlignment="Left" Margin="20,156,0,0" VerticalAlignment="Top" Width="120" Height="31"/>
-            <Label Foreground="{DynamicResource TextColor}" FontSize="20" Content="Upravnik:" HorizontalAlignment="Left" Margin="22,119,0,0" VerticalAlignment="Top"/>
-            <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="managers_table" HorizontalAlignment="Left" Height="120" Margin="20,197,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding secretaries}" CanUserAddRows="False" AutoGenerateColumns="False">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="250" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.ColumnSpan="4" Grid.Row="0" Foreground="{DynamicResource TextColor}" Content="Pregled sastanaka" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-81,0,0" Width="250"/>
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <Label Foreground="{DynamicResource TextColor}" FontSize="20"  Width="183" Content="Doktor:"/>
+            <DockPanel Margin="0,0,0,20">
+                <ComboBox x:Name="doctorCombo" DisplayMemberPath="FullName" Width="120" Height="26"/>
+                <Button Content="+" x:Name="addDoctor"  VerticalAlignment="Top" Width="26" Height="26" Click="addDoctor_Click"/>
+            </DockPanel>
+            <DockPanel>
+                <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="doctors_table" Height="120" Width="120" ItemsSource="{Binding doctors}" CanUserAddRows="False" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Doktori" Width="*" Binding="{Binding FullName}"  CanUserResize="False"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button Content="-" x:Name="removeDoctor" HorizontalAlignment="Left" Margin="18.5,0,0,0"  VerticalAlignment="Top" Width="26" Height="26" Click="removeDoctor_Click"/>
+            </DockPanel>
+        </StackPanel>
+        
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <Label Foreground="{DynamicResource TextColor}" FontSize="20" Content="Upravnik:"/>
+            <DockPanel  Margin="0,0,0,20">
+                <ComboBox x:Name="managerCombo"  DisplayMemberPath="FullName" Width="120" Height="26"/>
+                <Button Content="+" x:Name="addManager" VerticalAlignment="Top" Width="26" Height="26" Click="addManager_Click"/>
+            </DockPanel>
+            <DockPanel>
+                <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="managers_table" Height="120" Width="120" ItemsSource="{Binding secretaries}" CanUserAddRows="False" AutoGenerateColumns="False">
 
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Upravnici" Width="*" Binding="{Binding FullName}"  CanUserResize="False"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            <Button Content="+" x:Name="addManager" HorizontalAlignment="Left" Margin="165,156,0,0" VerticalAlignment="Top" Width="22" Height="22" Click="addManager_Click"/>
-            <Button Content="-" x:Name="removeManager" HorizontalAlignment="Left" Margin="165,197,0,0" VerticalAlignment="Top" Width="22" Height="22" Click="removeManager_Click"/>
-        </Grid>
-        <Grid Margin="365,-98,215,209">
-            <ComboBox x:Name="secretaryCombo"  DisplayMemberPath="FullName" HorizontalAlignment="Left" Margin="18,156,0,0" VerticalAlignment="Top" Width="120" Height="31"/>
-            <Label Foreground="{DynamicResource TextColor}" FontSize="20" Content="Sekretar:" HorizontalAlignment="Left" Margin="20,118,0,0" VerticalAlignment="Top"/>
-            <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="secretary_table" HorizontalAlignment="Left" Height="120" Margin="16,197,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding managers}" CanUserAddRows="False" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Upravnici" Width="*" Binding="{Binding FullName}"  CanUserResize="False"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button Content="-" x:Name="removeManager" HorizontalAlignment="Left" Margin="18.5,0,0,0" VerticalAlignment="Top" Width="26" Height="26" Click="removeManager_Click"/>
+            </DockPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Grid.Row="1">
+            <Label Foreground="{DynamicResource TextColor}" FontSize="20" Content="Sekretar:"/>
+            <DockPanel Margin="0,0,0,20">
+                <ComboBox x:Name="secretaryCombo"  DisplayMemberPath="FullName" Width="120" Height="26"/>
+                <Button Content="+" x:Name="addSecretary"  VerticalAlignment="Top" Width="26" Height="26" Click="addSecretary_Click"/>
+            </DockPanel>
+            <DockPanel>
+                <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="secretary_table" Height="120" Width="120" ItemsSource="{Binding managers}" CanUserAddRows="False" AutoGenerateColumns="False">
 
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Sekretari" Width="*" Binding="{Binding FullName}"  CanUserResize="False"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button Content="-" x:Name="removeSecretary" HorizontalAlignment="Left" Margin="18,0,0,0" VerticalAlignment="Top" Width="26" Height="26" Click="removeSecretary_Click"/>
+            </DockPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="3" Grid.Row="1">
+            <Label Content="Zakazani sastanci" FontSize="20" Width="170" />
+            <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="meeting_table" ItemsSource="{Binding Path = meetings}" IsReadOnly="True" MaxHeight="200" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False">
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridCell}">
+                        <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick"/>
+                    </Style>
+                </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Sekretari" Width="*" Binding="{Binding FullName}"  CanUserResize="False"/>
+                    <DataGridTextColumn Header="Tema" Width="1*" Binding="{Binding topic}" DataGridColumn.CanUserResize="False"/>
+                    <DataGridTextColumn Header="Datum" Width="1*"  Binding="{Binding MeetingDate}" DataGridColumn.CanUserResize="False"/>
+                    <DataGridTextColumn Header="Vreme" Width="0.65*" Binding="{Binding MeetingTime}"  DataGridColumn.CanUserResize="False"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Content="+" x:Name="addSecretary" HorizontalAlignment="Left" Margin="164,156,0,0" VerticalAlignment="Top" Width="22" Height="22" Click="addSecretary_Click"/>
-            <Button Content="-" x:Name="removeSecretary" HorizontalAlignment="Left" Margin="163,197,0,0" VerticalAlignment="Top" Width="22" Height="22" Click="removeSecretary_Click"/>
-        </Grid>
-        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Margin="590,17,0,0">
-            <Label Foreground="{DynamicResource TextColor}" FontSize="20" Content="Tema sastanka:" HorizontalAlignment="Left" Margin="0,28,0,0" VerticalAlignment="Top"/>
-            <TextBox FontSize="18" x:Name="Topic" HorizontalAlignment="Left" Margin="7,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <Label Foreground="{DynamicResource TextColor}" FontSize="20" Content="Prostorija:" HorizontalAlignment="Left" Margin="0,92,0,0" VerticalAlignment="Top"/>
-            <ComboBox x:Name="roomCombo" DisplayMemberPath="roomNum" HorizontalAlignment="Left" Margin="7,130,0,0" VerticalAlignment="Top" Width="120" Height="31"/>
-            <Label Foreground="{DynamicResource TextColor}" FontSize="20" Content="Datum:" HorizontalAlignment="Left" Margin="2,158,0,0" VerticalAlignment="Top"/>
-            <DatePicker x:Name="DatePicker" HorizontalAlignment="Left" Margin="7,198,0,0" VerticalAlignment="Top" Height="26" Width="120"/>
-            <Label Foreground="{DynamicResource TextColor}" FontSize="20" Content="Vreme:" HorizontalAlignment="Left" Margin="3,218,0,0" VerticalAlignment="Top"/>
-            <TextBox FontSize="18" x:Name="Time" HorizontalAlignment="Left" Margin="7,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        </Grid>
-        <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Content="Zakaži" HorizontalAlignment="Left" Margin="641,346,0,0" VerticalAlignment="Top" Click="Schedule_Click"/>
-        <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource RedButton}" Content="Otkaži" HorizontalAlignment="Left" Margin="495,346,0,0" VerticalAlignment="Top" Click="Cancel_Click"/>
-        <Button Style="{StaticResource RoundButtonTemplate}" Background="LightBlue" Content="Detalji" Width="80" Height="40" HorizontalAlignment="Left" Margin="365,246,0,0" VerticalAlignment="Top" Click="Details_Click"/>
+        </StackPanel>
+
+
+
+        <StackPanel Grid.Row="2" Grid.Column="0">
+            <Label Foreground="{DynamicResource TextColor}" Width="145"  FontSize="20"  Content="Tema sastanka:" HorizontalAlignment="Left" />
+            <TextBox FontSize="18" x:Name="Topic" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <Label Foreground="{DynamicResource TextColor}" Width="115"  FontSize="20" Content="Datum:" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+            <DatePicker DisplayDateStart="{x:Static sys:DateTime.Today}" x:Name="DatePicker" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="120"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="2">
+            <Label Foreground="{DynamicResource TextColor}" FontSize="20" Content="Vreme:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox FontSize="18" x:Name="Time" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="3">
+            <Label Foreground="{DynamicResource TextColor}" FontSize="20" Content="Prostorija:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <ComboBox x:Name="roomCombo" DisplayMemberPath="roomNum" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="120" Height="26"/>
+        </StackPanel>
+
+        <DockPanel Grid.ColumnSpan="4" Grid.Row="3" HorizontalAlignment="Center" FlowDirection="LeftToRight">
+            <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Margin="0,0,20,0" Content="Zakaži"  Click="Schedule_Click"/>
+            <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource RedButton}" Content="Otkaži" Click="Cancel_Click"/>
+        </DockPanel>
+        <!-- <Button Style="{StaticResource RoundButtonTemplate}" Background="LightBlue" Content="Detalji" Width="80" Height="40" HorizontalAlignment="Left" Margin="365,246,0,0" VerticalAlignment="Top" Click="Details_Click"/> -->
 
     </Grid>
 </Page>

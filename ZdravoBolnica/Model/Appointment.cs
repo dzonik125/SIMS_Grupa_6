@@ -3,6 +3,7 @@
 // Created: Thursday, April 7, 2022 10:12:45
 // Purpose: Definition of Class Appointment
 
+using Repository;
 using SIMS.Model;
 using System;
 using System.ComponentModel;
@@ -12,7 +13,7 @@ namespace Model
     public class Appointment : Serializable, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
+        public RoomsCRUD roomRepository = new RoomsCRUD();
         protected virtual void OnPropertyChanged(string s)
         {
 
@@ -31,29 +32,6 @@ namespace Model
         public Patient patient { get; set; }
 
         public AppointmentType Type { get; set; }
-
-        /*public static explicit operator Appointment(object v)
-        {
-            throw new NotImplementedException();
-        }*/
-
-
-        /* public Appointment(DateTime st, AppointmentType type, Doctor doctor, Patient patient, Room room)
-         {
-             startTime = startTime;
-             duration = duration;
-             Type = type;
-             Doctor = doctor;
-             patient = patient;
-             Room = room;
-             id = id;
-         }*/
-
-
-
-
-
-
 
         public int timesEdited = 0;
 
@@ -76,6 +54,11 @@ namespace Model
         public DateTime GetEndTime()
         {
             return startTime.AddMinutes(duration);
+        }
+
+        public DateTime GetAppointmentEndTime
+        {
+            get { return startTime.AddMinutes(duration); }
         }
 
 
@@ -123,8 +106,7 @@ namespace Model
             patient.id = int.Parse(values[1]);
             Doctor = new Doctor();
             Doctor.id = int.Parse(values[2]);
-            Room = new Room();
-            Room.id = int.Parse(values[3]);
+            Room = roomRepository.FindById(int.Parse(values[3]));
             startTime = DateTime.Parse(values[4]);
             duration = int.Parse(values[5]);
             Type = Conversion.StringToAppointmentType(values[6]);

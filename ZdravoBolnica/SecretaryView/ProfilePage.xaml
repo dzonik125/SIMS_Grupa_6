@@ -11,21 +11,21 @@
       Title="ProfilePage">
 
     <Grid>
-        <Label Foreground="{DynamicResource TextColor}" Content="Lični profil" FontSize="30" HorizontalAlignment="Center" Margin="0,-47,0,394"/>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+        <Label Foreground="{DynamicResource TextColor}" Content="Lični profil" FontSize="30" HorizontalAlignment="Center" Margin="0,-81,0,485"/>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,35,0,0">
             <Label Content="Ime:" Foreground="{DynamicResource TextColor}" HorizontalAlignment="Left" FontSize="17" Height="33" Width="54" Margin="0,0,5,0"/>
-            <TextBox Width="120" FontSize="18" Height="26"/>
+            <TextBox  IsEnabled="False" x:Name="Ime" Width="120" Text="{Binding Ime}" FontSize="18" Height="26" Margin="0,0,0,5"/>
             <Label Content="Prezime:" Foreground="{DynamicResource TextColor}" HorizontalAlignment="Left" FontSize="17" Height="33" Width="75" Margin="0,0,5,0"/>
-            <TextBox Width="120" FontSize="18" Height="26"/>
+            <TextBox IsEnabled="False" x:Name="prezime" Text="{Binding Prezime}" Width="120" FontSize="18" Height="26" Margin="0,0,0,5"/>
             <Label Content="Username:" Foreground="{DynamicResource TextColor}" HorizontalAlignment="Left" FontSize="17" Height="33" Width="90" Margin="0,0,5,0"/>
-            <TextBox Width="120" FontSize="18" Height="26"/>
+            <TextBox  IsEnabled="False" x:Name="username" Width="120" Text="{Binding Username}" FontSize="18" Height="26" Margin="0,0,0,5"/>
             <Label Content="Šifra:" Foreground="{DynamicResource TextColor}" HorizontalAlignment="Left" FontSize="17" Height="33" Width="54" Margin="0,0,5,0"/>
-            <TextBox Width="120" FontSize="18" Height="26"/>
+            <TextBox  IsEnabled="False" x:Name="password" Width="120" Text="{Binding Password}" FontSize="18" Height="26" Margin="0,0,0,5"/>
             <Label Content="Email:" Foreground="{DynamicResource TextColor}" HorizontalAlignment="Left" FontSize="17" Height="33" Width="126" Margin="0,0,5,0"/>
-            <TextBox Width="120" FontSize="18" Height="26"/>
-            <Label Content="Jmbg:" Foreground="{DynamicResource TextColor}" HorizontalAlignment="Left" FontSize="17" Height="33" Width="54" Margin="0,0,5,0"/>
-            <TextBox Width="120" FontSize="18" Height="26"/>
+            <TextBox  IsEnabled="False" x:Name="email" Width="120" Text="{Binding Email}" FontSize="18" Height="26" Margin="0,0,0,5"/>
+            <Label Content="JMBG:" Foreground="{DynamicResource TextColor}" HorizontalAlignment="Left" FontSize="17" Height="33" Width="54" Margin="0,0,5,0"/>
+            <TextBox IsEnabled="False" x:Name="jmbg" Width="120" Text="{Binding Jmbg}" FontSize="18" Height="26" Margin="0,0,0,5"/>
         </StackPanel>
-        
+
     </Grid>
 </Page>

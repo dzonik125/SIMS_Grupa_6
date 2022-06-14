@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace SIMS.Repository
 {
-    class OrderEquipmentRepository : Repository<OrderEquipment, int>
+    public class OrderEquipmentRepository : Repository<OrderEquipment, int>
     {
         private String filename = @".\..\..\..\Data\orders.txt";
         private Serializer<OrderEquipment> orderEquipmentSerilizer = new Serializer<OrderEquipment>();

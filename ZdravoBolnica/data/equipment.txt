@@ -1,2 +1,8 @@
-1|jod|33|potrosna
-2|maske|2121|potrosna
+1|jod|50|potrosna
+2|maske|2130|potrosna
+3|igle|3|potrosna
+4|ubrus|33|potrosna
+5|flaster|20|potrosna
+6|zavoj|50|potrosna
+7|hidrogen|20|potrosna
+8|gaza|20|potrosna

@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace SIMS.Controller
 {
-    class OrderEquipmentController
+    public class OrderEquipmentController
     {
         public OrderEquipmentService oes = new OrderEquipmentService();
 

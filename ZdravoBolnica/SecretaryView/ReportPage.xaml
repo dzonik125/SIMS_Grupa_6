@@ -11,25 +11,26 @@
       MaxWidth="800">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
         <Label Foreground="{DynamicResource TextColor}" Content="Kreiraj izveštaj" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Top" Height="50" Margin="0,-80,0,0"/>
-        <StackPanel>
+        <StackPanel Grid.Row="0">
 
-            <DataGrid Style="{StaticResource SecretaryDataGrid}"  x:Name="patientTable" ItemsSource="{Binding list}" Margin="20,20" IsReadOnly="True" MaxHeight="200" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False">
+            <DataGrid Style="{StaticResource SecretaryDataGrid}"  x:Name="patientTable" ItemsSource="{Binding list}" Margin="20,20" IsReadOnly="True" MaxHeight="300" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id" Width="*" Binding="{Binding id}" CanUserResize="False"/>
-                    <DataGridTextColumn Header="Broj sobe" Width="*" Binding="{Binding roomNum}"  CanUserResize="False"/>
-                    <DataGridTextColumn Header="Zauzeta" Width="*" Binding="{Binding startTime}"  CanUserResize="False"/>
-                    <DataGridTextColumn Header="Namena sobe" Width="*" Binding="{Binding RoomTypeToString}" CanUserResize="False"/>
+                    <DataGridTextColumn Header="Broj sobe" Width="*" Binding="{Binding Room.roomNum}" CanUserResize="False"/>
+                    <DataGridTextColumn Header="Tip" Width="*" Binding="{Binding Room.RoomTypeString}"  CanUserResize="False"/>
+                    <DataGridTextColumn Header="Vreme početka" Width="*" Binding="{Binding startTime}"  CanUserResize="False"/>
+                    <DataGridTextColumn Header="Vreme završetka" Width="*" Binding="{Binding GetAppointmentEndTime}" CanUserResize="False"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
 
-        <Grid>
-            <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight"  Margin="0,330,0,32">
-                <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Content="Kreiraj izveštaj" VerticalAlignment="Top" Margin="10,10" Click="CreateReport_Click"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" FlowDirection="LeftToRight" Margin="340,0,0,0">
+            <Button  Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Content="Kreiraj izveštaj" Click="CreateReport_Click"/>
+        </StackPanel>
 
-            </StackPanel>
-
-        </Grid>
     </Grid>
 </Page>

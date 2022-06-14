@@ -262,11 +262,6 @@ namespace SIMS.SecretaryView
 
 
 
-
-
-
-
-
         public Patient patient = new Patient();
         public MedicalRecord mr;
         public Adress adress;
@@ -297,7 +292,7 @@ namespace SIMS.SecretaryView
         {
             InitializeComponent();
 
-            // allergenTable.ItemsSource = al;
+
             medAllergs_table.ItemsSource = medications;
 
 
@@ -306,7 +301,7 @@ namespace SIMS.SecretaryView
             allergs = alc.FindAll();
             meds = mc.FindAll();
 
-            // AllergsBox.ItemsSource = allergs;
+
             MedAllergsBox.ItemsSource = meds;
 
             DataContext = this;
@@ -316,7 +311,7 @@ namespace SIMS.SecretaryView
         {
             adress = new Adress();
             mr = new MedicalRecord();
-            // pr = new Prescription();
+
 
             patient.name = textBoxIme.Text;
             patient.surname = textBoxPrezime.Text;
@@ -339,9 +334,9 @@ namespace SIMS.SecretaryView
             adress.city = textBoxGrad.Text;
             adress.country = textBoxDrzava.Text;
 
-            if (textBoxBrojK.Text.Equals(""))
+            if (textBoxBrojK.Text.Equals("") || textBoxIme.Text.Equals("") || textBoxPrezime.Text.Equals("") || textBoxLbo.Text.Equals(""))
             {
-                MessageBox.Show("Unesite broj kartona");
+                MessageBox.Show("Popunite sva polja pre registracije !");
             }
             else
             {
@@ -364,16 +359,14 @@ namespace SIMS.SecretaryView
                 ac.AddAdress(adress);
                 pc.AddPatient(patient);
 
-                SecretaryView.Instance.SetContent(new RegistrationPatient());
-
-                RegistrationPatient rgi = new RegistrationPatient();
-                SecretaryView.Instance.SetContent(new RegistrationPatient());
+                RegistrationPage rgi = new RegistrationPage();
+                SecretaryView.Instance.SetContent(new RegistrationPage());
             }
         }
 
         private void CloseNew_Click(object sender, RoutedEventArgs e)
         {
-            SecretaryView.Instance.SetContent(new RegistrationPatient());
+            SecretaryView.Instance.SetContent(new RegistrationPage());
         }
 
         private void addAllergen_Click(object sender, RoutedEventArgs e)

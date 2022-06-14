@@ -2,6 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 
+
+
     <SolidColorBrush x:Key="BackgroundColorPage" Color="#cde4e1"/>
     <SolidColorBrush x:Key="MenuButtonColor" Color="#84bcb4"/>
     <SolidColorBrush x:Key="TextColor" Color="Black"/>

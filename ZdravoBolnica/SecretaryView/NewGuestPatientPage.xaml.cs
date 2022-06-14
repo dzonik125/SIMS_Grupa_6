@@ -1,5 +1,6 @@
 ﻿using Controller;
 using Model;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -8,7 +9,7 @@ namespace SIMS.SecretaryView
     /// <summary>
     /// Interaction logic for NewGuestPatientPage.xaml
     /// </summary>
-    public partial class NewGuestPatientPage : Page
+    public partial class NewGuestPatientPage : Page, INotifyPropertyChanged
     {
 
         public PatientController pc = new PatientController();
@@ -23,6 +24,8 @@ namespace SIMS.SecretaryView
             InitializeComponent();
             lastPage = p;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private void AddGuest_Click(object sender, RoutedEventArgs e)
         {
@@ -53,8 +56,8 @@ namespace SIMS.SecretaryView
 
             if (lastPage == 1)
             {
-                RegistrationPatient rgi = new RegistrationPatient();
-                SecretaryView.Instance.SetContent(new RegistrationPatient());
+                RegistrationPage rgi = new RegistrationPage();
+                SecretaryView.Instance.SetContent(new RegistrationPage());
             }
             else
             {
@@ -67,6 +70,8 @@ namespace SIMS.SecretaryView
 
         private void Reject_Click(object sender, RoutedEventArgs e)
         {
+            RegistrationPage rgi = new RegistrationPage();
+            SecretaryView.Instance.SetContent(new RegistrationPage());
 
         }
     }

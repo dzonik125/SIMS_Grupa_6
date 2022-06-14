@@ -15,7 +15,7 @@
             <RowDefinition Height="3*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.ColumnSpan="3" Foreground="{DynamicResource TextColor}" Content="Registruj guest pacijenta" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Margin="10,0,0,0" Grid.Column="1"/>
+        <Label Grid.Row="0" Grid.ColumnSpan="3" Foreground="{DynamicResource TextColor}" Content="Kreiraj guest pacijenta" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Margin="10,0,0,0" Grid.Column="1"/>
         <StackPanel Grid.Row="1">
             <Label HorizontalContentAlignment="Left" Foreground="{DynamicResource TextColor}" Content="Ime:" FontSize="20" Width="115"/>
             <TextBox x:Name="Name" TextWrapping="Wrap" Width="120" FontSize="20"/>

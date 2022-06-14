@@ -1,5 +1,4 @@
 ﻿using Model;
-using Service;
 using SIMS.Model;
 using SIMS.Repository;
 using System;
@@ -7,7 +6,7 @@ using System.ComponentModel;
 
 namespace SIMS.Service
 {
-    class OrderEquipmentService
+    public class OrderEquipmentService
     {
         public OrderEquipmentRepository orderEquipmentRepository = new OrderEquipmentRepository();
         private EquipmentService equipmentService = new EquipmentService();

@@ -1,7 +1,7 @@
 ﻿using Controller;
 using Model;
-using Service;
 using SIMS.Model;
+using SIMS.SecretaryView.ViewModel;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -99,10 +99,11 @@ namespace SIMS.SecretaryView
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+
+        private void Report_Click(object sender, RoutedEventArgs e)
         {
-            ReportSecretaryService rss = new ReportSecretaryService();
-            rss.GenerateReport();
+            SecretaryView.Instance.SetContent(new ReportPage());
         }
     }
 }

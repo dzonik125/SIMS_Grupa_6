@@ -13,11 +13,11 @@ namespace SIMS.SecretaryView.Validation
                 ValidationContext validationContext = new ValidationContext();
                 validationContext.SetStrategy(new NameValidationStrategy());
                 if (validationContext.Validate(text)) return new ValidationResult(true, null);
-                return new ValidationResult(false, TranslationSource.Instance["NameError"]);
+                return new ValidationResult(false, "Pogrešan format imena.");
             }
             catch
             {
-                return new ValidationResult(false, TranslationSource.Instance["UnknownError"]);
+                return new ValidationResult(false, "Nepoznata greska");
             }
         }
     }
@@ -32,7 +32,7 @@ namespace SIMS.SecretaryView.Validation
                 ValidationContext validationContext = new ValidationContext();
                 validationContext.SetStrategy(new NameValidationStrategy());
                 if (validationContext.Validate(text)) return new ValidationResult(true, null);
-                return new ValidationResult(false, "Loš format");
+                return new ValidationResult(false, "Pogrešan format prezimena.");
             }
             catch
             {
@@ -50,7 +50,7 @@ namespace SIMS.SecretaryView.Validation
                 ValidationContext validationContext = new ValidationContext();
                 validationContext.SetStrategy(new EmailValidationStrategy());
                 if (validationContext.Validate(text)) return new ValidationResult(true, null);
-                return new ValidationResult(false, "Loš format");
+                return new ValidationResult(false, "Pogrešan format email adrese");
             }
             catch
             {
@@ -69,7 +69,7 @@ namespace SIMS.SecretaryView.Validation
                 ValidationContext validationContext = new ValidationContext();
                 validationContext.SetStrategy(new UsernameValidationStrategy());
                 if (validationContext.Validate(text)) return new ValidationResult(true, null);
-                return new ValidationResult(false, "Loš format");
+                return new ValidationResult(false, "Pogrešan format korisničkog imena.");
             }
             catch
             {
@@ -88,7 +88,7 @@ namespace SIMS.SecretaryView.Validation
                 ValidationContext validationContext = new ValidationContext();
                 validationContext.SetStrategy(new PasswordValidationStrategy());
                 if (validationContext.Validate(text)) return new ValidationResult(true, null);
-                return new ValidationResult(false, "Loš format");
+                return new ValidationResult(false, "Šifra mora da sadrži minimalno 6 karaktera.");
             }
             catch
             {
@@ -106,7 +106,7 @@ namespace SIMS.SecretaryView.Validation
                 ValidationContext validationContext = new ValidationContext();
                 validationContext.SetStrategy(new NameValidationStrategy());
                 if (validationContext.Validate(text)) return new ValidationResult(true, null);
-                return new ValidationResult(false, "Loš format");
+                return new ValidationResult(false, "Pogrešan format naziva grada.");
             }
             catch
             {
@@ -125,7 +125,7 @@ namespace SIMS.SecretaryView.Validation
                 ValidationContext validationContext = new ValidationContext();
                 validationContext.SetStrategy(new NameValidationStrategy());
                 if (validationContext.Validate(text)) return new ValidationResult(true, null);
-                return new ValidationResult(false, "Loš format");
+                return new ValidationResult(false, "Pogrešan format naziva države.");
             }
             catch
             {
@@ -144,7 +144,7 @@ namespace SIMS.SecretaryView.Validation
                 ValidationContext validationContext = new ValidationContext();
                 validationContext.SetStrategy(new NumberValidationStrategy());
                 if (validationContext.Validate(text)) return new ValidationResult(true, null);
-                return new ValidationResult(false, "Loš format");
+                return new ValidationResult(false, "Možete uneti samo brojeve.");
             }
             catch
             {
@@ -185,7 +185,7 @@ namespace SIMS.SecretaryView.Validation
                 ValidationContext validationContext = new ValidationContext();
                 validationContext.SetStrategy(new NameValidationStrategy());
                 if (validationContext.Validate(text)) return new ValidationResult(true, null);
-                return new ValidationResult(false, "Loš format");
+                return new ValidationResult(false, "Pogrešan format naziva ulice.");
             }
             catch
             {

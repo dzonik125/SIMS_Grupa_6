@@ -13,7 +13,7 @@ namespace SIMS.SecretaryView
     /// <summary>
     /// Interaction logic for EditPatientPage.xaml
     /// </summary>
-    public partial class EditPatientPage : Page
+    public partial class EditPatientPage : Page, INotifyPropertyChanged
     {
 
         public Patient selectedPatient;
@@ -31,11 +31,22 @@ namespace SIMS.SecretaryView
 
         public BindingList<Medication> medications = new BindingList<Medication>();
         public MedicationController medsc = new MedicationController();
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+
         public EditPatientPage(Patient p)
         {
             selectedPatient = p;
             InitializeComponent();
-
             textBoxIme.Text = p.name;
             textBoxPrezime.Text = p.surname;
             textBoxBrojTelefona.Text = p.phone;
@@ -198,13 +209,13 @@ namespace SIMS.SecretaryView
             // SecretaryUI sui = SecretaryUI.Instance;
             // sui.refresh();
 
-            SecretaryView.Instance.SetContent(new RegistrationPatient());
+            SecretaryView.Instance.SetContent(new RegistrationPage());
 
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
-            SecretaryView.Instance.SetContent(new RegistrationPatient());
+            SecretaryView.Instance.SetContent(new RegistrationPage());
         }
 
         private void addMedicine_Click(object sender, RoutedEventArgs e)

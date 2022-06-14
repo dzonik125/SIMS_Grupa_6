@@ -11,38 +11,54 @@
       Title="OrderEquipmentPage">
 
     <Grid>
-        <Label Foreground="{DynamicResource TextColor}" Content="Naručivanje dinamičke opreme" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Margin="180,-81,0,0"/>
-        <Grid Width="400" HorizontalAlignment="Left" Margin="-50,40,0,340" Height="70">
-            <Label Foreground="{DynamicResource TextColor}" Content="Naziv:" FontSize="20" VerticalAlignment="Top" Height="40" Margin="139,0,191,0" />
-            <TextBox FontSize="18" Height="26" Name="Name" VerticalAlignment="Top" Margin="145,40,130,0" />
-        </Grid>
-        <Grid Width="400" Height="70" HorizontalAlignment="Left" Margin="-50,115,0,265">
-            <Label Foreground="{DynamicResource TextColor}" Content="Kolicina:" FontSize="20" HorizontalAlignment="Left" Margin="139,1,0,28"/>
-            <TextBox FontSize="18" Height="26" x:Name="Quantity" VerticalAlignment="Top" Margin="145,40,130,0"/>
-        </Grid>
-        <Grid HorizontalAlignment="Left" Margin="-65,205,0,54" Width="415">
-            <Label Foreground="{DynamicResource TextColor}" Content="Lista za naručivanje:" FontSize="20" HorizontalAlignment="Left" Margin="154,13,0,137"/>
-            <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="equipmentTable" HorizontalAlignment="Left" Height="126" VerticalAlignment="Top" Width="150" ItemsSource="{Binding Path=eq}" CanUserAddRows="False" AutoGenerateColumns="False" Margin="159,54,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="400" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0*"/>
+            <RowDefinition Height="197*"/>
+            <RowDefinition Height="28*"/>
+        </Grid.RowDefinitions>
+        <Label Foreground="{DynamicResource TextColor}" Content="Naručivanje dinamičke opreme" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Margin="180,-81,0,0" Grid.ColumnSpan="2" Width="420"/>
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <DockPanel>
+                <Label Foreground="{DynamicResource TextColor}" Margin="0,0,-100,0" Content="Naziv:" FontSize="20"  Width="115"/>
+                <Label Foreground="{DynamicResource TextColor}" Content="Kolicina:" FontSize="20" Width="140"/>
+            </DockPanel>
+            <DockPanel FlowDirection="LeftToRight">
+                <TextBox Name="Name" Text = "{Binding Ime}" Width="115" FontSize="18" Height="26" Margin="0,0,-55,0"/>
+                <TextBox x:Name="Quantity" Text = "{Binding Kolicina}" FontSize="18" Width="115" Height="26" Margin="70,0,0,0" />
+                <Button  Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Content="Dodaj" x:Name="add" Width="63" Margin="-50,0,0,0" Command="{Binding AddToList}" DockPanel.Dock="Right" Height="28"/>
+
+            </DockPanel>
+            <Label Margin="0,40,0,0" Foreground="{DynamicResource TextColor}" Content="Spisak:" FontSize="20"  Width="403"/>
+            <DockPanel>
+                <DataGrid Style="{StaticResource SecretaryDataGrid}" SelectedItem="{Binding Path=SelectedEquipment, Mode=TwoWay}"  x:Name="equipmentTable" Height="171" Width="245" ItemsSource="{Binding eq}" CanUserAddRows="False" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding item}"  CanUserResize="False"/>
+                        <DataGridTextColumn Header="Kolicina" Width="*" Binding="{Binding quantity}"  CanUserResize="False"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource DeleteButton}" Content="Izbaci" x:Name="add_Copy" Margin="-50,-130,0,0" Height="30" Command="{Binding RemoveFromList}" Width="63"/>
+            </DockPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Label Foreground="{DynamicResource TextColor}" Content="Magacin" FontSize="30" Width="125"/>
+            <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="magacinTable"  Height="245" Width="396" ItemsSource="{Binding order}" CanUserAddRows="False" AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding item}"  DataGridColumn.CanUserResize="False"/>
-                    <DataGridTextColumn Header="Kolicina" Width="*" Binding="{Binding quantity}"  DataGridColumn.CanUserResize="False"/>
+                    <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding item}"  CanUserResize="False"/>
+                    <DataGridTextColumn Header="Kolicina" Width="*" Binding="{Binding quantity}"  CanUserResize="False"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Content="Dodaj" x:Name="add" Height="30" Width="70" Margin="330,-50,15,211" Click="Add_Click"/>
-            <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource DeleteButton}" Content="Izbaci" x:Name="add_Copy" Width="70" Height="30" Margin="330,55,15,95" Click="Remove_Click"/>
-        </Grid>
-        <Grid Margin="390,0,5,110">
-            <Label Foreground="{DynamicResource TextColor}" Content="Magacin"  Margin="133,55,133,0" VerticalAlignment="Top" FontSize="30"/>
-            <DataGrid Style="{StaticResource SecretaryDataGrid}" x:Name="magacinTable"  Height="200" VerticalAlignment="Top" Width="285" ItemsSource="{Binding Path=order}" CanUserAddRows="False" AutoGenerateColumns="False" Margin="60,125,60,0">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding item}"  DataGridColumn.CanUserResize="False"/>
-                    <DataGridTextColumn Header="Kolicina" Width="*" Binding="{Binding quantity}"  DataGridColumn.CanUserResize="False"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
-        <Grid HorizontalAlignment="Center" Margin="0,396,0,-50" Width="488">
-            <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" x:Name="ordering" Content="Poruči" Margin="85,22,270,22" Click="Order_Click"/>
-            <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource RedButton}" x:Name="cancel" Content="Odustani" Margin="280,22,88,22"/>
-        </Grid>
+        </StackPanel>
+
+        <DockPanel HorizontalAlignment="Left" FlowDirection="LeftToRight" Grid.Row="1" Grid.ColumnSpan="2" Margin="290,385,0,0" Width="220" Grid.RowSpan="2">
+            <Button  Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Margin="0,0,20,0" x:Name="ordering" Content="Poruči" Command="{Binding OrderCommand}" Width="100"/>
+
+        </DockPanel>
+
+
+
     </Grid>
 </Page>

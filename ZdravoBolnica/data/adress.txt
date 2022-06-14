@@ -6,3 +6,18 @@
 ||||6
 ||||7
 Ulica|2|Loznica|Srbija|8
+Karadjordjeva|3|Beograd|Srbija|9
+||||10
+Ulica|12|Novi Sad|Srb|11
+||||12
+||||13
+Ulica|721|Novi Sad|Srbija|14
+||||15
+Ulica|32|Sarajevo|Bosna|16
+Ulica|342|Grad|Nemacka|17
+||||18
+Laze Kostica|3|Subotica|Srbija|19
+||||20
+||||21
+Karadjordjeva|49|Loznica|Srbija|22
+||||23

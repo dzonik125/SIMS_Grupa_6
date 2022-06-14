@@ -16,6 +16,8 @@ namespace Model
                 surname,
                 password,
                 username,
+                email,
+                jmbg
             };
             return csvValues;
         }
@@ -27,6 +29,8 @@ namespace Model
             surname = values[2];
             password = values[3];
             username = values[4];
+            email = values[5];
+            jmbg = values[6];
         }
     }
 }

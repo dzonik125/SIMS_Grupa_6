@@ -1,4 +1,4 @@
-﻿<Page x:Class="SIMS.SecretaryView.RegistrationPatient"
+﻿<Page x:Class="SIMS.SecretaryView.RegistrationPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,17 +6,18 @@
       xmlns:local="clr-namespace:SIMS.SecretaryView"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="RegistrationPatient"
+      Title="RegistrationPage"
       MaxHeight="450"
       MaxWidth="800">
+
     <Grid>
         <Label Foreground="{DynamicResource TextColor}" Content="Pregled registrovanih pacijenata" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Margin="180,-81,0,0"/>
         <StackPanel>
 
-            <DataGrid Style="{StaticResource SecretaryDataGrid}"  x:Name="patientTable" ItemsSource="{Binding Path=Patients}" Margin="20,20" IsReadOnly="True" MaxHeight="200" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False">
+            <DataGrid Style="{StaticResource SecretaryDataGrid}" SelectedItem="{Binding Path=SelectedPatient, Mode=TwoWay}" x:Name="patientTable" ItemsSource="{Binding list}" Margin="20,20" IsReadOnly="True" MaxHeight="250" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridCell}">
-                        <EventSetter Event="MouseDoubleClick"/>
+                        <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick"/>
                     </Style>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
@@ -24,7 +25,7 @@
                     <DataGridTextColumn Header="Ime" Width="*" Binding="{Binding name}"  CanUserResize="False"/>
                     <DataGridTextColumn Header="Prezime" Width="*" Binding="{Binding surname}"  CanUserResize="False"/>
                     <DataGridTextColumn Header="LBO" Width="*" Binding="{Binding lbo}" CanUserResize="False"/>
-                    <DataGridCheckBoxColumn Header="Guest" Width="*" Binding="{Binding guest}" CanUserResize="False"/>
+                    <DataGridTextColumn Header="Tip naloga" Width="*" Binding="{Binding YesNo}" CanUserResize="False"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
@@ -32,10 +33,10 @@
         <Grid>
             <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight"  Margin="0,330,0,32">
                 <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Content="Dodaj" VerticalAlignment="Top" Margin="10,10" Command="{Binding NewPatientCommand}"/>
-                <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Content="Dodaj Guest" VerticalAlignment="Top" Margin="10,10" />
+                <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Content="Dodaj Guest" VerticalAlignment="Top" Margin="10,10" Command="{Binding NewGuestPatientCommand}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Margin="0,327,0,34">
-                <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource DeleteButton}" Content="Izbriši" VerticalAlignment="Top" Margin="10,10" />
+                <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource DeleteButton}" Content="Izbriši" VerticalAlignment="Top" Margin="10,10" Command="{Binding RemovePatientCommand}"/>
 
             </StackPanel>
         </Grid>

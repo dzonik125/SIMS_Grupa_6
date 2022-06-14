@@ -16,13 +16,13 @@
                         <ControlTemplate TargetType="Button">
                             <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
-
                                 </ContentPresenter>
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Style>
+
 
             <Style x:Key="SecretaryDataGrid" TargetType="{x:Type DataGrid}">
                 <Setter Property="SelectionMode" Value="Single"/>

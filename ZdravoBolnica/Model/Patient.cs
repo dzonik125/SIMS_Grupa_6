@@ -19,6 +19,12 @@ namespace Model
         public System.Collections.Generic.List<Appointment> appointment;
 
 
+
+        public string YesNo
+        {
+            get { return !guest ? "Registrovan" : "Gost"; }
+        }
+
         public System.Collections.Generic.List<Appointment> Appointment
         {
             get

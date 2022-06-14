@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SIMS.SecretaryView"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="800"
       MaxHeight="450"
@@ -16,32 +17,32 @@
             <StackPanel Width="400"  Orientation="Vertical" Margin="200,2,200,-187">
                 <Grid Width="400" FlowDirection="LeftToRight" HorizontalAlignment="Center">
                     <Label Foreground="{DynamicResource TextColor}" Content="Pacijent:" HorizontalAlignment="Left" Margin="128,7,0,30" FontSize="17" Height="33" Width="73"/>
-                    <ComboBox DisplayMemberPath="FullName" x:Name="PatientBox" Margin="134,38,143,2" Height="29"/>
+                    <ComboBox DisplayMemberPath="DisplayText" x:Name="PatientBox" SelectedValuePath="Entity" ItemsSource="{Binding Path=PatientComboBox}" SelectedValue = "{Binding Path = PatientData}" Margin="134,38,143,2" Height="29"/>
                 </Grid>
                 <Grid Width="400" FlowDirection="LeftToRight" HorizontalAlignment="Center">
                     <Label Foreground="{DynamicResource TextColor}" Content="Doktor:" HorizontalAlignment="Left" Margin="128,7,0,0" VerticalAlignment="Top" FontSize="17" Height="32" Width="74"/>
-                    <ComboBox HorizontalAlignment="Left" DisplayMemberPath="FullName" x:Name="DoctorBox" Margin="134,38,0,0" VerticalAlignment="Top"  Width="123" Height="29"/>
+                    <ComboBox HorizontalAlignment="Left" DisplayMemberPath="DisplayText" SelectedValuePath="Entity" x:Name="DoctorBox" ItemsSource="{Binding Path=DoctorComboBox}" SelectedValue = "{Binding Path = DoctorData}" Margin="134,38,0,0" VerticalAlignment="Top"  Width="123" Height="29"/>
                 </Grid>
                 <Grid Width="400"  FlowDirection="LeftToRight" HorizontalAlignment="Center">
                     <Label Foreground="{DynamicResource TextColor}" Content="Sala:" HorizontalAlignment="Left" Margin="130,10,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="54"/>
-                    <ComboBox HorizontalAlignment="Left" x:Name="RoomBox" Margin="134,38,0,0" DisplayMemberPath="roomNum" VerticalAlignment="Top"  Width="123" Height="29" />
+                    <ComboBox HorizontalAlignment="Left" x:Name="RoomBox" SelectedValuePath="Entity" ItemsSource="{Binding Path=RoomComboBox}" SelectedValue = "{Binding Path = RoomData}" Margin="134,38,0,0" DisplayMemberPath="DisplayText" VerticalAlignment="Top"  Width="123" Height="29" />
                 </Grid>
                 <Grid Width="400"  FlowDirection="LeftToRight">
                     <Label Foreground="{DynamicResource TextColor}" Content="Datum:" HorizontalAlignment="Left" Margin="131,8,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="74"/>
-                    <DatePicker HorizontalAlignment="Left" x:Name="DatePicker" Margin="134,38,0,0" VerticalAlignment="Top" Width="123"/>
+                    <DatePicker  DisplayDateStart="{x:Static sys:DateTime.Today}" HorizontalAlignment="Left" x:Name="DatePicker" SelectedDate="{Binding StartDate}" Margin="134,38,0,0" VerticalAlignment="Top" Width="123"/>
                 </Grid>
                 <Grid Width="400"  FlowDirection="LeftToRight" HorizontalAlignment="Center">
                     <Label Foreground="{DynamicResource TextColor}" Content="Vreme:" HorizontalAlignment="Left" Margin="132,9,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="72"/>
-                    <ComboBox HorizontalAlignment="Left" x:Name="Time" Margin="134,38,0,0" VerticalAlignment="Top"  Width="123" Height="29" />
+                    <TextBox HorizontalAlignment="Left" x:Name="Time" Text="{Binding Time}" Margin="134,38,0,0" VerticalAlignment="Top"   Width="120" FontSize="18" Height="26" />
                 </Grid>
                 <Grid Width="400"  FlowDirection="LeftToRight">
                     <Label Foreground="{DynamicResource TextColor}" Content="Trajanje:" HorizontalAlignment="Left" Margin="129,8,0,0" VerticalAlignment="Top" FontSize="17" Height="33" Width="73"/>
-                    <ComboBox HorizontalAlignment="Left" x:Name="Duration" Margin="134,38,0,0" VerticalAlignment="Top"  Width="123" Height="29" />
+                    <TextBox HorizontalAlignment="Left" Text="{Binding Duration}" x:Name="Duration" Margin="134,38,0,0" VerticalAlignment="Top"   Width="120" FontSize="18" Height="26" />
                 </Grid>
                 <Grid Height="50"></Grid>
                 <Grid Width="400" FlowDirection="LeftToRight">
-                    <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Content="Zakazi" HorizontalAlignment="Left"  VerticalAlignment="Center"  Margin="40,0,0,0" Click="Schedule_Click" FontSize="16"/>
-                    <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource RedButton}" Content="Zatvori"  Click="Close_Click" Margin="210,10,70,10"/>
+                    <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource GreenButton}" Content="Zakazi" HorizontalAlignment="Left"  VerticalAlignment="Center"  Margin="40,0,0,0" Command="{Binding ScheduleCommand}" FontSize="16"/>
+                    <Button Style="{StaticResource RoundButtonTemplate}" Background="{DynamicResource RedButton}" Content="Zatvori"  Command="{Binding CancelCommand}" Margin="210,10,70,10"/>
                 </Grid>
             </StackPanel>
         </Grid>
