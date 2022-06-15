@@ -136,10 +136,8 @@ namespace SIMS
         {
             list.Clear();
             List<Appointment> allAppointments = ac.GetAllAppointments();
-            List<Doctor> doctors = dc.GetAllDoctors();
-            List<Room> rooms = rc.FindAll();
-            ac.BindDoctorsWithAppointments(doctors, allAppointments);
-            ac.BindRoomsWithAppointments(rooms, allAppointments);
+            ac.BindDoctorsWithAppointments(allAppointments);
+            ac.BindRoomsWithAppointments(allAppointments);
             foreach (Appointment a in allAppointments)
             {
                 list.Add(a);

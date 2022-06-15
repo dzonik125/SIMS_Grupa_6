@@ -47,13 +47,13 @@ namespace SIMS.Controller
             return examinationReportService.findReportsByMRecordId(id);
         }
 
-        public void bindReporswithDoctors(List<ExaminationReport> reports, List<Doctor> doctors)
+        public void bindReporswithDoctors(List<ExaminationReport> reports)
         {
-            examinationReportService.bindReporswithDoctors(reports, doctors);
+            examinationReportService.bindReporswithDoctors(reports);
         }
-        public void bindReportswithAppointments(List<ExaminationReport> reports, List<Appointment> appointments)
+        public void bindReportswithAppointments(List<ExaminationReport> reports)
         {
-            examinationReportService.bindReportswithAppointments(reports, appointments);
+            examinationReportService.bindReportswithAppointments(reports);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Model;
+using Service;
 using SIMS.Model;
 using SIMS.Repository;
 using System;
@@ -48,31 +49,22 @@ namespace SIMS.Service
             return prescriptionRepository.findPrescriptionsbyMRecordId(id);
         }
 
-        public void bindPrescriptionsWithDoctors(List<Prescription> prescriptions, List<Doctor> doctors)
+        public void bindPrescriptionsWithDoctors(List<Prescription> prescriptions)
         {
-            foreach (Doctor d in doctors)
+            DoctorService doctorService = new DoctorService();
+            foreach (Prescription p in prescriptions)
             {
-                foreach (Prescription p in prescriptions)
-                {
-                    if (p.doctor.id == d.id)
-                    {
-                        p.doctor = d;
-                    }
-                }
+                p.doctor = doctorService.GetDoctorById(p.doctor.id);
             }
+            
         }
 
-        public void bindPrescriptionsWithMedications(List<Prescription> prescriptions, List<Medication> medications)
+        public void bindPrescriptionsWithMedications(List<Prescription> prescriptions)
         {
-            foreach (Medication m in medications)
+            MedicationService medicationService = new MedicationService();
+            foreach (Prescription p in prescriptions)
             {
-                foreach (Prescription p in prescriptions)
-                {
-                    if (p.medication.id == m.id)
-                    {
-                        p.medication = m;
-                    }
-                }
+                p.medication = medicationService.FindById(p.medication.id);
             }
 
         }
