@@ -81,14 +81,9 @@ namespace SIMS.Service
 
         public void bindDoctorsWithVacationPeriods(List<VacationPeriod> vacationPeriods)
         {
-            List<Doctor> doctors = doctorService.GetAllDoctors();
-            foreach (Doctor d in doctors)
+            foreach (VacationPeriod v in vacationPeriods)
             {
-                foreach (VacationPeriod v in vacationPeriods)
-                {
-                    if (v.doctor.id == d.id)
-                        v.doctor = d;
-                }
+                v.doctor = doctorService.GetDoctorById(v.doctor.id);
             }
         }
 

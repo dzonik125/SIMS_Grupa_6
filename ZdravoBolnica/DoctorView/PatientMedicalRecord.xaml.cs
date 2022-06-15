@@ -123,11 +123,11 @@ namespace SIMS.DoctorView
             List<ExaminationReport> exReports = new();
             exReports = erc.findReportsByMRecordId(patient.medicalRecord.id);
             List<Doctor> doctors = doctorController.GetAllDoctors();
-            erc.bindReporswithDoctors(exReports, doctors);
+            erc.bindReporswithDoctors(exReports);
             List<Room> rooms = roomController.FindAll();
             List<Appointment> appointments = appointmentController.GetAllAppointments();
-            appointmentController.BindRoomsWithAppointments(rooms, appointments);
-            erc.bindReportswithAppointments(exReports, appointments);
+            appointmentController.BindRoomsWithAppointments( appointments);
+            erc.bindReportswithAppointments(exReports);
 
             foreach (ExaminationReport e in exReports)
             {

@@ -33,44 +33,41 @@ namespace Service
             appointmentRepository.DeleteById(id);
         }
 
+        public Appointment GetAppointmentById(int id)
+        {
+            return appointmentRepository.FindById(id);
+        }
+
         public void SaveAppointment(Appointment appointment)
         {
             appointmentRepository.Create(appointment);
         }
 
-        public void BindRoomsWithAppointments(List<Room> rooms, List<Appointment> appointments)
+        public void BindRoomsWithAppointments(List<Appointment> appointments)
         {
-            foreach (Room room in rooms)
+            RoomService roomService = new RoomService();   
+            foreach (Appointment appointment in appointments)
             {
-                foreach (Appointment appointment in appointments)
-                {
-                    if (appointment.room.id == room.id)
-                        appointment.room = room;
-                }
+                appointment.room = roomService.FindRoomById(appointment.room.id);
             }
         }
 
-        public void BindDoctorsWithAppointments(List<Doctor> doctors, List<Appointment> appointments)
+        public void BindDoctorsWithAppointments(List<Appointment> appointments)
         {
-            foreach (Doctor doctor in doctors)
+            DoctorService doctorService = new DoctorService();
+            foreach (Appointment appointment in appointments)
             {
-                foreach (Appointment appointment in appointments)
-                {
-                    if (appointment.doctor.id == doctor.id)
-                        appointment.doctor = doctor;
-                }
+                appointment.doctor = doctorService.GetDoctorById(appointment.doctor.id);
             }
+
         }
 
-        public void BindPatientsWithAppointments(List<Patient> patients, List<Appointment> appointments)
+        public void BindPatientsWithAppointments(List<Appointment> appointments)
         {
-            foreach (Patient patient in patients)
+            PatientService patientService = new PatientService();
+            foreach (Appointment appointment in appointments)
             {
-                foreach (Appointment appointment in appointments)
-                {
-                    if (appointment.patient.id == patient.id)
-                        appointment.patient = patient;
-                }
+                appointment.patient = patientService.FindPatientById(appointment.patient.id);
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using Model;
+using Service;
 using SIMS.Model;
 using SIMS.Repository;
 using System;
@@ -47,43 +48,26 @@ namespace SIMS.Service
             return examinationReportRepository.findReportsByMRecordId(id);
         }
 
-        public void bindReporswithDoctors(List<ExaminationReport> reports, List<Doctor> doctors)
+        public void bindReporswithDoctors(List<ExaminationReport> reports)
         {
-            foreach (Doctor d in doctors)
+            DoctorService doctorService = new DoctorService();
+            foreach (ExaminationReport examinationReport in reports)
             {
-                foreach (ExaminationReport e in reports)
-                {
-                    CheckDoctorId(e, d);
-                }
+                examinationReport.doctor = doctorService.GetDoctorById(examinationReport.doctor.id);
             }
         }
 
-        private static void CheckDoctorId(ExaminationReport e, Doctor d)
-        {
-            if (e.doctor.id == d.id)
-            {
-                e.doctor = d;
-            }
-        }
 
-        public void bindReportswithAppointments(List<ExaminationReport> reports, List<Appointment> appointments)
+        public void bindReportswithAppointments(List<ExaminationReport> reports)
         {
-            foreach (Appointment a in appointments)
+            AppointmentService appointmentService = new AppointmentService();
+            foreach (ExaminationReport examinationReport in reports)
             {
-                foreach (ExaminationReport e in reports)
-                {
-                    CheckAppointmentId(e, a);
-                }
+                examinationReport.appointment = appointmentService.GetAppointmentById(examinationReport.doctor.id);
             }
 
         }
 
-        private static void CheckAppointmentId(ExaminationReport e, Appointment a)
-        {
-            if (e.appointment.id == a.id)
-            {
-                e.appointment = a;
-            }
-        }
+  
     }
 }

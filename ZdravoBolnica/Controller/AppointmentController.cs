@@ -68,18 +68,18 @@ namespace Controller
         {
             throw new NotImplementedException();
         }
-        public void BindRoomsWithAppointments(List<Room> rooms, List<Appointment> appointments)
+        public void BindRoomsWithAppointments(List<Appointment> appointments)
         {
-            appointmentService.BindRoomsWithAppointments(rooms, appointments);
+            appointmentService.BindRoomsWithAppointments(appointments);
         }
-        public void BindDoctorsWithAppointments(List<Doctor> doctors, List<Appointment> appointments)
+        public void BindDoctorsWithAppointments(List<Appointment> appointments)
         {
-            appointmentService.BindDoctorsWithAppointments(doctors, appointments);
+            appointmentService.BindDoctorsWithAppointments(appointments);
         }
 
-        public void BindPatientsWithAppointments(List<Patient> patients, List<Appointment> appointments)
+        public void BindPatientsWithAppointments(List<Appointment> appointments)
         {
-            appointmentService.BindPatientsWithAppointments(patients, appointments);
+            appointmentService.BindPatientsWithAppointments(appointments);
         }
 
         public Appointment FindPatientAppointment(Patient patient)

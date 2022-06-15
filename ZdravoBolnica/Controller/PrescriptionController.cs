@@ -49,12 +49,12 @@ namespace SIMS.Controller
 
         public void bindPrescriptionsWithDoctors(List<Prescription> prescriptions, List<Doctor> doctors)
         {
-            prescriptionService.bindPrescriptionsWithDoctors(prescriptions, doctors);
+            prescriptionService.bindPrescriptionsWithDoctors(prescriptions);
         }
 
         public void bindPrescriptionsWithMedications(List<Prescription> prescriptions, List<Medication> medications)
         {
-            prescriptionService.bindPrescriptionsWithMedications(prescriptions, medications);
+            prescriptionService.bindPrescriptionsWithMedications(prescriptions);
         }
     }
 }

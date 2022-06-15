@@ -118,10 +118,7 @@ namespace Repository
             }
             appointmentSerializer.toCSV(filename, appointments);
         }
-        public Appointment FindById(string key)
-        {
-            throw new NotImplementedException();
-        }
+  
 
         public void DeleteAll()
         {
